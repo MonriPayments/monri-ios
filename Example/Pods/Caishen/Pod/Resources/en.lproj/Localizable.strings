@@ -1,0 +1,21 @@
+/* 
+  Localizable.strings
+  Pods
+
+  Created by Shiyuan Jiang on 4/6/16.
+
+*/
+
+"ACCESSORY_BUTTON_ACCESSIBILITY_LABEL" = "Accessory";
+
+"CARD_TYPE" = "Card Type";
+"CVC_TEXTFIELD_ACCESSIBILITY_LABEL" = "Card Verification Code";
+
+"INVALID_CARD_NUMBER" = "Invalid card number";
+"INVALID_EXPIRATION_DATE" = "Card expired";
+
+"MONTH_INPUT_TEXTFIELD_ACCESSIBILITY_LABEL" = "Expiration Month";
+
+"NUMBER_INPUT_TEXTFIELD_ACCESSIBILITY_LABEL" = "Card Number";
+
+"YEAR_INPUT_TEXTFIELD_ACCESSIBILITY_LABEL" = "Expiration Year";

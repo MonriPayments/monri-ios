@@ -1,0 +1,51 @@
+PODS:
+  - Alamofire (4.9.1)
+  - Caishen (2.2.1)
+  - FBSnapshotTestCase (2.1.4):
+    - FBSnapshotTestCase/SwiftSupport (= 2.1.4)
+  - FBSnapshotTestCase/Core (2.1.4)
+  - FBSnapshotTestCase/SwiftSupport (2.1.4):
+    - FBSnapshotTestCase/Core
+  - Monri (0.0.2):
+    - Alamofire (~> 4.0)
+    - Caishen
+  - Nimble (7.3.4)
+  - Nimble-Snapshots (6.3.0):
+    - Nimble-Snapshots/Core (= 6.3.0)
+  - Nimble-Snapshots/Core (6.3.0):
+    - FBSnapshotTestCase (~> 2.0)
+    - Nimble (~> 7.0)
+  - Quick (1.2.0)
+
+DEPENDENCIES:
+  - FBSnapshotTestCase (~> 2.1.4)
+  - Monri (from `../`)
+  - Nimble (~> 7.0)
+  - Nimble-Snapshots (~> 6.3.0)
+  - Quick (~> 1.2.0)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Alamofire
+    - Caishen
+    - FBSnapshotTestCase
+    - Nimble
+    - Nimble-Snapshots
+    - Quick
+
+EXTERNAL SOURCES:
+  Monri:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
+  Caishen: 903d1d567b010b28217acd38e438b5917623cfef
+  FBSnapshotTestCase: 094f9f314decbabe373b87cc339bea235a63e07a
+  Monri: 5a7e359edb22e20a2182819aa8865a48b1d738e8
+  Nimble: 051e3d8912d40138fa5591c78594f95fb172af37
+  Nimble-Snapshots: f5459b5b091678dc942d03ec4741cacb58ba4a52
+  Quick: 58d203b1c5e27fff7229c4c1ae445ad7069a7a08
+
+PODFILE CHECKSUM: 8b906de9cc76b7fd2f500a02eee7f9fd143f5cbc
+
+COCOAPODS: 1.7.3

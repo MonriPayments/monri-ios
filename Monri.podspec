@@ -1,21 +1,32 @@
-Pod::Spec.new do |spec|
+#
+# Be sure to run `pod lib lint Monri.podspec' to ensure this is a
+# valid spec before submitting.
+#
+# Any lines starting with a # are optional, but their use is encouraged
+# To learn more about a Podspec see https://guides.cocoapods.org/syntax/podspec.html
+#
 
-  spec.name         = "Monri"
-  spec.version      = "0.0.1"
-  spec.summary      = "Monri iOS SDK"
+Pod::Spec.new do |s|
+  s.name             = 'Monri'
+  s.version          = '0.0.2'
+  s.summary          = 'Monri iOS SDK'
 
-  spec.description  = <<-DESC
-Monri iOS SDK - simplified card collection & payment
-                   DESC
+  s.description      = 'Monri iOS SDK - simplified card collection & payment'
 
-  spec.homepage     = "https://github.com/jasminsuljic/monri-ios"
-  spec.license      = { :type => "MIT", :file => "LICENSE" }
-  spec.author       = { "jasminsuljic" => "jasmin.suljich@gmail.com" }
+  s.homepage         = 'https://github.com/jasminsuljic/monri-ios'
+  s.license          = { :type => 'MIT', :file => 'LICENSE' }
+  s.author           = { 'jasmin.suljic' => 'jasmin.suljich@gmail.com' }
+  s.source           = { :git => 'https://github.com/jasminsuljic/monri-ios.git', :tag => s.version.to_s }
 
-  spec.ios.deployment_target = "12.1"
-  spec.swift_version = "4.2"
+  s.ios.deployment_target = '12.1'
+  s.swift_version = '4.2'
+  
+  s.resource_bundles = {
+      'Monri' => ['Monri/Classes/**/*.{storyboard,xib,xcassets,json,imageset,png}']
+  }
 
-  spec.source        = { :git => "https://github.com/jasminsuljic/monri-ios.git", :tag => "#{spec.version}" }
-  spec.source_files  = "Monri/**/*.{h,m,swift}"
-
+  s.source_files = 'Monri/Classes/**/*'
+  
+  s.dependency 'Caishen'
+  s.dependency 'Alamofire', '~> 4.0'
 end
