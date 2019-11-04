@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'Monri'
-  s.version          = '0.0.2'
+  s.version          = '0.0.3'
   s.summary          = 'Monri iOS SDK'
 
   s.description      = 'Monri iOS SDK - simplified card collection & payment'
@@ -18,7 +18,7 @@ Pod::Spec.new do |s|
   s.author           = { 'jasmin.suljic' => 'jasmin.suljich@gmail.com' }
   s.source           = { :git => 'https://github.com/jasminsuljic/monri-ios.git', :tag => s.version.to_s }
 
-  s.ios.deployment_target = '12.1'
+  s.ios.deployment_target = '10.0'
   s.swift_version = '4.2'
   
   s.resource_bundles = {

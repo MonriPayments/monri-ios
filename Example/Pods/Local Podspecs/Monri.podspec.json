@@ -16,7 +16,7 @@
     "tag": "0.0.2"
   },
   "platforms": {
-    "ios": "12.1"
+    "ios": "10.0"
   },
   "swift_versions": "4.2",
   "resource_bundles": {

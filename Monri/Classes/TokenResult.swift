@@ -7,5 +7,5 @@ import Foundation
 
 public enum TokenResult {
     case token(Token)
-    case error(Error)
+    case error(TokenError)
 }

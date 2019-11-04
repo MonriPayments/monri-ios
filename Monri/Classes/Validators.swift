@@ -32,14 +32,14 @@ func currentYear() -> Int {
     return calendar.component(.year, from: Date())
 }
 
-func validateExpirationDate(month: Int, year: Int) -> ValidationError? {
+func validateExpirationDate(month: Int, year: Int) -> TokenError? {
 
     if !(month > 0 && month <= 12) {
-        return ValidationError.invalidExpirationMonth
+        return TokenError.invalidExpirationMonth
     }
 
     if year < currentYear() {
-        return ValidationError.invalidExpirationYear
+        return TokenError.invalidExpirationYear
     }
 
     return nil

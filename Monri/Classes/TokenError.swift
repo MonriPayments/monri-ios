@@ -5,7 +5,7 @@
 
 import Foundation
 
-public enum ValidationError: Error {
+public enum TokenError: Error {
     case invalidTokenRequest(String)
     case invalidCard(String)
     case invalidCardNumber
@@ -17,3 +17,5 @@ public enum ValidationError: Error {
     case tokenizationFailed
     case jsonParsingError(String)
 }
+
+public typealias ValidationError = TokenError;

@@ -34,58 +34,58 @@ public final class MonriApi {
         }
         
         guard let createTokenRequest = CreateTokenRequest.from(token: request, card: card, authenticityToken: authenticityToken) else {
-            callback(.error(ValidationError.createTokenRequestError))
+            callback(.error(TokenError.createTokenRequestError))
             return
         }
         
         Alamofire.request(tokenizeUrl, method: .post, parameters: createTokenRequest.toJson(), encoding: JSONEncoding.default)
             .responseJSON { dataResponse in
                 guard let data = dataResponse.data else {
-                    callback(.error(ValidationError.tokenizationFailed))
+                    callback(.error(TokenError.tokenizationFailed))
                     return
                 }
                 do {
                     guard let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] else {
-                        callback(.error(ValidationError.jsonParsingError("Converting response = \(data) to JSON failed!")))
+                        callback(.error(TokenError.jsonParsingError("Converting response = \(data) to JSON failed!")))
                         return
                     }
                     guard let token = Token.fromJson(json) else {
-                        callback(.error(ValidationError.jsonParsingError("Converting response to Token from \(json) failed!")))
+                        callback(.error(TokenError.jsonParsingError("Converting response to Token from \(json) failed!")))
                         return
                     }
                     
                     callback(.token(token))
                 } catch {
-                    callback(.error(ValidationError.jsonParsingError("\(error)")))
+                    callback(.error(TokenError.jsonParsingError("\(error)")))
                 }
         }
         
     }
 
-    private func validateTokenRequest(_ request: TokenRequest) -> ValidationError? {
+    private func validateTokenRequest(_ request: TokenRequest) -> TokenError? {
         if request.token.isEmpty {
-            return ValidationError.invalidTokenRequest(".token empty")
+            return TokenError.invalidTokenRequest(".token empty")
         }
 
         if request.digest.isEmpty {
-            return ValidationError.invalidTokenRequest(".digest empty")
+            return TokenError.invalidTokenRequest(".digest empty")
         }
 
         if request.timestamp.isEmpty {
-            return ValidationError.invalidTokenRequest(".timestamp empty")
+            return TokenError.invalidTokenRequest(".timestamp empty")
         }
 
         return nil
     }
 
-    private func validateCard(_ card: Card) -> ValidationError? {
+    private func validateCard(_ card: Card) -> TokenError? {
 
         if !isValidCardNumber(card.number) {
-            return ValidationError.invalidCardNumber
+            return TokenError.invalidCardNumber
         }
 
         if !validateCVV(card.cvc) {
-            return ValidationError.invalidCVV
+            return TokenError.invalidCVV
         }
 
         if let v = validateExpirationDate(month: card.expMonth, year: card.expYear) {
