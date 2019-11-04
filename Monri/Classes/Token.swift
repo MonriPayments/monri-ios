@@ -6,7 +6,7 @@
 import Foundation
 
 public struct Token {
-    let id: String
+    public let id: String
 
     static func fromJson(_ json: Dictionary<String, Any>) -> Token? {
 
