@@ -26,7 +26,7 @@ struct CreateTokenRequest {
                                   cvv: card.cvc,
                                   digest:token.digest,
                                   token: token.token,
-                                  tokenizePan: false
+                                  tokenizePan: card.tokenizePan
         )
     }
     
@@ -46,7 +46,7 @@ struct CreateTokenRequest {
             "cvv": cvv,
             "digest": digest,
             "token": token,
-            "tokenize_pan": false,
+            "tokenize_pan": tokenizePan,
         ]
     }
 }

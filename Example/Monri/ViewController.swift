@@ -22,6 +22,8 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var cardInlineView: CardInlineView!
     
+    @IBOutlet weak var saveCardForFuturePaymentsSwitch: UISwitch!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -36,16 +38,35 @@ class ViewController: UIViewController {
         let digest = "\(merchantKey)\(token)\(timestamp)".sha512
         let tokenRequest = TokenRequest(token: token, digest: digest, timestamp: timestamp)
         
-        let card = cardInlineView.getCard()
-        monri.createToken(tokenRequest, card: card) {
-            result in
-            switch result {
-            case .error(let error):
-                print("An error occurred \(error)")
-            case .token(let token):
-                print("Token received \(token)")
+        var card = cardInlineView.getCard()
+        
+        // Save card for future payments
+        card.tokenizePan = saveCardForFuturePaymentsSwitch.isOn
+        
+        if !card.validateCard() {
+            print("Card validation failed")
+            print("card.number valid = \(card.validateNumber())")
+            print("card.cvv valid = \(card.validateCVC())")
+            print("card.exp_date valid = \(card.validateExpiryDate())")
+            // Card validation failed
+        } else {
+            print("Card last4: \(card.last4)")
+            if let type = card.type {
+                print("Card type: \(type)")
+            }
+            
+            monri.createToken(tokenRequest, card: card) {
+                result in
+                switch result {
+                case .error(let error):
+                    print("An error occurred \(error)")
+                case .token(let token):
+                    print("Token received \(token)")
+                }
             }
         }
+        
+        
     }
 
     override func didReceiveMemoryWarning() {
