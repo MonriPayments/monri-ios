@@ -32,7 +32,7 @@ At some point in the flow of your app, you’ll want to obtain payment details f
 Instructions for each route follows, although you may want to write your app to offer support for both.
 
 ## Using the card input
-To collect card data from your customers directly, you can use Monri’s [CardInlineView](https://github.com/jasminsuljic/monri-ios/blob/master/Monri/Classes/CardInlineView.swift). Yo can include it in any view's layout file:
+To collect card data from your customers directly, you can use Monri’s [CardInlineView](https://github.com/jasminsuljic/monri-ios/blob/master/Monri/Classes/CardInlineView.swift). Yo can include it in any view:
 - Add a UITextField to your view in interface builder and change its class to `CardInlineView` (when using interface builder)
 - or initate a CardInlineView with one of its initializers (when instantiating from code):
   - init?(coder: aDecoder: NSCoder)
