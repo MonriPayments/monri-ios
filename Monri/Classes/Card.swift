@@ -79,7 +79,7 @@ extension Card: PaymentMethod {
     public func data() -> [String : Any] {
         return [
             "pan": number,
-            "expiration_date": expirationDate,
+            "expiration_date": expirationDate(),
             "cvv": cvc,
             "tokenize_pan": tokenizePan
         ]

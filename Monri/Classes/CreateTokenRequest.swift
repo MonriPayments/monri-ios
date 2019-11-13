@@ -37,8 +37,7 @@ struct CreateTokenRequest {
             "timestamp": timestamp,
             "digest": digest,
             "token": token
-            ]
-        
+        ]
         return result.merging(paymentMethod.data(), uniquingKeysWith: { (_, new) in new })
     }
 }
