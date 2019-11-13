@@ -64,3 +64,24 @@ extension String {
             .joined()
     }
 }
+
+extension Card: PaymentMethod {
+    public func paymentMethodType() -> PaymentMethodType {
+        return PaymentMethodType.newCard
+    }
+    
+    private func expirationDate() -> String {
+        let month = "\(expMonth)".padding(toLength: 2, withPad: "0", startingAt: 0)
+        let year = "\(expYear - 2000)"
+        return "\(year)\(month)"
+    }
+    
+    public func data() -> [String : Any] {
+        return [
+            "pan": number,
+            "expiration_date": expirationDate,
+            "cvv": cvc,
+            "tokenize_pan": tokenizePan
+        ]
+    }
+}

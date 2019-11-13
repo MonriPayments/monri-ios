@@ -9,24 +9,18 @@ struct CreateTokenRequest {
     let authenticityToken: String
     let tempCardId: String
     let timestamp: String
-    let pan: String
-    let expirationDate: String
-    let cvv: String
     let digest: String
     let token: String
-    let tokenizePan: Bool
+    let paymentMethod: PaymentMethod
 
-    static func from(token: TokenRequest, card: Card, authenticityToken: String) -> CreateTokenRequest? {
+    static func from(token: TokenRequest, paymentMethod: PaymentMethod, authenticityToken: String) -> CreateTokenRequest? {
         
         return CreateTokenRequest(authenticityToken: authenticityToken,
                                   tempCardId: token.token,
                                   timestamp: token.timestamp,
-                                  pan: card.number,
-                                  expirationDate: expirationDate(card: card),
-                                  cvv: card.cvc,
                                   digest:token.digest,
                                   token: token.token,
-                                  tokenizePan: card.tokenizePan
+                                  paymentMethod: paymentMethod
         )
     }
     
@@ -37,16 +31,14 @@ struct CreateTokenRequest {
     }
 
     func toJson() -> Dictionary<String, Any> {
-        return [
+        let result:[String: Any] = [
             "authenticity_token": authenticityToken,
             "temp_card_id": tempCardId,
             "timestamp": timestamp,
-            "pan": pan,
-            "expiration_date": expirationDate,
-            "cvv": cvv,
             "digest": digest,
-            "token": token,
-            "tokenize_pan": tokenizePan,
-        ]
+            "token": token
+            ]
+        
+        return result.merging(paymentMethod.data(), uniquingKeysWith: { (_, new) in new })
     }
 }

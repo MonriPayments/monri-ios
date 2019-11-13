@@ -235,6 +235,8 @@
 		F13F2AA7F2E6D95A181CAB99B900D531 /* ServerTrustPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503D83C46C63927728F4A54E0FEAEF32 /* ServerTrustPolicy.swift */; };
 		F1AAAE00BB32B733B238E2B4E8424506 /* UIImage+Compare.h in Headers */ = {isa = PBXBuildFile; fileRef = 8C709B93C9A60592EEFD671DDAA8FDD7 /* UIImage+Compare.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		F29A83114872CA5532F8EDB31BE9225D /* Behavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09754D615A0B39B86C19DA9439B576D9 /* Behavior.swift */; };
+		F2CB9C84237C2611003FF24F /* PaymentMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2CB9C83237C2611003FF24F /* PaymentMethod.swift */; };
+		F2CB9C86237C2B18003FF24F /* SavedCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2CB9C85237C2B18003FF24F /* SavedCard.swift */; };
 		F3343E6C25608D945C37EF712F6A0235 /* CurrentTestCaseTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAE5E15BA3C771C501CC0621B4A4C2E3 /* CurrentTestCaseTracker.swift */; };
 		F5F579CACAC5D039AEA52CFD85BAA1DC /* DSL.m in Sources */ = {isa = PBXBuildFile; fileRef = FD5B5D609397B1E4AC7ECDE1131DE657 /* DSL.m */; settings = {COMPILER_FLAGS = "-DPRODUCT_NAME=Nimble/Nimble"; }; };
 		F720FAF13A108CE6901E0A8B0580E1E8 /* FBSnapshotTestCase-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 5F6D28286F4FEB56F17A1AFDEEE84F44 /* FBSnapshotTestCase-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -613,6 +615,8 @@
 		EE616670BDB400B8624E3AE859CC6336 /* SwiftSupport.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SwiftSupport.swift; path = FBSnapshotTestCase/SwiftSupport.swift; sourceTree = "<group>"; };
 		F016D4B75A2BC116259716D9947B3705 /* NumberInputTextFieldDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NumberInputTextFieldDelegate.swift; path = Pod/Classes/UI/NumberInputTextFieldDelegate.swift; sourceTree = "<group>"; };
 		F0C5361F18E76890E56A590BC88C4781 /* CwlCatchException.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CwlCatchException.h; path = Carthage/Checkouts/CwlCatchException/Sources/CwlCatchExceptionSupport/include/CwlCatchException.h; sourceTree = "<group>"; };
+		F2CB9C83237C2611003FF24F /* PaymentMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PaymentMethod.swift; path = Monri/Classes/PaymentMethod.swift; sourceTree = "<group>"; };
+		F2CB9C85237C2B18003FF24F /* SavedCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SavedCard.swift; path = Monri/Classes/SavedCard.swift; sourceTree = "<group>"; };
 		F2D54EC1FFF42B08254C1F61B6385BE5 /* DispatchQueue+Alamofire.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "DispatchQueue+Alamofire.swift"; path = "Source/DispatchQueue+Alamofire.swift"; sourceTree = "<group>"; };
 		F2FC0761CDD0CF3A857E2061986C0298 /* FBSnapshotTestCase-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "FBSnapshotTestCase-dummy.m"; sourceTree = "<group>"; };
 		F6E9971309D49CC5BB553CAB30F56CB9 /* Filter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Filter.swift; path = Sources/Quick/Filter.swift; sourceTree = "<group>"; };
@@ -1035,6 +1039,8 @@
 				C2E8EF12AEDE9483C954AE3B508FB94F /* Pod */,
 				CF46905F4825F39F2E6BE19EE9068304 /* Resources */,
 				AB5342196C88C0A68FA12431039D6F78 /* Support Files */,
+				F2CB9C83237C2611003FF24F /* PaymentMethod.swift */,
+				F2CB9C85237C2B18003FF24F /* SavedCard.swift */,
 			);
 			name = Monri;
 			path = ../..;
@@ -1739,11 +1745,13 @@
 				FA178082C101617DDA20E9BCD981B1DD /* Card.swift in Sources */,
 				20584D3902F8020C6FE295E6AD12368E /* CardInlineView.swift in Sources */,
 				14BD42D4CB632736A7731953C41D767D /* CardMultilineView.swift in Sources */,
+				F2CB9C84237C2611003FF24F /* PaymentMethod.swift in Sources */,
 				FF0E732F41F2C5549D1FCDE1CE009533 /* CardMultilineView.xib in Sources */,
 				9E9189045361E93D44863AACDB5DBDEA /* CreateTokenRequest.swift in Sources */,
 				92575DD27D87391CD60DB0F8CDED4713 /* Monri-dummy.m in Sources */,
 				82F2774A222A4AFF40D1456274204072 /* MonriApi.swift in Sources */,
 				32A74803D8EDB41945F5CBAEFADA7575 /* ReplaceMe.swift in Sources */,
+				F2CB9C86237C2B18003FF24F /* SavedCard.swift in Sources */,
 				AAA7FA9F53BE59153360E5201AF3740C /* SwiftLuhn.swift in Sources */,
 				41C51A20F0896D8F578C85484DE049C6 /* Token.swift in Sources */,
 				AC358707C7E9CD268E8C0E035AA47367 /* TokenCallback.swift in Sources */,

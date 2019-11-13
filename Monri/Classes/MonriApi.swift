@@ -20,20 +20,10 @@ public final class MonriApi {
         self.apiUrl = "https://ipgtest.monri.com"
         self.tokenizeUrl = "\(apiUrl)/v2/temp-tokenize"
     }
-
-    public func createToken(_ request: TokenRequest, card: Card, _ callback: @escaping TokenResultCallback) {
-
-        if let validateTokenRequestResult = validateTokenRequest(request) {
-            callback(.error(validateTokenRequestResult))
-            return
-        }
-
-        if let validateCardResult = validateCard(card) {
-            callback(.error(validateCardResult))
-            return
-        }
+    
+    public func createToken(_ request: TokenRequest, paymentMethod: PaymentMethod, _ callback: @escaping TokenResultCallback) {
         
-        guard let createTokenRequest = CreateTokenRequest.from(token: request, card: card, authenticityToken: authenticityToken) else {
+        guard let createTokenRequest = CreateTokenRequest.from(token: request, paymentMethod: paymentMethod, authenticityToken: authenticityToken) else {
             callback(.error(TokenError.createTokenRequestError))
             return
         }
@@ -59,7 +49,21 @@ public final class MonriApi {
                     callback(.error(TokenError.jsonParsingError("\(error)")))
                 }
         }
+    }
+
+    public func createToken(_ request: TokenRequest, card: Card, _ callback: @escaping TokenResultCallback) {
+
+        if let validateTokenRequestResult = validateTokenRequest(request) {
+            callback(.error(validateTokenRequestResult))
+            return
+        }
+
+        if let validateCardResult = validateCard(card) {
+            callback(.error(validateCardResult))
+            return
+        }
         
+        return createToken(request, paymentMethod: card, callback)
     }
 
     private func validateTokenRequest(_ request: TokenRequest) -> TokenError? {

@@ -55,7 +55,12 @@ class ViewController: UIViewController {
                 print("Card type: \(type)")
             }
             
-            monri.createToken(tokenRequest, card: card) {
+//            let paymentMethod = SavedCard(
+//                panToken: "cafb28787e42aadcd73a7e92e5e57fa2b504280b40a26e75c00c62ec4c6f0a15",
+//                cvc: "123"
+//            )
+            
+            monri.createToken(tokenRequest, paymentMethod: card) {
                 result in
                 switch result {
                 case .error(let error):
