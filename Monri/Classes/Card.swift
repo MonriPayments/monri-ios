@@ -63,6 +63,14 @@ extension String {
         return components(separatedBy: CharacterSet.decimalDigits.inverted)
             .joined()
     }
+    
+    func padLeft(toLength: Int, withPad: String) -> String {
+        if self.count >= toLength {
+            return self
+        } else {
+            return String(self.padding(toLength: toLength, withPad: withPad, startingAt: 0).reversed())
+        }
+    }
 }
 
 extension Card: PaymentMethod {
@@ -71,7 +79,7 @@ extension Card: PaymentMethod {
     }
     
     private func expirationDate() -> String {
-        let month = "\(expMonth)".padding(toLength: 2, withPad: "0", startingAt: 0)
+        let month = "\(expMonth)".padLeft(toLength: 2, withPad: "0")
         let year = "\(expYear - 2000)"
         return "\(year)\(month)"
     }
