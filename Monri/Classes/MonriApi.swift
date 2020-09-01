@@ -14,11 +14,17 @@ public final class MonriApi {
     private let authenticityToken: String
     private let apiUrl: String
     private let tokenizeUrl: String
+    private let monriApiOptions: MonriApiOptions
 
-    public init(authenticityToken: String) {
-        self.authenticityToken = authenticityToken
-        self.apiUrl = "https://ipgtest.monri.com"
+    public convenience init(authenticityToken: String) {
+        self.init(options: MonriApiOptions(authenticityToken: authenticityToken, developmentMode: true))
+    }
+    
+    public init(options: MonriApiOptions){
+        self.authenticityToken = options.authenticityToken
+        self.apiUrl = options.apiUrl
         self.tokenizeUrl = "\(apiUrl)/v2/temp-tokenize"
+        self.monriApiOptions = options
     }
     
     public func createToken(_ request: TokenRequest, paymentMethod: PaymentMethod, _ callback: @escaping TokenResultCallback) {
@@ -49,6 +55,10 @@ public final class MonriApi {
                     callback(.error(TokenError.jsonParsingError("\(error)")))
                 }
         }
+    }
+    
+    public func confirmPayment(confirmPaymentParams: ConfirmPaymentParams) {
+        
     }
 
     public func createToken(_ request: TokenRequest, card: Card, _ callback: @escaping TokenResultCallback) {

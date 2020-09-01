@@ -145,6 +145,17 @@
 		9586B053F23E4786E0499C3B76ABE281 /* ToSucceed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 890CD61CC27F34DD6A0BFDE4E04A184D /* ToSucceed.swift */; settings = {COMPILER_FLAGS = "-DPRODUCT_NAME=Nimble/Nimble"; }; };
 		97B866E860E4C9433C4C10DD590D2D1D /* HaveCount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2444803BCCF88CA74947AD62E81958F6 /* HaveCount.swift */; settings = {COMPILER_FLAGS = "-DPRODUCT_NAME=Nimble/Nimble"; }; };
 		98A929C8E9012AB167672714FFD2113C /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457A2002C47AB88D15C84DE9F418F760 /* Request.swift */; };
+		9980E18DD2D14AA3F4B4B0AA /* ConfirmPaymentResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9980E3C0472B60091DCE747A /* ConfirmPaymentResponse.swift */; };
+		9980E1A462027616633D42E3 /* PaymentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9980E2BAC23B756211931C7C /* PaymentController.swift */; };
+		9980E3139F1C50F9EDB9A68F /* ConfirmPaymentResponseCallback.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9980E12DE1382084C25A75ED /* ConfirmPaymentResponseCallback.swift */; };
+		9980E36FA51FEF0CD8F1517D /* ResultCallback.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9980EAAC696A9D883EE439C3 /* ResultCallback.swift */; };
+		9980E7959D629430602491FF /* PaymentAuthWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9980E40007B10A4EA3B0BD0A /* PaymentAuthWebView.swift */; };
+		9980E81BA81E47F85E4C33AE /* SavedPaymentMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9980EF0E64EBA56D5FCA8A0A /* SavedPaymentMethod.swift */; };
+		9980E9720154187E5D62F794 /* PaymentActionRequired.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9980E4118BCE4FC5AA1B8C8F /* PaymentActionRequired.swift */; };
+		9980EA474A96C64C298B8CBA /* PaymentResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9980E9A75A0515E239BF9294 /* PaymentResult.swift */; };
+		9980EC7D206356C3674B70ED /* MonriPaymentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9980E53C0130E25B63B21D8D /* MonriPaymentController.swift */; };
+		9980EF2290BFA946B84B5C54 /* PaymentStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9980E58793267C48D2E60EF8 /* PaymentStatus.swift */; };
+		9980EFC21EC0E668C1352442 /* SavedCardPaymentMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9980EAF80112664A0395D696 /* SavedCardPaymentMethod.swift */; };
 		9A08BCB44941429803A556671244D4C7 /* QuickConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 83A736F850374EA875237023C3089D60 /* QuickConfiguration.m */; };
 		9B08E99EE1FE9A21C7A39A89B089084B /* QuickSelectedTestSuiteBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D1EC23F12A4B88FD4D42FDF776BD80 /* QuickSelectedTestSuiteBuilder.swift */; };
 		9D65089019D558E5A9661F2DCAD20313 /* SwiftSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE616670BDB400B8624E3AE859CC6336 /* SwiftSupport.swift */; };
@@ -234,6 +245,14 @@
 		F12BD80AD1317E88CD9361216F73A326 /* Discover.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4486488AD2D8FE8B8EB36421216F2A1 /* Discover.swift */; };
 		F13F2AA7F2E6D95A181CAB99B900D531 /* ServerTrustPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503D83C46C63927728F4A54E0FEAEF32 /* ServerTrustPolicy.swift */; };
 		F1AAAE00BB32B733B238E2B4E8424506 /* UIImage+Compare.h in Headers */ = {isa = PBXBuildFile; fileRef = 8C709B93C9A60592EEFD671DDAA8FDD7 /* UIImage+Compare.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		F28C765E24FE85F60043B2A1 /* MonriApiOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F28C765D24FE85F60043B2A1 /* MonriApiOptions.swift */; };
+		F28C766024FE86D10043B2A1 /* MonriConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = F28C765F24FE86D10043B2A1 /* MonriConfig.swift */; };
+		F28C766224FE891A0043B2A1 /* ConfirmPaymentParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = F28C766124FE891A0043B2A1 /* ConfirmPaymentParams.swift */; };
+		F28C766424FE89430043B2A1 /* PaymentMethodParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = F28C766324FE89430043B2A1 /* PaymentMethodParams.swift */; };
+		F28C766624FE899E0043B2A1 /* TransactionParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = F28C766524FE899E0043B2A1 /* TransactionParams.swift */; };
+		F28C766824FE89EF0043B2A1 /* CustomerParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = F28C766724FE89EF0043B2A1 /* CustomerParams.swift */; };
+		F28C766B24FE8FF00043B2A1 /* ConfirmPaymentControllerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F28C766924FE8FF00043B2A1 /* ConfirmPaymentControllerViewController.swift */; };
+		F28C766C24FE8FF00043B2A1 /* ConfirmPaymentControllerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F28C766A24FE8FF00043B2A1 /* ConfirmPaymentControllerViewController.xib */; };
 		F29A83114872CA5532F8EDB31BE9225D /* Behavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09754D615A0B39B86C19DA9439B576D9 /* Behavior.swift */; };
 		F2CB9C84237C2611003FF24F /* PaymentMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2CB9C83237C2611003FF24F /* PaymentMethod.swift */; };
 		F2CB9C86237C2B18003FF24F /* SavedCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2CB9C85237C2B18003FF24F /* SavedCard.swift */; };
@@ -512,6 +531,17 @@
 		95A91CB291D075B111940E6C9900E4C2 /* UIApplication+StrictKeyWindow.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIApplication+StrictKeyWindow.m"; path = "FBSnapshotTestCase/Categories/UIApplication+StrictKeyWindow.m"; sourceTree = "<group>"; };
 		964688B97EDB44AFB7087F5B7CE02950 /* FBSnapshotTestCase.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBSnapshotTestCase.m; path = FBSnapshotTestCase/FBSnapshotTestCase.m; sourceTree = "<group>"; };
 		9730A607A8C048B7C671508321FF2476 /* Monri.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Monri.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+		9980E12DE1382084C25A75ED /* ConfirmPaymentResponseCallback.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfirmPaymentResponseCallback.swift; sourceTree = "<group>"; };
+		9980E2BAC23B756211931C7C /* PaymentController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentController.swift; sourceTree = "<group>"; };
+		9980E3C0472B60091DCE747A /* ConfirmPaymentResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfirmPaymentResponse.swift; sourceTree = "<group>"; };
+		9980E40007B10A4EA3B0BD0A /* PaymentAuthWebView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentAuthWebView.swift; sourceTree = "<group>"; };
+		9980E4118BCE4FC5AA1B8C8F /* PaymentActionRequired.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentActionRequired.swift; sourceTree = "<group>"; };
+		9980E53C0130E25B63B21D8D /* MonriPaymentController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MonriPaymentController.swift; sourceTree = "<group>"; };
+		9980E58793267C48D2E60EF8 /* PaymentStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentStatus.swift; sourceTree = "<group>"; };
+		9980E9A75A0515E239BF9294 /* PaymentResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentResult.swift; sourceTree = "<group>"; };
+		9980EAAC696A9D883EE439C3 /* ResultCallback.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultCallback.swift; sourceTree = "<group>"; };
+		9980EAF80112664A0395D696 /* SavedCardPaymentMethod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SavedCardPaymentMethod.swift; sourceTree = "<group>"; };
+		9980EF0E64EBA56D5FCA8A0A /* SavedPaymentMethod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SavedPaymentMethod.swift; sourceTree = "<group>"; };
 		9AB325F66AA2F80E9BBEF5FC1480AF1A /* NMBStringify.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NMBStringify.h; path = Sources/NimbleObjectiveC/NMBStringify.h; sourceTree = "<group>"; };
 		9B90B5EEB90B56E3DA3F7857A3354DB6 /* Nimble-Snapshots-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Nimble-Snapshots-prefix.pch"; sourceTree = "<group>"; };
 		9C8B16E9EF621A8FA3B0A06B209769D2 /* CardView.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; name = CardView.xib; path = Pod/Classes/UI/CardView.xib; sourceTree = "<group>"; };
@@ -615,6 +645,14 @@
 		EE616670BDB400B8624E3AE859CC6336 /* SwiftSupport.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SwiftSupport.swift; path = FBSnapshotTestCase/SwiftSupport.swift; sourceTree = "<group>"; };
 		F016D4B75A2BC116259716D9947B3705 /* NumberInputTextFieldDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NumberInputTextFieldDelegate.swift; path = Pod/Classes/UI/NumberInputTextFieldDelegate.swift; sourceTree = "<group>"; };
 		F0C5361F18E76890E56A590BC88C4781 /* CwlCatchException.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CwlCatchException.h; path = Carthage/Checkouts/CwlCatchException/Sources/CwlCatchExceptionSupport/include/CwlCatchException.h; sourceTree = "<group>"; };
+		F28C765D24FE85F60043B2A1 /* MonriApiOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonriApiOptions.swift; sourceTree = "<group>"; };
+		F28C765F24FE86D10043B2A1 /* MonriConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonriConfig.swift; sourceTree = "<group>"; };
+		F28C766124FE891A0043B2A1 /* ConfirmPaymentParams.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmPaymentParams.swift; sourceTree = "<group>"; };
+		F28C766324FE89430043B2A1 /* PaymentMethodParams.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentMethodParams.swift; sourceTree = "<group>"; };
+		F28C766524FE899E0043B2A1 /* TransactionParams.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionParams.swift; sourceTree = "<group>"; };
+		F28C766724FE89EF0043B2A1 /* CustomerParams.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerParams.swift; sourceTree = "<group>"; };
+		F28C766924FE8FF00043B2A1 /* ConfirmPaymentControllerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ConfirmPaymentControllerViewController.swift; path = Monri/Classes/ConfirmPaymentControllerViewController.swift; sourceTree = "<group>"; };
+		F28C766A24FE8FF00043B2A1 /* ConfirmPaymentControllerViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ConfirmPaymentControllerViewController.xib; path = Monri/Classes/ConfirmPaymentControllerViewController.xib; sourceTree = "<group>"; };
 		F2CB9C83237C2611003FF24F /* PaymentMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PaymentMethod.swift; path = Monri/Classes/PaymentMethod.swift; sourceTree = "<group>"; };
 		F2CB9C85237C2B18003FF24F /* SavedCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SavedCard.swift; path = Monri/Classes/SavedCard.swift; sourceTree = "<group>"; };
 		F2D54EC1FFF42B08254C1F61B6385BE5 /* DispatchQueue+Alamofire.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "DispatchQueue+Alamofire.swift"; path = "Source/DispatchQueue+Alamofire.swift"; sourceTree = "<group>"; };
@@ -1041,6 +1079,25 @@
 				AB5342196C88C0A68FA12431039D6F78 /* Support Files */,
 				F2CB9C83237C2611003FF24F /* PaymentMethod.swift */,
 				F2CB9C85237C2B18003FF24F /* SavedCard.swift */,
+				F28C765D24FE85F60043B2A1 /* MonriApiOptions.swift */,
+				F28C765F24FE86D10043B2A1 /* MonriConfig.swift */,
+				F28C766124FE891A0043B2A1 /* ConfirmPaymentParams.swift */,
+				F28C766324FE89430043B2A1 /* PaymentMethodParams.swift */,
+				F28C766524FE899E0043B2A1 /* TransactionParams.swift */,
+				F28C766724FE89EF0043B2A1 /* CustomerParams.swift */,
+				9980E2BAC23B756211931C7C /* PaymentController.swift */,
+				9980E53C0130E25B63B21D8D /* MonriPaymentController.swift */,
+				F28C766924FE8FF00043B2A1 /* ConfirmPaymentControllerViewController.swift */,
+				F28C766A24FE8FF00043B2A1 /* ConfirmPaymentControllerViewController.xib */,
+				9980E40007B10A4EA3B0BD0A /* PaymentAuthWebView.swift */,
+				9980E12DE1382084C25A75ED /* ConfirmPaymentResponseCallback.swift */,
+				9980EAAC696A9D883EE439C3 /* ResultCallback.swift */,
+				9980E3C0472B60091DCE747A /* ConfirmPaymentResponse.swift */,
+				9980E58793267C48D2E60EF8 /* PaymentStatus.swift */,
+				9980E4118BCE4FC5AA1B8C8F /* PaymentActionRequired.swift */,
+				9980E9A75A0515E239BF9294 /* PaymentResult.swift */,
+				9980EF0E64EBA56D5FCA8A0A /* SavedPaymentMethod.swift */,
+				9980EAF80112664A0395D696 /* SavedCardPaymentMethod.swift */,
 			);
 			name = Monri;
 			path = ../..;
@@ -1598,6 +1655,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F28C766C24FE8FF00043B2A1 /* ConfirmPaymentControllerViewController.xib in Resources */,
 				D435350FF1BFDD13D90708FDFB03DAB3 /* Monri.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1742,8 +1800,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F28C766224FE891A0043B2A1 /* ConfirmPaymentParams.swift in Sources */,
+				F28C766424FE89430043B2A1 /* PaymentMethodParams.swift in Sources */,
 				FA178082C101617DDA20E9BCD981B1DD /* Card.swift in Sources */,
+				F28C765E24FE85F60043B2A1 /* MonriApiOptions.swift in Sources */,
 				20584D3902F8020C6FE295E6AD12368E /* CardInlineView.swift in Sources */,
+				F28C766824FE89EF0043B2A1 /* CustomerParams.swift in Sources */,
+				F28C766B24FE8FF00043B2A1 /* ConfirmPaymentControllerViewController.swift in Sources */,
 				14BD42D4CB632736A7731953C41D767D /* CardMultilineView.swift in Sources */,
 				F2CB9C84237C2611003FF24F /* PaymentMethod.swift in Sources */,
 				FF0E732F41F2C5549D1FCDE1CE009533 /* CardMultilineView.xib in Sources */,
@@ -1756,10 +1819,23 @@
 				41C51A20F0896D8F578C85484DE049C6 /* Token.swift in Sources */,
 				AC358707C7E9CD268E8C0E035AA47367 /* TokenCallback.swift in Sources */,
 				6FD330BAF494918AD00A15070A3DAC38 /* TokenRequest.swift in Sources */,
+				F28C766024FE86D10043B2A1 /* MonriConfig.swift in Sources */,
 				5108EE761AD3453BD20FECF561B4E89B /* TokenResult.swift in Sources */,
+				F28C766624FE899E0043B2A1 /* TransactionParams.swift in Sources */,
 				EAB887C7AC06E072AF3F0288A99009B2 /* TokenError.swift in Sources */,
 				89EFE890609327E20BF92D7BB1A3416F /* ValidationResult.swift in Sources */,
 				A319BEF12B4A02E8ED45CCCD459765BD /* Validators.swift in Sources */,
+				9980E1A462027616633D42E3 /* PaymentController.swift in Sources */,
+				9980EC7D206356C3674B70ED /* MonriPaymentController.swift in Sources */,
+				9980E7959D629430602491FF /* PaymentAuthWebView.swift in Sources */,
+				9980E3139F1C50F9EDB9A68F /* ConfirmPaymentResponseCallback.swift in Sources */,
+				9980E36FA51FEF0CD8F1517D /* ResultCallback.swift in Sources */,
+				9980E18DD2D14AA3F4B4B0AA /* ConfirmPaymentResponse.swift in Sources */,
+				9980EF2290BFA946B84B5C54 /* PaymentStatus.swift in Sources */,
+				9980E9720154187E5D62F794 /* PaymentActionRequired.swift in Sources */,
+				9980EA474A96C64C298B8CBA /* PaymentResult.swift in Sources */,
+				9980E81BA81E47F85E4C33AE /* SavedPaymentMethod.swift in Sources */,
+				9980EFC21EC0E668C1352442 /* SavedCardPaymentMethod.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
