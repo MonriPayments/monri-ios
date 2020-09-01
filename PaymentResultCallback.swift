@@ -4,10 +4,9 @@
 
 import Foundation
 
-protocol ResultCallback: class {
-    associatedtype Result;
+public protocol PaymentResultCallback: class {
 
-    func onSuccess(result: Result)
+    func onSuccess(result: PaymentResult)
 
     func onError(error: Error)
 

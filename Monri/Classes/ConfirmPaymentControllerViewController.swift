@@ -9,20 +9,24 @@ import UIKit
 import WebKit
 
 class ConfirmPaymentControllerViewController: UIViewController {
-    
+
     @IBOutlet var webView: WKWebView!
     @IBOutlet var indicator: UIActivityIndicatorView!
-    
+
+    var callback: ConfirmPaymentResultCallback!
+
     var confirmPaymentParams: ConfirmPaymentParams!
     var monriApiOptions: MonriApiOptions!
 
     var monri: MonriApi {
-        MonriApi(options: monriApiOptions)
+        MonriApi(self.navigationController!,options: monriApiOptions)
     }
-    
-    
+
+
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        
 
         // Do any additional setup after loading the view.
     }

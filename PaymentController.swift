@@ -5,5 +5,5 @@
 import Foundation
 
 protocol PaymentController {
-    func confirmPayment(navigationController: UINavigationController, params: ConfirmPaymentParams)
+    func confirmPayment(params: ConfirmPaymentParams, _ callback: @escaping ConfirmPaymentResultCallback)
 }

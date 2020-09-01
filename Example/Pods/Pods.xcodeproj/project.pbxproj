@@ -145,15 +145,27 @@
 		9586B053F23E4786E0499C3B76ABE281 /* ToSucceed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 890CD61CC27F34DD6A0BFDE4E04A184D /* ToSucceed.swift */; settings = {COMPILER_FLAGS = "-DPRODUCT_NAME=Nimble/Nimble"; }; };
 		97B866E860E4C9433C4C10DD590D2D1D /* HaveCount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2444803BCCF88CA74947AD62E81958F6 /* HaveCount.swift */; settings = {COMPILER_FLAGS = "-DPRODUCT_NAME=Nimble/Nimble"; }; };
 		98A929C8E9012AB167672714FFD2113C /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457A2002C47AB88D15C84DE9F418F760 /* Request.swift */; };
+		9980E0D6A1970197CABC3BDF /* ActionRequiredFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9980E7F4E0A1E3065F1F9BDB /* ActionRequiredFlow.swift */; };
 		9980E18DD2D14AA3F4B4B0AA /* ConfirmPaymentResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9980E3C0472B60091DCE747A /* ConfirmPaymentResponse.swift */; };
 		9980E1A462027616633D42E3 /* PaymentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9980E2BAC23B756211931C7C /* PaymentController.swift */; };
+		9980E1F4574A3A53677C4E8A /* ActionRequiredFlowImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9980E8FD2F27C6BF01DEB73D /* ActionRequiredFlowImpl.swift */; };
 		9980E3139F1C50F9EDB9A68F /* ConfirmPaymentResponseCallback.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9980E12DE1382084C25A75ED /* ConfirmPaymentResponseCallback.swift */; };
 		9980E36FA51FEF0CD8F1517D /* ResultCallback.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9980EAAC696A9D883EE439C3 /* ResultCallback.swift */; };
+		9980E3EDA14F5787FBBA8B6F /* ConfirmPaymentError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9980E302CCC8602977F1654B /* ConfirmPaymentError.swift */; };
+		9980E6A0EEE6653A3AFBA56A /* PaymentResultCallback.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9980E74A50A34C68F0BA00B2 /* PaymentResultCallback.swift */; };
 		9980E7959D629430602491FF /* PaymentAuthWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9980E40007B10A4EA3B0BD0A /* PaymentAuthWebView.swift */; };
 		9980E81BA81E47F85E4C33AE /* SavedPaymentMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9980EF0E64EBA56D5FCA8A0A /* SavedPaymentMethod.swift */; };
+		9980E91B4A5FD45F5265A9FF /* PaymentApprovedFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9980E09C9631B31A71A0439C /* PaymentApprovedFlow.swift */; };
 		9980E9720154187E5D62F794 /* PaymentActionRequired.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9980E4118BCE4FC5AA1B8C8F /* PaymentActionRequired.swift */; };
 		9980EA474A96C64C298B8CBA /* PaymentResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9980E9A75A0515E239BF9294 /* PaymentResult.swift */; };
+		9980EB46520721756BBA8CD9 /* PaymentStatusParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9980E1A3C9EB01BB65FDE843 /* PaymentStatusParams.swift */; };
+		9980EB71D39E7EDE771C93F9 /* PaymentStatusResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9980E6EFB5B984935AC132E3 /* PaymentStatusResponse.swift */; };
+		9980EC00ABFDEFB8F0954FE9 /* UnknownFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9980EB642DE6E91BAE08E885 /* UnknownFlow.swift */; };
 		9980EC7D206356C3674B70ED /* MonriPaymentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9980E53C0130E25B63B21D8D /* MonriPaymentController.swift */; };
+		9980ECFDA45577884E7FF1C9 /* ConfirmPaymentResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9980E4B6A84C118A16D67962 /* ConfirmPaymentResult.swift */; };
+		9980ED62902B5FDE33E8A619 /* PaymentDeclinedFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9980EC9CD3D34FF513B7BEC2 /* PaymentDeclinedFlow.swift */; };
+		9980EE947DE4BBFE7966639B /* PaymentErrorFlowImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9980EEB0CE570E99F8A23C2C /* PaymentErrorFlowImpl.swift */; };
+		9980EF0A2F5D863B79F681FB /* PaymentErrorFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9980E9340B6C5D208DB0159A /* PaymentErrorFlow.swift */; };
 		9980EF2290BFA946B84B5C54 /* PaymentStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9980E58793267C48D2E60EF8 /* PaymentStatus.swift */; };
 		9980EFC21EC0E668C1352442 /* SavedCardPaymentMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9980EAF80112664A0395D696 /* SavedCardPaymentMethod.swift */; };
 		9A08BCB44941429803A556671244D4C7 /* QuickConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 83A736F850374EA875237023C3089D60 /* QuickConfiguration.m */; };
@@ -531,16 +543,28 @@
 		95A91CB291D075B111940E6C9900E4C2 /* UIApplication+StrictKeyWindow.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIApplication+StrictKeyWindow.m"; path = "FBSnapshotTestCase/Categories/UIApplication+StrictKeyWindow.m"; sourceTree = "<group>"; };
 		964688B97EDB44AFB7087F5B7CE02950 /* FBSnapshotTestCase.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBSnapshotTestCase.m; path = FBSnapshotTestCase/FBSnapshotTestCase.m; sourceTree = "<group>"; };
 		9730A607A8C048B7C671508321FF2476 /* Monri.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Monri.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+		9980E09C9631B31A71A0439C /* PaymentApprovedFlow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentApprovedFlow.swift; sourceTree = "<group>"; };
 		9980E12DE1382084C25A75ED /* ConfirmPaymentResponseCallback.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfirmPaymentResponseCallback.swift; sourceTree = "<group>"; };
+		9980E1A3C9EB01BB65FDE843 /* PaymentStatusParams.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentStatusParams.swift; sourceTree = "<group>"; };
 		9980E2BAC23B756211931C7C /* PaymentController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentController.swift; sourceTree = "<group>"; };
+		9980E302CCC8602977F1654B /* ConfirmPaymentError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfirmPaymentError.swift; sourceTree = "<group>"; };
 		9980E3C0472B60091DCE747A /* ConfirmPaymentResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfirmPaymentResponse.swift; sourceTree = "<group>"; };
 		9980E40007B10A4EA3B0BD0A /* PaymentAuthWebView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentAuthWebView.swift; sourceTree = "<group>"; };
 		9980E4118BCE4FC5AA1B8C8F /* PaymentActionRequired.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentActionRequired.swift; sourceTree = "<group>"; };
+		9980E4B6A84C118A16D67962 /* ConfirmPaymentResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfirmPaymentResult.swift; sourceTree = "<group>"; };
 		9980E53C0130E25B63B21D8D /* MonriPaymentController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MonriPaymentController.swift; sourceTree = "<group>"; };
 		9980E58793267C48D2E60EF8 /* PaymentStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentStatus.swift; sourceTree = "<group>"; };
+		9980E6EFB5B984935AC132E3 /* PaymentStatusResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentStatusResponse.swift; sourceTree = "<group>"; };
+		9980E74A50A34C68F0BA00B2 /* PaymentResultCallback.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentResultCallback.swift; sourceTree = "<group>"; };
+		9980E7F4E0A1E3065F1F9BDB /* ActionRequiredFlow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionRequiredFlow.swift; sourceTree = "<group>"; };
+		9980E8FD2F27C6BF01DEB73D /* ActionRequiredFlowImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionRequiredFlowImpl.swift; sourceTree = "<group>"; };
+		9980E9340B6C5D208DB0159A /* PaymentErrorFlow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentErrorFlow.swift; sourceTree = "<group>"; };
 		9980E9A75A0515E239BF9294 /* PaymentResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentResult.swift; sourceTree = "<group>"; };
 		9980EAAC696A9D883EE439C3 /* ResultCallback.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultCallback.swift; sourceTree = "<group>"; };
 		9980EAF80112664A0395D696 /* SavedCardPaymentMethod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SavedCardPaymentMethod.swift; sourceTree = "<group>"; };
+		9980EB642DE6E91BAE08E885 /* UnknownFlow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnknownFlow.swift; sourceTree = "<group>"; };
+		9980EC9CD3D34FF513B7BEC2 /* PaymentDeclinedFlow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentDeclinedFlow.swift; sourceTree = "<group>"; };
+		9980EEB0CE570E99F8A23C2C /* PaymentErrorFlowImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentErrorFlowImpl.swift; sourceTree = "<group>"; };
 		9980EF0E64EBA56D5FCA8A0A /* SavedPaymentMethod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SavedPaymentMethod.swift; sourceTree = "<group>"; };
 		9AB325F66AA2F80E9BBEF5FC1480AF1A /* NMBStringify.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NMBStringify.h; path = Sources/NimbleObjectiveC/NMBStringify.h; sourceTree = "<group>"; };
 		9B90B5EEB90B56E3DA3F7857A3354DB6 /* Nimble-Snapshots-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Nimble-Snapshots-prefix.pch"; sourceTree = "<group>"; };
@@ -1098,6 +1122,18 @@
 				9980E9A75A0515E239BF9294 /* PaymentResult.swift */,
 				9980EF0E64EBA56D5FCA8A0A /* SavedPaymentMethod.swift */,
 				9980EAF80112664A0395D696 /* SavedCardPaymentMethod.swift */,
+				9980E7F4E0A1E3065F1F9BDB /* ActionRequiredFlow.swift */,
+				9980E09C9631B31A71A0439C /* PaymentApprovedFlow.swift */,
+				9980EC9CD3D34FF513B7BEC2 /* PaymentDeclinedFlow.swift */,
+				9980E9340B6C5D208DB0159A /* PaymentErrorFlow.swift */,
+				9980EB642DE6E91BAE08E885 /* UnknownFlow.swift */,
+				9980E8FD2F27C6BF01DEB73D /* ActionRequiredFlowImpl.swift */,
+				9980EEB0CE570E99F8A23C2C /* PaymentErrorFlowImpl.swift */,
+				9980E74A50A34C68F0BA00B2 /* PaymentResultCallback.swift */,
+				9980E1A3C9EB01BB65FDE843 /* PaymentStatusParams.swift */,
+				9980E6EFB5B984935AC132E3 /* PaymentStatusResponse.swift */,
+				9980E4B6A84C118A16D67962 /* ConfirmPaymentResult.swift */,
+				9980E302CCC8602977F1654B /* ConfirmPaymentError.swift */,
 			);
 			name = Monri;
 			path = ../..;
@@ -1836,6 +1872,18 @@
 				9980EA474A96C64C298B8CBA /* PaymentResult.swift in Sources */,
 				9980E81BA81E47F85E4C33AE /* SavedPaymentMethod.swift in Sources */,
 				9980EFC21EC0E668C1352442 /* SavedCardPaymentMethod.swift in Sources */,
+				9980E0D6A1970197CABC3BDF /* ActionRequiredFlow.swift in Sources */,
+				9980E91B4A5FD45F5265A9FF /* PaymentApprovedFlow.swift in Sources */,
+				9980ED62902B5FDE33E8A619 /* PaymentDeclinedFlow.swift in Sources */,
+				9980EF0A2F5D863B79F681FB /* PaymentErrorFlow.swift in Sources */,
+				9980EC00ABFDEFB8F0954FE9 /* UnknownFlow.swift in Sources */,
+				9980E1F4574A3A53677C4E8A /* ActionRequiredFlowImpl.swift in Sources */,
+				9980EE947DE4BBFE7966639B /* PaymentErrorFlowImpl.swift in Sources */,
+				9980E6A0EEE6653A3AFBA56A /* PaymentResultCallback.swift in Sources */,
+				9980EB46520721756BBA8CD9 /* PaymentStatusParams.swift in Sources */,
+				9980EB71D39E7EDE771C93F9 /* PaymentStatusResponse.swift in Sources */,
+				9980ECFDA45577884E7FF1C9 /* ConfirmPaymentResult.swift in Sources */,
+				9980E3EDA14F5787FBBA8B6F /* ConfirmPaymentError.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

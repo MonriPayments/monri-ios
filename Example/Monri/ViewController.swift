@@ -17,7 +17,7 @@ class ViewController: UIViewController {
     
     lazy var monri: MonriApi = {
         [unowned self] in
-        return MonriApi(authenticityToken: authenticityToken);
+        return MonriApi(self.navigationController!, authenticityToken: authenticityToken);
     }()
     
     @IBOutlet weak var cardInlineView: CardInlineView!

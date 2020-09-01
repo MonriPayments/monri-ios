@@ -6,4 +6,35 @@ import Foundation
 
 class ConfirmPaymentResponseCallback: ResultCallback {
     typealias Result = ConfirmPaymentResponse
+
+    private let actionRequiredFlow: ActionRequiredFlow
+    private let paymentApprovedFlow: PaymentApprovedFlow
+    private let paymentDeclinedFlow: PaymentDeclinedFlow
+    private let unknownFlow: UnknownFlow
+    private let paymentErrorFlow: PaymentErrorFlow
+
+    init(actionRequiredFlow: ActionRequiredFlow, paymentApprovedFlow: PaymentApprovedFlow, paymentDeclinedFlow: PaymentDeclinedFlow, unknownFlow: UnknownFlow, paymentErrorFlow: PaymentErrorFlow) {
+        self.actionRequiredFlow = actionRequiredFlow
+        self.paymentApprovedFlow = paymentApprovedFlow
+        self.paymentDeclinedFlow = paymentDeclinedFlow
+        self.unknownFlow = unknownFlow
+        self.paymentErrorFlow = paymentErrorFlow
+    }
+
+    func onError(error: Error) {
+        paymentErrorFlow.handleResult(error: error)
+    }
+
+    func onSuccess(result: Result) {
+        switch (result.status) {
+        case .action_required:
+            actionRequiredFlow.handleResult(result)
+        case .approved:
+            paymentApprovedFlow.handleResult(result)
+        case .declined:
+            paymentDeclinedFlow.handleResult(result)
+        default:
+            unknownFlow.handleResult(result)
+        }
+    }
 }

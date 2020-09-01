@@ -44,7 +44,11 @@ public class PaymentResult {
         self.errors = errors
     }
 
-    static func fromJson(_ json: Dictionary<String, Any>) -> PaymentResult? {
+    static func fromJson(_ json: Dictionary<String, Any>?) -> PaymentResult? {
+
+        guard let json = json else {
+            return nil
+        }
 
         guard let status = json["status"] as? String else {
             return nil
@@ -69,9 +73,9 @@ public class PaymentResult {
         guard let errors = json["errors"] as? [String] else {
             return nil
         }
-        
+
         var paymentMethod: SavedPaymentMethod? = nil
-        if let pm = json["payment_method"] as? Dictionary<String,String> {
+        if let pm = json["payment_method"] as? Dictionary<String, String> {
             paymentMethod = SavedCardPaymentMethod.fromJson(pm)
         }
 

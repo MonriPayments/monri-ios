@@ -6,8 +6,22 @@ import Foundation
 
 class MonriPaymentController: PaymentController {
 
-    func confirmPayment(navigationController: UINavigationController, params: ConfirmPaymentParams) {
+    weak var navigationController: UINavigationController?
+
+    init(navigationController: UINavigationController?) {
+        self.navigationController = navigationController
+    }
+
+    func confirmPayment(params: ConfirmPaymentParams,
+                        _ callback: @escaping ConfirmPaymentResultCallback) {
+
+        guard let nc = navigationController else {
+            // TODO: log this case
+            return
+        }
+
         let vc = ConfirmPaymentControllerViewController()
-        navigationController.pushViewController(vc, animated: true)
+        vc.callback = callback
+        nc.pushViewController(vc, animated: true)
     }
 }
