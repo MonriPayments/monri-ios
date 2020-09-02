@@ -35,4 +35,8 @@ extension SavedCard: PaymentMethod {
             "cvv": cvv
         ]
     }
+
+    public func toPaymentMethodParams() -> PaymentMethodParams {
+        return PaymentMethodParams(type: "\(paymentMethodType())", data: data())
+    }
 }

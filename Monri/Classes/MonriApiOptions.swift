@@ -15,7 +15,7 @@ public class MonriApiOptions {
         developmentMode ? MonriConfig.TEST_ENV_HOST: MonriConfig.PROD_ENV_HOST
     }
     
-    init(authenticityToken: String, developmentMode: Bool) {
+    public init(authenticityToken: String, developmentMode: Bool) {
         self.authenticityToken = authenticityToken
         self.developmentMode = developmentMode
     }

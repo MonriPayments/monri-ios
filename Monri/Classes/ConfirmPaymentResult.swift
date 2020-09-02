@@ -7,6 +7,6 @@ import Foundation
 public typealias ConfirmPaymentResultCallback = (ConfirmPaymentResult) -> Void
 
 public enum ConfirmPaymentResult {
-    case result(PaymentResult)
+    case result(ConfirmPaymentResponse)
     case error(ConfirmPaymentError)
 }

@@ -24,7 +24,7 @@ public class TransactionParams {
 //}
 
     public static func create() -> TransactionParams {
-        return TransactionParams(data: [:])
+        TransactionParams(data: [:])
     }
 
     public func set(_ key: String, _ value: String?) -> TransactionParams {
@@ -44,5 +44,9 @@ public class TransactionParams {
                 .set("ch_phone", customerParams.phone)
                 .set("ch_country", customerParams.country)
                 .set("ch_email", customerParams.email)
+    }
+
+    func toJSON() -> Dictionary<String, String> {
+        data
     }
 }

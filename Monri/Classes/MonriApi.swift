@@ -14,7 +14,8 @@ public final class MonriApi {
     private let authenticityToken: String
     private let apiUrl: String
     private let tokenizeUrl: String
-    private let monriApiOptions: MonriApiOptions
+    private let options: MonriApiOptions
+    public let paymentApi: MonriPaymentApi
 
     private weak var navigationController: UINavigationController?
 
@@ -22,7 +23,7 @@ public final class MonriApi {
         guard let nc = navigationController else {
             return nil
         }
-        return MonriPaymentController(navigationController: nc)
+        return MonriPaymentController(navigationController: nc, options: options)
     }
 
     public convenience init(_ vc: UINavigationController, authenticityToken: String) {
@@ -34,7 +35,8 @@ public final class MonriApi {
         self.navigationController = vc
         self.apiUrl = options.apiUrl
         self.tokenizeUrl = "\(apiUrl)/v2/temp-tokenize"
-        self.monriApiOptions = options
+        self.options = options
+        self.paymentApi = MonriPaymentApiImpl(apiUrl: apiUrl, options: options)
     }
 
     public func createToken(_ request: TokenRequest, paymentMethod: PaymentMethod, _ callback: @escaping TokenResultCallback) {

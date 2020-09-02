@@ -8,8 +8,11 @@ class MonriPaymentController: PaymentController {
 
     weak var navigationController: UINavigationController?
 
-    init(navigationController: UINavigationController?) {
+    let options: MonriApiOptions
+
+    init(navigationController: UINavigationController, options: MonriApiOptions) {
         self.navigationController = navigationController
+        self.options = options
     }
 
     func confirmPayment(params: ConfirmPaymentParams,
@@ -20,8 +23,9 @@ class MonriPaymentController: PaymentController {
             return
         }
 
-        let vc = ConfirmPaymentControllerViewController()
-        vc.callback = callback
+
+        let vc = ConfirmPaymentControllerViewController.create(confirmPaymentParams: params, monriApiOptions: options, callback: callback) 
+
         nc.pushViewController(vc, animated: true)
     }
 }

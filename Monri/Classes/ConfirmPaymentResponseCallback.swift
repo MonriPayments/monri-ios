@@ -4,8 +4,7 @@
 
 import Foundation
 
-class ConfirmPaymentResponseCallback: ResultCallback {
-    typealias Result = ConfirmPaymentResponse
+class ConfirmPaymentResponseCallback {
 
     private let actionRequiredFlow: ActionRequiredFlow
     private let paymentApprovedFlow: PaymentApprovedFlow
@@ -21,11 +20,24 @@ class ConfirmPaymentResponseCallback: ResultCallback {
         self.paymentErrorFlow = paymentErrorFlow
     }
 
+    static func create(vc: ConfirmPaymentControllerViewController,
+                       navigationDelegate: PaymentAuthWebViewNavigationDelegate) -> ConfirmPaymentResponseCallback {
+        return ConfirmPaymentResponseCallback(
+                actionRequiredFlow: ActionRequiredFlowImpl(vc: vc,
+                        navigationDelegate: navigationDelegate,
+                        monriApi: vc.monri.paymentApi),
+                paymentApprovedFlow: PaymentApprovedFlowImpl(vc: vc),
+                paymentDeclinedFlow: PaymentDeclinedFlowImpl(vc: vc),
+                unknownFlow: UnknownFlowImpl(vc: vc),
+                paymentErrorFlow: PaymentErrorFlowImpl(vc: vc)
+        )
+    }
+
     func onError(error: Error) {
         paymentErrorFlow.handleResult(error: error)
     }
 
-    func onSuccess(result: Result) {
+    func onSuccess(result: ConfirmPaymentResponse) {
         switch (result.status) {
         case .action_required:
             actionRequiredFlow.handleResult(result)

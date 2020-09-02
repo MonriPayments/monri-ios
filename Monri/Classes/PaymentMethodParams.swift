@@ -15,4 +15,11 @@ public class PaymentMethodParams {
         self.data = data
         self.type = type
     }
+
+    func toJSON() -> Dictionary<String, Any> {
+        [
+            "type": type,
+            "data": data
+        ]
+    }
 }

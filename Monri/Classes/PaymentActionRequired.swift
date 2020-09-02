@@ -13,7 +13,11 @@ public class PaymentActionRequired {
         self.acsUrl = acsUrl
     }
 
-    static func fromJson(_ json: Dictionary<String, Any>) -> PaymentActionRequired? {
+    static func fromJson(_ json: Dictionary<String, Any>?) -> PaymentActionRequired? {
+
+        guard let json = json else {
+            return nil
+        }
 
         guard let redirectTo = json["redirect_to"] as? String else {
             return nil

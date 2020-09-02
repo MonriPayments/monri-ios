@@ -10,36 +10,82 @@ import WebKit
 
 class ConfirmPaymentControllerViewController: UIViewController {
 
-    @IBOutlet var webView: WKWebView!
-    @IBOutlet var indicator: UIActivityIndicatorView!
+    var webView: WKWebView!
+    var indicator: UIActivityIndicatorView!
 
-    var callback: ConfirmPaymentResultCallback!
+    private var callback: ConfirmPaymentResultCallback!
+    private var navigationDelegate: PaymentAuthWebViewNavigationDelegate!
 
-    var confirmPaymentParams: ConfirmPaymentParams!
-    var monriApiOptions: MonriApiOptions!
+    private var confirmPaymentParams: ConfirmPaymentParams!
+    private var monriApiOptions: MonriApiOptions!
 
     var monri: MonriApi {
-        MonriApi(self.navigationController!,options: monriApiOptions)
+        MonriApi(self.navigationController!, options: monriApiOptions)
     }
 
+    static func create(confirmPaymentParams: ConfirmPaymentParams,
+                       monriApiOptions: MonriApiOptions,
+                       callback: @escaping ConfirmPaymentResultCallback) -> ConfirmPaymentControllerViewController {
+        let vc = ConfirmPaymentControllerViewController()
+        vc.confirmPaymentParams = confirmPaymentParams
+        vc.monriApiOptions = monriApiOptions
+        vc.callback = callback
+        return vc;
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        indicator = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
 
-        
+        view.backgroundColor = UIColor.white
 
-        // Do any additional setup after loading the view.
+        indicator.startAnimating()
+        view.addSubview(indicator)
+        webView = WKWebView(frame: .zero, configuration: WKWebViewConfiguration())
+        view.addSubview(webView)
+
+        indicator.translatesAutoresizingMaskIntoConstraints = false
+        webView.translatesAutoresizingMaskIntoConstraints = false
+        if #available(iOS 11.0, *) {
+            webView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
+            webView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor).isActive = true
+            webView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
+            webView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor).isActive = true
+        } else {
+            webView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
+            webView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
+            webView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+            webView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        }
+        webView.isHidden = true
+
+        indicator.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        indicator.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+//
+        navigationDelegate = PaymentAuthWebViewNavigationDelegate()
+        webView.navigationDelegate = navigationDelegate
+
+        monri.paymentApi.confirmPayment(confirmPaymentParams) { [weak self] r in
+            guard let vc = self else {
+                return
+            }
+            let callback = ConfirmPaymentResponseCallback.create(vc: vc, navigationDelegate: vc.navigationDelegate)
+            switch (r) {
+            case .error(let e):
+                callback.onError(error: e)
+            case .result(let r):
+                callback.onSuccess(result: r)
+            }
+
+        }
     }
 
+    func resultReceived(statusResponse: PaymentStatusResponse) {
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
     }
-    */
+
+    func paymentStatusRetryExceeded() {
+
+    }
 
 }

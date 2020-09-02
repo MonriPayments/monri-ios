@@ -8,13 +8,21 @@
 import Foundation
 
 public class ConfirmPaymentParams {
-    private let paymentId: String
-    private let paymentMethod: PaymentMethodParams
-    private let transaction: TransactionParams
+    public let paymentId: String
+    public let paymentMethod: PaymentMethodParams
+    public let transaction: TransactionParams
 
     public init(paymentId: String, paymentMethod: PaymentMethodParams, transaction: TransactionParams) {
         self.paymentId = paymentId
         self.paymentMethod = paymentMethod
         self.transaction = transaction
     }
+
+    func toJSON() -> Dictionary<String, Any> {
+        [
+            "payment_method": paymentMethod.toJSON(),
+            "transaction": transaction.toJSON()
+        ]
+    }
+
 }
