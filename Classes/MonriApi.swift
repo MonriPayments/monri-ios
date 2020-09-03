@@ -15,7 +15,7 @@ public final class MonriApi {
     private let apiUrl: String
     private let tokenizeUrl: String
     private let options: MonriApiOptions
-    public let paymentApi: MonriPaymentApi
+    public let httpApi: MonriHttpApi
 
     private weak var navigationController: UINavigationController?
 
@@ -36,10 +36,12 @@ public final class MonriApi {
         self.apiUrl = options.apiUrl
         self.tokenizeUrl = "\(apiUrl)/v2/temp-tokenize"
         self.options = options
-        self.paymentApi = MonriFactory().createPaymentApi(options: options)
+        self.httpApi = MonriFactory().createHttpApi(options: options)
             }
 
     public func createToken(_ request: TokenRequest, paymentMethod: PaymentMethod, _ callback: @escaping TokenResultCallback) {
+
+
 
         guard let createTokenRequest = CreateTokenRequest.from(token: request, paymentMethod: paymentMethod, authenticityToken: authenticityToken) else {
             callback(.error(TokenError.createTokenRequestError))

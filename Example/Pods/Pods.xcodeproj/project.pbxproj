@@ -18,7 +18,7 @@
 		0834E167066BF3659E39621F58F440A6 /* BeVoid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0835C2189DE43C55D30A74167C8E42E8 /* BeVoid.swift */; settings = {COMPILER_FLAGS = "-DPRODUCT_NAME=Nimble/Nimble"; }; };
 		089E22B5C0CFBACA9A63DACB171C9596 /* SavedCardPaymentMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1722E7A6CB71059C767BE67BE052B2F1 /* SavedCardPaymentMethod.swift */; };
 		08DC8A46FE26DFF192FCAC752A66E620 /* CwlMachBadInstructionHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BAA12C51A14F461049B9653D4AD0DD6 /* CwlMachBadInstructionHandler.m */; settings = {COMPILER_FLAGS = "-DPRODUCT_NAME=Nimble/Nimble"; }; };
-		0AFD5B38A25E453208A617BE567C5EB8 /* MonriPaymentApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = D76B5CEB1BBFAD393D948CA6BDE848A3 /* MonriPaymentApi.swift */; };
+		0AFD5B38A25E453208A617BE567C5EB8 /* MonriHttpApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = D76B5CEB1BBFAD393D948CA6BDE848A3 /* MonriHttpApi.swift */; };
 		0B73669C0EA2AD2D980D87788256893C /* CardMultilineView.xib in Sources */ = {isa = PBXBuildFile; fileRef = 718F593E1696C888A868E4C443BE5CF6 /* CardMultilineView.xib */; };
 		0BC8351182276985B9C97446E9101EF2 /* NMBExceptionCapture.m in Sources */ = {isa = PBXBuildFile; fileRef = CD6B534628B2F9EDA37B2B1F36AC1A26 /* NMBExceptionCapture.m */; settings = {COMPILER_FLAGS = "-DPRODUCT_NAME=Nimble/Nimble"; }; };
 		0C5E11DE24DAA737704B355F5F2F3426 /* ParameterEncoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD4B445FF4FB3B49D594C1F341170BA /* ParameterEncoding.swift */; };
@@ -234,7 +234,7 @@
 		D04AAC8B22E4A4DC4F39891C4E52F251 /* UIImage+Diff.h in Headers */ = {isa = PBXBuildFile; fileRef = D6101411780E8358DEA97EC6CD557BE1 /* UIImage+Diff.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		D17C840E9A1656C83F81BF1ECBA7CB25 /* PaymentStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = F598F3D17BC255F18733DBB6712B4949 /* PaymentStatus.swift */; };
 		D21313F2B8BF3443B4CF02864578C13E /* DSL.m in Sources */ = {isa = PBXBuildFile; fileRef = DA972AD420941EEECD1122C7F14FF121 /* DSL.m */; settings = {COMPILER_FLAGS = "-DPRODUCT_NAME=Nimble/Nimble"; }; };
-		D23ABF89E8C9E166FD48B39A392A81DB /* MonriPaymentApiImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182389D19EC3F7A8843A64D0CB9D91D2 /* MonriPaymentApiImpl.swift */; };
+		D23ABF89E8C9E166FD48B39A392A81DB /* MonriHttpApiImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182389D19EC3F7A8843A64D0CB9D91D2 /* MonriHttpApiImpl.swift */; };
 		D2BE111AE3950E47C5603F7EE3456107 /* Behavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D5E6D569D753819FB62DFAB9BF92D35 /* Behavior.swift */; };
 		D35F19B1DD5EF5C7193803536BF56614 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44716571A0C956372D10B9B41A925D25 /* Card.swift */; };
 		D3D8C379C6E4FB487E5ABD6800AD7B7E /* DispatchQueue+Alamofire.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DBD90769BE8C1BDDCFD077CA2A746FD /* DispatchQueue+Alamofire.swift */; };
@@ -425,7 +425,7 @@
 		1722E7A6CB71059C767BE67BE052B2F1 /* SavedCardPaymentMethod.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SavedCardPaymentMethod.swift; sourceTree = "<group>"; };
 		178609CF433B3302BBFC49B3405EE685 /* CardInfoTextFieldDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CardInfoTextFieldDelegate.swift; path = "Pod/Classes/UI/Text Fields/Delegates/CardInfoTextFieldDelegate.swift"; sourceTree = "<group>"; };
 		181D56C11215E5636E1D571FAE3531DB /* World.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = World.h; path = Sources/QuickObjectiveC/World.h; sourceTree = "<group>"; };
-		182389D19EC3F7A8843A64D0CB9D91D2 /* MonriPaymentApiImpl.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MonriPaymentApiImpl.swift; sourceTree = "<group>"; };
+		182389D19EC3F7A8843A64D0CB9D91D2 /* MonriHttpApiImpl.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MonriHttpApiImpl.swift; sourceTree = "<group>"; };
 		1966F4D40222826F43D4BAD7B37BB2DC /* NBSMockedApplication.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NBSMockedApplication.h; path = DynamicType/NBSMockedApplication.h; sourceTree = "<group>"; };
 		19AC12FAF71B13A4E82A9FA4291053C7 /* CwlPreconditionTesting.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CwlPreconditionTesting.h; path = Carthage/Checkouts/CwlPreconditionTesting/Sources/CwlPreconditionTesting/Mach/CwlPreconditionTesting.h; sourceTree = "<group>"; };
 		1A405043C269D376811C3EA9A662C04C /* Alamofire-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Alamofire-umbrella.h"; sourceTree = "<group>"; };
@@ -675,7 +675,7 @@
 		D3E254A735046EBA2718698401FDEC90 /* BeAKindOf.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BeAKindOf.swift; path = Sources/Nimble/Matchers/BeAKindOf.swift; sourceTree = "<group>"; };
 		D4FE0F7C386AFFE43943E9F2C7A8B0AF /* NMBExpectation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NMBExpectation.swift; path = Sources/Nimble/Adapters/NMBExpectation.swift; sourceTree = "<group>"; };
 		D6101411780E8358DEA97EC6CD557BE1 /* UIImage+Diff.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIImage+Diff.h"; path = "FBSnapshotTestCase/Categories/UIImage+Diff.h"; sourceTree = "<group>"; };
-		D76B5CEB1BBFAD393D948CA6BDE848A3 /* MonriPaymentApi.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MonriPaymentApi.swift; sourceTree = "<group>"; };
+		D76B5CEB1BBFAD393D948CA6BDE848A3 /* MonriHttpApi.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MonriHttpApi.swift; sourceTree = "<group>"; };
 		D8213C61158849297559F8231AB0D7DE /* DetailInputTextField.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DetailInputTextField.swift; path = "Pod/Classes/UI/Text Fields/DetailInputTextField.swift"; sourceTree = "<group>"; };
 		D883F9D063676ECB964F2156524BA172 /* Quick.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = Quick.h; path = Sources/QuickObjectiveC/Quick.h; sourceTree = "<group>"; };
 		D8AC77E0D54FA4B4D26F3921624E5281 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.2.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
@@ -1345,8 +1345,8 @@
 				CFEB0167B966891FD0CCD97E7E85B79F /* MonriConfig.swift */,
 				993D157CF248430CF8AACD6365421D24 /* MonriLogger.swift */,
 				7CB8FF59645552C48B154D3AFDF8BBB3 /* MonriLoggerImpl.swift */,
-				D76B5CEB1BBFAD393D948CA6BDE848A3 /* MonriPaymentApi.swift */,
-				182389D19EC3F7A8843A64D0CB9D91D2 /* MonriPaymentApiImpl.swift */,
+				D76B5CEB1BBFAD393D948CA6BDE848A3 /* MonriHttpApi.swift */,
+				182389D19EC3F7A8843A64D0CB9D91D2 /* MonriHttpApiImpl.swift */,
 				CEC7B0009C6673B7F0AEC44CF1720328 /* MonriPaymentController.swift */,
 				778C4A2524308C51A85993A3581748B9 /* PaymentActionRequired.swift */,
 				5DC7C06849A294386F903C527F9C6C0C /* PaymentApprovedFlow.swift */,
@@ -1851,8 +1851,8 @@
 				F24C8F0C2501347000E20DB6 /* MonriFactory.swift in Sources */,
 				0F51BBF7046F34D5A5F590226584DF19 /* MonriLogger.swift in Sources */,
 				3A2BAA715920AB370DD59719A6F7BFC9 /* MonriLoggerImpl.swift in Sources */,
-				0AFD5B38A25E453208A617BE567C5EB8 /* MonriPaymentApi.swift in Sources */,
-				D23ABF89E8C9E166FD48B39A392A81DB /* MonriPaymentApiImpl.swift in Sources */,
+				0AFD5B38A25E453208A617BE567C5EB8 /* MonriHttpApi.swift in Sources */,
+				D23ABF89E8C9E166FD48B39A392A81DB /* MonriHttpApiImpl.swift in Sources */,
 				E5AE25387733D650B530DEC5474E2FCE /* MonriPaymentController.swift in Sources */,
 				E643BCD8D22242592189E5F7629AD8A3 /* PaymentActionRequired.swift in Sources */,
 				E9C526173E10371E7AE836C3B8824B61 /* PaymentApprovedFlow.swift in Sources */,

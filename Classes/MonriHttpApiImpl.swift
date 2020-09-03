@@ -5,10 +5,12 @@
 import Foundation
 import os.log
 
-class MonriPaymentApiImpl: MonriPaymentApi {
+class MonriHttpApiImpl: MonriHttpApi {
 
     let apiUrl: String
+    let tokenizeUrl: String
     let authorizationHeader: String
+    let options: MonriApiOptions
     private let httpClient: MonriHttpClient
 
     var logger: MonriLogger {
@@ -16,9 +18,11 @@ class MonriPaymentApiImpl: MonriPaymentApi {
     }
 
     init(options: MonriApiOptions, httpClient: MonriHttpClient) {
+        self.options = options
         self.apiUrl = options.apiUrl
         self.authorizationHeader = "WP3-v2-Client \(options.authenticityToken)"
         self.httpClient = httpClient
+        self.tokenizeUrl = "\(apiUrl)/v2/temp-tokenize"
     }
 
     func confirmPayment(_ params: ConfirmPaymentParams, _ callback: @escaping ConfirmPaymentCallback) {
@@ -37,6 +41,29 @@ class MonriPaymentApiImpl: MonriPaymentApi {
                 callback(.result(response))
             case .error(let error):
                 callback(.unknownError(error))
+            }
+        }
+    }
+
+    func createToken(_ request: TokenRequest, paymentMethod: PaymentMethod, _ callback: @escaping TokenResultCallback) {
+        guard let createTokenRequest = CreateTokenRequest.from(token: request, paymentMethod: paymentMethod, authenticityToken: options.authenticityToken) else {
+            callback(.error(TokenError.createTokenRequestError))
+            return
+        }
+
+        httpClient.jsonPost(url: tokenizeUrl, body: createTokenRequest.toJson(), headers: [:]) {
+            switch ($0) {
+            case .failure(let body, let statusCode, _):
+                self.logger.warn("ConfirmPayment failed with body [%@] and status code [%@]", body, statusCode)
+                callback(.error(TokenError.tokenizationFailed))
+            case .success(let body, _, _):
+                guard let response = Token.fromJson(body) else {
+                    callback(.error(.jsonParsingError("Converting response to Token from \(body) failed!")))
+                    return
+                }
+                callback(.token(response))
+            case .error(let error):
+                callback(.error(TokenError.error(error)))
             }
         }
     }

@@ -20,6 +20,7 @@
 		F22C6768236C335400231B9E /* HMac.swift in Sources */ = {isa = PBXBuildFile; fileRef = F22C6767236C335400231B9E /* HMac.swift */; };
 		F24C8F0A25010FD100E20DB6 /* ValidatorsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F24C8F0925010FD100E20DB6 /* ValidatorsTest.swift */; };
 		F24C8F0B250131A300E20DB6 /* MonriPaymentApiTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9980EC8C91320D3B68241779 /* MonriPaymentApiTest.swift */; };
+		F2A24D382501990D007A2C35 /* HMac.swift in Sources */ = {isa = PBXBuildFile; fileRef = F22C6767236C335400231B9E /* HMac.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -389,6 +390,7 @@
 			files = (
 				F24C8F0A25010FD100E20DB6 /* ValidatorsTest.swift in Sources */,
 				607FACEC1AFB9204008FA782 /* Tests.swift in Sources */,
+				F2A24D382501990D007A2C35 /* HMac.swift in Sources */,
 				F24C8F0B250131A300E20DB6 /* MonriPaymentApiTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

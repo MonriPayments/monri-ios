@@ -6,9 +6,9 @@ import Foundation
 import os.log
 
 public class PaymentStatusResponse {
-    let paymentStatus: PaymentStatus
-    let status: String
-    let paymentResult: PaymentResult?
+    public let paymentStatus: PaymentStatus
+    public let status: String
+    public let paymentResult: PaymentResult?
 
     static let logger: MonriLogger = MonriLoggerImpl(log: OSLog(subsystem: "Monri", category: "PaymentStatusResponse"))
 

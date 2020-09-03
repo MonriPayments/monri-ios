@@ -9,8 +9,8 @@ public class MonriFactory {
 
     }
 
-    public func createPaymentApi(options: MonriApiOptions, httpClient: MonriHttpClient? = nil) -> MonriPaymentApi {
-        return MonriPaymentApiImpl(options: options, httpClient: httpClient ?? createHttpClient())
+    public func createHttpApi(options: MonriApiOptions, httpClient: MonriHttpClient? = nil) -> MonriHttpApi {
+        return MonriHttpApiImpl(options: options, httpClient: httpClient ?? createHttpClient())
     }
 
     public func createHttpClient() -> MonriHttpClient {

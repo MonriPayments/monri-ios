@@ -69,7 +69,7 @@ class ConfirmPaymentControllerViewController: UIViewController {
         navigationDelegate = PaymentAuthWebViewNavigationDelegate()
         webView.navigationDelegate = navigationDelegate
 
-        monri.paymentApi.confirmPayment(confirmPaymentParams) { [weak self] r in
+        monri.httpApi.confirmPayment(confirmPaymentParams) { [weak self] r in
             guard let vc = self else {
                 return
             }

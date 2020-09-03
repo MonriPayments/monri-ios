@@ -15,7 +15,7 @@ class ActionRequiredFlowImpl: ActionRequiredFlow {
     private let clientSecret: String
 
     let atomicInteger = AtomicInteger()
-    let monriApi: MonriPaymentApi
+    let monriApi: MonriHttpApi
 
     var logger: MonriLogger {
         MonriLoggerImpl(log: OSLog(subsystem: "Monri", category: "ActionRequiredFlow"))
@@ -26,7 +26,7 @@ class ActionRequiredFlowImpl: ActionRequiredFlow {
 
     init(vc: ConfirmPaymentControllerViewController,
          navigationDelegate: PaymentAuthWebViewNavigationDelegate,
-         monriApi: MonriPaymentApi,
+         monriApi: MonriHttpApi,
          clientSecret: String) {
         self.vc = vc
         self.navigationDelegate = navigationDelegate

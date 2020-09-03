@@ -7,11 +7,11 @@ import Foundation
 import Alamofire
 import Monri
 
-class OrdersRepository {
+public class OrdersRepository {
 
-    let authenticityToken: String
+    public let authenticityToken: String
 
-    init(authenticityToken: String) {
+    public init(authenticityToken: String) {
         self.authenticityToken = authenticityToken
     }
 
@@ -19,7 +19,7 @@ class OrdersRepository {
         MonriApiOptions(authenticityToken: authenticityToken, developmentMode: true)
     }
 
-    func createPayment(_ callback: @escaping (NewPaymentResponse?) -> Void) {
+    public func createPayment(_ callback: @escaping (NewPaymentResponse?) -> Void) {
         Alamofire.request("https://mobile.webteh.hr/example/create-payment-session", method: .post, parameters: [:], encoding: JSONEncoding.default)
                 .responseJSON { dataResponse in
                     guard let data = dataResponse.data else {

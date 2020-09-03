@@ -6,14 +6,24 @@
 import XCTest
 import Nimble
 import Monri
+import Monri_Example
+import Alamofire
 
 class MonriPaymentApiTest: XCTestCase {
 
-    var monriPaymentApi: MonriPaymentApi!
+    // TODO: replace with your merchant's authenticity monriToken
+    let authenticityToken = "6a13d79bde8da9320e88923cb3472fb638619ccb";
+    //TODO: replace with your merchant's merchant key
+    let merchantKey = "TestKeyXULLyvgWyPJSwOHe";
+
+    static let non3DSCard = Card(number: "4111 1111 1111 1111", cvc: "123", expMonth: 10, expYear: 2027).toPaymentMethodParams()
+    static let threeDSCard = Card(number: "4341 7920 0000 0044", cvc: "123", expMonth: 10, expYear: 2027).toPaymentMethodParams()
+
+    var monriHttpApi: MonriHttpApi!
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
-        monriPaymentApi = MonriFactory().createPaymentApi(options: MonriApiOptions(authenticityToken: "6a13d79bde8da9320e88923cb3472fb638619ccb", developmentMode: true))
+        monriHttpApi = MonriFactory().createHttpApi(options: MonriApiOptions(authenticityToken: authenticityToken, developmentMode: true))
     }
 
     override func tearDownWithError() throws {
@@ -24,6 +34,268 @@ class MonriPaymentApiTest: XCTestCase {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
         expect(true).to(equal(true))
+    }
+
+    func createPayment(_ callback: @escaping (String?, String?) -> Void) {
+        Alamofire.request("https://mobile.webteh.hr/example/create-payment-session", method: .post, parameters: [:], encoding: JSONEncoding.default)
+                .responseJSON { dataResponse in
+                    guard let data = dataResponse.data else {
+                        callback(nil, nil)
+                        return
+                    }
+                    do {
+                        guard let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] else {
+                            callback(nil, nil)
+                            return
+                        }
+
+                        callback(json["client_secret"] as? String, json["status"] as? String)
+                    } catch {
+                        callback(nil, nil)
+                    }
+                }
+    }
+
+    func confirmPayment(card: PaymentMethodParams = MonriPaymentApiTest.non3DSCard,
+                        customerParams: CustomerParams? = nil,
+                        _ callback: @escaping (_ error: String?, _ clientSecret: String?, _ response: ConfirmPaymentResponse?) -> Void) {
+        
+        createPayment { clientSecret, status in
+
+            guard status != nil else {
+                callback("Payment create failed", nil, nil)
+                return
+            }
+
+            guard let clientSecret = clientSecret else {
+                callback("Payment create failed", nil, nil)
+                return
+            }
+            
+            let customerParams = customerParams ?? CustomerParams(
+                    email: "tester+ios_sdk@monri.com",
+                    fullName: "Test iOS",
+                    address: "Address",
+                    city: "Sarajevo",
+                    zip: "71000",
+                    phone: "+38761000111",
+                    country: "BA"
+            )
+
+            let params = ConfirmPaymentParams(paymentId: clientSecret,
+                    paymentMethod: card,
+                    transaction: TransactionParams.create().set(customerParams: customerParams)
+                            .set("order_info", "iOS SDK payment session")
+            )
+
+            self.monriHttpApi.confirmPayment(params) { confirmPayment in
+                switch (confirmPayment) {
+                case .error(let e):
+                    callback("Confirm payment error \(e)", nil, nil)
+                case .unknownError(let e):
+                    callback("Confirm payment error \(e)", nil, nil)
+                case .result(let r):
+                    callback(nil, clientSecret, r)
+                case .pending:
+                    callback("Confirm payment pending", nil, nil)
+                }
+            }
+        }
+    }
+
+    func testConfirmPaymentActionRequired() throws {
+//        let repo = OrdersRepository(authenticityToken: authenticityToken)
+        let expectation = self.expectation(description: "testConfirmPaymentActionRequired")
+        var confirmPaymentResponse: ConfirmPaymentResponse? = nil
+        var confirmPaymentStatus: String? = nil
+        var error: Error? = nil
+        createPayment { clientSecret, status in
+
+            guard status != nil else {
+                return
+            }
+
+            guard let clientSecret = clientSecret else {
+                return
+            }
+
+
+            let customerParams: CustomerParams = CustomerParams(
+                    email: "tester+ios_sdk@monri.com",
+                    fullName: "Test iOS",
+                    address: "Address",
+                    city: "Sarajevo",
+                    zip: "71000",
+                    phone: "+38761000111",
+                    country: "BA"
+            )
+
+            let params = ConfirmPaymentParams(paymentId: clientSecret,
+                    paymentMethod: Self.threeDSCard,
+                    transaction: TransactionParams.create().set(customerParams: customerParams)
+                            .set("order_info", "iOS SDK payment session")
+            )
+
+            self.monriHttpApi.confirmPayment(params) { confirmPayment in
+                switch (confirmPayment) {
+                case .error(let e):
+                    error = e
+                case .unknownError(let e):
+                    error = e
+                case .result(let r):
+                    confirmPaymentResponse = r
+                    confirmPaymentStatus = r.status.rawValue
+                case .pending:
+                    confirmPaymentStatus = "pending"
+                }
+
+                expectation.fulfill()
+            }
+        }
+
+        waitForExpectations(timeout: 5, handler: nil)
+
+        expect(error).to(beNil())
+        expect(confirmPaymentStatus).to(equal("action_required"))
+        expect(confirmPaymentResponse).notTo(beNil())
+        expect(confirmPaymentResponse!.actionRequired).notTo(beNil())
+        expect(confirmPaymentResponse!.actionRequired!.acsUrl).notTo(beNil())
+        expect(confirmPaymentResponse!.actionRequired!.redirectTo).notTo(beNil())
+    }
+
+    func testPaymentStatus() throws {
+        var error: String? = nil
+        var clientSecret: String? = nil
+        var response: ConfirmPaymentResponse? = nil
+        var paymentStatusResponse: PaymentStatusResponseResult? = nil
+        let expectation = self.expectation(description: "testPaymentStatus")
+        confirmPayment {
+            error = $0
+            clientSecret = $1
+            response = $2
+            expectation.fulfill()
+        }
+
+        waitForExpectations(timeout: 5, handler: nil)
+        expect(error).to(beNil())
+        expect(clientSecret).notTo(beNil())
+        expect(response).notTo(beNil())
+
+        let expectation2 = self.expectation(description: "testPaymentStatus2")
+
+        monriHttpApi.paymentStatus(PaymentStatusParams(clientSecret: clientSecret!)) {
+            paymentStatusResponse = $0
+            expectation2.fulfill()
+        }
+
+        waitForExpectations(timeout: 5, handler: nil)
+        expect(paymentStatusResponse).notTo(beNil())
+        switch (paymentStatusResponse!) {
+        case .error(let e):
+            expect(e).to(beNil(), description: "Got error \(e), expected status approved");
+        case .result(let r):
+            expect(r.status).to(equal("approved"))
+        }
+    }
+
+    func testConfirmPaymentApproved() throws {
+        //        let repo = OrdersRepository(authenticityToken: authenticityToken)
+        let expectation = self.expectation(description: "testConfirmPaymentApproved")
+        var confirmPaymentResponse: ConfirmPaymentResponse? = nil
+        var confirmPaymentStatus: String? = nil
+        var error: Error? = nil
+        createPayment { clientSecret, status in
+
+            guard status != nil else {
+                return
+            }
+
+            guard let clientSecret = clientSecret else {
+                return
+            }
+
+
+            let customerParams: CustomerParams = CustomerParams(
+                    email: "tester+ios_sdk@monri.com",
+                    fullName: "Test iOS",
+                    address: "Address",
+                    city: "Sarajevo",
+                    zip: "71000",
+                    phone: "+38761000111",
+                    country: "BA"
+            )
+
+            let params = ConfirmPaymentParams(paymentId: clientSecret,
+                    paymentMethod: MonriPaymentApiTest.non3DSCard,
+                    transaction: TransactionParams.create().set(customerParams: customerParams)
+                            .set("order_info", "iOS SDK payment session")
+            )
+
+            self.monriHttpApi.confirmPayment(params) { confirmPayment in
+                switch (confirmPayment) {
+                case .error(let e):
+                    error = e
+                case .unknownError(let e):
+                    error = e
+                case .result(let r):
+                    confirmPaymentResponse = r
+                    confirmPaymentStatus = r.status.rawValue
+                case .pending:
+                    confirmPaymentStatus = "pending"
+                }
+
+                expectation.fulfill()
+            }
+        }
+
+        waitForExpectations(timeout: 5, handler: nil)
+
+        expect(error).to(beNil())
+        expect(confirmPaymentStatus).to(equal("approved"))
+        expect(confirmPaymentResponse).notTo(beNil())
+        expect(confirmPaymentResponse!.paymentResult).notTo(beNil())
+        let paymentResult: PaymentResult = confirmPaymentResponse!.paymentResult!
+        expect(paymentResult.status).notTo(beNil())
+        expect(paymentResult.currency).notTo(beNil())
+        expect(paymentResult.transactionType).notTo(beNil())
+        expect(paymentResult.createdAt).notTo(beNil())
+        expect(paymentResult.amount).notTo(beNil())
+        expect(paymentResult.orderNumber).notTo(beNil())
+    }
+
+    func threeDSCard() -> PaymentMethodParams {
+        return Card(number: "4341 7920 0000 0044", cvc: "123", expMonth: 10, expYear: 2027).toPaymentMethodParams()
+    }
+
+    func testCreateToken() throws {
+        let date = Date()
+        let formatter = ISO8601DateFormatter()
+        formatter.formatOptions.insert(.withFractionalSeconds)
+        let timestamp = formatter.string(from: date);
+        let token = UUID.init().uuidString
+        // merchantKey, token, timestamp
+        let digest = "\(merchantKey)\(token)\(timestamp)".sha512
+        let tokenRequest = TokenRequest(token: token, digest: digest, timestamp: timestamp)
+        let card = Card(number: "4111 1111 1111 1111", cvc: "123", expMonth: 12, expYear: 2022)
+        var createTokenResult: Token? = nil
+        var error: Error? = nil
+        // Create an expectation
+        let expectation = self.expectation(description: "createToken")
+        monriHttpApi.createToken(tokenRequest, paymentMethod: card) {
+            switch $0 {
+            case .error(let e):
+                error = e
+            case .token(let t):
+                createTokenResult = t
+            }
+
+            expectation.fulfill()
+        }
+
+        waitForExpectations(timeout: 5, handler: nil)
+        expect(error).to(beNil())
+        expect(createTokenResult).notTo(be(nil))
+        expect(createTokenResult!.id).to(equal(token))
     }
 
     func testPerformanceExample() throws {

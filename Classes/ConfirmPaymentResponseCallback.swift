@@ -26,7 +26,7 @@ class ConfirmPaymentResponseCallback {
         return ConfirmPaymentResponseCallback(
                 actionRequiredFlow: ActionRequiredFlowImpl(vc: vc,
                         navigationDelegate: navigationDelegate,
-                        monriApi: vc.monri.paymentApi, clientSecret: clientSecret),
+                        monriApi: vc.monri.httpApi, clientSecret: clientSecret),
                 paymentApprovedFlow: PaymentApprovedFlowImpl(vc: vc, clientSecret: clientSecret),
                 paymentDeclinedFlow: PaymentDeclinedFlowImpl(vc: vc, clientSecret: clientSecret),
                 unknownFlow: UnknownFlowImpl(vc: vc, clientSecret: clientSecret),

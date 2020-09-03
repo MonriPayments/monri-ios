@@ -4,7 +4,8 @@
 
 import Foundation
 
-public protocol MonriPaymentApi {
+public protocol MonriHttpApi {
     func confirmPayment(_ params: ConfirmPaymentParams, _ callback: @escaping ConfirmPaymentCallback)
     func paymentStatus(_ params: PaymentStatusParams, _ callback: @escaping PaymentStatusResponseResultCallback)
+    func createToken(_ request: TokenRequest, paymentMethod: PaymentMethod, _ callback: @escaping TokenResultCallback)
 }
