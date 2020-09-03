@@ -1,3 +1,4 @@
+os: osx
 language: swift
 podfile: Example/Podfile
 xcode_project: Example/Monri.workspace # path to your xcodeproj folder
