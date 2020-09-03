@@ -1,6 +1,6 @@
 os: osx
 language: swift
 podfile: Example/Podfile
-xcode_project: Example/Monri.workspace # path to your xcodeproj folder
+xcode_project: Example/Monri.xcworkspace # path to your xcodeproj folder
 xcode_scheme: Monri_Tests
 xcode_destination: platform=iOS Simulator,OS=10.1,name=iPad Pro (9.7-inch)
