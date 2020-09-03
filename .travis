@@ -1,0 +1,4 @@
+language: swift
+xcode_project: Example/Monri.xcodeproj # path to your xcodeproj folder
+xcode_scheme: Monri_Tests
+xcode_destination: platform=iOS Simulator,OS=10.1,name=iPad Pro (9.7-inch)
