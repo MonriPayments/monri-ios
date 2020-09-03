@@ -4,13 +4,15 @@
 
 import Foundation
 
-class SavedCardPaymentMethod: SavedPaymentMethod {
-    let type: String
-    let data: Dictionary<String, String>
+public class SavedCardPaymentMethod: SavedPaymentMethod {
+    public let type: String
+    public let data: Dictionary<String, String>
+    public let parsedData: SavedCardPaymentMethodData
 
     init(type: String, data: SavedCardPaymentMethodData) {
         self.type = type
         self.data = data.toJSON()
+        self.parsedData = data
     }
 
     static func fromJson(_ json: Dictionary<String, Any>) -> SavedCardPaymentMethod? {
@@ -31,14 +33,14 @@ class SavedCardPaymentMethod: SavedPaymentMethod {
     }
 }
 
-struct SavedCardPaymentMethodData {
-    let brand: String
-    let issuer: String
-    let masked: String
-    let expirationDate: String
-    let token: String
+public struct SavedCardPaymentMethodData {
+    public let brand: String
+    public let issuer: String
+    public let masked: String
+    public let expirationDate: String
+    public let token: String
 
-    init(brand: String, issuer: String, masked: String, expirationDate: String, token: String) {
+    public init(brand: String, issuer: String, masked: String, expirationDate: String, token: String) {
         self.brand = brand
         self.issuer = issuer
         self.masked = masked
@@ -59,7 +61,7 @@ struct SavedCardPaymentMethodData {
         );
     }
 
-    func toJSON() -> Dictionary<String, String> {
+    public func toJSON() -> Dictionary<String, String> {
         [
             "brand": brand,
             "issuer": issuer,

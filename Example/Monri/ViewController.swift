@@ -52,7 +52,7 @@ class ViewController: UIViewController {
 
             let confirmPaymentParams = ConfirmPaymentParams(
                     paymentId: response.clientSecret,
-                    paymentMethod: Card(number: "4341 7920 0000 0044", cvc: "123", expMonth: 10, expYear: 2027).toPaymentMethodParams(),
+                    paymentMethod: self.non3DSCard(),
                     transaction: TransactionParams.create().set(customerParams: customerParams)
                             .set("order_info", "iOS SDK payment session")
             )
@@ -60,9 +60,17 @@ class ViewController: UIViewController {
             self.monri.confirmPayment(confirmPaymentParams) { result in
                 switch (result) {
                 case .result(let r):
+                    self.alert("Transaction \(r.status)")
                     print("\(r)")
                 case .error(let e):
+                    self.alert("Transaction error \(e)")
                     print("\(e)")
+                case .declined(let d):
+                    self.alert("Transaction declined \(d.status)")
+                    print("\(d)")
+                case .pending:
+                    self.alert("Transaction pending")
+                    print("trx pending")
                 }
             }
         }
@@ -112,6 +120,20 @@ class ViewController: UIViewController {
         }
 
 
+    }
+
+    func non3DSCard() -> PaymentMethodParams{
+        return Card(number: "4111 1111 1111 1111", cvc: "123", expMonth: 10, expYear: 2027).toPaymentMethodParams()
+    }
+
+    func threeDSCard() -> PaymentMethodParams{
+        return Card(number: "4341 7920 0000 0044", cvc: "123", expMonth: 10, expYear: 2027).toPaymentMethodParams()
+    }
+    
+    func alert(_ message: String) {
+        let alert = UIAlertController(title: "Info", message: message, preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default))
+        self.present(alert, animated: true, completion: nil)
     }
 
     override func didReceiveMemoryWarning() {

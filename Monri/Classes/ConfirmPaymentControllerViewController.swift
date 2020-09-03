@@ -14,10 +14,14 @@ class ConfirmPaymentControllerViewController: UIViewController {
     var indicator: UIActivityIndicatorView!
 
     private var callback: ConfirmPaymentResultCallback!
-    private var navigationDelegate: PaymentAuthWebViewNavigationDelegate!
+    internal var navigationDelegate: PaymentAuthWebViewNavigationDelegate!
 
-    private var confirmPaymentParams: ConfirmPaymentParams!
-    private var monriApiOptions: MonriApiOptions!
+    internal var confirmPaymentParams: ConfirmPaymentParams!
+    internal var monriApiOptions: MonriApiOptions!
+
+    var confirmPaymentCallback: ConfirmPaymentResponseCallback {
+        ConfirmPaymentResponseCallback.create(vc: self, navigationDelegate: self.navigationDelegate)
+    }
 
     var monri: MonriApi {
         MonriApi(self.navigationController!, options: monriApiOptions)
@@ -26,7 +30,7 @@ class ConfirmPaymentControllerViewController: UIViewController {
     static func create(confirmPaymentParams: ConfirmPaymentParams,
                        monriApiOptions: MonriApiOptions,
                        callback: @escaping ConfirmPaymentResultCallback) -> ConfirmPaymentControllerViewController {
-        let vc = ConfirmPaymentControllerViewController()
+        var vc = ConfirmPaymentControllerViewController()
         vc.confirmPaymentParams = confirmPaymentParams
         vc.monriApiOptions = monriApiOptions
         vc.callback = callback
@@ -69,23 +73,49 @@ class ConfirmPaymentControllerViewController: UIViewController {
             guard let vc = self else {
                 return
             }
-            let callback = ConfirmPaymentResponseCallback.create(vc: vc, navigationDelegate: vc.navigationDelegate)
+
             switch (r) {
             case .error(let e):
-                callback.onError(error: e)
+                vc.confirmPaymentCallback.onError(error: e)
             case .result(let r):
-                callback.onSuccess(result: r)
+                vc.confirmPaymentCallback.onSuccess(result: r)
+            case .pending:
+                vc.result(ConfirmPaymentResult.pending)
+            case .unknownError(let error):
+                vc.result(ConfirmPaymentResult.error(PaymentResultError.error(error)))
             }
 
         }
     }
 
-    func resultReceived(statusResponse: PaymentStatusResponse) {
+    func result(_ result: ConfirmPaymentResult) {
 
+        guard let callback = self.callback else {
+            return
+        }
+
+        CATransaction.begin()
+        CATransaction.setCompletionBlock {
+            callback(result)
+        }
+        navigationController?.popViewController(animated: true)
+        CATransaction.commit()
+    }
+
+    func resultReceived(statusResponse: PaymentStatusResponse) {
+        if let paymentResult = statusResponse.paymentResult {
+            result(ConfirmPaymentResult.result(paymentResult))
+        } else {
+            result(.pending)
+        }
     }
 
     func paymentStatusRetryExceeded() {
+        result(ConfirmPaymentResult.pending)
+    }
 
+    func paymentError(error: Error) {
+        result(ConfirmPaymentResult.error(PaymentResultError.error(error)))
     }
 
 }

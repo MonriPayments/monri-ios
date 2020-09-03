@@ -10,7 +10,7 @@ import Foundation
 public struct SavedCard {
     let panToken: String
     let cvc: String?
-    
+
     public init(panToken: String, cvc: String?) {
         self.panToken = panToken
         self.cvc = cvc
@@ -18,18 +18,18 @@ public struct SavedCard {
 }
 
 extension SavedCard: PaymentMethod {
-    
+
     public func paymentMethodType() -> PaymentMethodType {
         return PaymentMethodType.savedCard
     }
-    
-    public func data() -> [String : Any] {
+
+    public func data() -> [String: Any] {
         guard let cvv = self.cvc else {
             return [
                 "pan_token": panToken
             ]
         }
-        
+
         return [
             "pan_token": panToken,
             "cvv": cvv
@@ -37,6 +37,6 @@ extension SavedCard: PaymentMethod {
     }
 
     public func toPaymentMethodParams() -> PaymentMethodParams {
-        return PaymentMethodParams(type: "\(paymentMethodType())", data: data())
+        return PaymentMethodParams(type: "saved_card", data: data())
     }
 }

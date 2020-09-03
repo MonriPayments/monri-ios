@@ -5,8 +5,8 @@
 import Foundation
 
 public class PaymentActionRequired {
-    let redirectTo: String
-    let acsUrl: String
+    public let redirectTo: String
+    public let acsUrl: String
 
     init(redirectTo: String, acsUrl: String) {
         self.redirectTo = redirectTo

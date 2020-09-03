@@ -3,11 +3,14 @@
 //
 
 import Foundation
+import os.log
 
 public class PaymentStatusResponse {
     let paymentStatus: PaymentStatus
     let status: String
     let paymentResult: PaymentResult?
+
+    static let logger: MonriLogger = MonriLoggerImpl(log: OSLog(subsystem: "Monri", category: "PaymentStatusResponse"))
 
     public init(paymentStatus: PaymentStatus, status: String, paymentResult: PaymentResult?) {
         self.paymentStatus = paymentStatus
@@ -17,6 +20,8 @@ public class PaymentStatusResponse {
 
     static func fromJson(_ json: Dictionary<String, Any>) -> PaymentStatusResponse? {
 
+        logger.trace("Creating PaymentStatusResponse from [%@]", json)
+
         guard let paymentStatus = json["payment_status"] as? String else {
             return nil;
         }
@@ -25,7 +30,7 @@ public class PaymentStatusResponse {
             return nil;
         }
 
-        let paymentResult: PaymentResult? = PaymentResult.fromJson(json["payment_result"] as? Dictionary<String, Any>)
+        let paymentResult: PaymentResult? = PaymentResult.fromJson(json["payment_result"] as? [String: Any])
 
         return PaymentStatusResponse(paymentStatus: PaymentStatus.init(rawValue: paymentStatus)!, status: status, paymentResult: paymentResult)
     }

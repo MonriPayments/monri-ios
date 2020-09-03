@@ -10,6 +10,13 @@ class PaymentAuthWebViewNavigationDelegate: NSObject, WKNavigationDelegate {
 
     var acsUrl: String? = nil
 
+    static let WHITELISTED_HOST_NAMES = [
+        "https://ipgtest.monri.com",
+        "https://ipg.monri.com",
+        "https://ipgtest.webteh.hr",
+        "https://ipg.webteh.hr"
+    ]
+
     var flowDelegate: TransactionAuthorizationFlowDelegate? = nil
 
     var logger: MonriLogger {
@@ -17,19 +24,70 @@ class PaymentAuthWebViewNavigationDelegate: NSObject, WKNavigationDelegate {
     }
 
     func webView(_ webView: WKWebView, didCommit navigation: WKNavigation!) {
-        logger.info(message: "didCommit %@", webView.url)
+        guard let url = webView.url else {
+            return
+        }
+        logger.info("didCommit %@", url)
+        loadingUrlChange(uri: url, interceptedRequest: true)
     }
 
     func webView(_ webView: WKWebView, didFail navigation: WKNavigation!) {
-        logger.info(message: "didFail %@", webView.url)
+        logger.info("didFail %@", webView.url)
     }
 
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-        logger.info(message: "didFinish %@", webView.url)
+        guard let url = webView.url else {
+            return
+        }
+        logger.info("didFinish %@", url)
+        loadingUrlChange(uri: url, interceptedRequest: false)
     }
 
     func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
-        logger.info(message: "didFail %@ with error", webView.url, error)
+        logger.info("didFail %@ with error", webView.url, error)
+    }
+
+    func loadingUrlChange(uri: URL, interceptedRequest: Bool) {
+        let url = "\(uri)"
+
+        if (!validateHost(url: url)) {
+            logger.trace("Host = [%@]validation failed", url)
+            return
+        }
+
+        if (interceptedRequest) {
+            logger.trace("intercepted url [%@]", url);
+            if (url.contains("/client_redirect")) {
+                flowDelegate?.redirectingToAcs()
+            } else if (url.contains("/client_return")) {
+                flowDelegate?.acsAuthenticationFinished()
+            }
+        } else {
+            logger.trace("shouldOverrideUrlLoading url = [%@]", url);
+            if (url.contains("v2/payment/hooks/3ds1")) {
+                guard let status = uri.queryParameter("status"), let clientSecret = uri.queryParameter("client_secret") else {
+                    logger.fatal("threeDs1Result result parsing failed", url)
+                    return
+                }
+                flowDelegate?.threeDs1Result(status: status, clientSecret: clientSecret)
+            }
+        }
+
+    }
+
+    func validateHost(url: String?) -> Bool {
+
+        guard let url = url else {
+            return false
+        }
+
+        if (!(url.contains("http"))) {
+            return false
+        }
+
+        return PaymentAuthWebViewNavigationDelegate.WHITELISTED_HOST_NAMES.first { (whitelistedHostName: String) -> Bool in
+            url.contains(whitelistedHostName)
+        } != nil
     }
 }
 
@@ -38,4 +96,13 @@ protocol TransactionAuthorizationFlowDelegate {
     func redirectingToAcs()
     func acsLoadFinished()
     func acsAuthenticationFinished()
+}
+
+extension URL {
+    func queryParameter(_ name: String) -> String? {
+        guard let url = URLComponents(string: self.absoluteString) else {
+            return nil
+        }
+        return url.queryItems?.first(where: { $0.name == name })?.value
+    }
 }

@@ -94,6 +94,6 @@ extension Card: PaymentMethod {
     }
 
     public func toPaymentMethodParams() -> PaymentMethodParams {
-        return PaymentMethodParams(type: "\(paymentMethodType())", data: data())
+        return PaymentMethodParams(type: "card", data: data())
     }
 }

@@ -3,34 +3,45 @@
 //
 
 import Foundation
+import os.log
 
 public class PaymentResult {
+
+    private static let REQUIRED_STRING_FIELDS = ["status",
+                                                 "currency",
+                                                 "order_number",
+                                                 "created_at",
+                                                 "transaction_type"
+    ]
+
+    static let logger: MonriLogger = MonriLoggerImpl(log: OSLog(subsystem: "Monri", category: "PaymentResult"))
+
     //("status")
-    let status: String
+    public let status: String
 
     //("currency")
-    let currency: String
+    public let currency: String
 
     //("amount")
-    let amount: Int
+    public let amount: Int
 
     //("order_number")
-    let orderNumber: String
+    public let orderNumber: String
 
     //("pan_token")
-    let panToken: String?
+    public let panToken: String?
 
     //("created_at")
-    let createdAt: String
+    public let createdAt: String
 
     //("transaction_type")
-    let transactionType: String
+    public let transactionType: String
 
     //("payment_method")
-    let paymentMethod: SavedPaymentMethod?
+    public let paymentMethod: SavedPaymentMethod?
 
     //("errors")
-    let errors: [String]
+    public let errors: [String]
 
     init(status: String, currency: String, amount: Int, orderNumber: String, panToken: String?, createdAt: String, transactionType: String, paymentMethod: SavedPaymentMethod?, errors: [String]) {
         self.status = status
@@ -50,28 +61,19 @@ public class PaymentResult {
             return nil
         }
 
-        guard let status = json["status"] as? String else {
+        let missingKey = PaymentResult.REQUIRED_STRING_FIELDS.first { s in
+            (json[s] as? String) == nil
+        }
+
+        if missingKey != nil {
+            logger.warn("Missing key %@ in fromJson, got json = %@", missingKey!, json)
             return nil
         }
 
-        guard let currency = json["currency"] as? String else {
-            return nil
-        }
+        var errors: [String] = []
 
-        guard let orderNumber = json["order_number"] as? String else {
-            return nil
-        }
-
-        guard let createdAt = json["created_at"] as? String else {
-            return nil
-        }
-
-        guard let transactionType = json["transaction_type"] as? String else {
-            return nil
-        }
-
-        guard let errors = json["errors"] as? [String] else {
-            return nil
+        if let value = json["errors"] as? [String] {
+            errors = value
         }
 
         var paymentMethod: SavedPaymentMethod? = nil
@@ -86,13 +88,13 @@ public class PaymentResult {
         }
 
         return PaymentResult(
-                status: status,
-                currency: currency,
+                status: json["status"] as! String,
+                currency: json["currency"] as! String,
                 amount: amount,
-                orderNumber: orderNumber,
+                orderNumber: json["order_number"] as! String,
                 panToken: panToken,
-                createdAt: createdAt,
-                transactionType: transactionType,
+                createdAt: json["created_at"] as! String,
+                transactionType: json["transaction_type"] as! String,
                 paymentMethod: paymentMethod,
                 errors: errors
         )

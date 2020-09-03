@@ -5,6 +5,6 @@
 import Foundation
 
 public protocol MonriPaymentApi {
-    func confirmPayment(_ params: ConfirmPaymentParams, _ callback: @escaping ConfirmPaymentResultCallback)
+    func confirmPayment(_ params: ConfirmPaymentParams, _ callback: @escaping ConfirmPaymentCallback)
     func paymentStatus(_ params: PaymentStatusParams, _ callback: @escaping PaymentStatusResponseResultCallback)
 }

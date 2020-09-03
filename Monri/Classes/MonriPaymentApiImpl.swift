@@ -15,7 +15,7 @@ class MonriPaymentApiImpl: MonriPaymentApi {
         self.authorizationHeader = "WP3-v2-Client \(options.authenticityToken)"
     }
 
-    func confirmPayment(_ params: ConfirmPaymentParams, _ callback: @escaping ConfirmPaymentResultCallback) {
+    func confirmPayment(_ params: ConfirmPaymentParams, _ callback: @escaping ConfirmPaymentCallback) {
         Alamofire.request("\(apiUrl)/v2/payment/\(params.paymentId)/confirm",
                         method: .post,
                         parameters: params.toJSON(),
@@ -33,7 +33,7 @@ class MonriPaymentApiImpl: MonriPaymentApi {
                             return
                         }
                         guard let result = ConfirmPaymentResponse.fromJson(json) else {
-                            callback(.error(ConfirmPaymentError.jsonParsingError("Converting response to PaymentResult from \(json) failed!")))
+                            callback(.error(ConfirmPaymentError.jsonParsingError("Converting response to ConfirmPaymentResponse from \(json) failed!")))
                             return
                         }
 

@@ -4,7 +4,7 @@
 
 import Foundation
 
-protocol SavedPaymentMethod {
+public protocol SavedPaymentMethod {
     var type: String { get }
     var data: Dictionary<String, String>{ get }
 }

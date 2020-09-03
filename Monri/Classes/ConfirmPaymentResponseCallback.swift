@@ -22,14 +22,15 @@ class ConfirmPaymentResponseCallback {
 
     static func create(vc: ConfirmPaymentControllerViewController,
                        navigationDelegate: PaymentAuthWebViewNavigationDelegate) -> ConfirmPaymentResponseCallback {
+        let clientSecret: String = vc.confirmPaymentParams.paymentId
         return ConfirmPaymentResponseCallback(
                 actionRequiredFlow: ActionRequiredFlowImpl(vc: vc,
                         navigationDelegate: navigationDelegate,
-                        monriApi: vc.monri.paymentApi),
-                paymentApprovedFlow: PaymentApprovedFlowImpl(vc: vc),
-                paymentDeclinedFlow: PaymentDeclinedFlowImpl(vc: vc),
-                unknownFlow: UnknownFlowImpl(vc: vc),
-                paymentErrorFlow: PaymentErrorFlowImpl(vc: vc)
+                        monriApi: vc.monri.paymentApi, clientSecret: clientSecret),
+                paymentApprovedFlow: PaymentApprovedFlowImpl(vc: vc, clientSecret: clientSecret),
+                paymentDeclinedFlow: PaymentDeclinedFlowImpl(vc: vc, clientSecret: clientSecret),
+                unknownFlow: UnknownFlowImpl(vc: vc, clientSecret: clientSecret),
+                paymentErrorFlow: PaymentErrorFlowImpl(vc: vc, clientSecret: clientSecret)
         )
     }
 
