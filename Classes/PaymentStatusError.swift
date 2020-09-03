@@ -5,7 +5,8 @@
 import Foundation
 
 public enum PaymentStatusError {
-    case requestFailed
+    case requestFailed(String)
     case confirmPaymentFailed
     case jsonParsingError(String)
+    case unknownError(Error)
 }

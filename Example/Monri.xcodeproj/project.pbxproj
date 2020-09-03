@@ -18,6 +18,8 @@
 		9980E9BF4CD955015AB15F5C /* OrdersRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9980E8FCB5B1A7857DEAEF43 /* OrdersRepository.swift */; };
 		EA3202320F488D842957ABA8 /* Pods_Monri_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FECC914C60853C0F3613159 /* Pods_Monri_Example.framework */; };
 		F22C6768236C335400231B9E /* HMac.swift in Sources */ = {isa = PBXBuildFile; fileRef = F22C6767236C335400231B9E /* HMac.swift */; };
+		F24C8F0A25010FD100E20DB6 /* ValidatorsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F24C8F0925010FD100E20DB6 /* ValidatorsTest.swift */; };
+		F24C8F0B250131A300E20DB6 /* MonriPaymentApiTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9980EC8C91320D3B68241779 /* MonriPaymentApiTest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,11 +50,13 @@
 		865733A9E3C3139DA92E0629 /* Pods-Monri_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Monri_Tests.release.xcconfig"; path = "Target Support Files/Pods-Monri_Tests/Pods-Monri_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		9980E843C05AB8F0FC1EB398 /* NewPaymentResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewPaymentResponse.swift; sourceTree = "<group>"; };
 		9980E8FCB5B1A7857DEAEF43 /* OrdersRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrdersRepository.swift; sourceTree = "<group>"; };
+		9980EC8C91320D3B68241779 /* MonriPaymentApiTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MonriPaymentApiTest.swift; sourceTree = "<group>"; };
 		A264B12287B435CC4971019D /* Monri.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = Monri.podspec; path = ../Monri.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		CADEDD46D49D8F7C837263C3 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		ECF1F7F8D674FA12FEB01DE0 /* Pods-Monri_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Monri_Example.release.xcconfig"; path = "Target Support Files/Pods-Monri_Example/Pods-Monri_Example.release.xcconfig"; sourceTree = "<group>"; };
 		ED630925A1747D31376A49ED /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		F22C6767236C335400231B9E /* HMac.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HMac.swift; sourceTree = "<group>"; };
+		F24C8F0925010FD100E20DB6 /* ValidatorsTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidatorsTest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -146,6 +150,8 @@
 			children = (
 				607FACEB1AFB9204008FA782 /* Tests.swift */,
 				607FACE91AFB9204008FA782 /* Supporting Files */,
+				F24C8F0925010FD100E20DB6 /* ValidatorsTest.swift */,
+				9980EC8C91320D3B68241779 /* MonriPaymentApiTest.swift */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -381,7 +387,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F24C8F0A25010FD100E20DB6 /* ValidatorsTest.swift in Sources */,
 				607FACEC1AFB9204008FA782 /* Tests.swift in Sources */,
+				F24C8F0B250131A300E20DB6 /* MonriPaymentApiTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

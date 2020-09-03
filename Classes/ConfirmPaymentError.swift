@@ -5,7 +5,7 @@
 import Foundation
 
 public enum ConfirmPaymentError: Error  {
-    case requestFailed
+    case requestFailed(String)
     case confirmPaymentFailed
     case jsonParsingError(String)
 }

@@ -36,8 +36,8 @@ public final class MonriApi {
         self.apiUrl = options.apiUrl
         self.tokenizeUrl = "\(apiUrl)/v2/temp-tokenize"
         self.options = options
-        self.paymentApi = MonriPaymentApiImpl(apiUrl: apiUrl, options: options)
-    }
+        self.paymentApi = MonriFactory().createPaymentApi(options: options)
+            }
 
     public func createToken(_ request: TokenRequest, paymentMethod: PaymentMethod, _ callback: @escaping TokenResultCallback) {
 
