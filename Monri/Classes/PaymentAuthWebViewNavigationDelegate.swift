@@ -44,7 +44,7 @@ class PaymentAuthWebViewNavigationDelegate: NSObject, WKNavigationDelegate {
     }
 
     func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
-        logger.info("didFail %@ with error", webView.url, error)
+        logger.info("didFail %@ with error", webView.url ?? "", error)
     }
 
     func loadingUrlChange(uri: URL, interceptedRequest: Bool) {

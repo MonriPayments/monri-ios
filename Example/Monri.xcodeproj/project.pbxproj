@@ -12,7 +12,6 @@
 		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
-		607FACEC1AFB9204008FA782 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* Tests.swift */; };
 		725FA21A99C9F2F03986BE95 /* Pods_Monri_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C59B3F222564AA601C64778 /* Pods_Monri_Tests.framework */; };
 		9980E9B2054E476D335A7E09 /* NewPaymentResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9980E843C05AB8F0FC1EB398 /* NewPaymentResponse.swift */; };
 		9980E9BF4CD955015AB15F5C /* OrdersRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9980E8FCB5B1A7857DEAEF43 /* OrdersRepository.swift */; };
@@ -47,7 +46,6 @@
 		607FACDF1AFB9204008FA782 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		607FACE51AFB9204008FA782 /* Monri_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Monri_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACEA1AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		607FACEB1AFB9204008FA782 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
 		865733A9E3C3139DA92E0629 /* Pods-Monri_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Monri_Tests.release.xcconfig"; path = "Target Support Files/Pods-Monri_Tests/Pods-Monri_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		9980E843C05AB8F0FC1EB398 /* NewPaymentResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewPaymentResponse.swift; sourceTree = "<group>"; };
 		9980E8FCB5B1A7857DEAEF43 /* OrdersRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrdersRepository.swift; sourceTree = "<group>"; };
@@ -149,7 +147,6 @@
 		607FACE81AFB9204008FA782 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				607FACEB1AFB9204008FA782 /* Tests.swift */,
 				607FACE91AFB9204008FA782 /* Supporting Files */,
 				F24C8F0925010FD100E20DB6 /* ValidatorsTest.swift */,
 				9980EC8C91320D3B68241779 /* MonriPaymentApiTest.swift */,
@@ -390,7 +387,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				F24C8F0A25010FD100E20DB6 /* ValidatorsTest.swift in Sources */,
-				607FACEC1AFB9204008FA782 /* Tests.swift in Sources */,
 				F2A24D382501990D007A2C35 /* HMac.swift in Sources */,
 				F24C8F0B250131A300E20DB6 /* MonriPaymentApiTest.swift in Sources */,
 			);

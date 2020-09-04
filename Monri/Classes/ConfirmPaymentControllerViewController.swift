@@ -30,7 +30,7 @@ class ConfirmPaymentControllerViewController: UIViewController {
     static func create(confirmPaymentParams: ConfirmPaymentParams,
                        monriApiOptions: MonriApiOptions,
                        callback: @escaping ConfirmPaymentResultCallback) -> ConfirmPaymentControllerViewController {
-        var vc = ConfirmPaymentControllerViewController()
+        let vc = ConfirmPaymentControllerViewController()
         vc.confirmPaymentParams = confirmPaymentParams
         vc.monriApiOptions = monriApiOptions
         vc.callback = callback
