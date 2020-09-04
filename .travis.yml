@@ -1,6 +1,6 @@
 os: osx
 language: swift
-osx_image: xcode12u
+osx_image: xcode12
 podfile: Example/Podfile
 xcode_workspace: Example/Monri.xcworkspace # path to your xcodeproj folder
 xcode_scheme: Monri-Example
