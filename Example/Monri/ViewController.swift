@@ -34,6 +34,16 @@ class ViewController: UIViewController {
     }
 
     @IBAction func confirmPayment(sender: UIButton) {
+        
+        var card = cardInlineView.getCard()
+
+        // Save card for future payments
+        card.tokenizePan = saveCardForFuturePaymentsSwitch.isOn
+        
+        if(!card.validateCard()) {
+            alert("Card validation failed")
+            return
+        }
 
         repository.createPayment { response in
             guard let response = response else {
