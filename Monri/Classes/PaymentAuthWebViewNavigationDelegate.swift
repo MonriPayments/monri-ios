@@ -32,7 +32,7 @@ class PaymentAuthWebViewNavigationDelegate: NSObject, WKNavigationDelegate {
     }
 
     func webView(_ webView: WKWebView, didFail navigation: WKNavigation!) {
-        logger.info("didFail %@", webView.url)
+        logger.info("didFail %@", webView.url ?? "")
     }
 
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {

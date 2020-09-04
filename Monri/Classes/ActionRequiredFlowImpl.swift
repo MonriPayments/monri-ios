@@ -126,7 +126,7 @@ extension ActionRequiredFlowImpl: TransactionAuthorizationFlowDelegate {
                 result in
                 self.executeIfVc(action: "paymentStatus") { vc in
                     switch (result) {
-                    case .error(let e):
+                    case .error:
                         self.checkPaymentStatus(clientSecret: clientSecret, count: self.atomicInteger.incrementAndGet())
                     case .result(let r):
                         vc.resultReceived(statusResponse: r);
