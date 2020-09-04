@@ -5,3 +5,4 @@ podfile: Example/Podfile
 xcode_workspace: Example/Monri.xcworkspace # path to your xcodeproj folder
 xcode_scheme: Monri-Example
 xcode_destination: platform=iOS Simulator,OS=14.0,name=iPhone 11 Pro
+install: pod install --project-directory=./Example
