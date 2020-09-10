@@ -18,7 +18,7 @@ public class PaymentStatusResponse {
         self.paymentResult = paymentResult
     }
 
-    static func fromJson(_ json: Dictionary<String, Any>) -> PaymentStatusResponse? {
+    public static func fromJson(_ json: Dictionary<String, Any>) -> PaymentStatusResponse? {
 
         logger.trace("Creating PaymentStatusResponse from [%@]", json)
 

@@ -25,7 +25,7 @@ public class SavedCardPaymentMethod: SavedPaymentMethod {
             return nil
         }
 
-        guard let data = SavedCardPaymentMethodData.fromJson(json["data"] as? Dictionary<String, String>) else {
+        guard let data = SavedCardPaymentMethodData.fromJson(json["data"] as? Dictionary<String, Any>) else {
             return nil
         }
 
@@ -56,7 +56,7 @@ public struct SavedCardPaymentMethodData {
                 brand: json["brand"] as! String,
                 issuer: json["issuer"] as! String,
                 masked: json["masked"] as! String,
-                expirationDate: json["expiration_date"] as! String,
+                expirationDate: "\(json["expiration_date"]!)",
                 token: json["token"] as! String
         );
     }

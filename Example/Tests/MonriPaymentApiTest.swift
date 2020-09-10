@@ -102,6 +102,59 @@ class MonriPaymentApiTest: XCTestCase {
             }
         }
     }
+    
+    func testPaymentResultCreate() throws {
+        let json: [String: Any] = [
+
+  "action_required": [
+    "acs_url": "https://ipgtest.monri.com/processing/three_ds1/19d4a0ec1a1a9af74c83d66f7222456e6563cf5c/client_redirect",
+    "redirect_to": "https://ipgtest.monri.com/processing/three_ds1/19d4a0ec1a1a9af74c83d66f7222456e6563cf5c/client_redirect"
+  ],
+  "client_secret": "19d4a0ec1a1a9af74c83d66f7222456e6563cf5c",
+  "payment_result": [
+    "amount": 100,
+    "created_at": "2020-09-10T23:01:41.839+02:00",
+    "currency": "HRK",
+    "order_number": "hHbDrcyDBcEvbP4_TF54DPOVSBUBgtCJx-poikyb",
+    "outgoing_amount": 100,
+    "outgoing_currency": "HRK",
+    "pan_token": "c32b3465be7278d239f68bb6d7623acf0530bf34574cf3b782754d281c76bd02",
+    "payment_method": [
+      "data": [
+        "brand": "visa",
+        "expiration_date": 2012,
+        "issuer": "off-us",
+        "masked": "434179-xxx-xxx-0044",
+        "token": "c32b3465be7278d239f68bb6d7623acf0530bf34574cf3b782754d281c76bd02"
+      ],
+      "type": "card"
+    ],
+    "response_code": "0000",
+    "response_message": "approved",
+    "status": "approved",
+    "transaction_type": "authorize"
+  ],
+  "payment_status": "executed",
+  "status": "approved"
+]
+
+        let response: PaymentStatusResponse = PaymentStatusResponse.fromJson(json)!
+        
+        expect(response).notTo(beNil())
+        
+        expect(response.status).to(equal("approved"))
+        
+        expect(response.paymentResult?.paymentMethod).notTo(beNil())
+        let pm = response.paymentResult!.paymentMethod!
+        
+        expect(pm.data["brand"]).to(equal("visa"))
+        expect(pm.data["expiration_date"]).to(equal("2012"))
+        expect(pm.data["issuer"]).to(equal("off-us"))
+        expect(pm.data["masked"]).to(equal("434179-xxx-xxx-0044"))
+        expect(pm.data["token"]).to(equal("c32b3465be7278d239f68bb6d7623acf0530bf34574cf3b782754d281c76bd02"))
+        expect(pm.type).to(equal("card"))
+        
+    }
 
     func testConfirmPaymentActionRequired() throws {
 //        let repo = OrdersRepository(authenticityToken: authenticityToken)

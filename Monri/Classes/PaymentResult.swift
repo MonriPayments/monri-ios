@@ -20,22 +20,22 @@ public class PaymentResult {
     public let status: String
 
     //("currency")
-    public let currency: String
+    public let currency: String?
 
     //("amount")
-    public let amount: Int
+    public let amount: Int?
 
     //("order_number")
-    public let orderNumber: String
+    public let orderNumber: String?
 
     //("pan_token")
     public let panToken: String?
 
     //("created_at")
-    public let createdAt: String
+    public let createdAt: String?
 
     //("transaction_type")
-    public let transactionType: String
+    public let transactionType: String?
 
     //("payment_method")
     public let paymentMethod: SavedPaymentMethod?
@@ -43,7 +43,7 @@ public class PaymentResult {
     //("errors")
     public let errors: [String]
 
-    init(status: String, currency: String, amount: Int, orderNumber: String, panToken: String?, createdAt: String, transactionType: String, paymentMethod: SavedPaymentMethod?, errors: [String]) {
+    init(status: String, currency: String?, amount: Int?, orderNumber: String?, panToken: String?, createdAt: String?, transactionType: String?, paymentMethod: SavedPaymentMethod?, errors: [String]) {
         self.status = status
         self.currency = currency
         self.amount = amount
@@ -77,7 +77,7 @@ public class PaymentResult {
         }
 
         var paymentMethod: SavedPaymentMethod? = nil
-        if let pm = json["payment_method"] as? Dictionary<String, String> {
+        if let pm = json["payment_method"] as? Dictionary<String, Any> {
             paymentMethod = SavedCardPaymentMethod.fromJson(pm)
         }
 
@@ -89,12 +89,12 @@ public class PaymentResult {
 
         return PaymentResult(
                 status: json["status"] as! String,
-                currency: json["currency"] as! String,
+                currency: json["currency"] as? String,
                 amount: amount,
-                orderNumber: json["order_number"] as! String,
+                orderNumber: json["order_number"] as? String,
                 panToken: panToken,
-                createdAt: json["created_at"] as! String,
-                transactionType: json["transaction_type"] as! String,
+                createdAt: json["created_at"] as? String,
+                transactionType: json["transaction_type"] as? String,
                 paymentMethod: paymentMethod,
                 errors: errors
         )
