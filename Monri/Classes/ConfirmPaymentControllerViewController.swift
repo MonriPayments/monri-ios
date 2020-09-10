@@ -98,7 +98,14 @@ class ConfirmPaymentControllerViewController: UIViewController {
         CATransaction.setCompletionBlock {
             callback(result)
         }
-        navigationController?.popViewController(animated: true)
+        
+        if let nv = navigationController  {
+            nv.popViewController(animated: true)
+        } else {
+            self.dismiss(animated: true)
+        }
+        
+        
         CATransaction.commit()
     }
 
