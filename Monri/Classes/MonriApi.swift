@@ -17,22 +17,22 @@ public final class MonriApi {
     private let options: MonriApiOptions
     public let httpApi: MonriHttpApi
 
-    private weak var navigationController: UINavigationController?
+    private weak var viewController: UIViewController?
 
     private var paymentController: PaymentController? {
-        guard let nc = navigationController else {
+        guard let nc = viewController else {
             return nil
         }
-        return MonriPaymentController(navigationController: nc, options: options)
+        return MonriPaymentController(viewController: nc, options: options)
     }
 
-    public convenience init(_ vc: UINavigationController, authenticityToken: String) {
+    public convenience init(_ vc: UIViewController, authenticityToken: String) {
         self.init(vc,options: MonriApiOptions(authenticityToken: authenticityToken, developmentMode: true))
     }
 
-    public init(_ vc: UINavigationController, options: MonriApiOptions) {
+    public init(_ vc: UIViewController, options: MonriApiOptions) {
         self.authenticityToken = options.authenticityToken
-        self.navigationController = vc
+        self.viewController = vc
         self.apiUrl = options.apiUrl
         self.tokenizeUrl = "\(apiUrl)/v2/temp-tokenize"
         self.options = options

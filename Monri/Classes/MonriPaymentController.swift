@@ -7,29 +7,35 @@ import os.log
 
 class MonriPaymentController: PaymentController {
 
-    weak var navigationController: UINavigationController?
+    weak var viewController: UIViewController?
 
     let options: MonriApiOptions
 
     let logger: MonriLogger = MonriLoggerImpl(log: OSLog(subsystem: "Monri", category: "MonriPaymentController"))
 
-    init(navigationController: UINavigationController, options: MonriApiOptions) {
-        self.navigationController = navigationController
+    init(viewController: UIViewController, options: MonriApiOptions) {
+        self.viewController = viewController
         self.options = options
     }
 
     func confirmPayment(params: ConfirmPaymentParams,
                         _ callback: @escaping ConfirmPaymentResultCallback) {
 
-        guard let nc = navigationController else {
+        guard let vc = viewController else {
             logger.warn("confirmPayment invoked with disposed navigation controller")
             return
         }
 
-        let vc = ConfirmPaymentControllerViewController.create(confirmPaymentParams: params,
+        let next = ConfirmPaymentControllerViewController.create(confirmPaymentParams: params,
                 monriApiOptions: options,
                 callback: callback
         )
-        nc.pushViewController(vc, animated: true)
+        
+        if let vc = vc as? UINavigationController {
+            vc.pushViewController(next, animated: true)
+        } else {
+            vc.present(next, animated: true)
+        }
+        
     }
 }
