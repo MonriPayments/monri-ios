@@ -24,7 +24,7 @@ class ConfirmPaymentControllerViewController: UIViewController {
     }
 
     var monri: MonriApi {
-        MonriApi(self.navigationController!, options: monriApiOptions)
+        MonriApi(self.navigationController ?? self, options: monriApiOptions)
     }
 
     static func create(confirmPaymentParams: ConfirmPaymentParams,

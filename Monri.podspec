@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'Monri'
-  s.version          = '1.1.2-dev'
+  s.version          = '1.1.3-dev'
   s.summary          = 'Monri iOS SDK'
 
   s.description      = 'Monri iOS SDK - simplified card collection & payment'
