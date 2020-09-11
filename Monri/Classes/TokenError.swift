@@ -16,6 +16,7 @@ public enum TokenError: Error {
     case createTokenRequestError
     case tokenizationFailed
     case jsonParsingError(String)
+    case error(Error)
 }
 
 public typealias ValidationError = TokenError;

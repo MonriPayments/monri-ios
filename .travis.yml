@@ -1,0 +1,7 @@
+os: osx
+language: swift
+osx_image: xcode12
+podfile: Example/Podfile
+xcode_workspace: Example/Monri.xcworkspace # path to your xcworkspace folder
+xcode_scheme: Monri-Example
+xcode_destination: platform=iOS Simulator,OS=12.4,name=iPhone 7

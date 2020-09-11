@@ -14,42 +14,74 @@ public final class MonriApi {
     private let authenticityToken: String
     private let apiUrl: String
     private let tokenizeUrl: String
+    private let options: MonriApiOptions
+    public let httpApi: MonriHttpApi
 
-    public init(authenticityToken: String) {
-        self.authenticityToken = authenticityToken
-        self.apiUrl = "https://ipgtest.monri.com"
-        self.tokenizeUrl = "\(apiUrl)/v2/temp-tokenize"
+    private weak var viewController: UIViewController?
+
+    private var paymentController: PaymentController? {
+        guard let nc = viewController else {
+            return nil
+        }
+        return MonriPaymentController(viewController: nc, options: options)
     }
-    
+
+    public convenience init(_ vc: UIViewController, authenticityToken: String) {
+        self.init(vc,options: MonriApiOptions(authenticityToken: authenticityToken, developmentMode: true))
+    }
+
+    public init(_ vc: UIViewController, options: MonriApiOptions) {
+        self.authenticityToken = options.authenticityToken
+        self.viewController = vc
+        self.apiUrl = options.apiUrl
+        self.tokenizeUrl = "\(apiUrl)/v2/temp-tokenize"
+        self.options = options
+        self.httpApi = MonriFactory().createHttpApi(options: options)
+            }
+
     public func createToken(_ request: TokenRequest, paymentMethod: PaymentMethod, _ callback: @escaping TokenResultCallback) {
-        
+
+
+
         guard let createTokenRequest = CreateTokenRequest.from(token: request, paymentMethod: paymentMethod, authenticityToken: authenticityToken) else {
             callback(.error(TokenError.createTokenRequestError))
             return
         }
-        
+
         Alamofire.request(tokenizeUrl, method: .post, parameters: createTokenRequest.toJson(), encoding: JSONEncoding.default)
-            .responseJSON { dataResponse in
-                guard let data = dataResponse.data else {
-                    callback(.error(TokenError.tokenizationFailed))
-                    return
-                }
-                do {
-                    guard let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] else {
-                        callback(.error(TokenError.jsonParsingError("Converting response = \(data) to JSON failed!")))
+                .responseJSON { dataResponse in
+                    guard let data = dataResponse.data else {
+                        callback(.error(TokenError.tokenizationFailed))
                         return
                     }
-                    guard let token = Token.fromJson(json) else {
-                        callback(.error(TokenError.jsonParsingError("Converting response to Token from \(json) failed!")))
-                        return
+                    do {
+                        guard let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] else {
+                            callback(.error(TokenError.jsonParsingError("Converting response = \(data) to JSON failed!")))
+                            return
+                        }
+                        guard let token = Token.fromJson(json) else {
+                            callback(.error(TokenError.jsonParsingError("Converting response to Token from \(json) failed!")))
+                            return
+                        }
+
+                        callback(.token(token))
+                    } catch {
+                        callback(.error(TokenError.jsonParsingError("\(error)")))
                     }
-                    
-                    callback(.token(token))
-                } catch {
-                    callback(.error(TokenError.jsonParsingError("\(error)")))
                 }
-        }
     }
+
+    public func confirmPayment(_ confirmPaymentParams: ConfirmPaymentParams,  _ callback: @escaping ConfirmPaymentResultCallback) {
+        paymentController?.confirmPayment(params: confirmPaymentParams, callback)
+    }
+
+    public func paymentStatus(_ params: PaymentStatusParams) {
+
+    }
+
+//        void confirmPayment(ConfirmPaymentParams params, ResultCallback<ConfirmPaymentResponse> callback);
+//
+//        void paymentStatus(PaymentStatusParams params, ResultCallback<PaymentStatusResponse> callback);
 
     public func createToken(_ request: TokenRequest, card: Card, _ callback: @escaping TokenResultCallback) {
 
@@ -62,7 +94,7 @@ public final class MonriApi {
             callback(.error(validateCardResult))
             return
         }
-        
+
         return createToken(request, paymentMethod: card, callback)
     }
 
