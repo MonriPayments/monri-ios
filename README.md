@@ -1,4 +1,4 @@
-# monri-ios
+# Monri iOS SDK
 
 The Monri iOS SDK makes it easy to build an excellent payment experience in your iOS app. It provides powerful, customizable, UI elements to use out-of-the-box to collect your users' payment details.
 
