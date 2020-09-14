@@ -6,10 +6,6 @@ We also expose the low-level APIs that power those elements to make it easy to b
 
 ## Installation/Configuration
 
-The Monri iOS SDK makes it easy to build an excellent payment experience in your iOS app. It provides powerful, customizable, UI elements to use out-of-the-box to collect your users' payment details.
-
-We also expose the low-level APIs that power those elements to make it easy to build fully custom forms. This guide will take you all the way from integrating our SDK to accepting payments from your users via credit cards.
-
 ### Install and configure the SDK
 You can choose to install the Monri iOS SDK via CocoaPods.
 
