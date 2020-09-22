@@ -18,7 +18,7 @@ class ViewController: UIViewController {
 
     lazy var monri: MonriApi = {
         [unowned self] in
-        return MonriApi(self.navigationController!, authenticityToken: authenticityToken);
+        return MonriApi(self.navigationController!, options: MonriApiOptions(authenticityToken: authenticityToken, developmentMode: true));
     }()
 
     var repository: OrdersRepository {
