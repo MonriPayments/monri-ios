@@ -308,6 +308,14 @@ class MonriPaymentApiTest: XCTestCase {
         expect(confirmPaymentResponse).notTo(beNil())
         expect(confirmPaymentResponse!.paymentResult).notTo(beNil())
         let paymentResult: PaymentResult = confirmPaymentResponse!.paymentResult!
+        let json = paymentResult.toJSON();
+        expect(json).notTo(beNil())
+        expect(json["currency"] as? String).to(equal(paymentResult.currency))
+        expect(json["transaction_type"] as? String).to(equal(paymentResult.transactionType))
+        expect(json["amount"] as? Int).to(equal(paymentResult.amount))
+        expect(json["status"] as? String).to(equal(paymentResult.status))
+        expect(json["order_number"] as? String).to(equal(paymentResult.orderNumber))
+        expect(json["created_at"] as? String).to(equal(paymentResult.createdAt))
         expect(paymentResult.status).notTo(beNil())
         expect(paymentResult.currency).notTo(beNil())
         expect(paymentResult.transactionType).notTo(beNil())

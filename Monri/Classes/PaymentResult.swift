@@ -54,6 +54,20 @@ public class PaymentResult {
         self.paymentMethod = paymentMethod
         self.errors = errors
     }
+    
+    public func toJSON() -> Dictionary<String, Any?> {
+        return [
+            "status": status,
+            "currency": currency,
+            "amount": amount,
+            "order_number": orderNumber,
+            "pan_token": panToken,
+            "created_at": createdAt,
+            "transaction_type": transactionType,
+            "payment_method": paymentMethod?.toJSON(),
+            "errors": errors
+        ]
+    }
 
     static func fromJson(_ json: Dictionary<String, Any>?) -> PaymentResult? {
 
