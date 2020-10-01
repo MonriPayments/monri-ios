@@ -20,7 +20,11 @@ public class OrdersRepository {
     }
 
     public func createPayment(_ callback: @escaping (NewPaymentResponse?) -> Void) {
-        Alamofire.request("https://mobile.webteh.hr/example/create-payment-session", method: .post, parameters: [:], encoding: JSONEncoding.default)
+        Alamofire.request("https://mobile.webteh.hr/example/create-payment-session",
+                          method: .post,
+//                          parameters: ["skip_authentication":"true"],
+                          parameters: [:],
+                          encoding: JSONEncoding.default)
                 .responseJSON { dataResponse in
                     guard let data = dataResponse.data else {
                         callback(nil)

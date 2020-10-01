@@ -62,7 +62,7 @@ class ViewController: UIViewController {
 
             let confirmPaymentParams = ConfirmPaymentParams(
                     paymentId: response.clientSecret,
-                    paymentMethod: self.threeDSCard(),
+                    paymentMethod: card.toPaymentMethodParams(),
                     transaction: TransactionParams.create().set(customerParams: customerParams)
                             .set("order_info", "iOS SDK payment session")
             )

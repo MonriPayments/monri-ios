@@ -20,7 +20,7 @@ public class PaymentStatusResponse {
 
     public static func fromJson(_ json: Dictionary<String, Any>) -> PaymentStatusResponse? {
 
-        logger.trace("Creating PaymentStatusResponse from [%@]", json)
+        logger.trace("Creating PaymentStatusResponse from [\(json)]")
 
         guard let paymentStatus = json["payment_status"] as? String else {
             return nil;
