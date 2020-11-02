@@ -31,7 +31,7 @@ class MonriHttpApiImpl: MonriHttpApi {
                 headers: ["Authorization": authorizationHeader]) {
             switch ($0) {
             case .failure(let body, let statusCode, _):
-                self.logger.warn("ConfirmPayment failed with body [%@] and status code [%@]", body, statusCode)
+                self.logger.warn("ConfirmPayment failed with body [\(body)] and status code [\(statusCode)]")
                 callback(.error(ConfirmPaymentError.requestFailed("Got status code \(statusCode)")))
             case .success(let body, _, _):
                 guard let response = ConfirmPaymentResponse.fromJson(body) else {
@@ -54,7 +54,7 @@ class MonriHttpApiImpl: MonriHttpApi {
         httpClient.jsonPost(url: tokenizeUrl, body: createTokenRequest.toJson(), headers: [:]) {
             switch ($0) {
             case .failure(let body, let statusCode, _):
-                self.logger.warn("ConfirmPayment failed with body [%@] and status code [%@]", body, statusCode)
+                self.logger.warn("ConfirmPayment failed with body [\(body)] and status code [\(statusCode)]")
                 callback(.error(TokenError.tokenizationFailed))
             case .success(let body, _, _):
                 guard let response = Token.fromJson(body) else {
@@ -72,7 +72,7 @@ class MonriHttpApiImpl: MonriHttpApi {
         httpClient.jsonGet(url: "\(apiUrl)/v2/payment/\(params.clientSecret)/status", headers: ["Authorization": authorizationHeader]) {
             switch ($0) {
             case .failure(let body, let statusCode, _):
-                self.logger.warn("ConfirmPayment failed with body [%@] and status code [%@]", body, statusCode)
+                self.logger.warn("ConfirmPayment failed with body [\(body)] and status code [\(statusCode)]")
                 callback(.error(PaymentStatusError.requestFailed("Got status code \(statusCode)")))
             case .success(let body, _, _):
                 guard let response = PaymentStatusResponse.fromJson(body) else {

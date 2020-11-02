@@ -21,7 +21,7 @@ class PaymentDeclinedFlowImpl: PaymentDeclinedFlow {
     func handleResult(_ response: ConfirmPaymentResponse) {
 
         guard let vc = vc else {
-            logger.warn("Invoked handleResult with payload %@ without ViewController attached", response.status)
+            logger.warn("Invoked handleResult with payload [\(response.status)] without ViewController attached")
             return
         }
 

@@ -23,12 +23,12 @@ class PaymentApprovedFlowImpl: PaymentApprovedFlow {
 
         guard let vc = self.vc else {
             // TODO: add client secret to confirm payment response
-            logger.warn("Invoked handleResult for clientSecret = %@ with payload %@ without ViewController attached", clientSecret, response)
+            logger.warn("Invoked handleResult for clientSecret = \(clientSecret) with payload \(response) without ViewController attached")
             return
         }
 
         guard let paymentResult = response.paymentResult else {
-            logger.fatal("Invoked handleResult for clientSecret = %@ without payment result, got %@", clientSecret, response)
+            logger.fatal("Invoked handleResult for clientSecret = \(clientSecret) without payment result, got \(response)")
             return
         }
 

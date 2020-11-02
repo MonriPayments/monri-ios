@@ -80,7 +80,7 @@ public class PaymentResult {
         }
 
         if missingKey != nil {
-            logger.warn("Missing key %@ in fromJson, got json = %@", missingKey!, json)
+            logger.warn("Missing key \(missingKey!) in fromJson, got json = \(json)")
             return nil
         }
 

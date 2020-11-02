@@ -25,12 +25,12 @@ public class ConfirmPaymentResponse {
         }
 
         guard let status = json["status"] as? String else {
-            logger.warn("Attempted creating ConfirmPaymentResponse, status is not a String, got = [%@]", json)
+            logger.warn("Attempted creating ConfirmPaymentResponse, status is not a String, got = [\(json)]")
             return nil
         }
 
         guard let parsedStatus = PaymentStatus.init(rawValue: status) else {
-            logger.warn("Attempted creating ConfirmPaymentResponse, status parsing failed, got [%@], json [%@]", status, json)
+            logger.warn("Attempted creating ConfirmPaymentResponse, status parsing failed, got [\(status)], json [\(json)]")
             return nil
         }
 

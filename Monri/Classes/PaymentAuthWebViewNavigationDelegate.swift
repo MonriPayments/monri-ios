@@ -27,46 +27,46 @@ class PaymentAuthWebViewNavigationDelegate: NSObject, WKNavigationDelegate {
         guard let url = webView.url else {
             return
         }
-        logger.info("didCommit %@", url)
+        logger.info("didCommit \(url)")
         loadingUrlChange(uri: url, interceptedRequest: true)
     }
 
     func webView(_ webView: WKWebView, didFail navigation: WKNavigation!) {
-        logger.info("didFail %@", webView.url ?? "")
+        logger.info("didFail \(webView.url?.absoluteString ?? "")")
     }
 
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         guard let url = webView.url else {
             return
         }
-        logger.info("didFinish %@", url)
+        logger.info("didFinish \(url)")
         loadingUrlChange(uri: url, interceptedRequest: false)
     }
 
     func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
-        logger.info("didFail %@ with error", webView.url ?? "", error)
+        logger.info("didFail \(webView.url?.absoluteString ?? "") with error = \(error)")
     }
 
     func loadingUrlChange(uri: URL, interceptedRequest: Bool) {
         let url = "\(uri)"
 
         if (!validateHost(url: url)) {
-            logger.trace("Host = [%@]validation failed", url)
+            logger.trace("Host = [\(url)]validation failed")
             return
         }
 
         if (interceptedRequest) {
-            logger.trace("intercepted url [%@]", url);
+            logger.trace("intercepted url [\(url)]");
             if (url.contains("/client_redirect")) {
                 flowDelegate?.redirectingToAcs()
             } else if (url.contains("/client_return")) {
                 flowDelegate?.acsAuthenticationFinished()
             }
         } else {
-            logger.trace("shouldOverrideUrlLoading url = [%@]", url);
+            logger.trace("shouldOverrideUrlLoading url = [\(url)]");
             if (url.contains("v2/payment/hooks/3ds1")) {
                 guard let status = uri.queryParameter("status"), let clientSecret = uri.queryParameter("client_secret") else {
-                    logger.fatal("threeDs1Result result parsing failed", url)
+                    logger.fatal("threeDs1Result result parsing failed for url = \(url)")
                     return
                 }
                 flowDelegate?.threeDs1Result(status: status, clientSecret: clientSecret)

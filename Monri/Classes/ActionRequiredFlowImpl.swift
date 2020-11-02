@@ -37,7 +37,7 @@ class ActionRequiredFlowImpl: ActionRequiredFlow {
 
     func executeIfVc(action: String, _ callable: (ConfirmPaymentControllerViewController) -> Void) {
         guard let vc = vc else {
-            logger.info("Tried executing %@, vc is nil", action)
+            logger.info("Tried executing \(action), vc is nil")
             return
         }
 
@@ -45,27 +45,27 @@ class ActionRequiredFlowImpl: ActionRequiredFlow {
     }
 
     func handleResult(_ response: ConfirmPaymentResponse) {
-        logger.trace("Received response %@", response.status)
+        logger.trace("Received response [\(response.status.rawValue)]")
         guard let vc = vc else {
-            logger.fatal("Invoked without available ViewController! Payment id = [%@]", response.status)
+            logger.fatal("Invoked without available ViewController! Payment id = [\(response.status)]")
             return
         }
 
         guard let actionRequired = response.actionRequired else {
-            logger.fatal("Invoked with nil action required %@", response.status)
+            logger.fatal("Invoked with nil action required \(response.status)")
             return
         }
 
         executeIfStatus(InvocationState.CALLBACK_NOT_INVOKED, InvocationState.HANDLE_RESULT, {
             let acsUrl = actionRequired.acsUrl
             guard let redirectUrl = try? URLRequest(url: actionRequired.redirectTo, method: .get) else {
-                logger.fatal("Received invalid redirectUrl [%@]", actionRequired.redirectTo)
+                logger.fatal("Received invalid redirectUrl [\(actionRequired.redirectTo)]")
                 return
             }
 
             navigationDelegate.acsUrl = acsUrl
 
-            logger.info("Handle result invoked with acsUrl = [%@]", acsUrl)
+            logger.info("Handle result invoked with acsUrl = \(acsUrl)")
 
             DispatchQueue.main.async {
                 vc.indicator.isHidden = false
@@ -78,9 +78,9 @@ class ActionRequiredFlowImpl: ActionRequiredFlow {
 
     func executeIfStatus(_ state: InvocationState, _ newState: InvocationState, _ runnable: () -> Void) {
         if (invocationState != state) {
-            logger.warn("Tried changing to state = [%@] from state [%@], currentState = [%@]", newState, state, invocationState)
+            logger.warn("Tried changing to state = [\(newState)] from state [\(state)], currentState = [\(invocationState)]")
         } else {
-            logger.info("Changing state to state = [%@] from currentState = [%@]", newState, state)
+            logger.info("Changing state to state = [\(newState)] from currentState = [\(state)]")
             self.invocationState = newState
             runnable()
         }
@@ -102,7 +102,7 @@ extension ActionRequiredFlowImpl: TransactionAuthorizationFlowDelegate {
     func threeDs1Result(status: String, clientSecret: String) {
         executeIfVc(action: "threeDs1Result") { vc in
             executeIfStatus(InvocationState.ACS_AUTHENTICATION_FINISHED, InvocationState.THREE_DS_RESULT, {
-                logger.info("ThreeDs1Result, status = %@, clientSecret = %@", status, clientSecret);
+                logger.info("ThreeDs1Result, status = \(status), clientSecret = \(clientSecret)");
 
                 DispatchQueue.main.async {
                     vc.indicator.isHidden = false
@@ -118,7 +118,7 @@ extension ActionRequiredFlowImpl: TransactionAuthorizationFlowDelegate {
     func checkPaymentStatus(clientSecret: String, count: Int) {
         if (count >= 3) {
             self.executeIfVc(action: "checkPaymentStatus") { vc in
-                logger.info("Retry count exceeded %@", "\(count)")
+                logger.info("Retry count exceeded \(count)")
                 vc.paymentStatusRetryExceeded()
             }
         } else {

@@ -13,31 +13,24 @@ class MonriLoggerImpl: MonriLogger {
         self.log = log
     }
 
-    func info(_ message: StaticString, _ args: Any...) {
-        os_log(message, log: log, type: .info, args)
+    func info(_ message: String) {
+        os_log("%s", log: log, type: .info, message)
     }
 
-    func error(_ message: StaticString, _ args: Any...) {
-        os_log(message, log: log, type: .error, args)
+    func error(_ message: String) {
+        os_log("%s", log: log, type: .error, message)
     }
 
-    func trace(_ message: StaticString, _ args: Any...) {
-        os_log(message, log: log, type: .debug, args)
+    func trace(_ message: String) {
+        os_log("%s", log: log, type: .debug, message)
     }
 
-    func warn(_ message: StaticString, _ args: Any...) {
-        os_log(message, log: log, type: .error, args)
+    func warn(_ message: String) {
+        os_log("%s", log: log, type: .error, message)
     }
 
-    func fatal(_ message: StaticString, _ args: Any...) {
-        os_log(message, log: log, type: .fault, args)
+    func fatal(_ message: String) {
+        os_log("%s", log: log, type: .fault, message)
     }
 }
 
-extension OSLog {
-    static var subsystem = Bundle.main.bundleIdentifier!
-
-    /// Logs the view cycles like viewDidLoad.
-    static let viewCycle = OSLog(subsystem: subsystem, category: "viewcycle")
-
-}
