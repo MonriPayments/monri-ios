@@ -8,6 +8,7 @@
 
 import UIKit
 import Monri
+import Caishen
 class ViewController: UIViewController {
     
     // TODO: replace with your merchant's authenticity monriToken
@@ -26,6 +27,9 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        cardInlineView.cardTypeRegister.unregister(cardType: Caishen.Visa())
+        cardInlineView.cardTypeRegister.register(cardType: MyVisa())
+        cardInlineView.cardTypeRegister.register(cardType: Maestro())
     }
     
     @IBAction func confirmPayment(sender: UIButton) {
