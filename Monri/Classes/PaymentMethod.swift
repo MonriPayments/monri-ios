@@ -10,10 +10,12 @@ import Foundation
 public enum PaymentMethodType {
     case newCard
     case savedCard
-    
+
 }
 
 public protocol PaymentMethod {
-    func paymentMethodType() ->  PaymentMethodType
+    func paymentMethodType() -> PaymentMethodType
     func data() -> [String: Any]
+    func toPaymentMethodParams() -> PaymentMethodParams
+
 }
