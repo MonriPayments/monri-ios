@@ -46,7 +46,22 @@ public class TransactionParams {
                 .set("ch_email", customerParams.email)
     }
 
-    func toJSON() -> Dictionary<String, String> {
-        data
+    func toJSON() -> Dictionary<String, Any> {
+        var metaData: Dictionary<String, Any> = Dictionary();
+        let metaKeys = [
+            "integration_type",
+            "library",
+            "library_version"
+        ]
+
+       for metaKey in metaKeys{
+           let key = "meta.\(metaKey)"
+//           metaData[key] = data.removeValue(forKey: key)
+           metaData[key] = data[key]
+       }
+        
+        var rv: Dictionary<String, Any> = data
+        rv["meta"] = metaData
+        return rv
     }
 }
