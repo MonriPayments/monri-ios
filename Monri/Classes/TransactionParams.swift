@@ -48,16 +48,11 @@ public class TransactionParams {
 
     func toJSON() -> Dictionary<String, Any> {
         var metaData: Dictionary<String, Any> = Dictionary();
-        let metaKeys = [
-            "integration_type",
-            "library",
-            "library_version"
-        ]
-
-       for metaKey in metaKeys{
+ 
+        for metaKey in MetaUtility.META_KEYS {
            let key = "meta.\(metaKey)"
-//           metaData[key] = data.removeValue(forKey: key)
-           metaData[key] = data[key]
+//           metaData[metaKey] = data.removeValue(forKey: key)
+           metaData[metaKey] = data[key]
        }
         
         var rv: Dictionary<String, Any> = data

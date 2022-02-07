@@ -29,20 +29,20 @@ class MonriPaymentController: PaymentController {
         let version: String = Bundle(identifier: "org.cocoapods.Monri")?.infoDictionary?["CFBundleShortVersionString"] as? String ?? "unknown"
 
         params.transaction
-                .set("meta.integration_type", "ios-sdk")
-                .set("meta.library", MonriUtil.library())
-                .set("meta.library_version", version);
+                .set("meta.\(MetaUtility.INTEGRATION_TYPE_KEY)", "ios-sdk")
+                .set("meta.\(MetaUtility.LIBRARY_KEY)", MonriUtil.library())
+                .set("meta.\(MetaUtility.LIBRARY_VERSION_KEY)", version);
 
         let next = ConfirmPaymentControllerViewController.create(confirmPaymentParams: params,
                 monriApiOptions: options,
                 callback: callback
         )
-        
+
         if let vc = vc as? UINavigationController {
             vc.pushViewController(next, animated: true)
         } else {
             vc.present(next, animated: true)
         }
-        
+
     }
 }
