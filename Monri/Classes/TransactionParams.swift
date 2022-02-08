@@ -51,8 +51,7 @@ public class TransactionParams {
  
         for metaKey in MetaUtility.META_KEYS {
            let key = "meta.\(metaKey)"
-//           metaData[metaKey] = data.removeValue(forKey: key)
-           metaData[metaKey] = data[key]
+           metaData[metaKey] = data.removeValue(forKey: key)
        }
         
         var rv: Dictionary<String, Any> = data
