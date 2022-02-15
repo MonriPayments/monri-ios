@@ -101,17 +101,15 @@ extension ActionRequiredFlowImpl: TransactionAuthorizationFlowDelegate {
 
     func threeDs1Result(status: String, clientSecret: String) {
         executeIfVc(action: "threeDs1Result") { vc in
-            executeIfStatus(InvocationState.ACS_AUTHENTICATION_FINISHED, InvocationState.THREE_DS_RESULT, {
-                logger.info("ThreeDs1Result, status = \(status), clientSecret = \(clientSecret)");
+            logger.info("ThreeDs1Result, status = \(status), clientSecret = \(clientSecret)");
 
-                DispatchQueue.main.async {
-                    vc.indicator.isHidden = false
-                    vc.indicator.startAnimating()
-                    vc.webView.isHidden = true
-                }
+            DispatchQueue.main.async {
+                vc.indicator.isHidden = false
+                vc.indicator.startAnimating()
+                vc.webView.isHidden = true
+            }
 
-                checkPaymentStatus(clientSecret: clientSecret, count: atomicInteger.incrementAndGet())
-            })
+            checkPaymentStatus(clientSecret: clientSecret, count: atomicInteger.incrementAndGet())
         }
     }
 
