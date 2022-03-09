@@ -77,13 +77,9 @@ class ActionRequiredFlowImpl: ActionRequiredFlow {
     }
 
     func executeIfStatus(_ state: InvocationState, _ newState: InvocationState, _ runnable: () -> Void) {
-        if (invocationState != state) {
-            logger.warn("Tried changing to state = [\(newState)] from state [\(state)], currentState = [\(invocationState)]")
-        } else {
-            logger.info("Changing state to state = [\(newState)] from currentState = [\(state)]")
-            self.invocationState = newState
-            runnable()
-        }
+        logger.info("Changing state to state = [\(newState)] from currentState = [\(state)]")
+        self.invocationState = newState
+        runnable()
     }
 
 
@@ -101,17 +97,15 @@ extension ActionRequiredFlowImpl: TransactionAuthorizationFlowDelegate {
 
     func threeDs1Result(status: String, clientSecret: String) {
         executeIfVc(action: "threeDs1Result") { vc in
-            executeIfStatus(InvocationState.ACS_AUTHENTICATION_FINISHED, InvocationState.THREE_DS_RESULT, {
-                logger.info("ThreeDs1Result, status = \(status), clientSecret = \(clientSecret)");
+            logger.info("ThreeDs1Result, status = \(status), clientSecret = \(clientSecret)");
 
-                DispatchQueue.main.async {
-                    vc.indicator.isHidden = false
-                    vc.indicator.startAnimating()
-                    vc.webView.isHidden = true
-                }
+            DispatchQueue.main.async {
+                vc.indicator.isHidden = false
+                vc.indicator.startAnimating()
+                vc.webView.isHidden = true
+            }
 
-                checkPaymentStatus(clientSecret: clientSecret, count: atomicInteger.incrementAndGet())
-            })
+            checkPaymentStatus(clientSecret: clientSecret, count: atomicInteger.incrementAndGet())
         }
     }
 

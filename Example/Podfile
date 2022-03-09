@@ -17,9 +17,8 @@ target 'Monri_Example' do
 
     use_frameworks!
     pod 'Quick', '~> 1.2.0'
-    pod 'Nimble', '~> 7.0'
+    pod 'Nimble', '~> 9.0.1'
     pod 'FBSnapshotTestCase' , '~> 2.1.4'
-    pod 'Nimble-Snapshots' , '~> 6.3.0'
   end
 end
 
