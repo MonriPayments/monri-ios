@@ -77,13 +77,9 @@ class ActionRequiredFlowImpl: ActionRequiredFlow {
     }
 
     func executeIfStatus(_ state: InvocationState, _ newState: InvocationState, _ runnable: () -> Void) {
-        if (invocationState != state) {
-            logger.warn("Tried changing to state = [\(newState)] from state [\(state)], currentState = [\(invocationState)]")
-        } else {
-            logger.info("Changing state to state = [\(newState)] from currentState = [\(state)]")
-            self.invocationState = newState
-            runnable()
-        }
+        logger.info("Changing state to state = [\(newState)] from currentState = [\(state)]")
+        self.invocationState = newState
+        runnable()
     }
 
 
