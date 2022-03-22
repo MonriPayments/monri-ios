@@ -9,7 +9,7 @@ import UIKit
 import Caishen
 
 public class CardInlineView: CardTextField {
-    struct customCardTypeImageStore: CardTypeImageStore {
+    struct CustomCardTypeImageStore: CardTypeImageStore {
         func image(for cardType: Caishen.CardType) -> UIImage? {
             switch cardType {
             case is DinaCard:
@@ -27,7 +27,7 @@ public class CardInlineView: CardTextField {
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        cardTypeImageStore = customCardTypeImageStore().self as CardTypeImageStore
+        cardTypeImageStore = CustomCardTypeImageStore().self as CardTypeImageStore
     }
 
     public override func willMove(toWindow newWindow: UIWindow?) {
@@ -41,7 +41,7 @@ public class CardInlineView: CardTextField {
     }
 
 
-    public func registerCard() {
+    private func registerCard() {
         cardTypeRegister.register(cardType: DinaCard())
     }
 
