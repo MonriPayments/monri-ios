@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="JtB-8T-DtR">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="JtB-8T-DtR">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -37,7 +36,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="34p-Zb-f0w">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="34p-Zb-f0w">
                                 <rect key="frame" x="172" y="132" width="30" height="30"/>
                                 <state key="normal" title="Pay"/>
                                 <connections>
@@ -45,15 +44,16 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Save card for future payments" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pZf-AK-fc3">
-                                <rect key="frame" x="98" y="202" width="231" height="21"/>
+                                <rect key="frame" x="99.5" y="202" width="229.5" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="H9b-W4-JfM">
-                                <rect key="frame" x="43" y="197" width="49" height="31"/>
+                                <rect key="frame" x="44.5" y="197" width="51" height="31"/>
                             </switch>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="aUf-Ou-tAk"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="pZf-AK-fc3" firstAttribute="centerY" secondItem="H9b-W4-JfM" secondAttribute="centerY" id="82B-ns-wub"/>
@@ -67,7 +67,6 @@
                             <constraint firstItem="34p-Zb-f0w" firstAttribute="leading" secondItem="aUf-Ou-tAk" secondAttribute="leading" constant="172" id="hcm-uz-Nbb"/>
                             <constraint firstItem="scV-cQ-fBH" firstAttribute="centerX" secondItem="34p-Zb-f0w" secondAttribute="centerX" constant="4.5" id="p0h-t6-EgH"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="aUf-Ou-tAk"/>
                     </view>
                     <navigationItem key="navigationItem" id="Ejz-1R-HIA"/>
                     <connections>

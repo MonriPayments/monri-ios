@@ -42,6 +42,7 @@ public enum CardType: Int {
     case maestro
     case rupay
     case mir
+    case dinacard
 }
 
 public enum CardError: Error {
@@ -72,6 +73,8 @@ class SwiftLuhn {
             return "^6[0-9]{15}$"
         case .mir:
             return "^220[0-9]{13}$"
+        case .dinacard:
+            return "^9891[0-9]{12}$"
         }
     }
 
@@ -95,6 +98,8 @@ class SwiftLuhn {
             return "^6[0-9]+$"
         case .mir:
             return "^220[0-9]+$"
+        case .dinacard:
+            return "^9891[0-9]+$"
         }
     }
 
@@ -182,6 +187,8 @@ public extension CardType {
             return "Rupay"
         case .mir:
             return "Mir"
+        case .dinacard:
+            return "DinaCard"
         }
     }
 
@@ -205,6 +212,8 @@ public extension CardType {
             self.init(rawValue: 7)
         case "mir":
             self.init(rawValue: 8)
+        case "dinacard":
+            self.init(rawValue: 9)
         default:
             return nil
         }
