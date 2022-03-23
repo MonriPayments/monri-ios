@@ -7,15 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3D9F483766A256F8F94690DA /* Pods_Monri_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD9AB2C38D4E87CD2139C6B6 /* Pods_Monri_Example.framework */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
 		607FACD81AFB9204008FA782 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD71AFB9204008FA782 /* ViewController.swift */; };
 		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
+		9503B07ABA7A8715A32786BE /* Pods_Monri_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ACCC78490503899EC229583A /* Pods_Monri_Tests.framework */; };
 		9980E9B2054E476D335A7E09 /* NewPaymentResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9980E843C05AB8F0FC1EB398 /* NewPaymentResponse.swift */; };
 		9980E9BF4CD955015AB15F5C /* OrdersRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9980E8FCB5B1A7857DEAEF43 /* OrdersRepository.swift */; };
-		D7BD9C6EAB559B067A3DFEB2 /* Pods_Monri_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3323EBB3D1F8E0ABA8A94896 /* Pods_Monri_Tests.framework */; };
+		E4810AB9F287943960D10D0D /* Pods_Monri_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60D3B3844B1545967F6B9671 /* Pods_Monri_Example.framework */; };
 		F22C6768236C335400231B9E /* HMac.swift in Sources */ = {isa = PBXBuildFile; fileRef = F22C6767236C335400231B9E /* HMac.swift */; };
 		F24C8F0A25010FD100E20DB6 /* ValidatorsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F24C8F0925010FD100E20DB6 /* ValidatorsTest.swift */; };
 		F24C8F0B250131A300E20DB6 /* MonriPaymentApiTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9980EC8C91320D3B68241779 /* MonriPaymentApiTest.swift */; };
@@ -33,8 +33,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		3323EBB3D1F8E0ABA8A94896 /* Pods_Monri_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Monri_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		38A8CE910C562E620D023E1E /* Pods-Monri_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Monri_Tests.debug.xcconfig"; path = "Target Support Files/Pods-Monri_Tests/Pods-Monri_Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		0432D660CCA2C5A7E608FFF1 /* Pods-Monri_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Monri_Example.debug.xcconfig"; path = "Target Support Files/Pods-Monri_Example/Pods-Monri_Example.debug.xcconfig"; sourceTree = "<group>"; };
+		24176C98E75D25C42F7B6109 /* Pods-Monri_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Monri_Tests.release.xcconfig"; path = "Target Support Files/Pods-Monri_Tests/Pods-Monri_Tests.release.xcconfig"; sourceTree = "<group>"; };
+		4A52DB1A6F9716D0655CC74D /* Pods-Monri_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Monri_Example.release.xcconfig"; path = "Target Support Files/Pods-Monri_Example/Pods-Monri_Example.release.xcconfig"; sourceTree = "<group>"; };
 		607FACD01AFB9204008FA782 /* Monri_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Monri_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD41AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACD51AFB9204008FA782 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -44,15 +45,14 @@
 		607FACDF1AFB9204008FA782 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		607FACE51AFB9204008FA782 /* Monri_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Monri_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACEA1AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		60D3B3844B1545967F6B9671 /* Pods_Monri_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Monri_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9980E843C05AB8F0FC1EB398 /* NewPaymentResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewPaymentResponse.swift; sourceTree = "<group>"; };
 		9980E8FCB5B1A7857DEAEF43 /* OrdersRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrdersRepository.swift; sourceTree = "<group>"; };
 		9980EC8C91320D3B68241779 /* MonriPaymentApiTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MonriPaymentApiTest.swift; sourceTree = "<group>"; };
-		9C62FE0C306B29EFDF7419B4 /* Pods-Monri_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Monri_Example.debug.xcconfig"; path = "Target Support Files/Pods-Monri_Example/Pods-Monri_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		A264B12287B435CC4971019D /* Monri.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = Monri.podspec; path = ../Monri.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		BD9AB2C38D4E87CD2139C6B6 /* Pods_Monri_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Monri_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		C84FE134B137777620CD6CAE /* Pods-Monri_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Monri_Example.release.xcconfig"; path = "Target Support Files/Pods-Monri_Example/Pods-Monri_Example.release.xcconfig"; sourceTree = "<group>"; };
+		ACCC78490503899EC229583A /* Pods_Monri_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Monri_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CADEDD46D49D8F7C837263C3 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
-		D8E6A49CC6E1A3AD26B9EBF5 /* Pods-Monri_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Monri_Tests.release.xcconfig"; path = "Target Support Files/Pods-Monri_Tests/Pods-Monri_Tests.release.xcconfig"; sourceTree = "<group>"; };
+		D6F66D8B0B31AA7AE50DA603 /* Pods-Monri_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Monri_Tests.debug.xcconfig"; path = "Target Support Files/Pods-Monri_Tests/Pods-Monri_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		ED630925A1747D31376A49ED /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		F22C6767236C335400231B9E /* HMac.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HMac.swift; sourceTree = "<group>"; };
 		F24C8F0925010FD100E20DB6 /* ValidatorsTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidatorsTest.swift; sourceTree = "<group>"; };
@@ -63,7 +63,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3D9F483766A256F8F94690DA /* Pods_Monri_Example.framework in Frameworks */,
+				E4810AB9F287943960D10D0D /* Pods_Monri_Example.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -71,7 +71,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D7BD9C6EAB559B067A3DFEB2 /* Pods_Monri_Tests.framework in Frameworks */,
+				9503B07ABA7A8715A32786BE /* Pods_Monri_Tests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -81,10 +81,10 @@
 		57FABE7EDA02FC181E9C6372 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				9C62FE0C306B29EFDF7419B4 /* Pods-Monri_Example.debug.xcconfig */,
-				C84FE134B137777620CD6CAE /* Pods-Monri_Example.release.xcconfig */,
-				38A8CE910C562E620D023E1E /* Pods-Monri_Tests.debug.xcconfig */,
-				D8E6A49CC6E1A3AD26B9EBF5 /* Pods-Monri_Tests.release.xcconfig */,
+				0432D660CCA2C5A7E608FFF1 /* Pods-Monri_Example.debug.xcconfig */,
+				4A52DB1A6F9716D0655CC74D /* Pods-Monri_Example.release.xcconfig */,
+				D6F66D8B0B31AA7AE50DA603 /* Pods-Monri_Tests.debug.xcconfig */,
+				24176C98E75D25C42F7B6109 /* Pods-Monri_Tests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -97,7 +97,7 @@
 				607FACE81AFB9204008FA782 /* Tests */,
 				607FACD11AFB9204008FA782 /* Products */,
 				57FABE7EDA02FC181E9C6372 /* Pods */,
-				E936E9667BB44880726EC2F3 /* Frameworks */,
+				AD7BD0F0654C6A16BB9B5581 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -163,11 +163,11 @@
 			name = "Podspec Metadata";
 			sourceTree = "<group>";
 		};
-		E936E9667BB44880726EC2F3 /* Frameworks */ = {
+		AD7BD0F0654C6A16BB9B5581 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				BD9AB2C38D4E87CD2139C6B6 /* Pods_Monri_Example.framework */,
-				3323EBB3D1F8E0ABA8A94896 /* Pods_Monri_Tests.framework */,
+				60D3B3844B1545967F6B9671 /* Pods_Monri_Example.framework */,
+				ACCC78490503899EC229583A /* Pods_Monri_Tests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -179,11 +179,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 607FACEF1AFB9204008FA782 /* Build configuration list for PBXNativeTarget "Monri_Example" */;
 			buildPhases = (
-				47B706162854EA3B21EC8933 /* [CP] Check Pods Manifest.lock */,
+				601875A549807659324D6393 /* [CP] Check Pods Manifest.lock */,
 				607FACCC1AFB9204008FA782 /* Sources */,
 				607FACCD1AFB9204008FA782 /* Frameworks */,
 				607FACCE1AFB9204008FA782 /* Resources */,
-				7324BD21337CE517F009123F /* [CP] Embed Pods Frameworks */,
+				35AC37D50E8421F8A0D3B2D2 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -198,11 +198,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 607FACF21AFB9204008FA782 /* Build configuration list for PBXNativeTarget "Monri_Tests" */;
 			buildPhases = (
-				C1BEF59F5B6E130F7E27A075 /* [CP] Check Pods Manifest.lock */,
+				BAA7FC51979C5B5DC36F25E4 /* [CP] Check Pods Manifest.lock */,
 				607FACE11AFB9204008FA782 /* Sources */,
 				607FACE21AFB9204008FA782 /* Frameworks */,
 				607FACE31AFB9204008FA782 /* Resources */,
-				CD5B7BE4547068367A5FED61 /* [CP] Embed Pods Frameworks */,
+				D8BF1DCBB472CE78121FFACB /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -277,29 +277,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		47B706162854EA3B21EC8933 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Monri_Example-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		7324BD21337CE517F009123F /* [CP] Embed Pods Frameworks */ = {
+		35AC37D50E8421F8A0D3B2D2 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -321,7 +299,29 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Monri_Example/Pods-Monri_Example-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		C1BEF59F5B6E130F7E27A075 /* [CP] Check Pods Manifest.lock */ = {
+		601875A549807659324D6393 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Monri_Example-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BAA7FC51979C5B5DC36F25E4 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -343,7 +343,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		CD5B7BE4547068367A5FED61 /* [CP] Embed Pods Frameworks */ = {
+		D8BF1DCBB472CE78121FFACB /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -523,7 +523,7 @@
 		};
 		607FACF01AFB9204008FA782 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9C62FE0C306B29EFDF7419B4 /* Pods-Monri_Example.debug.xcconfig */;
+			baseConfigurationReference = 0432D660CCA2C5A7E608FFF1 /* Pods-Monri_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = B5VZ8P39B6;
@@ -540,7 +540,7 @@
 		};
 		607FACF11AFB9204008FA782 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C84FE134B137777620CD6CAE /* Pods-Monri_Example.release.xcconfig */;
+			baseConfigurationReference = 4A52DB1A6F9716D0655CC74D /* Pods-Monri_Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 86PTX4G8XA;
@@ -557,7 +557,7 @@
 		};
 		607FACF31AFB9204008FA782 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 38A8CE910C562E620D023E1E /* Pods-Monri_Tests.debug.xcconfig */;
+			baseConfigurationReference = D6F66D8B0B31AA7AE50DA603 /* Pods-Monri_Tests.debug.xcconfig */;
 			buildSettings = {
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
@@ -579,7 +579,7 @@
 		};
 		607FACF41AFB9204008FA782 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D8E6A49CC6E1A3AD26B9EBF5 /* Pods-Monri_Tests.release.xcconfig */;
+			baseConfigurationReference = 24176C98E75D25C42F7B6109 /* Pods-Monri_Tests.release.xcconfig */;
 			buildSettings = {
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
