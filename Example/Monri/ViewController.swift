@@ -84,52 +84,6 @@ class ViewController: UIViewController {
                 }
             }
         }
-
-        if (false) {
-            let date = Date()
-            let formatter = ISO8601DateFormatter()
-            formatter.formatOptions.insert(.withFractionalSeconds)
-            let timestamp = formatter.string(from: date);
-            let token = UUID.init().uuidString
-            // merchantKey, token, timestamp
-            let digest = "\(merchantKey)\(token)\(timestamp)".sha512
-            let tokenRequest = TokenRequest(token: token, digest: digest, timestamp: timestamp)
-
-            var card = cardInlineView.getCard()
-
-            // Save card for future payments
-            card.tokenizePan = saveCardForFuturePaymentsSwitch.isOn
-
-            if !card.validateCard() {
-                print("Card validation failed")
-                print("card.number valid = \(card.validateNumber())")
-                print("card.cvv valid = \(card.validateCVC())")
-                print("card.exp_date valid = \(card.validateExpiryDate())")
-                // Card validation failed
-            } else {
-                print("Card last4: \(card.last4)")
-                if let type = card.type {
-                    print("Card type: \(type)")
-                }
-
-                //            let paymentMethod = SavedCard(
-                //                panToken: "cafb28787e42aadcd73a7e92e5e57fa2b504280b40a26e75c00c62ec4c6f0a15",
-                //                cvc: "123"
-                //            )
-
-                monri.createToken(tokenRequest, paymentMethod: card) {
-                    result in
-                    switch result {
-                    case .error(let error):
-                        print("An error occurred \(error)")
-                    case .token(let token):
-                        print("Token received \(token)")
-                    }
-                }
-            }
-        }
-
-
     }
 
     func non3DSCard() -> PaymentMethodParams{
