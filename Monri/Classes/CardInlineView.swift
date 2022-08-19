@@ -29,6 +29,11 @@ public class CardInlineView: CardTextField {
         super.init(coder: aDecoder)
         cardTypeImageStore = CustomCardTypeImageStore().self as CardTypeImageStore
     }
+    
+    public override init(frame: CGRect) {
+            super.init(frame: frame)
+            cardTypeImageStore = CustomCardTypeImageStore().self as CardTypeImageStore
+        }
 
     public override func willMove(toWindow newWindow: UIWindow?) {
         super.willMove(toWindow: newWindow)
