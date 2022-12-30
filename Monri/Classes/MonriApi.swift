@@ -27,7 +27,7 @@ public final class MonriApi {
     }
 
     public convenience init(_ vc: UIViewController, authenticityToken: String) {
-        self.init(vc,options: MonriApiOptions(authenticityToken: authenticityToken, developmentMode: true))
+        self.init(vc, options: MonriApiOptions(authenticityToken: authenticityToken, developmentMode: true))
     }
 
     public init(_ vc: UIViewController, options: MonriApiOptions) {
@@ -37,12 +37,9 @@ public final class MonriApi {
         self.tokenizeUrl = "\(apiUrl)/v2/temp-tokenize"
         self.options = options
         self.httpApi = MonriFactory().createHttpApi(options: options)
-            }
+    }
 
     public func createToken(_ request: TokenRequest, paymentMethod: PaymentMethod, _ callback: @escaping TokenResultCallback) {
-
-
-
         guard let createTokenRequest = CreateTokenRequest.from(token: request, paymentMethod: paymentMethod, authenticityToken: authenticityToken) else {
             callback(.error(TokenError.createTokenRequestError))
             return
@@ -71,7 +68,7 @@ public final class MonriApi {
                 }
     }
 
-    public func confirmPayment(_ confirmPaymentParams: ConfirmPaymentParams,  _ callback: @escaping ConfirmPaymentResultCallback) {
+    public func confirmPayment(_ confirmPaymentParams: ConfirmPaymentParams, _ callback: @escaping ConfirmPaymentResultCallback) {
         paymentController?.confirmPayment(params: confirmPaymentParams, callback)
     }
 
@@ -96,6 +93,30 @@ public final class MonriApi {
         }
 
         return createToken(request, paymentMethod: card, callback)
+    }
+
+    public func createCustomer(_ customerCreateRequest: CustomerCreateRequest, _ callback: @escaping CustomerResponseCallback) {
+        httpApi.createCustomer(customerCreateRequest, callback)
+    }
+
+    public func updateCustomer(_ customerUpdateRequest: CustomerUpdateRequest, _ callback: @escaping CustomerResponseCallback) {
+        httpApi.updateCustomer(customerUpdateRequest, callback)
+    }
+
+    public func deleteCustomer(_ customerDeleteRequest: CustomerDeleteRequest, _ callback: @escaping CustomerDeleteCallback) {
+        httpApi.deleteCustomer(customerDeleteRequest, callback)
+    }
+
+    public func retrieveCustomer(_ customerRetrieveRequest: CustomerRetrieveRequest, _ callback: @escaping CustomerResponseCallback) {
+        httpApi.retrieveCustomer(customerRetrieveRequest, callback)
+    }
+    
+    public func retrieveCustomerViaMerchantId(_ customerRetrieveMerchantIdRequest: CustomerRetrieveMerchantIdRequest, _ callback: @escaping CustomerResponseCallback) {
+        httpApi.retrieveCustomerViaMerchantId(customerRetrieveMerchantIdRequest, callback)
+    }
+
+    public func getPaymentMethodsForCustomer(_ customerPaymentMethodRequest: CustomerPaymentMethodRequest, _ callback: @escaping CustomerPaymentMethodResponseCallback) {
+        httpApi.getPaymentMethodsForCustomer(customerPaymentMethodRequest, callback)
     }
 
     private func validateTokenRequest(_ request: TokenRequest) -> TokenError? {

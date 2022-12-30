@@ -30,6 +30,17 @@ class AlamofireMonriHttpClient: MonriHttpClient {
                 }
     }
 
+    func jsonDelete(url: String, headers: [String: String], _ callback: @escaping (MonriHttpClientResponse) -> Void) {
+        Alamofire.request(url,
+                        method: .delete,
+                        encoding: JSONEncoding.default,
+                        headers: headers
+                )
+                .responseJSON { dataResponse in
+                    self.handleResponse(dataResponse, callback)
+                }
+    }
+
     func handleResponse(_ dataResponse: DataResponse<Any>, _ callback: @escaping (MonriHttpClientResponse) -> Void) {
         do {
             let statusCode = dataResponse.response!.statusCode

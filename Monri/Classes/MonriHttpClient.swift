@@ -7,6 +7,7 @@ import Foundation
 public protocol MonriHttpClient {
     func jsonPost(url: String, body: [String: Any], headers: [String : String], _ callback: @escaping (MonriHttpClientResponse) -> Void)
     func jsonGet(url: String, headers: [String : String], _ callback: @escaping (MonriHttpClientResponse) -> Void)
+    func jsonDelete(url: String, headers: [String : String], _ callback: @escaping (MonriHttpClientResponse) -> Void)
 }
 
 public enum MonriHttpClientResponse {

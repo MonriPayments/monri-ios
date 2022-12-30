@@ -38,6 +38,7 @@ public class TransactionParams {
 
     public func set(customerParams: CustomerParams) -> TransactionParams {
         set("ch_full_name", customerParams.fullName)
+                .set("customer_uuid", customerParams.customerUuid)
                 .set("ch_address", customerParams.address)
                 .set("ch_city", customerParams.city)
                 .set("ch_zip", customerParams.zip)
