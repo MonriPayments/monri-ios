@@ -201,9 +201,30 @@ class MonriHttpApiImpl: MonriHttpApi {
         }
     }
 
+    func retrieveAllCustomers(_ accessToken: String, _ callback: @escaping CustomerAllResponseCallback) {
+        httpClient.jsonGet(
+                url: "\(apiUrl)/v2/customers",
+                headers: ["Authorization": accessToken]
+        ) { response in
+            switch (response) {
+            case .failure(let body, let statusCode, _):
+                self.logger.warn("retrieveAllCustomers failed with body [\(body)] and status code [\(statusCode)]")
+                callback(.error(CustomerError.requestFailed("Got status code \(statusCode)")))
+            case .success(let body, _, _):
+                guard let response = CustomerAllResponse.fromJson(body) else {
+                    callback(.error(CustomerError.jsonParsingError("Converting response to retrieveAllCustomers from \(body) failed!")))
+                    return
+                }
+                callback(.result(response))
+            case .error(let error):
+                callback(.error(.unknownError(error)))
+            }
+        }
+    }
+
     func getPaymentMethodsForCustomer(_ request: CustomerPaymentMethodRequest, _ callback: @escaping CustomerPaymentMethodResponseCallback) {
         httpClient.jsonGet(
-                url: "\(apiUrl)/v2/customers/\(request.monriCustomerUuid)/payment-methods?limit=\(request.limit)&offset=\(request.offset)",
+                url: "\(apiUrl)/v2/customers/\(request.customerUuid)/payment-methods?limit=\(request.limit)&offset=\(request.offset)",
                 headers: ["Authorization": request.accessToken]
         ) { response in
 

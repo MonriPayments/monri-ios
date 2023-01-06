@@ -16,7 +16,7 @@ class ViewController: UIViewController {
     //TODO: replace with your merchant's merchant key
     let merchantKey = "TestKeyXULLyvgWyPJSwOHe";
 
-    let accessToken = "Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZXMiOlsiY3VzdG9tZXJzIiwicGF5bWVudC1tZXRob2RzIl0sImV4cCI6MTY3MjQwMzUxNiwiaXNzIjoiaHR0cHM6Ly9tb25yaS5jb20iLCJzdWIiOiI2YTEzZDc5YmRlOGRhOTMyMGU4ODkyM2NiMzQ3MmZiNjM4NjE5Y2NiIn0.GSKxWybiifqeuOkQe3pcRzGxcJtwHpQhApqZ5yKkai-zM_G09OcSAKkMJMYZlMy5mFl2AhKUcnff15hBBhoGAKK-OGLM79c32dn_pfEyvb7gb8IonrNPsvxed3qLGKtWjg9jtKAZhWxXQxQgLYYZRZjUOb5n1KwRO6hw1V5ASytDbvvsYsa3p0nioYJPzXEdf1LzrF7V_Dt9SQ7cxCdQ6MlaLjZLKyGg_GWYf8mt7-nS4r_8wA-e4DzLtji11ZgxxYf8mqB0QGY17CJ7ssg1yZIWw7wArOGXNwLlPxIYt0TZIURFaOzuEMBiYWsCkPTNjdu2OeQzAhLP0hdHw2lbcQ"
+    let accessToken = "Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZXMiOlsiY3VzdG9tZXJzIiwicGF5bWVudC1tZXRob2RzIl0sImV4cCI6MTY3MjQyMDkwMSwiaXNzIjoiaHR0cHM6Ly9tb25yaS5jb20iLCJzdWIiOiI2YTEzZDc5YmRlOGRhOTMyMGU4ODkyM2NiMzQ3MmZiNjM4NjE5Y2NiIn0.RsVUAr2mPcFiG84jBMHDKWnHyP2JENa4BamvyjTPVuO1sjUBZvNt7cS0TZ6kTbb1KI1bxoQh1rPX8N3FurvSX3wNQVITDMDmQp6Cgi6oaQEc1v39uqM9S-iyS6TX2A9JPI12oa1D4-QCwEeMe-d97S2XWA4fAKVNkmXNipnTAMpxdt2owrbxh3Ml5qhYg9_D7PH3fyfgkKxG8F705YdDYaEZhO0BkoBj5dAz0tenBMUPdzLagGoEi-hS90DwHBjAwgeCKbHumJybVY23ta4orosTlR7HX_6wJw5ouaeqZ4Bf8bhvDST7yaL6IcmEoMmOX5DNsaMPYqUBIWQpz52kLA"
 
     lazy var monri: MonriApi = {
         [unowned self] in
@@ -164,6 +164,18 @@ class ViewController: UIViewController {
 
 
     @IBAction func getAllCustomers(_ sender: Any) {
+        monri.retrieveAllCustomers(accessToken){ result in
+            switch (result) {
+            case .result(let customerAllResponse):
+                print("All customers response: \(customerAllResponse.status)")
+                if(!customerAllResponse.customerResponseArray.isEmpty){
+                    let firstCustomer = customerAllResponse.customerResponseArray[0]
+                    print("All customers response first customer email: \(firstCustomer.email)")
+                }
+            case .error(let message):
+                print("retrieve customers error\(message)")
+            }
+        }
     }
 
 
@@ -173,7 +185,7 @@ class ViewController: UIViewController {
         }
 
         let request = CustomerPaymentMethodRequest(
-                monriCustomerUuid: createdCustomer.uuid,
+                customerUuid: createdCustomer.uuid,
                 limit: 20,
                 offset: 0,
                 accessToken: accessToken

@@ -73,7 +73,6 @@ class MonriPaymentApiTest: XCTestCase {
             }
             
             let customerParams = customerParams ?? CustomerParams(
-                    customerUuid:"",
                     email: "tester+ios_sdk@monri.com",
                     fullName: "Test iOS",
                     address: "Address",
@@ -175,7 +174,6 @@ class MonriPaymentApiTest: XCTestCase {
 
 
             let customerParams: CustomerParams = CustomerParams(
-                customerUuid:"",
                     email: "tester+ios_sdk@monri.com",
                     fullName: "Test iOS",
                     address: "Address",
@@ -271,7 +269,6 @@ class MonriPaymentApiTest: XCTestCase {
 
 
             let customerParams: CustomerParams = CustomerParams(
-                customerUuid:"",
                     email: "tester+ios_sdk@monri.com",
                     fullName: "Test iOS",
                     address: "Address",

@@ -9,14 +9,14 @@ import Foundation
 
 public class CustomerParams {
 
-    let customerUuid: String?
-    let email: String?
-    let fullName: String?
-    let address: String?
-    let city: String?
-    let zip: String?
-    let phone: String?
-    let country: String?
+    public let customerUuid: String?
+    public let email: String?
+    public let fullName: String?
+    public let address: String?
+    public let city: String?
+    public let zip: String?
+    public let phone: String?
+    public let country: String?
 
     public init(customerUuid: String? = nil, email: String?, fullName: String?, address: String?, city: String?, zip: String?, phone: String?, country: String?) {
         self.customerUuid = customerUuid

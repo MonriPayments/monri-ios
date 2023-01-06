@@ -8,13 +8,13 @@
 import Foundation
 
 public class CustomerPaymentMethodRequest {
-    public let monriCustomerUuid: String
+    public let customerUuid: String
     public let limit: UInt32
     public let offset: UInt32
     public let accessToken: String
 
-    public init(monriCustomerUuid: String, limit: UInt32, offset: UInt32, accessToken: String) {
-        self.monriCustomerUuid = monriCustomerUuid
+    public init(customerUuid: String, limit: UInt32, offset: UInt32, accessToken: String) {
+        self.customerUuid = customerUuid
         self.limit = limit
         self.offset = offset
         self.accessToken = accessToken

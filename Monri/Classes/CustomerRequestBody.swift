@@ -8,30 +8,30 @@
 import Foundation
 
 public class CustomerRequestBody {
-    public let merchantCustomerId: String;
-    public let description: String;
-    public let email: String;
-    public let name: String;
-    public let phone: String;
-    public let metadata: Dictionary<String, String>;
-    public let zipCode: String;
-    public let city: String;
-    public let address: String;
-    public let country: String;
+    public var merchantCustomerId: String?;
+    public var description: String;
+    public var email: String;
+    public var name: String;
+    public var phone: String;
+    public var metadata: Dictionary<String, String>;
+    public var zipCode: String;
+    public var city: String;
+    public var address: String;
+    public var country: String;
 
     public init(
-            merchantCustomerId: String?,
-            description: String?,
-            email: String?,
-            name: String?,
-            phone: String?,
-            metadata: Dictionary<String, String>?,
-            zipCode: String?,
-            city: String?,
-            address: String?,
-            country: String?
+            merchantCustomerId: String? = nil,
+            description: String? = nil,
+            email: String? = nil,
+            name: String? = nil,
+            phone: String? = nil,
+            metadata: Dictionary<String, String>? = nil,
+            zipCode: String? = nil,
+            city: String? = nil,
+            address: String? = nil,
+            country: String? = nil
     ) {
-        self.merchantCustomerId = merchantCustomerId ?? ""
+        self.merchantCustomerId = merchantCustomerId
         self.description = description ?? ""
         self.email = email ?? ""
         self.name = name ?? ""
@@ -41,6 +41,16 @@ public class CustomerRequestBody {
         self.city = city ?? ""
         self.address = address ?? ""
         self.country = country ?? ""
+    }
+
+    public func setEmail(_ newValue: String) -> CustomerRequestBody {
+        email = newValue
+        return self
+    }
+    
+    public func setName(_ newValue: String) -> CustomerRequestBody {
+        name = newValue
+        return self
     }
 
     func toJSON() -> Dictionary<String, Any> {

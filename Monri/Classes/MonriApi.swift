@@ -119,6 +119,10 @@ public final class MonriApi {
         httpApi.getPaymentMethodsForCustomer(customerPaymentMethodRequest, callback)
     }
 
+    public func retrieveAllCustomers(_ accessToken: String, _ callback: @escaping CustomerAllResponseCallback) {
+        httpApi.retrieveAllCustomers(accessToken, callback)
+    }
+
     private func validateTokenRequest(_ request: TokenRequest) -> TokenError? {
         if request.token.isEmpty {
             return TokenError.invalidTokenRequest(".token empty")
