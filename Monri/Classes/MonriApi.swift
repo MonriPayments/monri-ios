@@ -99,7 +99,7 @@ public final class MonriApi {
         httpApi.updateCustomer(updateCustomerParams, callback)
     }
 
-    public func deleteCustomer(_ deleteCustomerParams: DeleteCustomerParams, _ callback: @escaping CustomerDeleteCallback) {
+    public func deleteCustomer(_ deleteCustomerParams: DeleteCustomerParams, _ callback: @escaping DeleteCustomerCallback) {
         httpApi.deleteCustomer(deleteCustomerParams, callback)
     }
 

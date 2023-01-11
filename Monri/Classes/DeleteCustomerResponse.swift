@@ -7,14 +7,14 @@
 
 import Foundation
 
-public typealias CustomerDeleteCallback = (CustomerDeleteResult) -> Void
+public typealias DeleteCustomerCallback = (DeleteCustomerResult) -> Void
 
-public enum CustomerDeleteResult {
-    case result(CustomerDeleteResponse)
+public enum DeleteCustomerResult {
+    case result(DeleteCustomerResponse)
     case error(CustomerApiError)
 }
 
-public class CustomerDeleteResponse {
+public class DeleteCustomerResponse {
     public let status: String
     public let uuid: String
     public let deleted: Bool
@@ -25,12 +25,12 @@ public class CustomerDeleteResponse {
         self.deleted = deleted
     }
 
-    class func fromJson(_ body: [String: Any]?) -> CustomerDeleteResponse? {
+    class func fromJson(_ body: [String: Any]?) -> DeleteCustomerResponse? {
         guard let json = body else {
             return nil
         }
 
-        return CustomerDeleteResponse(
+        return DeleteCustomerResponse(
                 status: json["status"] as? String ?? "",
                 uuid: json["uuid"] as? String ?? "",
                 deleted: json["deleted"] as? Bool ?? false

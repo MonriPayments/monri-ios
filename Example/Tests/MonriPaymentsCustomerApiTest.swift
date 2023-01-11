@@ -203,7 +203,7 @@ final class MonriPaymentsCustomerApiTest: XCTestCase {
                 country: "BA"
         )
 
-        var customerDeleteResult: CustomerDeleteResult?
+        var customerDeleteResult: DeleteCustomerResult?
         var customer: Customer?
 
 
@@ -220,7 +220,7 @@ final class MonriPaymentsCustomerApiTest: XCTestCase {
                             customerUuid: customerResponse.uuid,
                             accessToken: accessToken
                     )
-                    self.monri.deleteCustomer(customerDeleteRequest) { (result: CustomerDeleteResult) in
+                    self.monri.deleteCustomer(customerDeleteRequest) { (result: DeleteCustomerResult) in
                         customerDeleteResult = result
                         expectation.fulfill()
                     }

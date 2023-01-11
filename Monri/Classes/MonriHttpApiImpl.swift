@@ -133,7 +133,7 @@ class MonriHttpApiImpl: MonriHttpApi {
         }
     }
 
-    func deleteCustomer(_ params: DeleteCustomerParams, _ callback: @escaping CustomerDeleteCallback) {
+    func deleteCustomer(_ params: DeleteCustomerParams, _ callback: @escaping DeleteCustomerCallback) {
         httpClient.jsonDelete(
                 url: "\(apiUrl)/v2/customers/\(params.customerUuid)",
                 headers: ["Authorization": params.accessToken]
@@ -144,7 +144,7 @@ class MonriHttpApiImpl: MonriHttpApi {
                 self.logger.warn("createCustomer failed with body [\(body)] and status code [\(statusCode)]")
                 callback(.error(CustomerApiError.jsonParsingError("Got status code \(statusCode)")))
             case .success(let body, _, _):
-                guard let response = CustomerDeleteResponse.fromJson(body) else {
+                guard let response = DeleteCustomerResponse.fromJson(body) else {
                     callback(.error(CustomerApiError.jsonParsingError("Converting response to CustomerDeleteResponse from \(body) failed!")))
                     return
                 }
