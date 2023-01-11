@@ -7,7 +7,7 @@
 
 import Foundation
 
-public class CustomerDeleteRequest {
+public class DeleteCustomerParams {
     public let customerUuid: String
     public let accessToken: String
 

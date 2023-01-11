@@ -31,12 +31,12 @@ class ViewController: UIViewController {
 
     @IBOutlet weak var saveCardForFuturePaymentsSwitch: UISwitch!
 
-    let merchantId = "\(Int(NSDate().timeIntervalSince1970))"
-    var createdCustomer: CustomerResponse? = nil
+    let merchantUuid = UUID.init().uuidString
+    var createdCustomer: Customer? = nil
 
     @IBAction func createCustomer(_ sender: Any) {
-        let customerRequestBody = CustomerRequestBody(
-                merchantCustomerId: merchantId,
+        let customerRequestBody = CustomerData(
+//                merchantCustomerId: merchantId,
                 description: "description",
                 email: "adnan.omerovic@monri.com",
                 name: "Adnan",
@@ -48,15 +48,15 @@ class ViewController: UIViewController {
                 country: "BA"
         )
 
-        let customerRequest = CustomerCreateRequest(accessToken: accessToken, customerRequestBody: customerRequestBody)
+        let createCustomerParams = CreateCustomerParams(accessToken: accessToken, customerData: customerRequestBody)
 
-        monri.createCustomer(customerRequest) { (result: CustomerResponseResult) in
+        monri.createCustomer(createCustomerParams) { (result: CustomerResult) in
 
             switch (result) {
-            case .result(let customerResponse):
-                self.createdCustomer = customerResponse
-                print("customer response\(customerResponse.email)")
-                print("customer response\(customerResponse.name)")
+            case .result(let customer):
+                self.createdCustomer = customer
+                print("customer response\(customer.email)")
+                print("customer response\(customer.name)")
             case .error(let customerError):
                 print("customer error\(customerError)")
             }
@@ -69,8 +69,8 @@ class ViewController: UIViewController {
             return
         }
 
-        let customerRequestBody = CustomerRequestBody(
-                merchantCustomerId: merchantId, //todo this is not necessary
+        let customerRequestBody = CustomerData(
+                merchantCustomerUuid: merchantUuid,
                 description: "description",
                 email: "adnan.omerovic.updated@monri.com",
                 name: "Adnan Updated",
@@ -82,13 +82,13 @@ class ViewController: UIViewController {
                 country: "BA"
         )
 
-        let customerUpdateRequest = CustomerUpdateRequest(
-                customerRequestBody: customerRequestBody,
+        let customerUpdateRequest = UpdateCustomerParams(
+                customerData: customerRequestBody,
                 customerUuid: createdCustomer.uuid,
                 accessToken: accessToken
         )
 
-        monri.updateCustomer(customerUpdateRequest) { (result: CustomerResponseResult) in
+        monri.updateCustomer(customerUpdateRequest) { (result: CustomerResult) in
             switch (result) {
             case .result(let customerUpdateResponse):
                 print("customer update response\(customerUpdateResponse.name)")
@@ -106,7 +106,7 @@ class ViewController: UIViewController {
             return
         }
 
-        let customerDeleteRequest = CustomerDeleteRequest(
+        let customerDeleteRequest = DeleteCustomerParams(
                 customerUuid: createdCustomer.uuid,
                 accessToken: accessToken
         )
@@ -126,7 +126,7 @@ class ViewController: UIViewController {
             return
         }
 
-        let customerRetrieveRequest = CustomerRetrieveRequest(
+        let customerRetrieveRequest = RetrieveCustomerParams(
                 accessToken: accessToken,
                 customerUuid: createdCustomer.uuid
         )
@@ -147,12 +147,12 @@ class ViewController: UIViewController {
             return
         }
 
-        let customerRetrieveMerchantIdRequest = CustomerRetrieveMerchantIdRequest(
+        let customerRetrieveMerchantIdRequest = RetrieveCustomerViaMerchantCustomerUuidParams(
                 accessToken: accessToken,
-                merchantCustomerUuid: createdCustomer.merchantCustomerId
+                merchantCustomerUuid: createdCustomer.merchantCustomerUuid
         )
 
-        monri.retrieveCustomerViaMerchantId(customerRetrieveMerchantIdRequest) { result in
+        monri.retrieveCustomerViaMerchantCustomerUuid(customerRetrieveMerchantIdRequest) { result in
             switch (result) {
             case .result(let customerResponse):
                 print("customer retrieve response\(customerResponse.city)")
@@ -184,14 +184,14 @@ class ViewController: UIViewController {
             return
         }
 
-        let request = CustomerPaymentMethodRequest(
+        let request = CustomerPaymentMethodParams(
                 customerUuid: createdCustomer.uuid,
                 limit: 20,
                 offset: 0,
                 accessToken: accessToken
         )
 
-        monri.getPaymentMethodsForCustomer(request) { result in
+        monri.retrieveCustomerPaymentMethods(request) { result in
             switch (result) {
             case .result(let paymentMethodResponse):
                 print("customer retrieve response\(paymentMethodResponse.status)")

@@ -76,10 +76,6 @@ public final class MonriApi {
 
     }
 
-//        void confirmPayment(ConfirmPaymentParams params, ResultCallback<ConfirmPaymentResponse> callback);
-//
-//        void paymentStatus(PaymentStatusParams params, ResultCallback<PaymentStatusResponse> callback);
-
     public func createToken(_ request: TokenRequest, card: Card, _ callback: @escaping TokenResultCallback) {
 
         if let validateTokenRequestResult = validateTokenRequest(request) {
@@ -95,31 +91,31 @@ public final class MonriApi {
         return createToken(request, paymentMethod: card, callback)
     }
 
-    public func createCustomer(_ customerCreateRequest: CustomerCreateRequest, _ callback: @escaping CustomerResponseCallback) {
-        httpApi.createCustomer(customerCreateRequest, callback)
+    public func createCustomer(_ createCustomerParams: CreateCustomerParams, _ callback: @escaping CustomerCallback) {
+        httpApi.createCustomer(createCustomerParams, callback)
     }
 
-    public func updateCustomer(_ customerUpdateRequest: CustomerUpdateRequest, _ callback: @escaping CustomerResponseCallback) {
-        httpApi.updateCustomer(customerUpdateRequest, callback)
+    public func updateCustomer(_ updateCustomerParams: UpdateCustomerParams, _ callback: @escaping CustomerCallback) {
+        httpApi.updateCustomer(updateCustomerParams, callback)
     }
 
-    public func deleteCustomer(_ customerDeleteRequest: CustomerDeleteRequest, _ callback: @escaping CustomerDeleteCallback) {
-        httpApi.deleteCustomer(customerDeleteRequest, callback)
+    public func deleteCustomer(_ deleteCustomerParams: DeleteCustomerParams, _ callback: @escaping CustomerDeleteCallback) {
+        httpApi.deleteCustomer(deleteCustomerParams, callback)
     }
 
-    public func retrieveCustomer(_ customerRetrieveRequest: CustomerRetrieveRequest, _ callback: @escaping CustomerResponseCallback) {
-        httpApi.retrieveCustomer(customerRetrieveRequest, callback)
+    public func retrieveCustomer(_ retrieveCustomerParams: RetrieveCustomerParams, _ callback: @escaping CustomerCallback) {
+        httpApi.retrieveCustomer(retrieveCustomerParams, callback)
     }
     
-    public func retrieveCustomerViaMerchantId(_ customerRetrieveMerchantIdRequest: CustomerRetrieveMerchantIdRequest, _ callback: @escaping CustomerResponseCallback) {
-        httpApi.retrieveCustomerViaMerchantId(customerRetrieveMerchantIdRequest, callback)
+    public func retrieveCustomerViaMerchantCustomerUuid(_ retrieveCustomerViaMerchantCustomerUuidParams: RetrieveCustomerViaMerchantCustomerUuidParams, _ callback: @escaping CustomerCallback) {
+        httpApi.retrieveCustomerViaMerchantCustomerUuid(retrieveCustomerViaMerchantCustomerUuidParams, callback)
     }
 
-    public func getPaymentMethodsForCustomer(_ customerPaymentMethodRequest: CustomerPaymentMethodRequest, _ callback: @escaping CustomerPaymentMethodResponseCallback) {
-        httpApi.getPaymentMethodsForCustomer(customerPaymentMethodRequest, callback)
+    public func retrieveCustomerPaymentMethods(_ customerPaymentMethodParams: CustomerPaymentMethodParams, _ callback: @escaping CustomerPaymentMethodResponseCallback) {
+        httpApi.retrieveCustomerPaymentMethods(customerPaymentMethodParams, callback)
     }
 
-    public func retrieveAllCustomers(_ accessToken: String, _ callback: @escaping CustomerAllResponseCallback) {
+    public func retrieveAllCustomers(_ accessToken: String, _ callback: @escaping MerchantCustomersCallback) {
         httpApi.retrieveAllCustomers(accessToken, callback)
     }
 

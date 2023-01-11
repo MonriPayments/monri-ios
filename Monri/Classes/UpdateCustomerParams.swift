@@ -7,13 +7,13 @@
 
 import Foundation
 
-public class CustomerUpdateRequest {
-    public let customerBodyRequest: CustomerRequestBody
+public class UpdateCustomerParams {
+    public let customerData: CustomerData
     public let customerUuid: String
     public let accessToken: String
     
-    public init(customerRequestBody: CustomerRequestBody, customerUuid: String, accessToken: String) {
-        self.customerBodyRequest = customerRequestBody
+    public init(customerData: CustomerData, customerUuid: String, accessToken: String) {
+        self.customerData = customerData
         self.customerUuid = customerUuid
         self.accessToken = accessToken
     }

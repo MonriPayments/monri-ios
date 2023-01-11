@@ -7,7 +7,7 @@
 
 import Foundation
 
-public class CustomerRetrieveRequest {
+public class RetrieveCustomerParams {
     public let accessToken: String
     public let customerUuid: String
 

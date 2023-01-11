@@ -11,7 +11,7 @@ public typealias CustomerDeleteCallback = (CustomerDeleteResult) -> Void
 
 public enum CustomerDeleteResult {
     case result(CustomerDeleteResponse)
-    case error(CustomerError)
+    case error(CustomerApiError)
 }
 
 public class CustomerDeleteResponse {

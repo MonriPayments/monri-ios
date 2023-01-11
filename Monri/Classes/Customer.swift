@@ -7,17 +7,17 @@
 
 import Foundation
 
-public typealias CustomerResponseCallback = (CustomerResponseResult) -> Void
+public typealias CustomerCallback = (CustomerResult) -> Void
 
-public enum CustomerResponseResult {
-    case result(CustomerResponse)
-    case error(CustomerError)
+public enum CustomerResult {
+    case result(Customer)
+    case error(CustomerApiError)
 }
 
-public class CustomerResponse {
+public class Customer {
     public let status: String;
     public let uuid: String;
-    public let merchantCustomerId: String;
+    public let merchantCustomerUuid: String;
     public let description: String;
     public let email: String;
     public let name: String;
@@ -35,7 +35,7 @@ public class CustomerResponse {
     public init(
             status: String,
             uuid: String,
-            merchantCustomerId: String,
+            merchantCustomerUuid: String,
             description: String,
             email: String,
             name: String,
@@ -52,7 +52,7 @@ public class CustomerResponse {
     ) {
         self.status = status
         self.uuid = uuid
-        self.merchantCustomerId = merchantCustomerId
+        self.merchantCustomerUuid = merchantCustomerUuid
         self.description = description
         self.email = email
         self.name = name
@@ -68,15 +68,15 @@ public class CustomerResponse {
         self.deletedAt = deletedAt
     }
 
-    public static func fromJson(_ json: Dictionary<String, Any>?) -> CustomerResponse? {
+    public static func fromJson(_ json: Dictionary<String, Any>?) -> Customer? {
         guard let json = json else {
             return nil
         }
 
-        return CustomerResponse(
+        return Customer(
                 status: json["status"] as? String ?? "",
                 uuid: json["uuid"] as? String ?? "",
-                merchantCustomerId: json["merchant_customer_id"] as? String ?? "",
+                merchantCustomerUuid: json["merchant_customer_id"] as? String ?? "",
                 description: json["description"] as? String ?? "",
                 email: json["email"] as? String ?? "",
                 name: json["name"] as? String ?? "",

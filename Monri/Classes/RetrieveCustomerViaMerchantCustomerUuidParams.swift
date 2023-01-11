@@ -7,7 +7,7 @@
 
 import Foundation
 
-public class CustomerRetrieveMerchantIdRequest {
+public class RetrieveCustomerViaMerchantCustomerUuidParams {
     public let accessToken: String
     public let merchantCustomerUuid: String
 

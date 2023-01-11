@@ -69,14 +69,14 @@ final class MonriPaymentsCustomerApiTest: XCTestCase {
     }
 
 
-    func createPaymentAccessToken(_ callback: @escaping (String) -> Void) {
-        callback("Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZXMiOlsiY3VzdG9tZXJzIiwicGF5bWVudC1tZXRob2RzIl0sImV4cCI6MTY3MzAyMDYwNSwiaXNzIjoiaHR0cHM6Ly9tb25yaS5jb20iLCJzdWIiOiI2YTEzZDc5YmRlOGRhOTMyMGU4ODkyM2NiMzQ3MmZiNjM4NjE5Y2NiIn0.PXRKL5Y9CpEVfs3YC7hM5yMU9bS5dFMicr5W3ZWtW1gew53hZsONEzm-QhAnn1XI6rqzU8-jmgtbc61UIj1JcA7goGKKrUJpSalEo4Zv4xdsZXVUES-LjF0mvTFzohgAqcGtWf2LMJUHhrUXpDUXVv67KDSRehT2ND2OQIS1KarHNC6LbZqKiAAG9aeAa5AVpT9Yy7iGCdpqNuxxUxtqCma5DyXwbDTRV8lBN-QD_WIGUfIRa0jL96wc-SJEXMHvwQVP_xlZSYc8bFVSvPQOspOnbJVzUkKoSErXIBUlYLPMsbGrsSS_tg_ie4mX7Mu-uQmEaVH3E7eznzCnIioa2A")
+    func createAccessToken(_ callback: @escaping (String) -> Void) {
+        callback("Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZXMiOlsiY3VzdG9tZXJzIiwicGF5bWVudC1tZXRob2RzIl0sImV4cCI6MTY3MzQyNjk1NywiaXNzIjoiaHR0cHM6Ly9tb25yaS5jb20iLCJzdWIiOiI2YTEzZDc5YmRlOGRhOTMyMGU4ODkyM2NiMzQ3MmZiNjM4NjE5Y2NiIn0.RR1PL-OmuGggfGpWwZn6PHAYMaqJ6g06w4w64tVUDOg05P5DQiE5BXB-APs7yDNVrgYmkr6IcERrhOIq6KsWuVeksVdxO26KHqchs8ATR8lPCKKza_JOGKIzqU5rKoQGQkQaEKE4xhYT0TiaIt9VU-c0t5sfqoUpoGIvdClCx3ivQG-3YvpE4mrs1JxdxtyJNfWXz63bLxsZgh2nqlzO4ucCj2aCa2Gq60IkrD_SbywQIq9LMqO-6QD9z9adpB5Ax34WKFDi7Ks4xTlRnXcDroNPM2LsPgC-nCZJBaIZ0IODFix39_onhVFdLuR5pSRyiG7QQ_m6OisnKTcaZDV_Ig")
     }
 
     func testCreateCustomer() throws {
-        let merchantId = UUID().uuidString
-        let customerRequestBody = CustomerRequestBody(
-                merchantCustomerId: merchantId,
+        let merchantUuid = UUID().uuidString
+        let customerData = CustomerData(
+                merchantCustomerUuid: merchantUuid,
                 description: "description",
                 email: "adnan.omerovic.updated@monri.com",
                 name: "Adnan",
@@ -88,32 +88,32 @@ final class MonriPaymentsCustomerApiTest: XCTestCase {
                 country: "BA"
         )
 
-        var customerResponse: CustomerResponseResult?
+        var customerResult: CustomerResult?
         let expectation = self.expectation(description: "testCreateCustomer")
 
-        createPaymentAccessToken { accessToken in
-            let customerRequest = CustomerCreateRequest(accessToken: accessToken, customerRequestBody: customerRequestBody)
-            self.monri.createCustomer(customerRequest) { (result: CustomerResponseResult) in
-                customerResponse = result
+        createAccessToken { accessToken in
+            let createCustomerParams = CreateCustomerParams(accessToken: accessToken, customerData: customerData)
+            self.monri.createCustomer(createCustomerParams) { (result: CustomerResult) in
+                customerResult = result
                 expectation.fulfill()
             }
         }
         waitForExpectations(timeout: 5, handler: nil)
 
-        switch customerResponse {
-        case .result(let customerResponse):
-            XCTAssertNotNil(customerResponse)
-            XCTAssertEqual(customerRequestBody.name, customerResponse.name)
-            XCTAssertEqual(customerRequestBody.merchantCustomerId, customerResponse.merchantCustomerId)
-            XCTAssertEqual(customerRequestBody.description, customerResponse.description)
-            XCTAssertEqual(customerRequestBody.email, customerResponse.email)
-            XCTAssertEqual(customerRequestBody.name, customerResponse.name)
-            XCTAssertEqual(customerRequestBody.phone, customerResponse.phone)
-            XCTAssertEqual(customerRequestBody.metadata, customerResponse.metadata)
-            XCTAssertEqual(customerRequestBody.zipCode, customerResponse.zipCode)
-            XCTAssertEqual(customerRequestBody.city, customerResponse.city)
-            XCTAssertEqual(customerRequestBody.address, customerResponse.address)
-            XCTAssertEqual(customerRequestBody.country, customerResponse.country)
+        switch customerResult {
+        case .result(let customer):
+            XCTAssertNotNil(customer)
+            XCTAssertEqual(customerData.name, customer.name)
+            XCTAssertEqual(customerData.merchantCustomerUuid, customer.merchantCustomerUuid)
+            XCTAssertEqual(customerData.description, customer.description)
+            XCTAssertEqual(customerData.email, customer.email)
+            XCTAssertEqual(customerData.name, customer.name)
+            XCTAssertEqual(customerData.phone, customer.phone)
+            XCTAssertEqual(customerData.metadata, customer.metadata)
+            XCTAssertEqual(customerData.zipCode, customer.zipCode)
+            XCTAssertEqual(customerData.city, customer.city)
+            XCTAssertEqual(customerData.address, customer.address)
+            XCTAssertEqual(customerData.country, customer.country)
         case .error(let customerError):
             XCTFail("\(customerError)")
         case .none:
@@ -123,9 +123,9 @@ final class MonriPaymentsCustomerApiTest: XCTestCase {
 
 
     func testUpdateCustomer() throws {
-        let merchantId = UUID().uuidString
-        let customerRequestBody = CustomerRequestBody(
-                merchantCustomerId: merchantId,
+        let merchantUuid = UUID().uuidString
+        let customerData = CustomerData(
+                merchantCustomerUuid: merchantUuid,
                 description: "description",
                 email: "adnan.omerovic.updated@monri.com",
                 name: "Adnan",
@@ -137,25 +137,24 @@ final class MonriPaymentsCustomerApiTest: XCTestCase {
                 country: "BA"
         )
 
-        var customerUpdateResponse: CustomerResponseResult?
-
+        var customerUpdateResponse: CustomerResult?
 
         let expectation = self.expectation(description: "testUpdateCustomer")
 
-        createPaymentAccessToken { accessToken in
-            let customerRequest = CustomerCreateRequest(accessToken: accessToken, customerRequestBody: customerRequestBody)
-            self.monri.createCustomer(customerRequest) { (result: CustomerResponseResult) in
+        createAccessToken { accessToken in
+            let createCustomerParams = CreateCustomerParams(accessToken: accessToken, customerData: customerData)
+            self.monri.createCustomer(createCustomerParams) { (result: CustomerResult) in
                 switch result {
-                case .result(let customerResponse):
-                    XCTAssertNotNil(customerResponse)
-                    let customerUpdateRequest = CustomerUpdateRequest(
-                            customerRequestBody: customerRequestBody
+                case .result(let customer):
+                    XCTAssertNotNil(customer)
+                    let customerUpdateRequest = UpdateCustomerParams(
+                            customerData: customerData
                                     .setName("Adnan Update")
                                     .setEmail("email.update@monri.com"),
-                            customerUuid: customerResponse.uuid,
+                            customerUuid: customer.uuid,
                             accessToken: accessToken
                     )
-                    self.monri.updateCustomer(customerUpdateRequest) { (result: CustomerResponseResult) in
+                    self.monri.updateCustomer(customerUpdateRequest) { (result: CustomerResult) in
                         customerUpdateResponse = result
                         expectation.fulfill()
                     }
@@ -168,19 +167,19 @@ final class MonriPaymentsCustomerApiTest: XCTestCase {
         waitForExpectations(timeout: 5, handler: nil)
 
         switch customerUpdateResponse {
-        case .result(let customerResponse):
-            XCTAssertNotNil(customerResponse)
-            XCTAssertEqual(customerRequestBody.name, customerResponse.name)
-            XCTAssertEqual(customerRequestBody.merchantCustomerId, customerResponse.merchantCustomerId)
-            XCTAssertEqual(customerRequestBody.description, customerResponse.description)
-            XCTAssertEqual(customerRequestBody.email, customerResponse.email)
-            XCTAssertEqual(customerRequestBody.name, customerResponse.name)
-            XCTAssertEqual(customerRequestBody.phone, customerResponse.phone)
-            XCTAssertEqual(customerRequestBody.metadata, customerResponse.metadata)
-            XCTAssertEqual(customerRequestBody.zipCode, customerResponse.zipCode)
-            XCTAssertEqual(customerRequestBody.city, customerResponse.city)
-            XCTAssertEqual(customerRequestBody.address, customerResponse.address)
-            XCTAssertEqual(customerRequestBody.country, customerResponse.country)
+        case .result(let customer):
+            XCTAssertNotNil(customer)
+            XCTAssertEqual(customerData.name, customer.name)
+            XCTAssertEqual(customerData.merchantCustomerUuid, customer.merchantCustomerUuid)
+            XCTAssertEqual(customerData.description, customer.description)
+            XCTAssertEqual(customerData.email, customer.email)
+            XCTAssertEqual(customerData.name, customer.name)
+            XCTAssertEqual(customerData.phone, customer.phone)
+            XCTAssertEqual(customerData.metadata, customer.metadata)
+            XCTAssertEqual(customerData.zipCode, customer.zipCode)
+            XCTAssertEqual(customerData.city, customer.city)
+            XCTAssertEqual(customerData.address, customer.address)
+            XCTAssertEqual(customerData.country, customer.country)
         case .error(let customerError):
             XCTFail("\(customerError)")
         case .none:
@@ -190,9 +189,9 @@ final class MonriPaymentsCustomerApiTest: XCTestCase {
 
 
     func testDeleteCustomer() throws {
-        let merchantId = UUID().uuidString
-        let customerRequestBody = CustomerRequestBody(
-                merchantCustomerId: merchantId,
+        let merchantUuid = UUID().uuidString
+        let customerData = CustomerData(
+                merchantCustomerUuid: merchantUuid,
                 description: "description",
                 email: "adnan.omerovic@monri.com",
                 name: "Adnan delete",
@@ -204,25 +203,25 @@ final class MonriPaymentsCustomerApiTest: XCTestCase {
                 country: "BA"
         )
 
-        var customerDeleteResponse: CustomerDeleteResult?
-        var customerCreateResponse: CustomerResponse?
+        var customerDeleteResult: CustomerDeleteResult?
+        var customer: Customer?
 
 
         let expectation = self.expectation(description: "testDeleteCustomer")
 
-        createPaymentAccessToken { accessToken in
-            let customerRequest = CustomerCreateRequest(accessToken: accessToken, customerRequestBody: customerRequestBody)
-            self.monri.createCustomer(customerRequest) { (result: CustomerResponseResult) in
+        createAccessToken { accessToken in
+            let createCustomerParams = CreateCustomerParams(accessToken: accessToken, customerData: customerData)
+            self.monri.createCustomer(createCustomerParams) { (result: CustomerResult) in
                 switch result {
                 case .result(let customerResponse):
                     XCTAssertNotNil(customerResponse)
-                    customerCreateResponse = customerResponse
-                    let customerDeleteRequest = CustomerDeleteRequest(
+                    customer = customerResponse
+                    let customerDeleteRequest = DeleteCustomerParams(
                             customerUuid: customerResponse.uuid,
                             accessToken: accessToken
                     )
                     self.monri.deleteCustomer(customerDeleteRequest) { (result: CustomerDeleteResult) in
-                        customerDeleteResponse = result
+                        customerDeleteResult = result
                         expectation.fulfill()
                     }
                 case .error(let customerError):
@@ -233,12 +232,12 @@ final class MonriPaymentsCustomerApiTest: XCTestCase {
         }
         waitForExpectations(timeout: 5, handler: nil)
 
-        switch customerDeleteResponse {
+        switch customerDeleteResult {
         case .result(let customerDeleteResponse):
             XCTAssertNotNil(customerDeleteResponse)
             XCTAssertEqual(customerDeleteResponse.deleted, true)
             XCTAssertEqual(customerDeleteResponse.status, "approved")
-            XCTAssertEqual(customerDeleteResponse.uuid, customerCreateResponse?.uuid)
+            XCTAssertEqual(customerDeleteResponse.uuid, customer?.uuid)
         case .error(let customerError):
             XCTFail("\(customerError)")
         case .none:
@@ -248,8 +247,8 @@ final class MonriPaymentsCustomerApiTest: XCTestCase {
 
     func testRetrieveCustomer() throws {
         let merchantId = UUID().uuidString
-        let customerRequestBody = CustomerRequestBody(
-                merchantCustomerId: merchantId,
+        let customerRequestBody = CustomerData(
+                merchantCustomerUuid: merchantId,
                 description: "description",
                 email: "adnan.omerovic.updated@monri.com",
                 name: "Adnan",
@@ -261,22 +260,22 @@ final class MonriPaymentsCustomerApiTest: XCTestCase {
                 country: "BA"
         )
 
-        var customerUpdateResponse: CustomerResponseResult?
+        var customerUpdateResult: CustomerResult?
 
         let expectation = self.expectation(description: "testRetrieveCustomer")
 
-        createPaymentAccessToken { accessToken in
-            let customerRequest = CustomerCreateRequest(accessToken: accessToken, customerRequestBody: customerRequestBody)
-            self.monri.createCustomer(customerRequest) { (result: CustomerResponseResult) in
+        createAccessToken { accessToken in
+            let createCustomerParams = CreateCustomerParams(accessToken: accessToken, customerData: customerRequestBody)
+            self.monri.createCustomer(createCustomerParams) { (result: CustomerResult) in
                 switch result {
                 case .result(let customerResponse):
                     XCTAssertNotNil(customerResponse)
-                    let customerRetrieveRequest = CustomerRetrieveRequest(
+                    let customerRetrieveRequest = RetrieveCustomerParams(
                             accessToken: accessToken,
                             customerUuid: customerResponse.uuid
                     )
-                    self.monri.retrieveCustomer(customerRetrieveRequest) { (result: CustomerResponseResult) in
-                        customerUpdateResponse = result
+                    self.monri.retrieveCustomer(customerRetrieveRequest) { (result: CustomerResult) in
+                        customerUpdateResult = result
                         expectation.fulfill()
                     }
                 case .error(let customerError):
@@ -287,11 +286,11 @@ final class MonriPaymentsCustomerApiTest: XCTestCase {
         }
         waitForExpectations(timeout: 5, handler: nil)
 
-        switch customerUpdateResponse {
+        switch customerUpdateResult {
         case .result(let customerResponse):
             XCTAssertNotNil(customerResponse)
             XCTAssertEqual(customerRequestBody.name, customerResponse.name)
-            XCTAssertEqual(customerRequestBody.merchantCustomerId, customerResponse.merchantCustomerId)
+            XCTAssertEqual(customerRequestBody.merchantCustomerUuid, customerResponse.merchantCustomerUuid)
             XCTAssertEqual(customerRequestBody.description, customerResponse.description)
             XCTAssertEqual(customerRequestBody.email, customerResponse.email)
             XCTAssertEqual(customerRequestBody.name, customerResponse.name)
@@ -308,10 +307,78 @@ final class MonriPaymentsCustomerApiTest: XCTestCase {
         }
     }
 
+    func createCustomers(accessToken: String, num: Int, callback: @escaping ([Customer]) -> Void) {
+        var customerResponseArray: [Customer] = []
+
+        let createCustomerExpectation = self.expectation(description: "create n customers")
+
+        for _ in (0..<num) {
+//            let merchantUuid = UUID().uuidString
+            let customerData = CustomerData(
+//                    merchantCustomerUuid: merchantUuid,
+                    description: "description: \(Int(NSDate().timeIntervalSince1970))",
+                    email: "adnan.omerovic.updated@monri.com",
+                    name: "Adnan",
+                    phone: "00387000111",
+                    metadata: ["c": "d"],
+                    zipCode: "71000",
+                    city: "Sarajevo",
+                    address: "Džemala Bijedića 2",
+                    country: "BA"
+            )
+
+            let customerRequest = CreateCustomerParams(accessToken: accessToken, customerData: customerData)
+            monri.createCustomer(customerRequest) { (result: CustomerResult) in
+                switch result {
+                case .result(let customerResponse):
+                    customerResponseArray.append(customerResponse)
+                    if (customerResponseArray.count == num) {
+                        createCustomerExpectation.fulfill()
+                    }
+                case .error(let customerError):
+                    XCTFail("\(customerError)")
+                }
+
+            }
+        }
+
+        wait(for: [createCustomerExpectation], timeout: 10)
+
+        callback(customerResponseArray)
+    }
+
+    func testRetrieveAllCustomers() throws {
+        var createdCustomers: [Customer] = []
+        var customers: [Customer] = []
+        let expectation = self.expectation(description: "testRetrieveCustomers")
+
+        createAccessToken { accessToken in
+            self.createCustomers(accessToken: accessToken, num: 3) { createdCustomersResponse in
+                createdCustomers = createdCustomersResponse
+                self.monri.retrieveAllCustomers(accessToken) { result in
+                    switch result {
+                    case .result(let customerResponse):
+                        customers = customerResponse.customerResponseArray
+                        expectation.fulfill()
+                    case .error(let customerError):
+                        XCTFail("\(customerError)")
+                    }
+                }
+            }
+        }
+
+        waitForExpectations(timeout: 15, handler: nil)
+
+        for i in (0..<createdCustomers.count) {
+            XCTAssertEqual(customers[i].description, createdCustomers[i].description)
+        }
+
+    }
+
     func testRetrieveCustomerViaMerchantId() throws {
-        let merchantId = UUID().uuidString
-        let customerRequestBody = CustomerRequestBody(
-                merchantCustomerId: merchantId,
+        let merchantUuid = UUID().uuidString
+        let customerData = CustomerData(
+                merchantCustomerUuid: merchantUuid,
                 description: "description",
                 email: "adnan.omerovic.updated@monri.com",
                 name: "Adnan",
@@ -323,22 +390,22 @@ final class MonriPaymentsCustomerApiTest: XCTestCase {
                 country: "BA"
         )
 
-        var customerUpdateResponse: CustomerResponseResult?
+        var customerResult: CustomerResult?
 
         let expectation = self.expectation(description: "testRetrieveCustomerViaMerchantId")
 
-        createPaymentAccessToken { accessToken in
-            let customerRequest = CustomerCreateRequest(accessToken: accessToken, customerRequestBody: customerRequestBody)
-            self.monri.createCustomer(customerRequest) { (result: CustomerResponseResult) in
+        createAccessToken { accessToken in
+            let createCustomerParams = CreateCustomerParams(accessToken: accessToken, customerData: customerData)
+            self.monri.createCustomer(createCustomerParams) { (result: CustomerResult) in
                 switch result {
-                case .result(let customerResponse):
-                    XCTAssertNotNil(customerResponse)
-                    let customerRetrieveRequest = CustomerRetrieveMerchantIdRequest(
+                case .result(let customer):
+                    XCTAssertNotNil(customer)
+                    let customerRetrieveRequest = RetrieveCustomerViaMerchantCustomerUuidParams(
                             accessToken: accessToken,
-                            merchantCustomerUuid: customerResponse.merchantCustomerId
+                            merchantCustomerUuid: customer.merchantCustomerUuid
                     )
-                    self.monri.retrieveCustomerViaMerchantId(customerRetrieveRequest) { (result: CustomerResponseResult) in
-                        customerUpdateResponse = result
+                    self.monri.retrieveCustomerViaMerchantCustomerUuid(customerRetrieveRequest) { (result: CustomerResult) in
+                        customerResult = result
                         expectation.fulfill()
                     }
                 case .error(let customerError):
@@ -349,65 +416,26 @@ final class MonriPaymentsCustomerApiTest: XCTestCase {
         }
         waitForExpectations(timeout: 5, handler: nil)
 
-        switch customerUpdateResponse {
-        case .result(let customerResponse):
-            XCTAssertNotNil(customerResponse)
-            XCTAssertEqual(customerRequestBody.name, customerResponse.name)
-            XCTAssertEqual(customerRequestBody.merchantCustomerId, customerResponse.merchantCustomerId)
-            XCTAssertEqual(customerRequestBody.description, customerResponse.description)
-            XCTAssertEqual(customerRequestBody.email, customerResponse.email)
-            XCTAssertEqual(customerRequestBody.name, customerResponse.name)
-            XCTAssertEqual(customerRequestBody.phone, customerResponse.phone)
-            XCTAssertEqual(customerRequestBody.metadata, customerResponse.metadata)
-            XCTAssertEqual(customerRequestBody.zipCode, customerResponse.zipCode)
-            XCTAssertEqual(customerRequestBody.city, customerResponse.city)
-            XCTAssertEqual(customerRequestBody.address, customerResponse.address)
-            XCTAssertEqual(customerRequestBody.country, customerResponse.country)
+        switch customerResult {
+        case .result(let customer):
+            XCTAssertNotNil(customer)
+            XCTAssertEqual(customerData.name, customer.name)
+            XCTAssertEqual(customerData.merchantCustomerUuid, customer.merchantCustomerUuid)
+            XCTAssertEqual(customerData.description, customer.description)
+            XCTAssertEqual(customerData.email, customer.email)
+            XCTAssertEqual(customerData.name, customer.name)
+            XCTAssertEqual(customerData.phone, customer.phone)
+            XCTAssertEqual(customerData.metadata, customer.metadata)
+            XCTAssertEqual(customerData.zipCode, customer.zipCode)
+            XCTAssertEqual(customerData.city, customer.city)
+            XCTAssertEqual(customerData.address, customer.address)
+            XCTAssertEqual(customerData.country, customer.country)
         case .error(let customerError):
             XCTFail("\(customerError)")
         case .none:
             XCTFail("customer has not been retrieved")
         }
     }
-
-//    func confirmPayment(
-//            card: PaymentMethodParams = MonriPaymentApiTest.non3DSCard,
-//            customerParams: CustomerParams,
-//            _ callback: @escaping (_ error: String?, _ paymentResult: PaymentResult?) -> Void
-//    ) {
-//        createPayment { clientSecret, status in
-//            guard status != nil else {
-//                callback("Payment create failed", nil)
-//                return
-//            }
-////
-//            guard let clientSecret = clientSecret else {
-//                callback("Payment create failed", nil)
-//                return
-//            }
-//
-//            let params = ConfirmPaymentParams(paymentId: clientSecret,
-//                    paymentMethod: card,
-//                    transaction: TransactionParams.create()
-//                            .set(customerParams: customerParams)
-//                            .set("order_info", "iOS SDK payment session")
-//            )
-//
-//            self.monri.confirmPayment(params) { result in
-//                switch (result) {
-//                case .result(let tmpPaymentResult):
-//                    callback(nil, tmpPaymentResult)
-//                case .error(let e):
-//                    callback("\(e)", nil)
-//                case .declined(let d):
-//                    callback("\(d)", nil)
-//                case .pending:
-//                    callback("transaction is in pending status", nil)
-//                }
-//            }
-//        }
-//
-//    }
 
     func confirmPayment(card: PaymentMethodParams = non3DSCard,
                         customerParams: CustomerParams,
@@ -448,9 +476,9 @@ final class MonriPaymentsCustomerApiTest: XCTestCase {
     }
 
     func testPayment() {
-        let merchantId = UUID().uuidString
-        let customerRequestBody = CustomerRequestBody(
-                merchantCustomerId: merchantId,
+        let merchantUuid = UUID().uuidString
+        let customerData = CustomerData(
+                merchantCustomerUuid: merchantUuid,
                 description: "description",
                 email: "adnan.omerovic.updated@monri.com",
                 name: "Adnan",
@@ -462,17 +490,17 @@ final class MonriPaymentsCustomerApiTest: XCTestCase {
                 country: "BA"
         )
 
-        var customerResponse2: CustomerResponse?
+        var customer: Customer?
 
         let expectation0 = self.expectation(description: "testCreateCustomer")
 
-        createPaymentAccessToken { accessToken in
-            let customerRequest = CustomerCreateRequest(accessToken: accessToken, customerRequestBody: customerRequestBody)
-            self.monri.createCustomer(customerRequest) { (result: CustomerResponseResult) in
+        createAccessToken { accessToken in
+            let createCustomerParams = CreateCustomerParams(accessToken: accessToken, customerData: customerData)
+            self.monri.createCustomer(createCustomerParams) { (result: CustomerResult) in
                 switch result {
                 case .result(let customerResponse):
                     XCTAssertNotNil(customerResponse)
-                    customerResponse2 = customerResponse
+                    customer = customerResponse
                     expectation0.fulfill()
                 case .error(let customerError):
                     XCTFail("\(customerError)")
@@ -484,17 +512,17 @@ final class MonriPaymentsCustomerApiTest: XCTestCase {
         waitForExpectations(timeout: 5, handler: nil)
 
         let customerParams = CustomerParams(
-                customerUuid: customerResponse2?.uuid,
-                email: customerRequestBody.email,
-                fullName: customerRequestBody.name,
-                address: customerRequestBody.address,
-                city: customerRequestBody.city,
-                zip: customerRequestBody.zipCode,
-                phone: customerRequestBody.phone,
-                country: customerRequestBody.country
+                customerUuid: customer?.uuid,
+                email: customerData.email,
+                fullName: customerData.name,
+                address: customerData.address,
+                city: customerData.city,
+                zip: customerData.zipCode,
+                phone: customerData.phone,
+                country: customerData.country
         )
 
-        let expectation1 = self.expectation(description: "testPaymentStatus")
+        let expectation1 = self.expectation(description: "confirmPayment")
         confirmPayment(customerParams: customerParams) { errorResult, clientSecretResult, responseResult in
             XCTAssertEqual(PaymentStatus.approved, responseResult?.status)
             expectation1.fulfill()
@@ -505,14 +533,14 @@ final class MonriPaymentsCustomerApiTest: XCTestCase {
         var customerPaymentMethodResponseResult: CustomerPaymentMethodResponseResult?
         let expectation2 = self.expectation(description: "testRetrievePaymentMethod")
 
-        createPaymentAccessToken { accessToken in
-            let customerPaymentMethodRequest = CustomerPaymentMethodRequest(
-                    customerUuid: customerResponse2?.uuid ?? "",
+        createAccessToken { accessToken in
+            let customerPaymentMethodParams = CustomerPaymentMethodParams(
+                    customerUuid: customer?.uuid ?? "",
                     limit: 25,
                     offset: 0,
                     accessToken: accessToken
             )
-            self.monri.getPaymentMethodsForCustomer(customerPaymentMethodRequest) { (result: CustomerPaymentMethodResponseResult) in
+            self.monri.retrieveCustomerPaymentMethods(customerPaymentMethodParams) { (result: CustomerPaymentMethodResponseResult) in
                 customerPaymentMethodResponseResult = result
                 expectation2.fulfill()
             }

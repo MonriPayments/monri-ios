@@ -11,7 +11,7 @@ public typealias CustomerPaymentMethodResponseCallback = (CustomerPaymentMethodR
 
 public enum CustomerPaymentMethodResponseResult {
     case result(CustomerPaymentMethodResponse)
-    case error(CustomerError)
+    case error(CustomerApiError)
 }
 
 public class CustomerPaymentMethodResponse {

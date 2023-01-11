@@ -7,7 +7,7 @@
 
 import Foundation
 
-public enum CustomerError: Error  {
+public enum CustomerApiError: Error  {
     case requestFailed(String)
     case customerFailed
     case jsonParsingError(String)

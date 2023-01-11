@@ -86,20 +86,20 @@ class MonriHttpApiImpl: MonriHttpApi {
         }
     }
 
-    func createCustomer(_ request: CustomerCreateRequest, _ callback: @escaping CustomerResponseCallback) {
+    func createCustomer(_ params: CreateCustomerParams, _ callback: @escaping CustomerCallback) {
         httpClient.jsonPost(
                 url: "\(apiUrl)/v2/customers",
-                body: request.customerRequestBody.toJSON(),
-                headers: ["Authorization": request.accessToken]
+                body: params.customerData.toJSON(),
+                headers: ["Authorization": params.accessToken]
         ) {
 
             switch ($0) {
             case .failure(let body, let statusCode, _):
                 self.logger.warn("createCustomer failed with body [\(body)] and status code [\(statusCode)]")
-                callback(.error(CustomerError.requestFailed("Got status code \(statusCode)")))
+                callback(.error(CustomerApiError.requestFailed("Got status code \(statusCode)")))
             case .success(let body, _, _):
-                guard let response = CustomerResponse.fromJson(body) else {
-                    callback(.error(CustomerError.jsonParsingError("Converting response to CustomerResponse from \(body) failed!")))
+                guard let response = Customer.fromJson(body) else {
+                    callback(.error(CustomerApiError.jsonParsingError("Converting response to CustomerResponse from \(body) failed!")))
                     return
                 }
                 callback(.result(response))
@@ -110,20 +110,20 @@ class MonriHttpApiImpl: MonriHttpApi {
 
     }
 
-    func updateCustomer(_ request: CustomerUpdateRequest, _ callback: @escaping CustomerResponseCallback) {
+    func updateCustomer(_ params: UpdateCustomerParams, _ callback: @escaping CustomerCallback) {
         httpClient.jsonPost(
-                url: "\(apiUrl)/v2/customers/\(request.customerUuid)",
-                body: request.customerBodyRequest.toJSON(),
-                headers: ["Authorization": request.accessToken]
+                url: "\(apiUrl)/v2/customers/\(params.customerUuid)",
+                body: params.customerData.toJSON(),
+                headers: ["Authorization": params.accessToken]
         ) {
 
             switch ($0) {
             case .failure(let body, let statusCode, _):
                 self.logger.warn("createCustomer failed with body [\(body)] and status code [\(statusCode)]")
-                callback(.error(CustomerError.requestFailed("Got status code \(statusCode)")))
+                callback(.error(CustomerApiError.requestFailed("Got status code \(statusCode)")))
             case .success(let body, _, _):
-                guard let response = CustomerResponse.fromJson(body) else {
-                    callback(.error(CustomerError.jsonParsingError("Converting response to CustomerResponse from \(body) failed!")))
+                guard let response = Customer.fromJson(body) else {
+                    callback(.error(CustomerApiError.jsonParsingError("Converting response to CustomerResponse from \(body) failed!")))
                     return
                 }
                 callback(.result(response))
@@ -133,19 +133,19 @@ class MonriHttpApiImpl: MonriHttpApi {
         }
     }
 
-    func deleteCustomer(_ request: CustomerDeleteRequest, _ callback: @escaping CustomerDeleteCallback) {
+    func deleteCustomer(_ params: DeleteCustomerParams, _ callback: @escaping CustomerDeleteCallback) {
         httpClient.jsonDelete(
-                url: "\(apiUrl)/v2/customers/\(request.customerUuid)",
-                headers: ["Authorization": request.accessToken]
+                url: "\(apiUrl)/v2/customers/\(params.customerUuid)",
+                headers: ["Authorization": params.accessToken]
         ) { response in
 
             switch (response) {
             case .failure(let body, let statusCode, _):
                 self.logger.warn("createCustomer failed with body [\(body)] and status code [\(statusCode)]")
-                callback(.error(CustomerError.jsonParsingError("Got status code \(statusCode)")))
+                callback(.error(CustomerApiError.jsonParsingError("Got status code \(statusCode)")))
             case .success(let body, _, _):
                 guard let response = CustomerDeleteResponse.fromJson(body) else {
-                    callback(.error(CustomerError.jsonParsingError("Converting response to CustomerDeleteResponse from \(body) failed!")))
+                    callback(.error(CustomerApiError.jsonParsingError("Converting response to CustomerDeleteResponse from \(body) failed!")))
                     return
                 }
                 callback(.result(response))
@@ -155,19 +155,19 @@ class MonriHttpApiImpl: MonriHttpApi {
         }
     }
 
-    func retrieveCustomer(_ request: CustomerRetrieveRequest, _ callback: @escaping CustomerResponseCallback) {
+    func retrieveCustomer(_ params: RetrieveCustomerParams, _ callback: @escaping CustomerCallback) {
         httpClient.jsonGet(
-                url: "\(apiUrl)/v2/customers/\(request.customerUuid)",
-                headers: ["Authorization": request.accessToken]
+                url: "\(apiUrl)/v2/customers/\(params.customerUuid)",
+                headers: ["Authorization": params.accessToken]
         ) { response in
 
             switch (response) {
             case .failure(let body, let statusCode, _):
                 self.logger.warn("createCustomer failed with body [\(body)] and status code [\(statusCode)]")
-                callback(.error(CustomerError.requestFailed("Got status code \(statusCode)")))
+                callback(.error(CustomerApiError.requestFailed("Got status code \(statusCode)")))
             case .success(let body, _, _):
-                guard let response = CustomerResponse.fromJson(body) else {
-                    callback(.error(CustomerError.jsonParsingError("Converting response to CustomerResponse from \(body) failed!")))
+                guard let response = Customer.fromJson(body) else {
+                    callback(.error(CustomerApiError.jsonParsingError("Converting response to CustomerResponse from \(body) failed!")))
                     return
                 }
                 callback(.result(response))
@@ -178,19 +178,19 @@ class MonriHttpApiImpl: MonriHttpApi {
         }
     }
 
-    func retrieveCustomerViaMerchantId(_ request: CustomerRetrieveMerchantIdRequest, _ callback: @escaping CustomerResponseCallback) {
+    func retrieveCustomerViaMerchantCustomerUuid(_ params: RetrieveCustomerViaMerchantCustomerUuidParams, _ callback: @escaping CustomerCallback) {
         httpClient.jsonGet(
-                url: "\(apiUrl)/v2/merchants/customers/\(request.merchantCustomerUuid)",
-                headers: ["Authorization": request.accessToken]
+                url: "\(apiUrl)/v2/merchants/customers/\(params.merchantCustomerUuid)",
+                headers: ["Authorization": params.accessToken]
         ) { response in
 
             switch (response) {
             case .failure(let body, let statusCode, _):
                 self.logger.warn("createCustomer failed with body [\(body)] and status code [\(statusCode)]")
-                callback(.error(CustomerError.requestFailed("Got status code \(statusCode)")))
+                callback(.error(CustomerApiError.requestFailed("Got status code \(statusCode)")))
             case .success(let body, _, _):
-                guard let response = CustomerResponse.fromJson(body) else {
-                    callback(.error(CustomerError.jsonParsingError("Converting response to CustomerResponse from \(body) failed!")))
+                guard let response = Customer.fromJson(body) else {
+                    callback(.error(CustomerApiError.jsonParsingError("Converting response to CustomerResponse from \(body) failed!")))
                     return
                 }
                 callback(.result(response))
@@ -201,7 +201,7 @@ class MonriHttpApiImpl: MonriHttpApi {
         }
     }
 
-    func retrieveAllCustomers(_ accessToken: String, _ callback: @escaping CustomerAllResponseCallback) {
+    func retrieveAllCustomers(_ accessToken: String, _ callback: @escaping MerchantCustomersCallback) {
         httpClient.jsonGet(
                 url: "\(apiUrl)/v2/customers",
                 headers: ["Authorization": accessToken]
@@ -209,10 +209,10 @@ class MonriHttpApiImpl: MonriHttpApi {
             switch (response) {
             case .failure(let body, let statusCode, _):
                 self.logger.warn("retrieveAllCustomers failed with body [\(body)] and status code [\(statusCode)]")
-                callback(.error(CustomerError.requestFailed("Got status code \(statusCode)")))
+                callback(.error(CustomerApiError.requestFailed("Got status code \(statusCode)")))
             case .success(let body, _, _):
-                guard let response = CustomerAllResponse.fromJson(body) else {
-                    callback(.error(CustomerError.jsonParsingError("Converting response to retrieveAllCustomers from \(body) failed!")))
+                guard let response = MerchantCustomers.fromJson(body) else {
+                    callback(.error(CustomerApiError.jsonParsingError("Converting response to retrieveAllCustomers from \(body) failed!")))
                     return
                 }
                 callback(.result(response))
@@ -222,19 +222,19 @@ class MonriHttpApiImpl: MonriHttpApi {
         }
     }
 
-    func getPaymentMethodsForCustomer(_ request: CustomerPaymentMethodRequest, _ callback: @escaping CustomerPaymentMethodResponseCallback) {
+    func retrieveCustomerPaymentMethods(_ params: CustomerPaymentMethodParams, _ callback: @escaping CustomerPaymentMethodResponseCallback) {
         httpClient.jsonGet(
-                url: "\(apiUrl)/v2/customers/\(request.customerUuid)/payment-methods?limit=\(request.limit)&offset=\(request.offset)",
-                headers: ["Authorization": request.accessToken]
+                url: "\(apiUrl)/v2/customers/\(params.customerUuid)/payment-methods?limit=\(params.limit)&offset=\(params.offset)",
+                headers: ["Authorization": params.accessToken]
         ) { response in
 
             switch (response) {
             case .failure(let body, let statusCode, _):
                 self.logger.warn("getPaymentMethodsForCustomer failed with body [\(body)] and status code [\(statusCode)]")
-                callback(.error(CustomerError.requestFailed("Got status code \(statusCode)")))
+                callback(.error(CustomerApiError.requestFailed("Got status code \(statusCode)")))
             case .success(let body, _, _):
                 guard let response = CustomerPaymentMethodResponse.fromJson(body) else {
-                    callback(.error(CustomerError.jsonParsingError("Converting response to CustomerPaymentMethodResponse from \(body) failed!")))
+                    callback(.error(CustomerApiError.jsonParsingError("Converting response to CustomerPaymentMethodResponse from \(body) failed!")))
                     return
                 }
                 callback(.result(response))

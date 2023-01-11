@@ -7,7 +7,7 @@
 
 import Foundation
 
-public class CustomerPaymentMethodRequest {
+public class CustomerPaymentMethodParams {
     public let customerUuid: String
     public let limit: UInt32
     public let offset: UInt32

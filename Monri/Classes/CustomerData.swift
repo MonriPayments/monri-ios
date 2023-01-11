@@ -7,8 +7,8 @@
 
 import Foundation
 
-public class CustomerRequestBody {
-    public var merchantCustomerId: String?;
+public class CustomerData {
+    public var merchantCustomerUuid: String?;
     public var description: String;
     public var email: String;
     public var name: String;
@@ -20,7 +20,7 @@ public class CustomerRequestBody {
     public var country: String;
 
     public init(
-            merchantCustomerId: String? = nil,
+            merchantCustomerUuid: String? = nil,
             description: String? = nil,
             email: String? = nil,
             name: String? = nil,
@@ -31,7 +31,7 @@ public class CustomerRequestBody {
             address: String? = nil,
             country: String? = nil
     ) {
-        self.merchantCustomerId = merchantCustomerId
+        self.merchantCustomerUuid = merchantCustomerUuid
         self.description = description ?? ""
         self.email = email ?? ""
         self.name = name ?? ""
@@ -43,19 +43,19 @@ public class CustomerRequestBody {
         self.country = country ?? ""
     }
 
-    public func setEmail(_ newValue: String) -> CustomerRequestBody {
+    public func setEmail(_ newValue: String) -> CustomerData {
         email = newValue
         return self
     }
     
-    public func setName(_ newValue: String) -> CustomerRequestBody {
+    public func setName(_ newValue: String) -> CustomerData {
         name = newValue
         return self
     }
 
     func toJSON() -> Dictionary<String, Any> {
         [
-            "merchant_customer_id": merchantCustomerId,
+            "merchant_customer_id": merchantCustomerUuid,
             "description": description,
             "email": email,
             "name": name,
