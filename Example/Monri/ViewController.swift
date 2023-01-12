@@ -68,7 +68,7 @@ class ViewController: UIViewController {
 
     @IBAction func createCustomer(_ sender: Any) {
         let customerRequestBody = CustomerData(
-//                merchantCustomerId: merchantId,
+                merchantCustomerUuid: merchantUuid,
                 description: "description",
                 email: "adnan.omerovic@monri.com",
                 name: "Adnan",
