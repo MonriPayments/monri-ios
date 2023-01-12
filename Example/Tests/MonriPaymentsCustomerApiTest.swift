@@ -49,7 +49,7 @@ final class MonriPaymentsCustomerApiTest: XCTestCase {
     }
 
     private func createPayment(_ callback: @escaping (String?, String?) -> Void) {
-        Alamofire.request("https://mobile.webteh.hr/example/create-payment-session", method: .post, parameters: [:], encoding: JSONEncoding.default)
+        Alamofire.request("https://dashboard.monri.com/api/examples/ruby/examples/create-payment-session", method: .post, parameters: [:], encoding: JSONEncoding.default)
                 .responseJSON { dataResponse in
                     guard let data = dataResponse.data else {
                         callback(nil, nil)
@@ -68,9 +68,42 @@ final class MonriPaymentsCustomerApiTest: XCTestCase {
                 }
     }
 
+    private var accessToken: String? = nil
 
     func createAccessToken(_ callback: @escaping (String) -> Void) {
-        callback("Bearer eyJhbGciOiJSUzI1NiJ9.eyJzY29wZXMiOlsiY3VzdG9tZXJzIiwicGF5bWVudC1tZXRob2RzIl0sImV4cCI6MTY3MzQyNjk1NywiaXNzIjoiaHR0cHM6Ly9tb25yaS5jb20iLCJzdWIiOiI2YTEzZDc5YmRlOGRhOTMyMGU4ODkyM2NiMzQ3MmZiNjM4NjE5Y2NiIn0.RR1PL-OmuGggfGpWwZn6PHAYMaqJ6g06w4w64tVUDOg05P5DQiE5BXB-APs7yDNVrgYmkr6IcERrhOIq6KsWuVeksVdxO26KHqchs8ATR8lPCKKza_JOGKIzqU5rKoQGQkQaEKE4xhYT0TiaIt9VU-c0t5sfqoUpoGIvdClCx3ivQG-3YvpE4mrs1JxdxtyJNfWXz63bLxsZgh2nqlzO4ucCj2aCa2Gq60IkrD_SbywQIq9LMqO-6QD9z9adpB5Ax34WKFDi7Ks4xTlRnXcDroNPM2LsPgC-nCZJBaIZ0IODFix39_onhVFdLuR5pSRyiG7QQ_m6OisnKTcaZDV_Ig")
+        if (self.accessToken != nil) {
+            callback(self.accessToken!)
+        }
+
+        Alamofire.request(
+                        "https://dashboard.monri.com/api/examples/ruby/examples/access_token",
+                        method: .get,
+                        encoding: JSONEncoding.default
+
+                )
+                .responseJSON { dataResponse in
+                    guard let data = dataResponse.data else {
+                        callback("")
+                        return
+                    }
+                    do {
+                        guard let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] else {
+                            callback("")
+                            return
+                        }
+
+                        if (json["access_token"] != nil) {
+                            self.accessToken = "Bearer " + (json["access_token"] as? String ?? "")
+
+                            callback(self.accessToken!)
+                        } else {
+                            callback("nil")
+                        }
+
+                    } catch {
+                        callback("nil")
+                    }
+                }
     }
 
     func testCreateCustomer() throws {
@@ -98,7 +131,7 @@ final class MonriPaymentsCustomerApiTest: XCTestCase {
                 expectation.fulfill()
             }
         }
-        waitForExpectations(timeout: 5, handler: nil)
+        waitForExpectations(timeout: 15, handler: nil)
 
         switch customerResult {
         case .result(let customer):
@@ -310,12 +343,8 @@ final class MonriPaymentsCustomerApiTest: XCTestCase {
     func createCustomers(accessToken: String, num: Int, callback: @escaping ([Customer]) -> Void) {
         var customerResponseArray: [Customer] = []
 
-        let createCustomerExpectation = self.expectation(description: "create n customers")
-
         for _ in (0..<num) {
-//            let merchantUuid = UUID().uuidString
             let customerData = CustomerData(
-//                    merchantCustomerUuid: merchantUuid,
                     description: "description: \(Int(NSDate().timeIntervalSince1970))",
                     email: "adnan.omerovic.updated@monri.com",
                     name: "Adnan",
@@ -328,12 +357,12 @@ final class MonriPaymentsCustomerApiTest: XCTestCase {
             )
 
             let customerRequest = CreateCustomerParams(accessToken: accessToken, customerData: customerData)
-            monri.createCustomer(customerRequest) { (result: CustomerResult) in
+            self.monri.createCustomer(customerRequest) { (result: CustomerResult) in
                 switch result {
                 case .result(let customerResponse):
                     customerResponseArray.append(customerResponse)
                     if (customerResponseArray.count == num) {
-                        createCustomerExpectation.fulfill()
+                        callback(customerResponseArray)
                     }
                 case .error(let customerError):
                     XCTFail("\(customerError)")
@@ -341,10 +370,6 @@ final class MonriPaymentsCustomerApiTest: XCTestCase {
 
             }
         }
-
-        wait(for: [createCustomerExpectation], timeout: 10)
-
-        callback(customerResponseArray)
     }
 
     func testRetrieveAllCustomers() throws {
@@ -367,7 +392,7 @@ final class MonriPaymentsCustomerApiTest: XCTestCase {
             }
         }
 
-        waitForExpectations(timeout: 15, handler: nil)
+        waitForExpectations(timeout: 25, handler: nil)
 
         for i in (0..<createdCustomers.count) {
             XCTAssertEqual(customers[i].description, createdCustomers[i].description)
@@ -414,7 +439,7 @@ final class MonriPaymentsCustomerApiTest: XCTestCase {
 
             }
         }
-        waitForExpectations(timeout: 5, handler: nil)
+        waitForExpectations(timeout: 15, handler: nil)
 
         switch customerResult {
         case .result(let customer):
@@ -493,8 +518,11 @@ final class MonriPaymentsCustomerApiTest: XCTestCase {
         var customer: Customer?
 
         let expectation0 = self.expectation(description: "testCreateCustomer")
+        
+        var tmpAccessToken: String = ""
 
         createAccessToken { accessToken in
+            tmpAccessToken = accessToken
             let createCustomerParams = CreateCustomerParams(accessToken: accessToken, customerData: customerData)
             self.monri.createCustomer(createCustomerParams) { (result: CustomerResult) in
                 switch result {
@@ -509,7 +537,7 @@ final class MonriPaymentsCustomerApiTest: XCTestCase {
 
             }
         }
-        waitForExpectations(timeout: 5, handler: nil)
+        waitForExpectations(timeout: 10, handler: nil)
 
         let customerParams = CustomerParams(
                 customerUuid: customer?.uuid,
@@ -532,20 +560,20 @@ final class MonriPaymentsCustomerApiTest: XCTestCase {
 
         var customerPaymentMethodResponseResult: CustomerPaymentMethodResponseResult?
         let expectation2 = self.expectation(description: "testRetrievePaymentMethod")
+//        expectation2.assertForOverFulfill = false
 
-        createAccessToken { accessToken in
-            let customerPaymentMethodParams = CustomerPaymentMethodParams(
-                    customerUuid: customer?.uuid ?? "",
-                    limit: 25,
-                    offset: 0,
-                    accessToken: accessToken
-            )
-            self.monri.retrieveCustomerPaymentMethods(customerPaymentMethodParams) { (result: CustomerPaymentMethodResponseResult) in
-                customerPaymentMethodResponseResult = result
-                expectation2.fulfill()
-            }
+        let customerPaymentMethodParams = CustomerPaymentMethodParams(
+                customerUuid: customer?.uuid ?? "",
+                limit: 25,
+                offset: 0,
+                accessToken: tmpAccessToken
+        )
+        self.monri.retrieveCustomerPaymentMethods(customerPaymentMethodParams) { (result: CustomerPaymentMethodResponseResult) in
+            customerPaymentMethodResponseResult = result
+            expectation2.fulfill()
         }
-        waitForExpectations(timeout: 25, handler: nil)
+        wait(for: [expectation2], timeout: 25)
+//        waitForExpectations(timeout: 25, handler: nil)
 
         switch customerPaymentMethodResponseResult {
         case .result(let customerPaymentMethodResponse):
