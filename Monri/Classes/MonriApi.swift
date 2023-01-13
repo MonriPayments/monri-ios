@@ -16,6 +16,7 @@ public final class MonriApi {
     private let tokenizeUrl: String
     private let options: MonriApiOptions
     public let httpApi: MonriHttpApi
+    private let customerApi: CustomerApi
 
     private weak var viewController: UIViewController?
 
@@ -37,6 +38,7 @@ public final class MonriApi {
         self.tokenizeUrl = "\(apiUrl)/v2/temp-tokenize"
         self.options = options
         self.httpApi = MonriFactory().createHttpApi(options: options)
+        self.customerApi = CustomerApi(self.httpApi)
     }
 
     public func createToken(_ request: TokenRequest, paymentMethod: PaymentMethod, _ callback: @escaping TokenResultCallback) {
@@ -91,32 +93,8 @@ public final class MonriApi {
         return createToken(request, paymentMethod: card, callback)
     }
 
-    public func createCustomer(_ createCustomerParams: CreateCustomerParams, _ callback: @escaping CustomerCallback) {
-        httpApi.createCustomer(createCustomerParams, callback)
-    }
-
-    public func updateCustomer(_ updateCustomerParams: UpdateCustomerParams, _ callback: @escaping CustomerCallback) {
-        httpApi.updateCustomer(updateCustomerParams, callback)
-    }
-
-    public func deleteCustomer(_ deleteCustomerParams: DeleteCustomerParams, _ callback: @escaping DeleteCustomerCallback) {
-        httpApi.deleteCustomer(deleteCustomerParams, callback)
-    }
-
-    public func retrieveCustomer(_ retrieveCustomerParams: RetrieveCustomerParams, _ callback: @escaping CustomerCallback) {
-        httpApi.retrieveCustomer(retrieveCustomerParams, callback)
-    }
-    
-    public func retrieveCustomerViaMerchantCustomerUuid(_ retrieveCustomerViaMerchantCustomerUuidParams: RetrieveCustomerViaMerchantCustomerUuidParams, _ callback: @escaping CustomerCallback) {
-        httpApi.retrieveCustomerViaMerchantCustomerUuid(retrieveCustomerViaMerchantCustomerUuidParams, callback)
-    }
-
-    public func retrieveCustomerPaymentMethods(_ customerPaymentMethodParams: CustomerPaymentMethodParams, _ callback: @escaping CustomerPaymentMethodResponseCallback) {
-        httpApi.retrieveCustomerPaymentMethods(customerPaymentMethodParams, callback)
-    }
-
-    public func retrieveAllCustomers(_ accessToken: String, _ callback: @escaping MerchantCustomersCallback) {
-        httpApi.retrieveAllCustomers(accessToken, callback)
+    public func customers() -> CustomerApi {
+        customerApi
     }
 
     private func validateTokenRequest(_ request: TokenRequest) -> TokenError? {

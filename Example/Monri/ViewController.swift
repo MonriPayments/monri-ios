@@ -83,7 +83,7 @@ class ViewController: UIViewController {
         createAccessToken { accessToken in
             let createCustomerParams = CreateCustomerParams(accessToken: accessToken, customerData: customerRequestBody)
 
-            self.monri.createCustomer(createCustomerParams) { (result: CustomerResult) in
+            self.monri.customers().create(createCustomerParams) { (result: CustomerResult) in
 
                 switch (result) {
                 case .result(let customer):
@@ -123,7 +123,7 @@ class ViewController: UIViewController {
                     accessToken: accessToken
             )
 
-            self.monri.updateCustomer(customerUpdateRequest) { (result: CustomerResult) in
+            self.monri.customers().update(customerUpdateRequest) { (result: CustomerResult) in
                 switch (result) {
                 case .result(let customerUpdateResponse):
                     print("customer update response\(customerUpdateResponse.name)")
@@ -149,7 +149,7 @@ class ViewController: UIViewController {
                     customerUuid: createdCustomer.uuid,
                     accessToken: accessToken
             )
-            self.monri.deleteCustomer(customerDeleteRequest) { result in
+            self.monri.customers().delete(customerDeleteRequest) { result in
                 switch (result) {
                 case .result(let customerDeleteResponse):
                     print("customer delete response\(customerDeleteResponse.deleted)")
@@ -172,7 +172,7 @@ class ViewController: UIViewController {
                     customerUuid: createdCustomer.uuid
             )
 
-            self.monri.retrieveCustomer(customerRetrieveRequest) { result in
+            self.monri.customers().get(customerRetrieveRequest) { result in
                 switch (result) {
                 case .result(let customerResponse):
                     print("customer retrieve response\(customerResponse.city)")
@@ -195,7 +195,7 @@ class ViewController: UIViewController {
                     merchantCustomerUuid: createdCustomer.merchantCustomerUuid
             )
 
-            self.monri.retrieveCustomerViaMerchantCustomerUuid(customerRetrieveMerchantIdRequest) { result in
+            self.monri.customers().getViaMerchantCustomerUuid(customerRetrieveMerchantIdRequest) { result in
                 switch (result) {
                 case .result(let customerResponse):
                     print("customer retrieve response\(customerResponse.city)")
@@ -209,7 +209,7 @@ class ViewController: UIViewController {
 
     @IBAction func getAllCustomers(_ sender: Any) {
         createAccessToken { accessToken in
-            self.monri.retrieveAllCustomers(accessToken) { result in
+            self.monri.customers().all(accessToken) { result in
                 switch (result) {
                 case .result(let customerAllResponse):
                     print("All customers response: \(customerAllResponse.status)")
@@ -238,7 +238,7 @@ class ViewController: UIViewController {
                     accessToken: accessToken
             )
 
-            self.monri.retrieveCustomerPaymentMethods(request) { result in
+            self.monri.customers().paymentMethods(request) { result in
                 switch (result) {
                 case .result(let paymentMethodResponse):
                     print("customer retrieve response\(paymentMethodResponse.status)")

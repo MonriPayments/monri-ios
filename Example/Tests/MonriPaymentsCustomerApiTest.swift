@@ -126,7 +126,7 @@ final class MonriPaymentsCustomerApiTest: XCTestCase {
 
         createAccessToken { accessToken in
             let createCustomerParams = CreateCustomerParams(accessToken: accessToken, customerData: customerData)
-            self.monri.createCustomer(createCustomerParams) { (result: CustomerResult) in
+            self.monri.customers().create(createCustomerParams) { (result: CustomerResult) in
                 customerResult = result
                 expectation.fulfill()
             }
@@ -176,7 +176,7 @@ final class MonriPaymentsCustomerApiTest: XCTestCase {
 
         createAccessToken { accessToken in
             let createCustomerParams = CreateCustomerParams(accessToken: accessToken, customerData: customerData)
-            self.monri.createCustomer(createCustomerParams) { (result: CustomerResult) in
+            self.monri.customers().create(createCustomerParams) { (result: CustomerResult) in
                 switch result {
                 case .result(let customer):
                     XCTAssertNotNil(customer)
@@ -187,7 +187,7 @@ final class MonriPaymentsCustomerApiTest: XCTestCase {
                             customerUuid: customer.uuid,
                             accessToken: accessToken
                     )
-                    self.monri.updateCustomer(customerUpdateRequest) { (result: CustomerResult) in
+                    self.monri.customers().update(customerUpdateRequest) { (result: CustomerResult) in
                         customerUpdateResponse = result
                         expectation.fulfill()
                     }
@@ -244,7 +244,7 @@ final class MonriPaymentsCustomerApiTest: XCTestCase {
 
         createAccessToken { accessToken in
             let createCustomerParams = CreateCustomerParams(accessToken: accessToken, customerData: customerData)
-            self.monri.createCustomer(createCustomerParams) { (result: CustomerResult) in
+            self.monri.customers().create(createCustomerParams) { (result: CustomerResult) in
                 switch result {
                 case .result(let customerResponse):
                     XCTAssertNotNil(customerResponse)
@@ -253,7 +253,7 @@ final class MonriPaymentsCustomerApiTest: XCTestCase {
                             customerUuid: customerResponse.uuid,
                             accessToken: accessToken
                     )
-                    self.monri.deleteCustomer(customerDeleteRequest) { (result: DeleteCustomerResult) in
+                    self.monri.customers().delete(customerDeleteRequest) { (result: DeleteCustomerResult) in
                         customerDeleteResult = result
                         expectation.fulfill()
                     }
@@ -299,7 +299,7 @@ final class MonriPaymentsCustomerApiTest: XCTestCase {
 
         createAccessToken { accessToken in
             let createCustomerParams = CreateCustomerParams(accessToken: accessToken, customerData: customerRequestBody)
-            self.monri.createCustomer(createCustomerParams) { (result: CustomerResult) in
+            self.monri.customers().create(createCustomerParams) { (result: CustomerResult) in
                 switch result {
                 case .result(let customerResponse):
                     XCTAssertNotNil(customerResponse)
@@ -307,7 +307,7 @@ final class MonriPaymentsCustomerApiTest: XCTestCase {
                             accessToken: accessToken,
                             customerUuid: customerResponse.uuid
                     )
-                    self.monri.retrieveCustomer(customerRetrieveRequest) { (result: CustomerResult) in
+                    self.monri.customers().get(customerRetrieveRequest) { (result: CustomerResult) in
                         customerUpdateResult = result
                         expectation.fulfill()
                     }
@@ -357,7 +357,7 @@ final class MonriPaymentsCustomerApiTest: XCTestCase {
             )
 
             let customerRequest = CreateCustomerParams(accessToken: accessToken, customerData: customerData)
-            self.monri.createCustomer(customerRequest) { (result: CustomerResult) in
+            self.monri.customers().create(customerRequest) { (result: CustomerResult) in
                 switch result {
                 case .result(let customerResponse):
                     customerResponseArray.append(customerResponse)
@@ -380,7 +380,7 @@ final class MonriPaymentsCustomerApiTest: XCTestCase {
         createAccessToken { accessToken in
             self.createCustomers(accessToken: accessToken, num: 3) { createdCustomersResponse in
                 createdCustomers = createdCustomersResponse
-                self.monri.retrieveAllCustomers(accessToken) { result in
+                self.monri.customers().all(accessToken) { result in
                     switch result {
                     case .result(let customerResponse):
                         customers = customerResponse.customerResponseArray
@@ -421,7 +421,7 @@ final class MonriPaymentsCustomerApiTest: XCTestCase {
 
         createAccessToken { accessToken in
             let createCustomerParams = CreateCustomerParams(accessToken: accessToken, customerData: customerData)
-            self.monri.createCustomer(createCustomerParams) { (result: CustomerResult) in
+            self.monri.customers().create(createCustomerParams) { (result: CustomerResult) in
                 switch result {
                 case .result(let customer):
                     XCTAssertNotNil(customer)
@@ -429,7 +429,7 @@ final class MonriPaymentsCustomerApiTest: XCTestCase {
                             accessToken: accessToken,
                             merchantCustomerUuid: customer.merchantCustomerUuid
                     )
-                    self.monri.retrieveCustomerViaMerchantCustomerUuid(customerRetrieveRequest) { (result: CustomerResult) in
+                    self.monri.customers().getViaMerchantCustomerUuid(customerRetrieveRequest) { (result: CustomerResult) in
                         customerResult = result
                         expectation.fulfill()
                     }
@@ -524,7 +524,7 @@ final class MonriPaymentsCustomerApiTest: XCTestCase {
         createAccessToken { accessToken in
             tmpAccessToken = accessToken
             let createCustomerParams = CreateCustomerParams(accessToken: accessToken, customerData: customerData)
-            self.monri.createCustomer(createCustomerParams) { (result: CustomerResult) in
+            self.monri.customers().create(createCustomerParams) { (result: CustomerResult) in
                 switch result {
                 case .result(let customerResponse):
                     XCTAssertNotNil(customerResponse)
@@ -560,7 +560,6 @@ final class MonriPaymentsCustomerApiTest: XCTestCase {
 
         var customerPaymentMethodResponseResult: CustomerPaymentMethodResponseResult?
         let expectation2 = self.expectation(description: "testRetrievePaymentMethod")
-//        expectation2.assertForOverFulfill = false
 
         let customerPaymentMethodParams = CustomerPaymentMethodParams(
                 customerUuid: customer?.uuid ?? "",
@@ -568,12 +567,11 @@ final class MonriPaymentsCustomerApiTest: XCTestCase {
                 offset: 0,
                 accessToken: tmpAccessToken
         )
-        self.monri.retrieveCustomerPaymentMethods(customerPaymentMethodParams) { (result: CustomerPaymentMethodResponseResult) in
+        self.monri.customers().paymentMethods(customerPaymentMethodParams) { (result: CustomerPaymentMethodResponseResult) in
             customerPaymentMethodResponseResult = result
             expectation2.fulfill()
         }
         wait(for: [expectation2], timeout: 25)
-//        waitForExpectations(timeout: 25, handler: nil)
 
         switch customerPaymentMethodResponseResult {
         case .result(let customerPaymentMethodResponse):
