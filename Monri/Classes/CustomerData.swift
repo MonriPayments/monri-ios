@@ -32,15 +32,15 @@ public class CustomerData {
             country: String? = nil
     ) {
         self.merchantCustomerUuid = merchantCustomerUuid
-        self.description = description ?? ""
-        self.email = email ?? ""
-        self.name = name ?? ""
-        self.phone = phone ?? ""
-        self.metadata = metadata ?? Dictionary<String, String>()
-        self.zipCode = zipCode ?? ""
-        self.city = city ?? ""
-        self.address = address ?? ""
-        self.country = country ?? ""
+        self.description = description
+        self.email = email
+        self.name = name
+        self.phone = phone
+        self.metadata = metadata
+        self.zipCode = zipCode
+        self.city = city
+        self.address = address
+        self.country = country
     }
 
     public func setMerchantCustomerUuid(_ newValue: String) -> CustomerData {

@@ -115,26 +115,27 @@ class ViewController: UIViewController {
                 address: "Džemala Bijedića 2",
                 country: "BA"
         )
+        
+        if(createdCustomer.uuid != nil){
+            createAccessToken { accessToken in
+                let customerUpdateRequest = UpdateCustomerParams(
+                        customerData: customerRequestBody,
+                        customerUuid: createdCustomer.uuid!,
+                        accessToken: accessToken
+                )
 
-        createAccessToken { accessToken in
-            let customerUpdateRequest = UpdateCustomerParams(
-                    customerData: customerRequestBody,
-                    customerUuid: createdCustomer.uuid,
-                    accessToken: accessToken
-            )
+                self.monri.customers().update(customerUpdateRequest) { (result: CustomerResult) in
+                    switch (result) {
+                    case .result(let customerUpdateResponse):
+                        print("customer update response\(customerUpdateResponse.name ?? "nil")")
+                        print("customer update response\(customerUpdateResponse.metadata ?? ["nil":"nil"])")
+                    case .error(let customerUpdateError):
+                        print("customer update error\(customerUpdateError)")
+                    }
 
-            self.monri.customers().update(customerUpdateRequest) { (result: CustomerResult) in
-                switch (result) {
-                case .result(let customerUpdateResponse):
-                    print("customer update response\(customerUpdateResponse.name)")
-                    print("customer update response\(customerUpdateResponse.metadata)")
-                case .error(let customerUpdateError):
-                    print("customer update error\(customerUpdateError)")
                 }
-
             }
         }
-
 
     }
 
@@ -143,18 +144,20 @@ class ViewController: UIViewController {
         guard let createdCustomer = createdCustomer else {
             return
         }
-
-        createAccessToken { accessToken in
-            let customerDeleteRequest = DeleteCustomerParams(
-                    customerUuid: createdCustomer.uuid,
-                    accessToken: accessToken
-            )
-            self.monri.customers().delete(customerDeleteRequest) { result in
-                switch (result) {
-                case .result(let customerDeleteResponse):
-                    print("customer delete response\(customerDeleteResponse.deleted)")
-                case .error(let message):
-                    print("customer update error\(message)")
+        
+        if(createdCustomer.uuid != nil){
+            createAccessToken { accessToken in
+                let customerDeleteRequest = DeleteCustomerParams(
+                        customerUuid: createdCustomer.uuid!,
+                        accessToken: accessToken
+                )
+                self.monri.customers().delete(customerDeleteRequest) { result in
+                    switch (result) {
+                    case .result(let customerDeleteResponse):
+                        print("customer delete response\(customerDeleteResponse.deleted)")
+                    case .error(let message):
+                        print("customer update error\(message)")
+                    }
                 }
             }
         }
@@ -165,22 +168,26 @@ class ViewController: UIViewController {
         guard let createdCustomer = createdCustomer else {
             return
         }
+        
+        if(createdCustomer.uuid != nil){
+            createAccessToken { accessToken in
+                let customerRetrieveRequest = RetrieveCustomerParams(
+                        accessToken: accessToken,
+                        customerUuid: createdCustomer.uuid!
+                )
 
-        createAccessToken { accessToken in
-            let customerRetrieveRequest = RetrieveCustomerParams(
-                    accessToken: accessToken,
-                    customerUuid: createdCustomer.uuid
-            )
-
-            self.monri.customers().get(customerRetrieveRequest) { result in
-                switch (result) {
-                case .result(let customerResponse):
-                    print("customer retrieve response\(customerResponse.city)")
-                case .error(let message):
-                    print("customer retrieve error\(message)")
+                self.monri.customers().get(customerRetrieveRequest) { result in
+                    switch (result) {
+                    case .result(let customerResponse):
+                        print("customer retrieve response\(customerResponse.city ?? "nil")")
+                    case .error(let message):
+                        print("customer retrieve error\(message)")
+                    }
                 }
             }
         }
+
+       
     }
 
 
@@ -188,22 +195,25 @@ class ViewController: UIViewController {
         guard let createdCustomer = createdCustomer else {
             return
         }
+        
+        if(createdCustomer.merchantCustomerUuid != nil){
+            createAccessToken { accessToken in
+                let customerRetrieveMerchantIdRequest = RetrieveCustomerViaMerchantCustomerUuidParams(
+                        accessToken: accessToken,
+                        merchantCustomerUuid: createdCustomer.merchantCustomerUuid!
+                )
 
-        createAccessToken { accessToken in
-            let customerRetrieveMerchantIdRequest = RetrieveCustomerViaMerchantCustomerUuidParams(
-                    accessToken: accessToken,
-                    merchantCustomerUuid: createdCustomer.merchantCustomerUuid
-            )
-
-            self.monri.customers().getViaMerchantCustomerUuid(customerRetrieveMerchantIdRequest) { result in
-                switch (result) {
-                case .result(let customerResponse):
-                    print("customer retrieve response\(customerResponse.city)")
-                case .error(let message):
-                    print("customer retrieve error\(message)")
+                self.monri.customers().getViaMerchantCustomerUuid(customerRetrieveMerchantIdRequest) { result in
+                    switch (result) {
+                    case .result(let customerResponse):
+                        print("customer retrieve response\(customerResponse.city ?? "nil")")
+                    case .error(let message):
+                        print("customer retrieve error\(message)")
+                    }
                 }
             }
         }
+      
     }
 
 
@@ -215,7 +225,7 @@ class ViewController: UIViewController {
                     print("All customers response: \(customerAllResponse.status)")
                     if (!customerAllResponse.customerResponseArray.isEmpty) {
                         let firstCustomer = customerAllResponse.customerResponseArray[0]
-                        print("All customers response first customer email: \(firstCustomer.email)")
+                        print("All customers response first customer email: \(firstCustomer.email ?? "nil")")
                     }
                 case .error(let message):
                     print("retrieve customers error\(message)")
@@ -229,21 +239,23 @@ class ViewController: UIViewController {
         guard let createdCustomer = createdCustomer else {
             return
         }
+        
+        if(createdCustomer.uuid != nil){
+            createAccessToken { accessToken in
+                let request = CustomerPaymentMethodParams(
+                        customerUuid: createdCustomer.uuid!,
+                        limit: 20,
+                        offset: 0,
+                        accessToken: accessToken
+                )
 
-        createAccessToken { accessToken in
-            let request = CustomerPaymentMethodParams(
-                    customerUuid: createdCustomer.uuid,
-                    limit: 20,
-                    offset: 0,
-                    accessToken: accessToken
-            )
-
-            self.monri.customers().paymentMethods(request) { result in
-                switch (result) {
-                case .result(let paymentMethodResponse):
-                    print("customer retrieve response\(paymentMethodResponse.status)")
-                case .error(let message):
-                    print("customer retrieve error\(message)")
+                self.monri.customers().paymentMethods(request) { result in
+                    switch (result) {
+                    case .result(let paymentMethodResponse):
+                        print("customer retrieve response\(paymentMethodResponse.status)")
+                    case .error(let message):
+                        print("customer retrieve error\(message)")
+                    }
                 }
             }
         }
