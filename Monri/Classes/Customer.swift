@@ -75,7 +75,7 @@ public class Customer {
 
         return Customer(
                 status: json["status"] as? String,
-                uuid: json["uuid"] as? String ?? "",
+                uuid: json["uuid"] as? String,
                 merchantCustomerUuid: json["merchant_customer_id"] as? String,
                 description: json["description"] as? String,
                 email: json["email"] as? String,
