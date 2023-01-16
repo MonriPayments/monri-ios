@@ -8,6 +8,7 @@
 
 import UIKit
 import Monri
+import Alamofire
 
 class ViewController: UIViewController {
 
@@ -15,6 +16,39 @@ class ViewController: UIViewController {
     let authenticityToken = "6a13d79bde8da9320e88923cb3472fb638619ccb";
     //TODO: replace with your merchant's merchant key
     let merchantKey = "TestKeyXULLyvgWyPJSwOHe";
+
+    func createAccessToken(_ callback: @escaping (String) -> Void) {
+
+        Alamofire.request(
+                        "https://dashboard.monri.com/api/examples/ruby/examples/access_token",
+                        method: .get,
+                        encoding: JSONEncoding.default
+
+                )
+                .responseJSON { dataResponse in
+                    guard let data = dataResponse.data else {
+                        callback("")
+                        return
+                    }
+                    do {
+                        guard let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] else {
+                            callback("")
+                            return
+                        }
+
+                        if (json["access_token"] != nil) {
+                            let accessToken = "Bearer " + (json["access_token"] as? String ?? "")
+
+                            callback(accessToken)
+                        } else {
+                            callback("nil")
+                        }
+
+                    } catch {
+                        callback("nil")
+                    }
+                }
+    }
 
     lazy var monri: MonriApi = {
         [unowned self] in
@@ -29,18 +63,217 @@ class ViewController: UIViewController {
 
     @IBOutlet weak var saveCardForFuturePaymentsSwitch: UISwitch!
 
+    let merchantUuid = UUID.init().uuidString
+    var createdCustomer: Customer? = nil
+
+    @IBAction func createCustomer(_ sender: Any) {
+        let customerRequestBody = CustomerData(
+                merchantCustomerUuid: merchantUuid,
+                description: "description",
+                email: "adnan.omerovic@monri.com",
+                name: "Adnan",
+                phone: "00387000111",
+                metadata: ["a": "b", "c": "d"],
+                zipCode: "71000",
+                city: "Sarajevo",
+                address: "Džemala Bijedića 2",
+                country: "BA"
+        )
+
+        createAccessToken { accessToken in
+            let createCustomerParams = CreateCustomerParams(accessToken: accessToken, customerData: customerRequestBody)
+
+            self.monri.customers().create(createCustomerParams) { (result: CustomerResult) in
+
+                switch (result) {
+                case .result(let customer):
+                    self.createdCustomer = customer
+                    print("customer response\(customer.email)")
+                    print("customer response\(customer.name)")
+                case .error(let customerError):
+                    print("customer error\(customerError)")
+                }
+
+            }
+        }
+    }
+
+    @IBAction func updateCustomer(_ sender: Any) {
+        guard let createdCustomer = createdCustomer else {
+            return
+        }
+
+        let customerRequestBody = CustomerData(
+                merchantCustomerUuid: merchantUuid,
+                description: "description",
+                email: "adnan.omerovic.updated@monri.com",
+                name: "Adnan Updated",
+                phone: "00387000111",
+                metadata: ["Updated at": "\(NSDate().timeIntervalSince1970)", "c": "d"],
+                zipCode: "71000",
+                city: "Sarajevo",
+                address: "Džemala Bijedića 2",
+                country: "BA"
+        )
+        
+        if(createdCustomer.uuid != nil){
+            createAccessToken { accessToken in
+                let customerUpdateRequest = UpdateCustomerParams(
+                        customerData: customerRequestBody,
+                        customerUuid: createdCustomer.uuid!,
+                        accessToken: accessToken
+                )
+
+                self.monri.customers().update(customerUpdateRequest) { (result: CustomerResult) in
+                    switch (result) {
+                    case .result(let customerUpdateResponse):
+                        print("customer update response\(customerUpdateResponse.name ?? "nil")")
+                        print("customer update response\(customerUpdateResponse.metadata ?? ["nil":"nil"])")
+                    case .error(let customerUpdateError):
+                        print("customer update error\(customerUpdateError)")
+                    }
+
+                }
+            }
+        }
+
+    }
+
+
+    @IBAction func deleteCustomer(_ sender: Any) {
+        guard let createdCustomer = createdCustomer else {
+            return
+        }
+        
+        if(createdCustomer.uuid != nil){
+            createAccessToken { accessToken in
+                let customerDeleteRequest = DeleteCustomerParams(
+                        customerUuid: createdCustomer.uuid!,
+                        accessToken: accessToken
+                )
+                self.monri.customers().delete(customerDeleteRequest) { result in
+                    switch (result) {
+                    case .result(let customerDeleteResponse):
+                        print("customer delete response\(customerDeleteResponse.deleted)")
+                    case .error(let message):
+                        print("customer update error\(message)")
+                    }
+                }
+            }
+        }
+    }
+
+
+    @IBAction func retrieveCustomer(_ sender: Any) {
+        guard let createdCustomer = createdCustomer else {
+            return
+        }
+        
+        if(createdCustomer.uuid != nil){
+            createAccessToken { accessToken in
+                let customerRetrieveRequest = RetrieveCustomerParams(
+                        accessToken: accessToken,
+                        customerUuid: createdCustomer.uuid!
+                )
+
+                self.monri.customers().get(customerRetrieveRequest) { result in
+                    switch (result) {
+                    case .result(let customerResponse):
+                        print("customer retrieve response\(customerResponse.city ?? "nil")")
+                    case .error(let message):
+                        print("customer retrieve error\(message)")
+                    }
+                }
+            }
+        }
+
+       
+    }
+
+
+    @IBAction func retrieveCustomerViaMerchantId(_ sender: Any) {
+        guard let createdCustomer = createdCustomer else {
+            return
+        }
+        
+        if(createdCustomer.merchantCustomerUuid != nil){
+            createAccessToken { accessToken in
+                let customerRetrieveMerchantIdRequest = RetrieveCustomerViaMerchantCustomerUuidParams(
+                        accessToken: accessToken,
+                        merchantCustomerUuid: createdCustomer.merchantCustomerUuid!
+                )
+
+                self.monri.customers().getViaMerchantCustomerUuid(customerRetrieveMerchantIdRequest) { result in
+                    switch (result) {
+                    case .result(let customerResponse):
+                        print("customer retrieve response\(customerResponse.city ?? "nil")")
+                    case .error(let message):
+                        print("customer retrieve error\(message)")
+                    }
+                }
+            }
+        }
+      
+    }
+
+
+    @IBAction func getAllCustomers(_ sender: Any) {
+        createAccessToken { accessToken in
+            self.monri.customers().all(accessToken) { result in
+                switch (result) {
+                case .result(let customerAllResponse):
+                    print("All customers response: \(customerAllResponse.status)")
+                    if (!customerAllResponse.customerResponseArray.isEmpty) {
+                        let firstCustomer = customerAllResponse.customerResponseArray[0]
+                        print("All customers response first customer email: \(firstCustomer.email ?? "nil")")
+                    }
+                case .error(let message):
+                    print("retrieve customers error\(message)")
+                }
+            }
+        }
+    }
+
+
+    @IBAction func retrieveSavedCardsFromCustomer(_ sender: Any) {
+        guard let createdCustomer = createdCustomer else {
+            return
+        }
+        
+        if(createdCustomer.uuid != nil){
+            createAccessToken { accessToken in
+                let request = CustomerPaymentMethodParams(
+                        customerUuid: createdCustomer.uuid!,
+                        limit: 20,
+                        offset: 0,
+                        accessToken: accessToken
+                )
+
+                self.monri.customers().paymentMethods(request) { result in
+                    switch (result) {
+                    case .result(let paymentMethodResponse):
+                        print("customer retrieve response\(paymentMethodResponse.status)")
+                    case .error(let message):
+                        print("customer retrieve error\(message)")
+                    }
+                }
+            }
+        }
+    }
+
+
     override func viewDidLoad() {
         super.viewDidLoad()
     }
 
     @IBAction func confirmPayment(sender: UIButton) {
-        
+
         var card = cardInlineView.getCard()
 
         // Save card for future payments
         card.tokenizePan = saveCardForFuturePaymentsSwitch.isOn
-        
-        if(!card.validateCard()) {
+
+        if (!card.validateCard()) {
             alert("Card validation failed")
             return
         }
@@ -51,6 +284,7 @@ class ViewController: UIViewController {
             }
 
             let customerParams: CustomerParams = CustomerParams(
+                    customerUuid: self.createdCustomer?.uuid,
                     email: "tester+ios_sdk@monri.com",
                     fullName: "Test iOS",
                     address: "Address",
@@ -132,14 +366,14 @@ class ViewController: UIViewController {
 
     }
 
-    func non3DSCard() -> PaymentMethodParams{
+    func non3DSCard() -> PaymentMethodParams {
         return Card(number: "4111 1111 1111 1111", cvc: "123", expMonth: 10, expYear: 2027).toPaymentMethodParams()
     }
 
-    func threeDSCard() -> PaymentMethodParams{
+    func threeDSCard() -> PaymentMethodParams {
         return Card(number: "4341 7920 0000 0044", cvc: "123", expMonth: 10, expYear: 2027).toPaymentMethodParams()
     }
-    
+
     func alert(_ message: String) {
         let alert = UIAlertController(title: "Info", message: message, preferredStyle: UIAlertControllerStyle.alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default))

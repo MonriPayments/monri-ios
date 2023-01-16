@@ -16,6 +16,7 @@ public final class MonriApi {
     private let tokenizeUrl: String
     private let options: MonriApiOptions
     public let httpApi: MonriHttpApi
+    private let customerApi: CustomerApi
 
     private weak var viewController: UIViewController?
 
@@ -27,7 +28,7 @@ public final class MonriApi {
     }
 
     public convenience init(_ vc: UIViewController, authenticityToken: String) {
-        self.init(vc,options: MonriApiOptions(authenticityToken: authenticityToken, developmentMode: true))
+        self.init(vc, options: MonriApiOptions(authenticityToken: authenticityToken, developmentMode: true))
     }
 
     public init(_ vc: UIViewController, options: MonriApiOptions) {
@@ -37,12 +38,10 @@ public final class MonriApi {
         self.tokenizeUrl = "\(apiUrl)/v2/temp-tokenize"
         self.options = options
         self.httpApi = MonriFactory().createHttpApi(options: options)
-            }
+        self.customerApi = CustomerApi(self.httpApi)
+    }
 
     public func createToken(_ request: TokenRequest, paymentMethod: PaymentMethod, _ callback: @escaping TokenResultCallback) {
-
-
-
         guard let createTokenRequest = CreateTokenRequest.from(token: request, paymentMethod: paymentMethod, authenticityToken: authenticityToken) else {
             callback(.error(TokenError.createTokenRequestError))
             return
@@ -71,17 +70,13 @@ public final class MonriApi {
                 }
     }
 
-    public func confirmPayment(_ confirmPaymentParams: ConfirmPaymentParams,  _ callback: @escaping ConfirmPaymentResultCallback) {
+    public func confirmPayment(_ confirmPaymentParams: ConfirmPaymentParams, _ callback: @escaping ConfirmPaymentResultCallback) {
         paymentController?.confirmPayment(params: confirmPaymentParams, callback)
     }
 
     public func paymentStatus(_ params: PaymentStatusParams) {
 
     }
-
-//        void confirmPayment(ConfirmPaymentParams params, ResultCallback<ConfirmPaymentResponse> callback);
-//
-//        void paymentStatus(PaymentStatusParams params, ResultCallback<PaymentStatusResponse> callback);
 
     public func createToken(_ request: TokenRequest, card: Card, _ callback: @escaping TokenResultCallback) {
 
@@ -96,6 +91,10 @@ public final class MonriApi {
         }
 
         return createToken(request, paymentMethod: card, callback)
+    }
+
+    public func customers() -> CustomerApi {
+        customerApi
     }
 
     private func validateTokenRequest(_ request: TokenRequest) -> TokenError? {

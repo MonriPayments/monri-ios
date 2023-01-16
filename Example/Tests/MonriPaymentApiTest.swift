@@ -16,8 +16,8 @@ class MonriPaymentApiTest: XCTestCase {
     //TODO: replace with your merchant's merchant key
     let merchantKey = "TestKeyXULLyvgWyPJSwOHe";
 
-    static let non3DSCard = Card(number: "4111 1111 1111 1111", cvc: "123", expMonth: 10, expYear: 2027).toPaymentMethodParams()
-    static let threeDSCard = Card(number: "4341 7920 0000 0044", cvc: "123", expMonth: 10, expYear: 2027).toPaymentMethodParams()
+    static let non3DSCard = Card(number: "4111 1111 1111 1111", cvc: "123", expMonth: 10, expYear: 2031).toPaymentMethodParams()
+    static let threeDSCard = Card(number: "4341 7920 0000 0044", cvc: "123", expMonth: 10, expYear: 2031).toPaymentMethodParams()
 
     var monriHttpApi: MonriHttpApi!
 
@@ -37,7 +37,12 @@ class MonriPaymentApiTest: XCTestCase {
     }
 
     func createPayment(_ callback: @escaping (String?, String?) -> Void) {
-        Alamofire.request("https://mobile.webteh.hr/example/create-payment-session", method: .post, parameters: [:], encoding: JSONEncoding.default)
+        Alamofire.request(
+            "https://dashboard.monri.com/api/examples/ruby/examples/create-payment-session",
+            method: .post,
+            parameters: [:],
+            encoding: JSONEncoding.default
+        )
                 .responseJSON { dataResponse in
                     guard let data = dataResponse.data else {
                         callback(nil, nil)
