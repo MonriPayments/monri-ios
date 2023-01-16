@@ -180,11 +180,12 @@ final class MonriPaymentsCustomerApiTest: XCTestCase {
                 switch result {
                 case .result(let customer):
                     XCTAssertNotNil(customer)
+                    XCTAssertNotNil(customer.uuid)
                     let customerUpdateRequest = UpdateCustomerParams(
                             customerData: customerData
                                     .setName("Adnan Update")
                                     .setEmail("email.update@monri.com"),
-                            customerUuid: customer.uuid,
+                            customerUuid: customer.uuid ?? "",
                             accessToken: accessToken
                     )
                     self.monri.customers().update(customerUpdateRequest) { (result: CustomerResult) in
@@ -250,7 +251,7 @@ final class MonriPaymentsCustomerApiTest: XCTestCase {
                     XCTAssertNotNil(customerResponse)
                     customer = customerResponse
                     let customerDeleteRequest = DeleteCustomerParams(
-                            customerUuid: customerResponse.uuid,
+                            customerUuid: customerResponse.uuid ?? "",
                             accessToken: accessToken
                     )
                     self.monri.customers().delete(customerDeleteRequest) { (result: DeleteCustomerResult) in
@@ -305,7 +306,7 @@ final class MonriPaymentsCustomerApiTest: XCTestCase {
                     XCTAssertNotNil(customerResponse)
                     let customerRetrieveRequest = RetrieveCustomerParams(
                             accessToken: accessToken,
-                            customerUuid: customerResponse.uuid
+                            customerUuid: customerResponse.uuid ?? ""
                     )
                     self.monri.customers().get(customerRetrieveRequest) { (result: CustomerResult) in
                         customerUpdateResult = result
@@ -427,7 +428,7 @@ final class MonriPaymentsCustomerApiTest: XCTestCase {
                     XCTAssertNotNil(customer)
                     let customerRetrieveRequest = RetrieveCustomerViaMerchantCustomerUuidParams(
                             accessToken: accessToken,
-                            merchantCustomerUuid: customer.merchantCustomerUuid
+                            merchantCustomerUuid: customer.merchantCustomerUuid ?? ""
                     )
                     self.monri.customers().getViaMerchantCustomerUuid(customerRetrieveRequest) { (result: CustomerResult) in
                         customerResult = result
