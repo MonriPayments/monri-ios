@@ -60,7 +60,53 @@ class ViewController: UIViewController {
     }
 
     @IBOutlet weak var cardInlineView: CardInlineView!
+    
 
+    @IBAction func payWithSaved3DSCard(_ sender: Any) {
+        let savedCard = SavedCard(panToken: "c32b3465be7278d239f68bb6d7623acf0530bf34574cf3b782754d281c76bd02", cvc: "123")
+        
+        repository.createPayment { response in
+            guard let response = response else {
+                return
+            }
+
+            let customerParams: CustomerParams = CustomerParams(
+                    customerUuid: self.createdCustomer?.uuid,
+                    email: "adnan.omerovic@monri.com",
+                    fullName: "Adnan Omerovic",
+                    address: "Address",
+                    city: "Sarajevo",
+                    zip: "71000",
+                    phone: "+38761000111",
+                    country: "BA"
+            )
+
+            let confirmPaymentParams = ConfirmPaymentParams(
+                    paymentId: response.clientSecret,
+                    paymentMethod: savedCard.toPaymentMethodParams(),
+                    transaction: TransactionParams.create().set(customerParams: customerParams)
+                            .set("order_info", "iOS SDK payment session")
+            )
+
+            self.monri.confirmPayment(confirmPaymentParams) { result in
+                switch (result) {
+                case .result(let r):
+                    self.alert("Transaction \(r.status)")
+                    print("\(r)")
+                case .error(let e):
+                    self.alert("Transaction error \(e)")
+                    print("\(e)")
+                case .declined(let d):
+                    self.alert("Transaction declined \(d.status)")
+                    print("\(d)")
+                case .pending:
+                    self.alert("Transaction pending")
+                    print("trx pending")
+                }
+            }
+        }
+    }
+    
     @IBOutlet weak var saveCardForFuturePaymentsSwitch: UISwitch!
 
     let merchantUuid = UUID.init().uuidString

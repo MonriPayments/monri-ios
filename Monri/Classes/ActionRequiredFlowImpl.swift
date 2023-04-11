@@ -96,17 +96,20 @@ class ActionRequiredFlowImpl: ActionRequiredFlow {
 extension ActionRequiredFlowImpl: TransactionAuthorizationFlowDelegate {
 
     func threeDs1Result(status: String, clientSecret: String) {
-        executeIfVc(action: "threeDs1Result") { vc in
-            logger.info("ThreeDs1Result, status = \(status), clientSecret = \(clientSecret)");
-
-            DispatchQueue.main.async {
-                vc.indicator.isHidden = false
-                vc.indicator.startAnimating()
-                vc.webView.isHidden = true
-            }
-
-            checkPaymentStatus(clientSecret: clientSecret, count: atomicInteger.incrementAndGet())
+        logger.info("ThreeDs1Result, status = \(status), clientSecret = \(clientSecret)");
+        
+        guard let vc = vc else {
+            logger.info("Tried executing threeDs1Result:\(status), vc is nil")
+            return
         }
+
+        DispatchQueue.main.async {
+            vc.indicator.isHidden = false
+            vc.indicator.startAnimating()
+            vc.webView.isHidden = true
+        }
+
+        checkPaymentStatus(clientSecret: clientSecret, count: atomicInteger.incrementAndGet())
     }
 
     func checkPaymentStatus(clientSecret: String, count: Int) {
