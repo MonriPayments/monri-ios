@@ -8,11 +8,12 @@ import Alamofire
 class AlamofireMonriHttpClient: MonriHttpClient {
 
     func jsonPost(url: String, body: [String: Any], headers: [String: String], _ callback: @escaping (MonriHttpClientResponse) -> Void) {
-        Alamofire.request(url,
+        let alamofireHeaders = HTTPHeaders(headers)
+        AF.request(url,
                         method: .post,
                         parameters: body,
                         encoding: JSONEncoding.default,
-                        headers: headers
+                        headers: alamofireHeaders
                 )
                 .responseJSON { dataResponse in
                     self.handleResponse(dataResponse, callback)
@@ -20,10 +21,11 @@ class AlamofireMonriHttpClient: MonriHttpClient {
     }
 
     func jsonGet(url: String, headers: [String: String], _ callback: @escaping (MonriHttpClientResponse) -> Void) {
-        Alamofire.request(url,
+        let alamofireHeaders = HTTPHeaders(headers)
+        AF.request(url,
                         method: .get,
                         encoding: JSONEncoding.default,
-                        headers: headers
+                        headers: alamofireHeaders
                 )
                 .responseJSON { dataResponse in
                     self.handleResponse(dataResponse, callback)
@@ -31,17 +33,18 @@ class AlamofireMonriHttpClient: MonriHttpClient {
     }
 
     func jsonDelete(url: String, headers: [String: String], _ callback: @escaping (MonriHttpClientResponse) -> Void) {
-        Alamofire.request(url,
+        let alamofireHeaders = HTTPHeaders(headers)
+        AF.request(url,
                         method: .delete,
                         encoding: JSONEncoding.default,
-                        headers: headers
+                        headers: alamofireHeaders
                 )
                 .responseJSON { dataResponse in
                     self.handleResponse(dataResponse, callback)
                 }
     }
 
-    func handleResponse(_ dataResponse: DataResponse<Any>, _ callback: @escaping (MonriHttpClientResponse) -> Void) {
+    func handleResponse(_ dataResponse: DataResponse<Any, AFError>, _ callback: @escaping (MonriHttpClientResponse) -> Void) {
         do {
             let statusCode = dataResponse.response!.statusCode
 

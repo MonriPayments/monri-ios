@@ -37,7 +37,7 @@ class MonriPaymentApiTest: XCTestCase {
     }
 
     func createPayment(_ callback: @escaping (String?, String?) -> Void) {
-        Alamofire.request(
+        AF.request(
             "https://dashboard.monri.com/api/examples/ruby/examples/create-payment-session",
             method: .post,
             parameters: [:],
