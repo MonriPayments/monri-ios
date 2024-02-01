@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="JtB-8T-DtR">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="JtB-8T-DtR">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -32,25 +32,20 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="scV-cQ-fBH" customClass="CardInlineView" customModule="Monri">
-                                <rect key="frame" x="20" y="102" width="343" height="24"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="34p-Zb-f0w">
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="34p-Zb-f0w">
                                 <rect key="frame" x="172" y="152" width="30" height="30"/>
                                 <state key="normal" title="Pay"/>
                                 <connections>
                                     <action selector="confirmPaymentWithSender:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="fgr-Fz-gWB"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Save card for future payments" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pZf-AK-fc3">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Save card for future payments" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pZf-AK-fc3">
                                 <rect key="frame" x="99.5" y="222" width="229.5" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="H9b-W4-JfM">
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="H9b-W4-JfM">
                                 <rect key="frame" x="44.5" y="217" width="51" height="31"/>
                             </switch>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QS0-Rw-rie">
@@ -133,17 +128,11 @@
                             <constraint firstItem="pZf-AK-fc3" firstAttribute="top" secondItem="34p-Zb-f0w" secondAttribute="bottom" constant="40" id="KOR-VB-QPt"/>
                             <constraint firstItem="aUf-Ou-tAk" firstAttribute="trailing" secondItem="pZf-AK-fc3" secondAttribute="trailing" constant="46" id="L6s-Xw-CgQ"/>
                             <constraint firstItem="pZf-AK-fc3" firstAttribute="leading" secondItem="H9b-W4-JfM" secondAttribute="trailing" constant="6" id="OaY-Nm-vX3"/>
-                            <constraint firstItem="scV-cQ-fBH" firstAttribute="top" secondItem="aUf-Ou-tAk" secondAttribute="top" constant="38" id="TAf-cs-E7O"/>
-                            <constraint firstItem="scV-cQ-fBH" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="4" id="Ws4-PX-DSS"/>
-                            <constraint firstItem="scV-cQ-fBH" firstAttribute="trailing" secondItem="kh9-bI-dsS" secondAttribute="trailingMargin" constant="4" id="Xvw-St-Si1"/>
-                            <constraint firstItem="34p-Zb-f0w" firstAttribute="top" secondItem="scV-cQ-fBH" secondAttribute="bottom" constant="26" id="d4d-nB-yNu"/>
                             <constraint firstItem="34p-Zb-f0w" firstAttribute="leading" secondItem="aUf-Ou-tAk" secondAttribute="leading" constant="172" id="hcm-uz-Nbb"/>
-                            <constraint firstItem="scV-cQ-fBH" firstAttribute="centerX" secondItem="34p-Zb-f0w" secondAttribute="centerX" constant="4.5" id="p0h-t6-EgH"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Ejz-1R-HIA"/>
                     <connections>
-                        <outlet property="cardInlineView" destination="scV-cQ-fBH" id="qdd-jy-bsL"/>
                         <outlet property="saveCardForFuturePaymentsSwitch" destination="H9b-W4-JfM" id="20O-Y8-ghZ"/>
                     </connections>
                 </viewController>
