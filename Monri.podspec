@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'Monri'
-  s.version          = '1.5.0'
+  s.version          = '2.0.0'
   s.summary          = 'Monri iOS SDK'
 
   s.description      = 'Monri iOS SDK - simplified card collection & payment'
@@ -27,6 +27,5 @@ Pod::Spec.new do |s|
 
   s.source_files = 'Monri/Classes/**/*'
   
-  s.dependency 'Caishen'
   s.dependency 'Alamofire', '~> 5.2.1'
 end

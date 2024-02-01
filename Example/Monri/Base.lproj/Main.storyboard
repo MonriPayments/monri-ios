@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="JtB-8T-DtR">
-    <device id="retina4_7" orientation="portrait" appearance="light"/>
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
@@ -13,7 +13,7 @@
             <objects>
                 <navigationController id="JtB-8T-DtR" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="uJD-5B-KNv">
-                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -29,96 +29,83 @@
             <objects>
                 <viewController id="vXZ-lx-hvc" customClass="ViewController" customModule="Monri_Example" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="scV-cQ-fBH" customClass="CardInlineView" customModule="Monri">
-                                <rect key="frame" x="20" y="102" width="343" height="24"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="34p-Zb-f0w">
-                                <rect key="frame" x="172" y="152" width="30" height="30"/>
+                                <rect key="frame" x="172" y="152" width="31" height="30"/>
                                 <state key="normal" title="Pay"/>
                                 <connections>
                                     <action selector="confirmPaymentWithSender:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="fgr-Fz-gWB"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Save card for future payments" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pZf-AK-fc3">
-                                <rect key="frame" x="99.5" y="222" width="229.5" height="21"/>
+                                <rect key="frame" x="117.66666666666667" y="222" width="229.33333333333331" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="H9b-W4-JfM">
-                                <rect key="frame" x="44.5" y="217" width="51" height="31"/>
+                                <rect key="frame" x="62.666666666666657" y="217" width="51" height="31"/>
                             </switch>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QS0-Rw-rie">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QS0-Rw-rie">
                                 <rect key="frame" x="105" y="316" width="165" height="35"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Create a customer"/>
                                 <connections>
                                     <action selector="createCustomer:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="ts4-Nz-qv2"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZeR-5E-1oF">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZeR-5E-1oF">
                                 <rect key="frame" x="112" y="359" width="157" height="35"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Update customer"/>
                                 <connections>
                                     <action selector="updateCustomer:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="TfF-bJ-lfe"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NcC-rv-W6e">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NcC-rv-W6e">
                                 <rect key="frame" x="106" y="441" width="163" height="35"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Retrieve customer"/>
                                 <connections>
                                     <action selector="retrieveCustomer:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="yBR-Ke-WdZ"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ssn-8O-nZq">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ssn-8O-nZq">
                                 <rect key="frame" x="46" y="484" width="283" height="35"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Retrieve customer via merchant id"/>
                                 <connections>
                                     <action selector="retrieveCustomerViaMerchantId:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="Y6R-BQ-fbN"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gKa-y5-0Ka">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gKa-y5-0Ka">
                                 <rect key="frame" x="109" y="527" width="157" height="35"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Get all customers"/>
                                 <connections>
                                     <action selector="getAllCustomers:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="KTC-VB-hW1"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ucJ-b7-Azd">
-                                <rect key="frame" x="113" y="398" width="150" height="35"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ucJ-b7-Azd">
+                                <rect key="frame" x="112.66666666666669" y="398" width="150" height="35"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Delete customer"/>
                                 <connections>
                                     <action selector="deleteCustomer:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="YzQ-E5-NIx"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dRh-Qa-UQx">
-                                <rect key="frame" x="42" y="570" width="298" height="35"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dRh-Qa-UQx">
+                                <rect key="frame" x="41" y="570" width="299" height="35"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Retrieve saved cards from customer"/>
                                 <connections>
                                     <action selector="retrieveSavedCardsFromCustomer:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="4eA-1o-pZI"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C0M-Pp-UGP">
-                                <rect key="frame" x="121" y="273" width="141" height="35"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C0M-Pp-UGP">
+                                <rect key="frame" x="121" y="273" width="142" height="35"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="saved card 3ds"/>
                                 <connections>
@@ -129,27 +116,45 @@
                         <viewLayoutGuide key="safeArea" id="aUf-Ou-tAk"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="ucJ-b7-Azd" firstAttribute="centerX" secondItem="NcC-rv-W6e" secondAttribute="centerX" id="0Th-qo-mWA"/>
+                            <constraint firstItem="gKa-y5-0Ka" firstAttribute="top" secondItem="ssn-8O-nZq" secondAttribute="bottom" constant="8" id="6v0-lh-UF0"/>
+                            <constraint firstItem="aUf-Ou-tAk" firstAttribute="trailing" secondItem="dRh-Qa-UQx" secondAttribute="trailing" constant="53" id="7ue-Yb-f5k"/>
                             <constraint firstItem="pZf-AK-fc3" firstAttribute="centerY" secondItem="H9b-W4-JfM" secondAttribute="centerY" id="82B-ns-wub"/>
+                            <constraint firstItem="gKa-y5-0Ka" firstAttribute="leading" secondItem="aUf-Ou-tAk" secondAttribute="leading" constant="109" id="DlR-NF-Fwk"/>
+                            <constraint firstItem="ucJ-b7-Azd" firstAttribute="top" secondItem="ZeR-5E-1oF" secondAttribute="bottom" constant="4" id="EAC-6b-Fyn"/>
+                            <constraint firstItem="NcC-rv-W6e" firstAttribute="centerX" secondItem="ssn-8O-nZq" secondAttribute="centerX" id="GJK-Tb-gTV"/>
+                            <constraint firstItem="QS0-Rw-rie" firstAttribute="leading" secondItem="aUf-Ou-tAk" secondAttribute="leading" constant="105" id="Ic8-Ff-mkv"/>
                             <constraint firstItem="pZf-AK-fc3" firstAttribute="top" secondItem="34p-Zb-f0w" secondAttribute="bottom" constant="40" id="KOR-VB-QPt"/>
                             <constraint firstItem="aUf-Ou-tAk" firstAttribute="trailing" secondItem="pZf-AK-fc3" secondAttribute="trailing" constant="46" id="L6s-Xw-CgQ"/>
                             <constraint firstItem="pZf-AK-fc3" firstAttribute="leading" secondItem="H9b-W4-JfM" secondAttribute="trailing" constant="6" id="OaY-Nm-vX3"/>
-                            <constraint firstItem="scV-cQ-fBH" firstAttribute="top" secondItem="aUf-Ou-tAk" secondAttribute="top" constant="38" id="TAf-cs-E7O"/>
-                            <constraint firstItem="scV-cQ-fBH" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="4" id="Ws4-PX-DSS"/>
-                            <constraint firstItem="scV-cQ-fBH" firstAttribute="trailing" secondItem="kh9-bI-dsS" secondAttribute="trailingMargin" constant="4" id="Xvw-St-Si1"/>
-                            <constraint firstItem="34p-Zb-f0w" firstAttribute="top" secondItem="scV-cQ-fBH" secondAttribute="bottom" constant="26" id="d4d-nB-yNu"/>
+                            <constraint firstItem="ZeR-5E-1oF" firstAttribute="leading" secondItem="aUf-Ou-tAk" secondAttribute="leading" constant="112" id="Q8J-7N-PE6"/>
+                            <constraint firstItem="NcC-rv-W6e" firstAttribute="leading" secondItem="aUf-Ou-tAk" secondAttribute="leading" constant="106" id="VSq-70-wwi"/>
+                            <constraint firstItem="34p-Zb-f0w" firstAttribute="centerX" secondItem="QS0-Rw-rie" secondAttribute="centerX" id="X2Q-wS-pbp"/>
+                            <constraint firstItem="C0M-Pp-UGP" firstAttribute="top" secondItem="pZf-AK-fc3" secondAttribute="bottom" constant="30" id="Y9U-ve-oWy"/>
+                            <constraint firstItem="ssn-8O-nZq" firstAttribute="centerX" secondItem="gKa-y5-0Ka" secondAttribute="centerX" id="Zvb-jt-57o"/>
+                            <constraint firstItem="ssn-8O-nZq" firstAttribute="leading" secondItem="aUf-Ou-tAk" secondAttribute="leading" constant="46" id="dz2-Tm-e2f"/>
+                            <constraint firstItem="NcC-rv-W6e" firstAttribute="top" secondItem="ucJ-b7-Azd" secondAttribute="bottom" constant="8" id="ePE-pf-PV4"/>
                             <constraint firstItem="34p-Zb-f0w" firstAttribute="leading" secondItem="aUf-Ou-tAk" secondAttribute="leading" constant="172" id="hcm-uz-Nbb"/>
-                            <constraint firstItem="scV-cQ-fBH" firstAttribute="centerX" secondItem="34p-Zb-f0w" secondAttribute="centerX" constant="4.5" id="p0h-t6-EgH"/>
+                            <constraint firstItem="C0M-Pp-UGP" firstAttribute="centerX" secondItem="dRh-Qa-UQx" secondAttribute="centerX" constant="1" id="j7n-2X-JSE"/>
+                            <constraint firstItem="pZf-AK-fc3" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" constant="222" id="lLP-Et-r3m"/>
+                            <constraint firstItem="C0M-Pp-UGP" firstAttribute="leading" secondItem="aUf-Ou-tAk" secondAttribute="leading" constant="121" id="oIZ-c7-lqN"/>
+                            <constraint firstItem="QS0-Rw-rie" firstAttribute="centerX" secondItem="ucJ-b7-Azd" secondAttribute="centerX" id="pVs-R5-xI6"/>
+                            <constraint firstItem="ssn-8O-nZq" firstAttribute="top" secondItem="NcC-rv-W6e" secondAttribute="bottom" constant="8" id="r6d-l1-c64"/>
+                            <constraint firstItem="ZeR-5E-1oF" firstAttribute="top" secondItem="QS0-Rw-rie" secondAttribute="bottom" constant="8" id="sGm-Ek-hZ3"/>
+                            <constraint firstItem="dRh-Qa-UQx" firstAttribute="top" secondItem="gKa-y5-0Ka" secondAttribute="bottom" constant="8" id="tKQ-Mt-eew"/>
+                            <constraint firstItem="ZeR-5E-1oF" firstAttribute="centerX" secondItem="dRh-Qa-UQx" secondAttribute="centerX" id="uSx-ZN-Fdt"/>
+                            <constraint firstItem="ZeR-5E-1oF" firstAttribute="trailing" secondItem="NcC-rv-W6e" secondAttribute="trailing" id="uYY-iV-slL"/>
+                            <constraint firstItem="QS0-Rw-rie" firstAttribute="top" secondItem="C0M-Pp-UGP" secondAttribute="bottom" constant="8" id="v1Q-PQ-s67"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Ejz-1R-HIA"/>
                     <connections>
-                        <outlet property="cardInlineView" destination="scV-cQ-fBH" id="qdd-jy-bsL"/>
                         <outlet property="saveCardForFuturePaymentsSwitch" destination="H9b-W4-JfM" id="20O-Y8-ghZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="292" y="-106"/>
+            <point key="canvasLocation" x="290.83969465648852" y="-106.33802816901409"/>
         </scene>
     </scenes>
 </document>

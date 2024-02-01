@@ -288,13 +288,11 @@
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Monri_Example/Pods-Monri_Example-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
-				"${BUILT_PRODUCTS_DIR}/Caishen/Caishen.framework",
 				"${BUILT_PRODUCTS_DIR}/Monri/Monri.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Caishen.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Monri.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
