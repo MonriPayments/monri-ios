@@ -20,7 +20,7 @@ public class OrdersRepository {
     }
 
     public func createPayment(_ callback: @escaping (NewPaymentResponse?) -> Void) {
-        Alamofire.request("https://dashboard.monri.com/api/examples/ruby/examples/create-payment-session",
+        AF.request("https://dashboard.monri.com/api/examples/ruby/examples/create-payment-session",
                           method: .post,
 //                          parameters: ["skip_authentication":"true"],
                           parameters: [:],

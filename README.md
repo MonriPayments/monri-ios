@@ -13,7 +13,7 @@ CocoaPods:
 1. If you haven't already, install the latest version of [CocoaPods](https://guides.cocoapods.org/using/getting-started.html)
 2. Add this line to your Podfile:
 ```ruby
-pod 'Monri', '~> 1.0'
+pod 'Monri', '~> 1.5'
 ```
 3. Run the following command:
 ```bash
@@ -26,6 +26,11 @@ pod update Monri
 ```
 
 For full installation/configuration guide check our wiki page at [Installation Guide](https://github.com/MonriPayments/monri-ios/wiki/Installation-Guide)
+
+## Version 1.5.0
+
+In version 1.5.0 we have upgraded Alamofire dependency from `~4.0` to `~> 5.2.1`. If you encounter any issues with dependency upgrade let us know through GitHub issues or by sending an email to helpdesk@monri.com`
+
 
 # Payment API Integration
 

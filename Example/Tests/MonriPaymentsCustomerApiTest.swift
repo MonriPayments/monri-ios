@@ -49,7 +49,7 @@ final class MonriPaymentsCustomerApiTest: XCTestCase {
     }
 
     private func createPayment(_ callback: @escaping (String?, String?) -> Void) {
-        Alamofire.request("https://dashboard.monri.com/api/examples/ruby/examples/create-payment-session", method: .post, parameters: [:], encoding: JSONEncoding.default)
+        AF.request("https://dashboard.monri.com/api/examples/ruby/examples/create-payment-session", method: .post, parameters: [:], encoding: JSONEncoding.default)
                 .responseJSON { dataResponse in
                     guard let data = dataResponse.data else {
                         callback(nil, nil)
@@ -75,7 +75,7 @@ final class MonriPaymentsCustomerApiTest: XCTestCase {
             callback(self.accessToken!)
         }
 
-        Alamofire.request(
+        AF.request(
                         "https://dashboard.monri.com/api/examples/ruby/examples/access_token",
                         method: .get,
                         encoding: JSONEncoding.default

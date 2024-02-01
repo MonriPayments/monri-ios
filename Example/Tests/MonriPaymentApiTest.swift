@@ -37,7 +37,7 @@ class MonriPaymentApiTest: XCTestCase {
     }
 
     func createPayment(_ callback: @escaping (String?, String?) -> Void) {
-        Alamofire.request(
+        AF.request(
             "https://dashboard.monri.com/api/examples/ruby/examples/create-payment-session",
             method: .post,
             parameters: [:],
@@ -211,7 +211,7 @@ class MonriPaymentApiTest: XCTestCase {
             }
         }
 
-        waitForExpectations(timeout: 5, handler: nil)
+        waitForExpectations(timeout: 30, handler: nil)
 
         expect(error).to(beNil())
         expect(confirmPaymentStatus).to(equal("action_required"))
@@ -234,7 +234,7 @@ class MonriPaymentApiTest: XCTestCase {
             expectation.fulfill()
         }
 
-        waitForExpectations(timeout: 5, handler: nil)
+        waitForExpectations(timeout: 30, handler: nil)
         expect(error).to(beNil())
         expect(clientSecret).notTo(beNil())
         expect(response).notTo(beNil())
@@ -246,7 +246,7 @@ class MonriPaymentApiTest: XCTestCase {
             expectation2.fulfill()
         }
 
-        waitForExpectations(timeout: 5, handler: nil)
+        waitForExpectations(timeout: 30, handler: nil)
         expect(paymentStatusResponse).notTo(beNil())
         switch (paymentStatusResponse!) {
         case .error(let e):
@@ -306,7 +306,7 @@ class MonriPaymentApiTest: XCTestCase {
             }
         }
 
-        waitForExpectations(timeout: 5, handler: nil)
+        waitForExpectations(timeout: 30, handler: nil)
 
         expect(error).to(beNil())
         expect(confirmPaymentStatus).to(equal("approved"))
@@ -342,7 +342,7 @@ class MonriPaymentApiTest: XCTestCase {
         // merchantKey, token, timestamp
         let digest = "\(merchantKey)\(token)\(timestamp)".sha512
         let tokenRequest = TokenRequest(token: token, digest: digest, timestamp: timestamp)
-        let card = Card(number: "4111 1111 1111 1111", cvc: "123", expMonth: 12, expYear: 2022)
+        let card = Card(number: "4111 1111 1111 1111", cvc: "123", expMonth: 12, expYear: 2027)
         var createTokenResult: Token? = nil
         var error: Error? = nil
         // Create an expectation
@@ -358,7 +358,7 @@ class MonriPaymentApiTest: XCTestCase {
             expectation.fulfill()
         }
 
-        waitForExpectations(timeout: 5, handler: nil)
+        waitForExpectations(timeout: 30, handler: nil)
         expect(error).to(beNil())
         expect(createTokenResult).notTo(be(nil))
         expect(createTokenResult!.id).to(equal(token))

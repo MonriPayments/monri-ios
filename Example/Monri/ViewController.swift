@@ -19,7 +19,7 @@ class ViewController: UIViewController {
 
     func createAccessToken(_ callback: @escaping (String) -> Void) {
 
-        Alamofire.request(
+        AF.request(
                         "https://dashboard.monri.com/api/examples/ruby/examples/access_token",
                         method: .get,
                         encoding: JSONEncoding.default
