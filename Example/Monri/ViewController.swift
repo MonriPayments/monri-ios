@@ -9,18 +9,20 @@
 import UIKit
 import Monri
 import Alamofire
+import PassKit
 
 class ViewController: UIViewController {
     
     // TODO: replace with your merchant's authenticity monriToken
-    let authenticityToken = "6a13d79bde8da9320e88923cb3472fb638619ccb"
+    let authenticityToken = "c6301017117302601b823874972a97acce96f2df"
     //TODO: replace with your merchant's merchant key
-    let merchantKey = "TestKeyXULLyvgWyPJSwOHe";
-
+    let merchantKey = "key-e428ba618ebc232a595d0851398b8a5d"
+    var applePayHandler: ApplePayHandler? //Has to be strong refrence!
+    
     func createAccessToken(_ callback: @escaping (String) -> Void) {
         
         AF.request(
-            "https://dashboard.monri.com/api/examples/ruby/examples/access_token",
+            "https://ipgtest.monri.com/v2/access_token",
             method: .get,
             encoding: JSONEncoding.default
         )
@@ -55,7 +57,7 @@ class ViewController: UIViewController {
     }()
     
     var repository: OrdersRepository {
-        OrdersRepository(authenticityToken: authenticityToken)
+        OrdersRepository(authenticityToken: authenticityToken, key: merchantKey)
     }
     
     
@@ -307,13 +309,15 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        createApplePay()
     }
     
     @IBAction func confirmPayment(sender: UIButton) {
-        var card = Card(number: "4111111111111111", cvc: "123", expMonth: 12, expYear: 2027);
+        var card = Card(number: "4341792000000044", cvc: "123", expMonth: 12, expYear: 2027)
         
         // Save card for future payments
-        card.tokenizePan = saveCardForFuturePaymentsSwitch.isOn
+        //card.tokenizePan = saveCardForFuturePaymentsSwitch.isOn
         
         if (!card.validateCard()) {
             alert("Card validation failed")
@@ -420,5 +424,62 @@ class ViewController: UIViewController {
         }
     }
     
+    
+    func createApplePay() {
+        
+        repository.createPayment { response in
+            guard let response = response else {
+                return
+            }
+            
+            let customerParams: CustomerParams = CustomerParams(
+                customerUuid: self.createdCustomer?.uuid,
+                email: "tester+ios_sdk@monri.com",
+                fullName: "Tester Testerovic",
+                address: "Address",
+                city: "Sarajevo",
+                zip: "71000",
+                phone: "+38761000111",
+                country: "BA"
+            )
+            
+            let confirmPaymentParams = ConfirmPaymentParams(
+                paymentId: response.clientSecret,
+                paymentMethod: ApplePayPayment(paymentProvider: ApplePayPayment.Provider.APPLE_PAY).toPaymentMethodParams(),
+                transaction: TransactionParams.create().set(customerParams: customerParams)
+                    .set("order_info", "iOS SDK payment session")
+            )
+            
+            self.applePayHandler = ApplePayHandler(apiOptions: MonriApiOptions(authenticityToken: self.authenticityToken, developmentMode: true), monriApi: self.monri, confirmPaymentParams: confirmPaymentParams, applePayDelegate: self, merchantID: "merchant.monri.skunca.karolina")
+            
+            if self.applePayHandler!.applePayStatus().canMakePayments {
+                
+                //Get apple button
+                guard let applePayButton = self.applePayHandler!.createButton(paymentButtonType: .checkout, paymentButtonStyle: .black) else {
+                    return
+                }
+                
+                applePayButton.translatesAutoresizingMaskIntoConstraints = false
+                
+                self.view.addSubview(applePayButton)
+                
+                // Add constraints
+                NSLayoutConstraint.activate([
+                    applePayButton.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 15),
+                    applePayButton.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -15),
+                    applePayButton.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant: -20),
+                    applePayButton.heightAnchor.constraint(equalToConstant: 50)
+                ])
+            }
+        }
+        
+    }
+
+}
+
+extension ViewController: ApplePayDelegate {
+    func onApplePaymentFinished(pkPaymentAuthorizationResult: PKPaymentAuthorizationResult) {
+        print(pkPaymentAuthorizationResult)
+    }
 }
 

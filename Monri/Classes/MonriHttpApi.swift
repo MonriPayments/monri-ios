@@ -15,4 +15,5 @@ public protocol MonriHttpApi {
     func retrieveCustomerViaMerchantCustomerUuid(_ params: RetrieveCustomerViaMerchantCustomerUuidParams, _ callback: @escaping CustomerCallback)
     func retrieveAllCustomers(_ accessToken: String, _ callback: @escaping MerchantCustomersCallback)
     func retrieveCustomerPaymentMethods(_ params: CustomerPaymentMethodParams, _ callback: @escaping CustomerPaymentMethodResponseCallback)
+    func startApplePay(_ params: ApplePayParams, _ callback: @escaping (ApplePaymentMethodResponseResult?) -> Void)
 }

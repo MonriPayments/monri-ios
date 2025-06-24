@@ -15,6 +15,8 @@ public class NewPaymentResponse {
     }
 
     public static func fromJson(_ json: Dictionary<String, Any>) -> NewPaymentResponse? {
-        return NewPaymentResponse(clientSecret: json["client_secret"] as! String, status: json["status"] as! String)
+        
+        guard let clientSecret = json["client_secret"] as? String, let status = json["status"] as? String else { return nil }
+        return NewPaymentResponse(clientSecret: clientSecret, status: status)
     }
 }
