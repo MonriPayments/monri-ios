@@ -20,15 +20,10 @@ public final class MonriApi {
 
     private weak var viewController: UIViewController?
 
-    private var paymentController: PaymentController? {
-        guard let nc = viewController else {
-            return nil
-        }
-        return MonriPaymentController(viewController: nc, options: options)
-    }
+    private var paymentController: PaymentController?
 
-    public convenience init(_ vc: UIViewController, authenticityToken: String) {
-        self.init(vc, options: MonriApiOptions(authenticityToken: authenticityToken, developmentMode: true))
+    public convenience init(_ vc: UIViewController, authenticityToken: String, merchantID: String? = nil) {
+        self.init(vc, options: MonriApiOptions(authenticityToken: authenticityToken, developmentMode: true, merchantID: merchantID))
     }
 
     public init(_ vc: UIViewController, options: MonriApiOptions) {
@@ -39,6 +34,8 @@ public final class MonriApi {
         self.options = options
         self.httpApi = MonriFactory().createHttpApi(options: options)
         self.customerApi = CustomerApi(self.httpApi)
+        
+        paymentController = MonriPaymentController(viewController: vc, options: options)
     }
 
     public func createToken(_ request: TokenRequest, paymentMethod: PaymentMethod, _ callback: @escaping TokenResultCallback) {

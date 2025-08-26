@@ -17,6 +17,8 @@ class ViewController: UIViewController {
     let authenticityToken = "c6301017117302601b823874972a97acce96f2df"
     //TODO: replace with your merchant's merchant key
     let merchantKey = "key-e428ba618ebc232a595d0851398b8a5d"
+    //TODO: replace with your mechantID created in Apple Developer
+    let applePayMerchantID = "merchant.id.example"
     var applePayHandler: ApplePayHandler? //Has to be strong refrence!
     
     func createAccessToken(_ callback: @escaping (String) -> Void) {
@@ -53,11 +55,11 @@ class ViewController: UIViewController {
     
     lazy var monri: MonriApi = {
         [unowned self] in
-        return MonriApi(self.navigationController!, options: MonriApiOptions(authenticityToken: authenticityToken, developmentMode: true))
+        return MonriApi(self.navigationController!, options: MonriApiOptions(authenticityToken: authenticityToken, developmentMode: true, merchantID: "merchant.monri.skunca.karolina"))
     }()
     
     var repository: OrdersRepository {
-        OrdersRepository(authenticityToken: authenticityToken, key: merchantKey)
+        OrdersRepository(authenticityToken: authenticityToken, key: merchantKey, merchantID: applePayMerchantID)
     }
     
     
@@ -310,7 +312,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        createApplePay()
+        createApplePayHandler()
     }
     
     @IBAction func confirmPayment(sender: UIButton) {
@@ -424,8 +426,11 @@ class ViewController: UIViewController {
         }
     }
     
+    @IBAction func applePayConfirmPayment(_ sender: Any) {
+        createApplePayConfirmPayment()
+    }
     
-    func createApplePay() {
+    func createApplePayHandler() {
         
         repository.createPayment { response in
             guard let response = response else {
@@ -450,12 +455,12 @@ class ViewController: UIViewController {
                     .set("order_info", "iOS SDK payment session")
             )
             
-            self.applePayHandler = ApplePayHandler(apiOptions: MonriApiOptions(authenticityToken: self.authenticityToken, developmentMode: true), monriApi: self.monri, confirmPaymentParams: confirmPaymentParams, applePayDelegate: self, merchantID: "merchant.monri.skunca.karolina")
+            self.applePayHandler = ApplePayHandler(monriApi: self.monri.httpApi, applePayDelegate: self, merchantID: "merchant.monri.skunca.karolina")
             
             if self.applePayHandler!.applePayStatus().canMakePayments {
                 
                 //Get apple button
-                guard let applePayButton = self.applePayHandler!.createButton(paymentButtonType: .checkout, paymentButtonStyle: .black) else {
+                guard let applePayButton = self.applePayHandler!.createButton(paymentButtonType: .checkout, paymentButtonStyle: .black, confirmPaymentParams: confirmPaymentParams) else {
                     return
                 }
                 
@@ -474,12 +479,58 @@ class ViewController: UIViewController {
         }
         
     }
+    
+    func createApplePayConfirmPayment() {
+        repository.createPayment { response in
+            guard let response = response else {
+                return
+            }
+            
+            let customerParams: CustomerParams = CustomerParams(
+                customerUuid: self.createdCustomer?.uuid,
+                email: "tester+ios_sdk@monri.com",
+                fullName: "Tester Testerovic",
+                address: "Address",
+                city: "Sarajevo",
+                zip: "71000",
+                phone: "+38761000111",
+                country: "BA"
+            )
+            
+            let confirmPaymentParams = ConfirmPaymentParams(
+                paymentId: response.clientSecret,
+                paymentMethod: ApplePayPayment(paymentProvider: ApplePayPayment.Provider.APPLE_PAY).toPaymentMethodParams(),
+                transaction: TransactionParams.create().set(customerParams: customerParams)
+                    .set("order_info", "iOS SDK payment session")
+            )
+            
+            self.monri.confirmPayment(confirmPaymentParams) { result in
+                switch (result) {
+                case .result(let r):
+                    self.alert("Transaction \(r.status)")
+                    print("\(r)")
+                    break
+                case .error(let e):
+                    self.alert("Transaction error \(e)")
+                    print("\(e)")
+                case .declined(let d):
+                    self.alert("Transaction declined \(d.status)")
+                    print("\(d)")
+                case .pending:
+                    self.alert("Transaction pending")
+                    print("trx pending")
+                }
+            }
+        }
+    }
 
 }
 
 extension ViewController: ApplePayDelegate {
-    func onApplePaymentFinished(pkPaymentAuthorizationResult: PKPaymentAuthorizationResult) {
-        print(pkPaymentAuthorizationResult)
+    
+    func onApplePaymentFinished(pkPaymentAuthorizationResult: PKPaymentAuthorizationResult, confirmPaymentResultResponse: Monri.ConfirmPaymentResponse?) {
+        
+        self.alert("Apple pay result: \(pkPaymentAuthorizationResult.status) \n ConfirmPaymentResult: \(String(describing: confirmPaymentResultResponse?.status))")
     }
 }
 

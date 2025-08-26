@@ -12,18 +12,20 @@ public class OrdersRepository {
 
     public let authenticityToken: String
     private let key: String
+    private let merchantID: String
 
-    public init(authenticityToken: String, key: String) {
+    public init(authenticityToken: String, key: String, merchantID: String) {
         self.authenticityToken = authenticityToken
         self.key = key
+        self.merchantID = merchantID
     }
 
     var apiOptions: MonriApiOptions {
-        MonriApiOptions(authenticityToken: authenticityToken, developmentMode: true)
+        MonriApiOptions(authenticityToken: authenticityToken, developmentMode: true, merchantID: merchantID)
     }
 
     public func createPayment(_ callback: @escaping (NewPaymentResponse?) -> Void) {
-        let timestamp = 17501696354
+        let timestamp = Int(Date().timeIntervalSince1970)
         let orderNumber = "random\(timestamp)"
         
         let parameters: [String: Any] = [

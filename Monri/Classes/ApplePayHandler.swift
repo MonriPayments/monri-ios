@@ -5,45 +5,48 @@
 //  Created by Karolina Škunca on 03.06.2025..
 //
 
-
 import Foundation
 import PassKit
+import os.log
 
 public class ApplePayHandler: NSObject {
     
-    private let monriApi: MonriApi
-    private let apiOptions: MonriApiOptions?
-    private let confirmPaymentParams: ConfirmPaymentParams?
+    private let monriApi: MonriHttpApi
+    private var confirmPaymentParams: ConfirmPaymentParams?
     
     var applePaymentInfo: ApplePaymentInfo?
-    var applePayDelegate: ApplePayDelegate
+    var applePayDelegate: ApplePayDelegate?
     var supportedNetworks: [PKPaymentNetwork] = [PKPaymentNetwork]()
     var merchantID: String
     
     var paymentController: PKPaymentAuthorizationController?
     public var paymentSummaryItems = [PKPaymentSummaryItem]()
     var pkPaymentAuthorizationResult: PKPaymentAuthorizationResult = PKPaymentAuthorizationResult(status: .failure, errors: nil)
+    var confirmPaymentResponse: ConfirmPaymentResponse? = nil
     
-    public init(apiOptions: MonriApiOptions,
-                monriApi: MonriApi,
-                confirmPaymentParams: ConfirmPaymentParams,
-                applePayDelegate: ApplePayDelegate,
+    var logger: MonriLogger {
+        MonriLoggerImpl(log: OSLog(subsystem: "Monri", category: "ApplePayHandler"))
+    }
+    
+    public init(monriApi: MonriHttpApi,
+                applePayDelegate: ApplePayDelegate?,
                 merchantID: String) {
         
         self.monriApi = monriApi
-        self.apiOptions = apiOptions
-        self.confirmPaymentParams = confirmPaymentParams
         
         self.applePayDelegate = applePayDelegate
         self.merchantID = merchantID
-
+        
     }
     
-    public func createButton(paymentButtonType: PKPaymentButtonType, paymentButtonStyle: PKPaymentButtonStyle) -> UIButton? {
+    public func createButton(paymentButtonType: PKPaymentButtonType, paymentButtonStyle: PKPaymentButtonStyle, confirmPaymentParams: ConfirmPaymentParams) -> UIButton? {
+        
+        self.confirmPaymentParams = confirmPaymentParams
+        
         let result = applePayStatus()
         
         var button: UIButton?
-
+        
         if result.canMakePayments {
             button = PKPaymentButton(paymentButtonType: paymentButtonType, paymentButtonStyle: paymentButtonStyle)
             button?.addTarget(self, action: #selector(startPayment), for: .touchUpInside)
@@ -61,16 +64,16 @@ public class ApplePayHandler: NSObject {
     @objc public func startPayment() {
         
         guard let clientSecret = confirmPaymentParams?.paymentId else {
-            //delegate error
-            self.applePayDelegate.onApplePaymentFinished(pkPaymentAuthorizationResult: self.pkPaymentAuthorizationResult)
+            logger.warn("ApplePay: clientSecret is nil")
+            self.applePayDelegate?.onApplePaymentFinished(pkPaymentAuthorizationResult: self.pkPaymentAuthorizationResult, confirmPaymentResultResponse: self.confirmPaymentResponse)
             return
         }
         
-        monriApi.httpApi.startApplePay(ApplePayParams(clientSecret: clientSecret)) { result in
+        monriApi.startApplePay(ApplePayParams(clientSecret: clientSecret)) { result in
             
             guard let result = result else {
-                //delegate error
-                self.applePayDelegate.onApplePaymentFinished(pkPaymentAuthorizationResult: self.pkPaymentAuthorizationResult)
+                self.logger.warn("ApplePay: Unable to start ApplePay")
+                self.applePayDelegate?.onApplePaymentFinished(pkPaymentAuthorizationResult: self.pkPaymentAuthorizationResult, confirmPaymentResultResponse: self.confirmPaymentResponse)
                 return
             }
             
@@ -79,11 +82,15 @@ public class ApplePayHandler: NSObject {
                 self.applePaymentInfo = applePaymentInfo
                 
                 let pkPaymentSummaryItem = PKPaymentSummaryItem(label: applePaymentInfo.total.label, amount: NSDecimalNumber(string: String(applePaymentInfo.total.amount)), type: .final)
+                
                 self.paymentSummaryItems.append(pkPaymentSummaryItem)
                 
-                
-                for network in applePaymentInfo.supportedNetworks {
-                    self.supportedNetworks.append(PKPaymentNetwork(network))
+                for networkName in applePaymentInfo.supportedNetworks {
+                    if let network = self.paymentNetwork(from: networkName) {
+                        self.supportedNetworks.append(network)
+                    } else {
+                        self.logger.warn("ApplePay: Unsupported or unknown network: \(networkName)")
+                    }
                 }
                 
                 let paymentRequest = PKPaymentRequest()
@@ -92,65 +99,67 @@ public class ApplePayHandler: NSObject {
                 paymentRequest.merchantCapabilities = .threeDSecure
                 paymentRequest.countryCode = applePaymentInfo.countryCode
                 paymentRequest.currencyCode = applePaymentInfo.currencyCode
-                paymentRequest.supportedNetworks = [.amex, .visa, .masterCard] //TODO:  Why not network working
+                paymentRequest.supportedNetworks = self.supportedNetworks
                 paymentRequest.shippingType = .delivery
-                //paymentRequest.requiredShippingContactFields = [.name, .postalAddress]
                 
-                // Display the payment request.
                 self.paymentController = PKPaymentAuthorizationController(paymentRequest: paymentRequest)
                 self.paymentController!.delegate = self
                 self.paymentController!.present(completion: { (presented: Bool) in
                     if presented {
-                        debugPrint("Presented payment controller")
-                        
+                        self.logger.info("ApplePay: Payment controller presented")
                     } else {
-                        debugPrint("Failed to present payment controller")
-                        self.applePayDelegate.onApplePaymentFinished(pkPaymentAuthorizationResult: self.pkPaymentAuthorizationResult)
+                        self.logger.info("ApplePay: Failed to present payment controller")
+                        self.applePayDelegate?.onApplePaymentFinished(pkPaymentAuthorizationResult: self.pkPaymentAuthorizationResult, confirmPaymentResultResponse: self.confirmPaymentResponse)
                     }
                 })
                 
             case .error(let applePaymentApiError):
-                //delegate error
-                debugPrint(applePaymentApiError)
-                self.applePayDelegate.onApplePaymentFinished(pkPaymentAuthorizationResult: self.pkPaymentAuthorizationResult)
+                self.logger.warn("ApplePay: Unable to start payment: \(applePaymentApiError)")
+                self.applePayDelegate?.onApplePaymentFinished(pkPaymentAuthorizationResult: self.pkPaymentAuthorizationResult, confirmPaymentResultResponse: self.confirmPaymentResponse)
                 return
             }
             
         }
         
     }
+    
 }
 
 extension ApplePayHandler: PKPaymentAuthorizationControllerDelegate {
     
     public func paymentAuthorizationController(_ controller: PKPaymentAuthorizationController, didAuthorizePayment payment: PKPayment, handler completion: @escaping (PKPaymentAuthorizationResult) -> Void) {
         
-        // Perform basic validation on the provided contact information.
-        let errors = [Error]()
         let status = PKPaymentAuthorizationStatus.success
-
         
-        //token poslati u confirm payment params
-        let params = prepareDataForConfirmPayment(paymentToken: payment.token)
+        guard let params = prepareDataForConfirmPayment(paymentToken: payment.token) else {
+            self.pkPaymentAuthorizationResult = PKPaymentAuthorizationResult(status: status, errors: nil)
+            return
+        }
         
-        monriApi.httpApi.confirmPayment(params!) { [weak self] r in
+        monriApi.confirmPayment(params) { [weak self] r in
+            
+            guard let `self` = self else { return }
+            
             switch (r) {
-            case .error(let e):
-                debugPrint(e)
-                self?.pkPaymentAuthorizationResult = PKPaymentAuthorizationResult(status: .failure, errors: errors)
-                self?.applePayDelegate.onApplePaymentFinished(pkPaymentAuthorizationResult: self!.pkPaymentAuthorizationResult)
-                completion(self!.pkPaymentAuthorizationResult)
+            case .error(let error):
+                self.logger.warn("ApplePay: Unknown error occurred with confirm payment: \(error)")
+                self.pkPaymentAuthorizationResult = PKPaymentAuthorizationResult(status: .failure, errors: [error])
+                self.applePayDelegate?.onApplePaymentFinished(pkPaymentAuthorizationResult: self.pkPaymentAuthorizationResult, confirmPaymentResultResponse: self.confirmPaymentResponse)
+                completion(self.pkPaymentAuthorizationResult)
             case .result(let r):
                 
-                self?.pkPaymentAuthorizationResult = PKPaymentAuthorizationResult(status: status, errors: nil)
-                completion((self?.pkPaymentAuthorizationResult)!)
+                self.confirmPaymentResponse = r
+                self.pkPaymentAuthorizationResult = PKPaymentAuthorizationResult(status: status, errors: nil)
+                completion((self.pkPaymentAuthorizationResult))
                 
             case .pending:
-                completion(self!.pkPaymentAuthorizationResult)
+                self.logger.info("ApplePay: Pending transaction")
+                completion(self.pkPaymentAuthorizationResult)
                 return
             case .unknownError(let error):
-                completion(self!.pkPaymentAuthorizationResult)
-                debugPrint(error)
+                self.logger.warn("ApplePay: Unknown error occurred with confirm payment: \(error)")
+                self.pkPaymentAuthorizationResult = PKPaymentAuthorizationResult(status: PKPaymentAuthorizationStatus.failure, errors: [error])
+                completion(self.pkPaymentAuthorizationResult)
             }
         }
         
@@ -159,9 +168,8 @@ extension ApplePayHandler: PKPaymentAuthorizationControllerDelegate {
     
     public func paymentAuthorizationControllerDidFinish(_ controller: PKPaymentAuthorizationController) {
         controller.dismiss {
-            // The payment sheet doesn't automatically dismiss once it has finished. Dismiss the payment sheet.
             DispatchQueue.main.async {
-                self.applePayDelegate.onApplePaymentFinished(pkPaymentAuthorizationResult: self.pkPaymentAuthorizationResult)
+                self.applePayDelegate?.onApplePaymentFinished(pkPaymentAuthorizationResult: self.pkPaymentAuthorizationResult, confirmPaymentResultResponse: self.confirmPaymentResponse)
             }
         }
     }
@@ -169,12 +177,17 @@ extension ApplePayHandler: PKPaymentAuthorizationControllerDelegate {
     private func prepareDataForConfirmPayment(paymentToken: PKPaymentToken) -> ConfirmPaymentParams? {
         guard let params = confirmPaymentParams, let paymentTokenToJson = try? buildApplePayTokenJSON(from: paymentToken) else { return nil }
         
-        let paymentMethod: PaymentMethodParams = PaymentMethodParams(type: PaymentMethodType.applePay.rawValue, data: ["payment-method-data" : paymentTokenToJson])
+        let paymentMethod: PaymentMethodParams = PaymentMethodParams(type: PaymentMethodType.applePay.rawValue, data: paymentTokenToJson)
         
-        return ConfirmPaymentParams(paymentId: params.paymentId,
-                                    paymentMethod: paymentMethod,
-                                    transaction: params.transaction)
-            
+        let version: String = Bundle(identifier: "org.cocoapods.Monri")?.infoDictionary?["CFBundleShortVersionString"] as? String ?? "unknown"
+        
+        let transaction = params.transaction
+            .set("meta.\(MetaUtility.INTEGRATION_TYPE_KEY)", "ios-sdk")
+            .set("meta.\(MetaUtility.LIBRARY_KEY)", MonriUtil.library())
+            .set("meta.\(MetaUtility.LIBRARY_VERSION_KEY)", version)
+        
+        return ConfirmPaymentParams(paymentId: params.paymentId, paymentMethod: paymentMethod, transaction: transaction)
+        
     }
     
     func buildApplePayTokenJSON(from payment: PKPaymentToken) throws -> [String: Any] {
@@ -184,14 +197,12 @@ extension ApplePayHandler: PKPaymentAuthorizationControllerDelegate {
         
         // 2. Assemble the final JSON dictionary
         let result: [String: Any] = [
-            "token": [
-                "transactionIdentifier": payment.transactionIdentifier,
-                "paymentData": paymentDataObject ?? [:],
-                "paymentMethod": [
-                    "type": payment.paymentMethod.type.stringValue,
-                    "displayName": payment.paymentMethod.displayName,
-                    "network": payment.paymentMethod.network?.rawValue
-                ]
+            "transactionIdentifier": payment.transactionIdentifier,
+            "paymentData": paymentDataObject ?? [:],
+            "paymentMethod": [
+                "type": payment.paymentMethod.type.stringValue,
+                "displayName": payment.paymentMethod.displayName,
+                "network": payment.paymentMethod.network?.rawValue
             ]
         ]
         
@@ -199,6 +210,60 @@ extension ApplePayHandler: PKPaymentAuthorizationControllerDelegate {
     }
     
 }
+
+extension ApplePayHandler {
+    func paymentNetwork(from string: String) -> PKPaymentNetwork? {
+        
+        switch string.lowercased() {
+        case "amex": return .amex
+        case "visa": return .visa
+        case "mastercard": return .masterCard
+        case "discover": return .discover
+        case "interac": return .interac
+        case "private label", "privatelabel": return .privateLabel
+        case "chinaunionpay", "unionpay": return .chinaUnionPay
+        case "jcb": return .JCB
+        case "suica": return .suica
+        case "quicpay": return .quicPay
+        case "id": return .idCredit
+        case "eftpos": return .eftpos
+        case "electron": return .electron
+        case "maestro": return .maestro
+        case "vpay": return .vPay
+        case "mada":
+            if #available(iOS 12.1.1, *) {
+                return .mada
+            }
+        case "cartesbancaires", "cartebancaire":
+            if #available(iOS 12.0, *) {
+                return .cartesBancaires
+            }
+        case "girocard":
+            if #available(iOS 14.0, *) {
+                return .girocard
+            }
+        case "mir":
+            if #available(iOS 15.5, *) {
+                return .mir
+            }
+        case "elo":
+            if #available(iOS 16.0, *) {
+                return .elo
+            }
+        case "barcode":
+            if #available(iOS 16.4, *) {
+                return .barcode
+            }
+        default:
+            return nil
+        }
+        
+        return nil
+    }
+    
+}
+
+
 
 extension PKPaymentMethodType {
     var stringValue: String {
@@ -208,6 +273,7 @@ extension PKPaymentMethodType {
         case .credit: return "credit"
         case .prepaid: return "prepaid"
         case .store: return "store"
+        case .eMoney: return "eMoney"
         @unknown default: return "unknown"
         }
     }

@@ -8,5 +8,5 @@
 import PassKit
 
 public protocol ApplePayDelegate: AnyObject {
-    func onApplePaymentFinished(pkPaymentAuthorizationResult: PKPaymentAuthorizationResult)
+    func onApplePaymentFinished(pkPaymentAuthorizationResult: PKPaymentAuthorizationResult, confirmPaymentResultResponse: ConfirmPaymentResponse?)
 }
