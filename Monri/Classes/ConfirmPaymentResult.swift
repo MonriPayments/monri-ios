@@ -29,6 +29,7 @@ public enum PaymentResultError: Error  {
     case confirmPaymentFailed
     case jsonParsingError(String)
     case error(Error)
+    case merchantIdMissing
 }
 
 public enum ConfirmPayment {
