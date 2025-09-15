@@ -420,5 +420,8 @@ class ViewController: UIViewController {
         }
     }
     
+    @IBAction func scanCard(_ sender: Any) {
+        self.navigationController?.pushViewController(PhotoCaptureViewController(), animated: true)
+    }
 }
 

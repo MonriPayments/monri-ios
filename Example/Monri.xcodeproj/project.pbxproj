@@ -18,6 +18,7 @@
 		BE15D9722BC90D3B00C82C59 /* ConfirmDirectPaymentFlowTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE15D9712BC90D3B00C82C59 /* ConfirmDirectPaymentFlowTest.swift */; };
 		BE15D9762BC90DB900C82C59 /* FakeMonriHttpApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE15D9742BC90DB000C82C59 /* FakeMonriHttpApi.swift */; };
 		BE15D97A2BC90E3300C82C59 /* FakeUiDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE15D9792BC90E3300C82C59 /* FakeUiDelegate.swift */; };
+		BE973E402E66E80A00A5511E /* PhotoCapture.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE973E3F2E66E80A00A5511E /* PhotoCapture.swift */; };
 		D915BC9D4233636CF97F4990 /* Pods_Monri_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6EE1DD1CEAE4DB4849B9A4F /* Pods_Monri_Tests.framework */; };
 		E61D61AFDD83F96A19D377F0 /* Pods_Monri_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31250EB541150AA6F9D89D4D /* Pods_Monri_Example.framework */; };
 		F22C6768236C335400231B9E /* HMac.swift in Sources */ = {isa = PBXBuildFile; fileRef = F22C6767236C335400231B9E /* HMac.swift */; };
@@ -58,6 +59,7 @@
 		BE15D9712BC90D3B00C82C59 /* ConfirmDirectPaymentFlowTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmDirectPaymentFlowTest.swift; sourceTree = "<group>"; };
 		BE15D9742BC90DB000C82C59 /* FakeMonriHttpApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeMonriHttpApi.swift; sourceTree = "<group>"; };
 		BE15D9792BC90E3300C82C59 /* FakeUiDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeUiDelegate.swift; sourceTree = "<group>"; };
+		BE973E3F2E66E80A00A5511E /* PhotoCapture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCapture.swift; sourceTree = "<group>"; };
 		C6EE1DD1CEAE4DB4849B9A4F /* Pods_Monri_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Monri_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CADEDD46D49D8F7C837263C3 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		DEF0999D90C891CD973DF9F8 /* Pods-Monri_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Monri_Tests.release.xcconfig"; path = "Target Support Files/Pods-Monri_Tests/Pods-Monri_Tests.release.xcconfig"; sourceTree = "<group>"; };
@@ -121,6 +123,7 @@
 		607FACD21AFB9204008FA782 /* Example for Monri */ = {
 			isa = PBXGroup;
 			children = (
+				BE973E3F2E66E80A00A5511E /* PhotoCapture.swift */,
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
 				607FACD71AFB9204008FA782 /* ViewController.swift */,
 				607FACD91AFB9204008FA782 /* Main.storyboard */,
@@ -246,12 +249,15 @@
 				TargetAttributes = {
 					607FACCF1AFB9204008FA782 = {
 						CreatedOnToolsVersion = 6.3.1;
-						DevelopmentTeam = B5VZ8P39B6;
+						DevelopmentTeam = V84HBA3M4U;
 						LastSwiftMigration = 0900;
+						ProvisioningStyle = Manual;
 					};
 					607FACE41AFB9204008FA782 = {
 						CreatedOnToolsVersion = 6.3.1;
+						DevelopmentTeam = V84HBA3M4U;
 						LastSwiftMigration = 0900;
+						ProvisioningStyle = Manual;
 						TestTargetID = 607FACCF1AFB9204008FA782;
 					};
 				};
@@ -390,6 +396,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BE973E402E66E80A00A5511E /* PhotoCapture.swift in Sources */,
 				F22C6768236C335400231B9E /* HMac.swift in Sources */,
 				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
@@ -548,13 +555,17 @@
 			baseConfigurationReference = 8572EE5BB68AE59C68CCB541 /* Pods-Monri_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = B5VZ8P39B6;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = V84HBA3M4U;
 				INFOPLIST_FILE = Monri/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = org.cocoapods.demo.MonriExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "Monri SDK Demo Development";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
 			};
@@ -565,13 +576,17 @@
 			baseConfigurationReference = 7FAF4C12D018CFE25C922EFA /* Pods-Monri_Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 86PTX4G8XA;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = V84HBA3M4U;
 				INFOPLIST_FILE = Monri/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = org.cocoapods.demo.MonriExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "Monri SDK Demo Development";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
 			};
@@ -581,6 +596,9 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = BB2CA01E3DAC8BDABD3B9190 /* Pods-Monri_Tests.debug.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = V84HBA3M4U;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -593,6 +611,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Monri_Example.app/Monri_Example";
@@ -603,6 +622,9 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = DEF0999D90C891CD973DF9F8 /* Pods-Monri_Tests.release.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = V84HBA3M4U;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -611,6 +633,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Monri_Example.app/Monri_Example";
