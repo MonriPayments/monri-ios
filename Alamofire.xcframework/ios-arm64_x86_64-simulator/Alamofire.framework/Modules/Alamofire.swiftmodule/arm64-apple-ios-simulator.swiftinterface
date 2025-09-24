@@ -1,6 +1,7 @@
 // swift-interface-format-version: 1.0
-// swift-compiler-version: Apple Swift version 5.10 (swiftlang-5.10.0.13 clang-1500.3.9.4)
+// swift-compiler-version: Apple Swift version 6.0.3 effective-5.10 (swiftlang-6.0.3.1.9 clang-1600.0.30.1)
 // swift-module-flags: -target arm64-apple-ios12.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -enable-bare-slash-regex -module-name Alamofire
+// swift-module-flags-ignorable: -no-verify-emitted-module-interface
 @_exported import Alamofire
 import Combine
 import Dispatch
@@ -601,6 +602,8 @@ extension Alamofire.HTTPHeaders : Swift.ExpressibleByArrayLiteral {
 }
 extension Alamofire.HTTPHeaders : Swift.Sequence {
   public func makeIterator() -> Swift.IndexingIterator<[Alamofire.HTTPHeader]>
+  public typealias Element = Swift.IndexingIterator<[Alamofire.HTTPHeader]>.Element
+  public typealias Iterator = Swift.IndexingIterator<[Alamofire.HTTPHeader]>
 }
 extension Alamofire.HTTPHeaders : Swift.Collection {
   public var startIndex: Swift.Int {
@@ -613,10 +616,8 @@ extension Alamofire.HTTPHeaders : Swift.Collection {
     get
   }
   public func index(after i: Swift.Int) -> Swift.Int
-  public typealias Element = Alamofire.HTTPHeader
   public typealias Index = Swift.Int
   public typealias Indices = Swift.DefaultIndices<Alamofire.HTTPHeaders>
-  public typealias Iterator = Swift.IndexingIterator<[Alamofire.HTTPHeader]>
   public typealias SubSequence = Swift.Slice<Alamofire.HTTPHeaders>
 }
 extension Alamofire.HTTPHeaders : Swift.CustomStringConvertible {
@@ -1775,6 +1776,7 @@ extension Foundation.URLRequest {
   public func validate() throws
 }
 extension Foundation.URLSessionConfiguration : Alamofire.AlamofireExtended {
+  @available(iOS 7.0, *)
   public typealias ExtendedType = Foundation.URLSessionConfiguration
 }
 extension Alamofire.AlamofireExtension where ExtendedType : Foundation.URLSessionConfiguration {

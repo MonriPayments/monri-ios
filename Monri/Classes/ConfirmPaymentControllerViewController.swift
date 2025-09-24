@@ -7,6 +7,7 @@
 
 import UIKit
 import WebKit
+import PassKit
 
 class ConfirmPaymentControllerViewController: UIViewController {
     
@@ -18,6 +19,7 @@ class ConfirmPaymentControllerViewController: UIViewController {
     
     internal var confirmPaymentParams: ConfirmPaymentParams!
     internal var monriApiOptions: MonriApiOptions!
+    internal var applePayCustomisation: (PKPaymentButtonType, PKPaymentButtonStyle)? = nil
     
     var confirmPaymentCallback: ConfirmPaymentResponseCallback {
         ConfirmPaymentResponseCallback.create(uiDelegate: self, monriHttpApi: monri.httpApi, confirmPaymentParams: confirmPaymentParams)
@@ -31,11 +33,13 @@ class ConfirmPaymentControllerViewController: UIViewController {
     
     static func create(confirmPaymentParams: ConfirmPaymentParams,
                        monriApiOptions: MonriApiOptions,
+                       applePayCustomisation: (PKPaymentButtonType, PKPaymentButtonStyle)?,
                        callback: @escaping ConfirmPaymentResultCallback) -> ConfirmPaymentControllerViewController {
         let vc = ConfirmPaymentControllerViewController()
         vc.confirmPaymentParams = confirmPaymentParams
         vc.monriApiOptions = monriApiOptions
         vc.callback = callback
+        vc.applePayCustomisation = applePayCustomisation
         
         return vc
     }
@@ -175,7 +179,7 @@ class ConfirmPaymentControllerViewController: UIViewController {
         if applePayHandler.applePayStatus().canMakePayments {
             
             //Get apple button
-            guard let applePayButton = applePayHandler.createButton(paymentButtonType: .checkout, paymentButtonStyle: .black, confirmPaymentParams: confirmPaymentParams) else {
+            guard let applePayButton = applePayHandler.createButton(paymentButtonType: applePayCustomisation?.0 ?? .checkout, paymentButtonStyle: applePayCustomisation?.1 ?? .black, confirmPaymentParams: confirmPaymentParams) else {
                 
                 //set error to return to previous page
                 return

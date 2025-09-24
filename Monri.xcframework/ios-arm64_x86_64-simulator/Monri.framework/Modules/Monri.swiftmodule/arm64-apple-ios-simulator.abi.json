@@ -1,8 +1,8 @@
 {
   "ABIRoot": {
     "kind": "Root",
-    "name": "TopLevel",
-    "printedName": "TopLevel",
+    "name": "Monri",
+    "printedName": "Monri",
     "children": [
       {
         "kind": "Import",
@@ -234,6 +234,22 @@
         "declAttributes": [
           "Final",
           "AccessControl"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          }
         ]
       },
       {
@@ -1042,6 +1058,20 @@
         "conformances": [
           {
             "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
             "name": "PaymentMethod",
             "printedName": "PaymentMethod",
             "usr": "s:5Monri13PaymentMethodP",
@@ -1162,6 +1192,22 @@
         "declAttributes": [
           "Final",
           "AccessControl"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          }
         ]
       },
       {
@@ -1178,6 +1224,13 @@
         "kind": "Import",
         "name": "WebKit",
         "printedName": "WebKit",
+        "declKind": "Import",
+        "moduleName": "Monri"
+      },
+      {
+        "kind": "Import",
+        "name": "PassKit",
+        "printedName": "PassKit",
         "declKind": "Import",
         "moduleName": "Monri"
       },
@@ -1342,6 +1395,20 @@
           "AccessControl"
         ],
         "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
           {
             "kind": "Conformance",
             "name": "Error",
@@ -1563,6 +1630,22 @@
         "moduleName": "Monri",
         "declAttributes": [
           "AccessControl"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          }
         ]
       },
       {
@@ -1825,6 +1908,22 @@
         "moduleName": "Monri",
         "declAttributes": [
           "AccessControl"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          }
         ]
       },
       {
@@ -2046,6 +2145,22 @@
         "moduleName": "Monri",
         "declAttributes": [
           "AccessControl"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          }
         ]
       },
       {
@@ -2181,6 +2296,22 @@
         "moduleName": "Monri",
         "declAttributes": [
           "AccessControl"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          }
         ]
       },
       {
@@ -2361,6 +2492,43 @@
             "usr": "s:5Monri18PaymentResultErrorO5erroryACs0D0_pcACmF",
             "mangledName": "$s5Monri18PaymentResultErrorO5erroryACs0D0_pcACmF",
             "moduleName": "Monri"
+          },
+          {
+            "kind": "Var",
+            "name": "merchantIdMissing",
+            "printedName": "merchantIdMissing",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(Monri.PaymentResultError.Type) -> Monri.PaymentResultError",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "PaymentResultError",
+                    "printedName": "Monri.PaymentResultError",
+                    "usr": "s:5Monri18PaymentResultErrorO"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "Monri.PaymentResultError.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "PaymentResultError",
+                        "printedName": "Monri.PaymentResultError",
+                        "usr": "s:5Monri18PaymentResultErrorO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:5Monri18PaymentResultErrorO17merchantIdMissingyA2CmF",
+            "mangledName": "$s5Monri18PaymentResultErrorO17merchantIdMissingyA2CmF",
+            "moduleName": "Monri"
           }
         ],
         "declKind": "Enum",
@@ -2371,6 +2539,20 @@
           "AccessControl"
         ],
         "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
           {
             "kind": "Conformance",
             "name": "Error",
@@ -2586,6 +2768,22 @@
         "moduleName": "Monri",
         "declAttributes": [
           "AccessControl"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          }
         ]
       },
       {
@@ -2739,6 +2937,22 @@
         "moduleName": "Monri",
         "declAttributes": [
           "AccessControl"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          }
         ]
       },
       {
@@ -2873,6 +3087,22 @@
         "moduleName": "Monri",
         "declAttributes": [
           "AccessControl"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          }
         ]
       },
       {
@@ -4256,6 +4486,22 @@
         "moduleName": "Monri",
         "declAttributes": [
           "AccessControl"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          }
         ]
       },
       {
@@ -4663,6 +4909,22 @@
         "moduleName": "Monri",
         "declAttributes": [
           "AccessControl"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          }
         ]
       },
       {
@@ -4876,6 +5138,20 @@
           "AccessControl"
         ],
         "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
           {
             "kind": "Conformance",
             "name": "Error",
@@ -6525,6 +6801,22 @@
         "moduleName": "Monri",
         "declAttributes": [
           "AccessControl"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          }
         ]
       },
       {
@@ -7195,6 +7487,22 @@
         "moduleName": "Monri",
         "declAttributes": [
           "AccessControl"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          }
         ]
       },
       {
@@ -8020,6 +8328,22 @@
         "moduleName": "Monri",
         "declAttributes": [
           "AccessControl"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          }
         ]
       },
       {
@@ -8281,6 +8605,22 @@
         "moduleName": "Monri",
         "declAttributes": [
           "AccessControl"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          }
         ]
       },
       {
@@ -8405,6 +8745,22 @@
         "moduleName": "Monri",
         "declAttributes": [
           "AccessControl"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          }
         ]
       },
       {
@@ -8572,6 +8928,22 @@
         "moduleName": "Monri",
         "declAttributes": [
           "AccessControl"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          }
         ]
       },
       {
@@ -8725,6 +9097,22 @@
         "moduleName": "Monri",
         "declAttributes": [
           "AccessControl"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          }
         ]
       },
       {
@@ -8849,6 +9237,22 @@
         "moduleName": "Monri",
         "declAttributes": [
           "AccessControl"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          }
         ]
       },
       {
@@ -9046,6 +9450,22 @@
         "moduleName": "Monri",
         "declAttributes": [
           "AccessControl"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          }
         ]
       },
       {
@@ -9319,6 +9739,20 @@
             "conformances": [
               {
                 "kind": "Conformance",
+                "name": "Copyable",
+                "printedName": "Copyable",
+                "usr": "s:s8CopyableP",
+                "mangledName": "$ss8CopyableP"
+              },
+              {
+                "kind": "Conformance",
+                "name": "Escapable",
+                "printedName": "Escapable",
+                "usr": "s:s9EscapableP",
+                "mangledName": "$ss9EscapableP"
+              },
+              {
+                "kind": "Conformance",
                 "name": "Equatable",
                 "printedName": "Equatable",
                 "usr": "s:SQ",
@@ -9342,6 +9776,20 @@
           "AccessControl"
         ],
         "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
           {
             "kind": "Conformance",
             "name": "PaymentMethod",
@@ -9425,6 +9873,22 @@
         "moduleName": "Monri",
         "declAttributes": [
           "AccessControl"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          }
         ]
       },
       {
@@ -9549,6 +10013,22 @@
         "moduleName": "Monri",
         "declAttributes": [
           "AccessControl"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          }
         ]
       },
       {
@@ -9676,7 +10156,23 @@
         "declAttributes": [
           "AccessControl"
         ],
-        "hasMissingDesignatedInitializers": true
+        "hasMissingDesignatedInitializers": true,
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          }
+        ]
       },
       {
         "kind": "Import",
@@ -9921,7 +10417,23 @@
         "declAttributes": [
           "AccessControl"
         ],
-        "hasMissingDesignatedInitializers": true
+        "hasMissingDesignatedInitializers": true,
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          }
+        ]
       },
       {
         "kind": "Import",
@@ -9937,6 +10449,13 @@
         "kind": "Import",
         "name": "Alamofire",
         "printedName": "Alamofire",
+        "declKind": "Import",
+        "moduleName": "Monri"
+      },
+      {
+        "kind": "Import",
+        "name": "PassKit",
+        "printedName": "PassKit",
         "declKind": "Import",
         "moduleName": "Monri"
       },
@@ -10043,7 +10562,7 @@
           {
             "kind": "Constructor",
             "name": "init",
-            "printedName": "init(_:authenticityToken:)",
+            "printedName": "init(_:authenticityToken:merchantID:)",
             "children": [
               {
                 "kind": "TypeNominal",
@@ -10062,11 +10581,26 @@
                 "name": "String",
                 "printedName": "Swift.String",
                 "usr": "s:SS"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "Swift.String?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "hasDefaultArg": true,
+                "usr": "s:Sq"
               }
             ],
             "declKind": "Constructor",
-            "usr": "s:5Monri0A3ApiC_17authenticityTokenACSo16UIViewControllerC_SStcfc",
-            "mangledName": "$s5Monri0A3ApiC_17authenticityTokenACSo16UIViewControllerC_SStcfc",
+            "usr": "s:5Monri0A3ApiC_17authenticityToken10merchantIDACSo16UIViewControllerC_S2SSgtcfc",
+            "mangledName": "$s5Monri0A3ApiC_17authenticityToken10merchantIDACSo16UIViewControllerC_S2SSgtcfc",
             "moduleName": "Monri",
             "declAttributes": [
               "Convenience",
@@ -10161,7 +10695,7 @@
           {
             "kind": "Function",
             "name": "confirmPayment",
-            "printedName": "confirmPayment(_:_:)",
+            "printedName": "confirmPayment(_:applePayCustomisation:_:)",
             "children": [
               {
                 "kind": "TypeNominal",
@@ -10173,6 +10707,34 @@
                 "name": "ConfirmPaymentParams",
                 "printedName": "Monri.ConfirmPaymentParams",
                 "usr": "s:5Monri20ConfirmPaymentParamsC"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "(PassKit.PKPaymentButtonType, PassKit.PKPaymentButtonStyle)?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Tuple",
+                    "printedName": "(PassKit.PKPaymentButtonType, PassKit.PKPaymentButtonStyle)",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "PKPaymentButtonType",
+                        "printedName": "PassKit.PKPaymentButtonType",
+                        "usr": "c:@E@PKPaymentButtonType"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "PKPaymentButtonStyle",
+                        "printedName": "PassKit.PKPaymentButtonStyle",
+                        "usr": "c:@E@PKPaymentButtonStyle"
+                      }
+                    ]
+                  }
+                ],
+                "hasDefaultArg": true,
+                "usr": "s:Sq"
               },
               {
                 "kind": "TypeFunc",
@@ -10194,8 +10756,8 @@
               }
             ],
             "declKind": "Func",
-            "usr": "s:5Monri0A3ApiC14confirmPaymentyyAA07ConfirmD6ParamsC_yAA0eD6ResultOctF",
-            "mangledName": "$s5Monri0A3ApiC14confirmPaymentyyAA07ConfirmD6ParamsC_yAA0eD6ResultOctF",
+            "usr": "s:5Monri0A3ApiC14confirmPayment_21applePayCustomisation_yAA07ConfirmD6ParamsC_So19PKPaymentButtonTypeV_So0jK5StyleVtSgyAA0hD6ResultOctF",
+            "mangledName": "$s5Monri0A3ApiC14confirmPayment_21applePayCustomisation_yAA07ConfirmD6ParamsC_So19PKPaymentButtonTypeV_So0jK5StyleVtSgyAA0hD6ResultOctF",
             "moduleName": "Monri",
             "declAttributes": [
               "Final",
@@ -10311,6 +10873,22 @@
         "declAttributes": [
           "Final",
           "AccessControl"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          }
         ]
       },
       {
@@ -10426,6 +11004,70 @@
           },
           {
             "kind": "Var",
+            "name": "merchantID",
+            "printedName": "merchantID",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "Swift.String?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:5Monri0A10ApiOptionsC10merchantIDSSSgvp",
+            "mangledName": "$s5Monri0A10ApiOptionsC10merchantIDSSSgvp",
+            "moduleName": "Monri",
+            "declAttributes": [
+              "Final",
+              "HasStorage",
+              "AccessControl"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "Swift.String?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "String",
+                        "printedName": "Swift.String",
+                        "usr": "s:SS"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:5Monri0A10ApiOptionsC10merchantIDSSSgvg",
+                "mangledName": "$s5Monri0A10ApiOptionsC10merchantIDSSSgvg",
+                "moduleName": "Monri",
+                "implicit": true,
+                "declAttributes": [
+                  "Final"
+                ],
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
             "name": "apiUrl",
             "printedName": "apiUrl",
             "children": [
@@ -10467,7 +11109,7 @@
           {
             "kind": "Constructor",
             "name": "init",
-            "printedName": "init(authenticityToken:developmentMode:)",
+            "printedName": "init(authenticityToken:developmentMode:merchantID:)",
             "children": [
               {
                 "kind": "TypeNominal",
@@ -10486,11 +11128,26 @@
                 "name": "Bool",
                 "printedName": "Swift.Bool",
                 "usr": "s:Sb"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "Swift.String?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "hasDefaultArg": true,
+                "usr": "s:Sq"
               }
             ],
             "declKind": "Constructor",
-            "usr": "s:5Monri0A10ApiOptionsC17authenticityToken15developmentModeACSS_Sbtcfc",
-            "mangledName": "$s5Monri0A10ApiOptionsC17authenticityToken15developmentModeACSS_Sbtcfc",
+            "usr": "s:5Monri0A10ApiOptionsC17authenticityToken15developmentMode10merchantIDACSS_SbSSSgtcfc",
+            "mangledName": "$s5Monri0A10ApiOptionsC17authenticityToken15developmentMode10merchantIDACSS_SbSSSgtcfc",
             "moduleName": "Monri",
             "declAttributes": [
               "AccessControl"
@@ -10504,6 +11161,22 @@
         "moduleName": "Monri",
         "declAttributes": [
           "AccessControl"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          }
         ]
       },
       {
@@ -10622,6 +11295,22 @@
         "moduleName": "Monri",
         "declAttributes": [
           "AccessControl"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          }
         ]
       },
       {
@@ -11094,6 +11783,59 @@
             "protocolReq": true,
             "reqNewWitnessTableEntry": true,
             "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "startApplePay",
+            "printedName": "startApplePay(_:_:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "ApplePayParams",
+                "printedName": "Monri.ApplePayParams",
+                "usr": "s:5Monri14ApplePayParamsC"
+              },
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(Monri.ApplePaymentMethodResponseResult?) -> ()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "Monri.ApplePaymentMethodResponseResult?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "ApplePaymentMethodResponseResult",
+                        "printedName": "Monri.ApplePaymentMethodResponseResult",
+                        "usr": "s:5Monri32ApplePaymentMethodResponseResultO"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ]
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:5Monri0A7HttpApiP13startApplePayyyAA0eF6ParamsC_yAA0E27PaymentMethodResponseResultOSgctF",
+            "mangledName": "$s5Monri0A7HttpApiP13startApplePayyyAA0eF6ParamsC_yAA0E27PaymentMethodResponseResultOSgctF",
+            "moduleName": "Monri",
+            "genericSig": "<τ_0_0 where τ_0_0 : Monri.MonriHttpApi>",
+            "sugared_genericSig": "<Self where Self : Monri.MonriHttpApi>",
+            "protocolReq": true,
+            "reqNewWitnessTableEntry": true,
+            "funcSelfKind": "NonMutating"
           }
         ],
         "declKind": "Protocol",
@@ -11102,6 +11844,22 @@
         "moduleName": "Monri",
         "declAttributes": [
           "AccessControl"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          }
         ]
       },
       {
@@ -11357,6 +12115,22 @@
         "moduleName": "Monri",
         "declAttributes": [
           "AccessControl"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          }
         ]
       },
       {
@@ -11620,6 +12394,22 @@
         "moduleName": "Monri",
         "declAttributes": [
           "AccessControl"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          }
         ]
       },
       {
@@ -11775,6 +12565,20 @@
         "conformances": [
           {
             "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
             "name": "Error",
             "printedName": "Error",
             "usr": "s:s5ErrorP",
@@ -11830,6 +12634,13 @@
         "kind": "Import",
         "name": "os.log",
         "printedName": "os.log",
+        "declKind": "Import",
+        "moduleName": "Monri"
+      },
+      {
+        "kind": "Import",
+        "name": "PassKit",
+        "printedName": "PassKit",
         "declKind": "Import",
         "moduleName": "Monri"
       },
@@ -11962,7 +12773,23 @@
         "declAttributes": [
           "AccessControl"
         ],
-        "hasMissingDesignatedInitializers": true
+        "hasMissingDesignatedInitializers": true,
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          }
+        ]
       },
       {
         "kind": "Import",
@@ -12126,6 +12953,22 @@
         "moduleName": "Monri",
         "declAttributes": [
           "AccessControl"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          }
         ]
       },
       {
@@ -12137,6 +12980,13 @@
         "declAttributes": [
           "RawDocComment"
         ]
+      },
+      {
+        "kind": "Import",
+        "name": "PassKit",
+        "printedName": "PassKit",
+        "declKind": "Import",
+        "moduleName": "Monri"
       },
       {
         "kind": "Import",
@@ -12320,6 +13170,43 @@
           },
           {
             "kind": "Var",
+            "name": "applePay",
+            "printedName": "applePay",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(Monri.PaymentMethodType.Type) -> Monri.PaymentMethodType",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "PaymentMethodType",
+                    "printedName": "Monri.PaymentMethodType",
+                    "usr": "s:5Monri17PaymentMethodTypeO"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "Monri.PaymentMethodType.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "PaymentMethodType",
+                        "printedName": "Monri.PaymentMethodType",
+                        "usr": "s:5Monri17PaymentMethodTypeO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:5Monri17PaymentMethodTypeO8applePayyA2CmF",
+            "mangledName": "$s5Monri17PaymentMethodTypeO8applePayyA2CmF",
+            "moduleName": "Monri"
+          },
+          {
+            "kind": "Var",
             "name": "directPayments",
             "printedName": "directPayments",
             "children": [
@@ -12465,6 +13352,20 @@
         "conformances": [
           {
             "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
             "name": "Equatable",
             "printedName": "Equatable",
             "usr": "s:SQ",
@@ -12592,6 +13493,22 @@
         "moduleName": "Monri",
         "declAttributes": [
           "AccessControl"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          }
         ]
       },
       {
@@ -12696,6 +13613,22 @@
         "moduleName": "Monri",
         "declAttributes": [
           "AccessControl"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          }
         ]
       },
       {
@@ -13635,6 +14568,22 @@
         "moduleName": "Monri",
         "declAttributes": [
           "AccessControl"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          }
         ]
       },
       {
@@ -13715,6 +14664,22 @@
         "sugared_genericSig": "<Self : AnyObject>",
         "declAttributes": [
           "AccessControl"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          }
         ]
       },
       {
@@ -14001,6 +14966,20 @@
         "conformances": [
           {
             "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
             "name": "Equatable",
             "printedName": "Equatable",
             "usr": "s:SQ",
@@ -14246,6 +15225,22 @@
         "moduleName": "Monri",
         "declAttributes": [
           "AccessControl"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          }
         ]
       },
       {
@@ -14297,6 +15292,22 @@
         "moduleName": "Monri",
         "declAttributes": [
           "AccessControl"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          }
         ]
       },
       {
@@ -14585,6 +15596,22 @@
         "moduleName": "Monri",
         "declAttributes": [
           "AccessControl"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          }
         ]
       },
       {
@@ -14709,6 +15736,22 @@
         "moduleName": "Monri",
         "declAttributes": [
           "AccessControl"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          }
         ]
       },
       {
@@ -14872,6 +15915,22 @@
         "moduleName": "Monri",
         "declAttributes": [
           "AccessControl"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          }
         ]
       },
       {
@@ -15025,6 +16084,22 @@
         "moduleName": "Monri",
         "declAttributes": [
           "AccessControl"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          }
         ]
       },
       {
@@ -15171,6 +16246,20 @@
           "AccessControl"
         ],
         "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
           {
             "kind": "Conformance",
             "name": "PaymentMethod",
@@ -15377,6 +16466,20 @@
         ],
         "hasMissingDesignatedInitializers": true,
         "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
           {
             "kind": "Conformance",
             "name": "SavedPaymentMethod",
@@ -15704,6 +16807,22 @@
         "moduleName": "Monri",
         "declAttributes": [
           "AccessControl"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          }
         ]
       },
       {
@@ -15877,6 +16996,22 @@
         "moduleName": "Monri",
         "declAttributes": [
           "AccessControl"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          }
         ]
       },
       {
@@ -16498,6 +17633,20 @@
         "conformances": [
           {
             "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
             "name": "Equatable",
             "printedName": "Equatable",
             "usr": "s:SQ",
@@ -16720,6 +17869,20 @@
         "conformances": [
           {
             "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
             "name": "Equatable",
             "printedName": "Equatable",
             "usr": "s:SQ",
@@ -16814,6 +17977,22 @@
         "moduleName": "Monri",
         "declAttributes": [
           "AccessControl"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          }
         ]
       },
       {
@@ -16892,6 +18071,22 @@
         "moduleName": "Monri",
         "declAttributes": [
           "AccessControl"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          }
         ]
       },
       {
@@ -17379,6 +18574,20 @@
         "conformances": [
           {
             "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
             "name": "Error",
             "printedName": "Error",
             "usr": "s:s5ErrorP",
@@ -17454,6 +18663,22 @@
         "moduleName": "Monri",
         "declAttributes": [
           "AccessControl"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          }
         ]
       },
       {
@@ -17578,6 +18803,22 @@
         "moduleName": "Monri",
         "declAttributes": [
           "AccessControl"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          }
         ]
       },
       {
@@ -17695,7 +18936,23 @@
         "declAttributes": [
           "AccessControl"
         ],
-        "hasMissingDesignatedInitializers": true
+        "hasMissingDesignatedInitializers": true,
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          }
+        ]
       },
       {
         "kind": "Import",
@@ -17912,6 +19169,2057 @@
         "moduleName": "Monri",
         "declAttributes": [
           "AccessControl"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          }
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "Monri",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "ApplePayParams",
+        "printedName": "ApplePayParams",
+        "children": [
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(clientSecret:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "ApplePayParams",
+                "printedName": "Monri.ApplePayParams",
+                "usr": "s:5Monri14ApplePayParamsC"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:5Monri14ApplePayParamsC12clientSecretACSS_tcfc",
+            "mangledName": "$s5Monri14ApplePayParamsC12clientSecretACSS_tcfc",
+            "moduleName": "Monri",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "init_kind": "Designated"
+          }
+        ],
+        "declKind": "Class",
+        "usr": "s:5Monri14ApplePayParamsC",
+        "mangledName": "$s5Monri14ApplePayParamsC",
+        "moduleName": "Monri",
+        "declAttributes": [
+          "AccessControl"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          }
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "UIKit",
+        "printedName": "UIKit",
+        "declKind": "Import",
+        "moduleName": "Monri",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "PassKit",
+        "printedName": "PassKit",
+        "declKind": "Import",
+        "moduleName": "Monri"
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "ConfirmApplePayFlowImpl",
+        "printedName": "ConfirmApplePayFlowImpl",
+        "children": [
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(uiDelegate:monriApi:confirmPaymentParams:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "ConfirmApplePayFlowImpl",
+                "printedName": "Monri.ConfirmApplePayFlowImpl",
+                "usr": "s:5Monri23ConfirmApplePayFlowImplC"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "UiDelegate",
+                "printedName": "any Monri.UiDelegate",
+                "usr": "s:5Monri10UiDelegateP"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "MonriApi",
+                "printedName": "Monri.MonriApi",
+                "usr": "s:5Monri0A3ApiC"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "ConfirmPaymentParams",
+                "printedName": "Monri.ConfirmPaymentParams",
+                "usr": "s:5Monri20ConfirmPaymentParamsC"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:5Monri23ConfirmApplePayFlowImplC10uiDelegate8monriApi20confirmPaymentParamsAcA02UiH0_p_AA0aJ0CAA0blM0Ctcfc",
+            "mangledName": "$s5Monri23ConfirmApplePayFlowImplC10uiDelegate8monriApi20confirmPaymentParamsAcA02UiH0_p_AA0aJ0CAA0blM0Ctcfc",
+            "moduleName": "Monri",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "init_kind": "Designated"
+          },
+          {
+            "kind": "Function",
+            "name": "execute",
+            "printedName": "execute()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:5Monri23ConfirmApplePayFlowImplC7executeyyF",
+            "mangledName": "$s5Monri23ConfirmApplePayFlowImplC7executeyyF",
+            "moduleName": "Monri",
+            "declAttributes": [
+              "Final",
+              "AccessControl"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "onApplePaymentFinished",
+            "printedName": "onApplePaymentFinished(pkPaymentAuthorizationResult:confirmPaymentResultResponse:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "PKPaymentAuthorizationResult",
+                "printedName": "PassKit.PKPaymentAuthorizationResult",
+                "usr": "c:objc(cs)PKPaymentAuthorizationResult"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "Monri.ConfirmPaymentResponse?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "ConfirmPaymentResponse",
+                    "printedName": "Monri.ConfirmPaymentResponse",
+                    "usr": "s:5Monri22ConfirmPaymentResponseC"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:5Monri23ConfirmApplePayFlowImplC02onC15PaymentFinished02pkH19AuthorizationResult07confirmhL8ResponseySo09PKPaymentkL0C_AA0bhN0CSgtF",
+            "mangledName": "$s5Monri23ConfirmApplePayFlowImplC02onC15PaymentFinished02pkH19AuthorizationResult07confirmhL8ResponseySo09PKPaymentkL0C_AA0bhN0CSgtF",
+            "moduleName": "Monri",
+            "declAttributes": [
+              "Final",
+              "AccessControl"
+            ],
+            "isFromExtension": true,
+            "funcSelfKind": "NonMutating"
+          }
+        ],
+        "declKind": "Class",
+        "usr": "s:5Monri23ConfirmApplePayFlowImplC",
+        "mangledName": "$s5Monri23ConfirmApplePayFlowImplC",
+        "moduleName": "Monri",
+        "declAttributes": [
+          "Final",
+          "AccessControl"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "ApplePayDelegate",
+            "printedName": "ApplePayDelegate",
+            "usr": "s:5Monri16ApplePayDelegateP",
+            "mangledName": "$s5Monri16ApplePayDelegateP"
+          }
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "PassKit",
+        "printedName": "PassKit",
+        "declKind": "Import",
+        "moduleName": "Monri",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "ApplePayDelegate",
+        "printedName": "ApplePayDelegate",
+        "children": [
+          {
+            "kind": "Function",
+            "name": "onApplePaymentFinished",
+            "printedName": "onApplePaymentFinished(pkPaymentAuthorizationResult:confirmPaymentResultResponse:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "PKPaymentAuthorizationResult",
+                "printedName": "PassKit.PKPaymentAuthorizationResult",
+                "usr": "c:objc(cs)PKPaymentAuthorizationResult"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "Monri.ConfirmPaymentResponse?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "ConfirmPaymentResponse",
+                    "printedName": "Monri.ConfirmPaymentResponse",
+                    "usr": "s:5Monri22ConfirmPaymentResponseC"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:5Monri16ApplePayDelegateP02onB15PaymentFinished02pkF19AuthorizationResult07confirmfJ8ResponseySo09PKPaymentiJ0C_AA07ConfirmfL0CSgtF",
+            "mangledName": "$s5Monri16ApplePayDelegateP02onB15PaymentFinished02pkF19AuthorizationResult07confirmfJ8ResponseySo09PKPaymentiJ0C_AA07ConfirmfL0CSgtF",
+            "moduleName": "Monri",
+            "genericSig": "<τ_0_0 where τ_0_0 : Monri.ApplePayDelegate>",
+            "sugared_genericSig": "<Self where Self : Monri.ApplePayDelegate>",
+            "protocolReq": true,
+            "reqNewWitnessTableEntry": true,
+            "funcSelfKind": "NonMutating"
+          }
+        ],
+        "declKind": "Protocol",
+        "usr": "s:5Monri16ApplePayDelegateP",
+        "mangledName": "$s5Monri16ApplePayDelegateP",
+        "moduleName": "Monri",
+        "genericSig": "<τ_0_0 : AnyObject>",
+        "sugared_genericSig": "<Self : AnyObject>",
+        "declAttributes": [
+          "AccessControl"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          }
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "Monri",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "PassKit",
+        "printedName": "PassKit",
+        "declKind": "Import",
+        "moduleName": "Monri"
+      },
+      {
+        "kind": "Import",
+        "name": "os.log",
+        "printedName": "os.log",
+        "declKind": "Import",
+        "moduleName": "Monri"
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "ApplePayHandler",
+        "printedName": "ApplePayHandler",
+        "children": [
+          {
+            "kind": "Var",
+            "name": "paymentSummaryItems",
+            "printedName": "paymentSummaryItems",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Array",
+                "printedName": "[PassKit.PKPaymentSummaryItem]",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "PKPaymentSummaryItem",
+                    "printedName": "PassKit.PKPaymentSummaryItem",
+                    "usr": "c:objc(cs)PKPaymentSummaryItem"
+                  }
+                ],
+                "usr": "s:Sa"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:5Monri15ApplePayHandlerC19paymentSummaryItemsSaySo09PKPaymentF4ItemCGvp",
+            "mangledName": "$s5Monri15ApplePayHandlerC19paymentSummaryItemsSaySo09PKPaymentF4ItemCGvp",
+            "moduleName": "Monri",
+            "declAttributes": [
+              "HasInitialValue",
+              "HasStorage",
+              "AccessControl"
+            ],
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Array",
+                    "printedName": "[PassKit.PKPaymentSummaryItem]",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "PKPaymentSummaryItem",
+                        "printedName": "PassKit.PKPaymentSummaryItem",
+                        "usr": "c:objc(cs)PKPaymentSummaryItem"
+                      }
+                    ],
+                    "usr": "s:Sa"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:5Monri15ApplePayHandlerC19paymentSummaryItemsSaySo09PKPaymentF4ItemCGvg",
+                "mangledName": "$s5Monri15ApplePayHandlerC19paymentSummaryItemsSaySo09PKPaymentF4ItemCGvg",
+                "moduleName": "Monri",
+                "implicit": true,
+                "accessorKind": "get"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Set",
+                "printedName": "Set()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Array",
+                    "printedName": "[PassKit.PKPaymentSummaryItem]",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "PKPaymentSummaryItem",
+                        "printedName": "PassKit.PKPaymentSummaryItem",
+                        "usr": "c:objc(cs)PKPaymentSummaryItem"
+                      }
+                    ],
+                    "usr": "s:Sa"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:5Monri15ApplePayHandlerC19paymentSummaryItemsSaySo09PKPaymentF4ItemCGvs",
+                "mangledName": "$s5Monri15ApplePayHandlerC19paymentSummaryItemsSaySo09PKPaymentF4ItemCGvs",
+                "moduleName": "Monri",
+                "implicit": true,
+                "accessorKind": "set"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Modify",
+                "printedName": "Modify()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:5Monri15ApplePayHandlerC19paymentSummaryItemsSaySo09PKPaymentF4ItemCGvM",
+                "mangledName": "$s5Monri15ApplePayHandlerC19paymentSummaryItemsSaySo09PKPaymentF4ItemCGvM",
+                "moduleName": "Monri",
+                "implicit": true,
+                "accessorKind": "_modify"
+              }
+            ]
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(monriApi:applePayDelegate:merchantID:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "ApplePayHandler",
+                "printedName": "Monri.ApplePayHandler",
+                "usr": "c:@M@Monri@objc(cs)ApplePayHandler"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "MonriHttpApi",
+                "printedName": "any Monri.MonriHttpApi",
+                "usr": "s:5Monri0A7HttpApiP"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "(any Monri.ApplePayDelegate)?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "ApplePayDelegate",
+                    "printedName": "any Monri.ApplePayDelegate",
+                    "usr": "s:5Monri16ApplePayDelegateP"
+                  }
+                ],
+                "usr": "s:Sq"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:5Monri15ApplePayHandlerC8monriApi05appleC8Delegate10merchantIDAcA0a4HttpF0_p_AA0bcH0_pSgSStcfc",
+            "mangledName": "$s5Monri15ApplePayHandlerC8monriApi05appleC8Delegate10merchantIDAcA0a4HttpF0_p_AA0bcH0_pSgSStcfc",
+            "moduleName": "Monri",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "init_kind": "Designated"
+          },
+          {
+            "kind": "Function",
+            "name": "createButton",
+            "printedName": "createButton(paymentButtonType:paymentButtonStyle:confirmPaymentParams:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "UIKit.UIButton?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "UIButton",
+                    "printedName": "UIKit.UIButton",
+                    "usr": "c:objc(cs)UIButton"
+                  }
+                ],
+                "usr": "s:Sq"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "PKPaymentButtonType",
+                "printedName": "PassKit.PKPaymentButtonType",
+                "usr": "c:@E@PKPaymentButtonType"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "PKPaymentButtonStyle",
+                "printedName": "PassKit.PKPaymentButtonStyle",
+                "usr": "c:@E@PKPaymentButtonStyle"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "ConfirmPaymentParams",
+                "printedName": "Monri.ConfirmPaymentParams",
+                "usr": "s:5Monri20ConfirmPaymentParamsC"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:5Monri15ApplePayHandlerC12createButton07paymentF4Type0gF5Style20confirmPaymentParamsSo8UIButtonCSgSo09PKPaymentfH0V_So0nfI0VAA07ConfirmkL0CtF",
+            "mangledName": "$s5Monri15ApplePayHandlerC12createButton07paymentF4Type0gF5Style20confirmPaymentParamsSo8UIButtonCSgSo09PKPaymentfH0V_So0nfI0VAA07ConfirmkL0CtF",
+            "moduleName": "Monri",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "applePayStatus",
+            "printedName": "applePayStatus()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Tuple",
+                "printedName": "(canMakePayments: Swift.Bool, canSetupCards: Swift.Bool)",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Bool",
+                    "printedName": "Swift.Bool",
+                    "usr": "s:Sb"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Bool",
+                    "printedName": "Swift.Bool",
+                    "usr": "s:Sb"
+                  }
+                ]
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:5Monri15ApplePayHandlerC05appleC6StatusSb15canMakePayments_Sb0G10SetupCardstyF",
+            "mangledName": "$s5Monri15ApplePayHandlerC05appleC6StatusSb15canMakePayments_Sb0G10SetupCardstyF",
+            "moduleName": "Monri",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "startPayment",
+            "printedName": "startPayment()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "c:@M@Monri@objc(cs)ApplePayHandler(im)startPayment",
+            "mangledName": "$s5Monri15ApplePayHandlerC12startPaymentyyF",
+            "moduleName": "Monri",
+            "declAttributes": [
+              "AccessControl",
+              "ObjC"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "ApplePayHandler",
+                "printedName": "Monri.ApplePayHandler",
+                "usr": "c:@M@Monri@objc(cs)ApplePayHandler"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "c:@M@Monri@objc(cs)ApplePayHandler(im)init",
+            "mangledName": "$s5Monri15ApplePayHandlerCACycfc",
+            "moduleName": "Monri",
+            "overriding": true,
+            "implicit": true,
+            "objc_name": "init",
+            "declAttributes": [
+              "Dynamic",
+              "ObjC",
+              "Override"
+            ],
+            "init_kind": "Designated"
+          },
+          {
+            "kind": "Function",
+            "name": "paymentAuthorizationController",
+            "printedName": "paymentAuthorizationController(_:didAuthorizePayment:handler:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "PKPaymentAuthorizationController",
+                "printedName": "PassKit.PKPaymentAuthorizationController",
+                "usr": "c:objc(cs)PKPaymentAuthorizationController"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "PKPayment",
+                "printedName": "PassKit.PKPayment",
+                "usr": "c:objc(cs)PKPayment"
+              },
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(PassKit.PKPaymentAuthorizationResult) -> ()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "PKPaymentAuthorizationResult",
+                    "printedName": "PassKit.PKPaymentAuthorizationResult",
+                    "usr": "c:objc(cs)PKPaymentAuthorizationResult"
+                  }
+                ]
+              }
+            ],
+            "declKind": "Func",
+            "usr": "c:@CM@Monri@objc(cs)ApplePayHandler(im)paymentAuthorizationController:didAuthorizePayment:handler:",
+            "mangledName": "$s5Monri15ApplePayHandlerC30paymentAuthorizationController_19didAuthorizePayment7handlerySo09PKPaymentfG0C_So0L0CySo0lF6ResultCctF",
+            "moduleName": "Monri",
+            "objc_name": "paymentAuthorizationController:didAuthorizePayment:handler:",
+            "declAttributes": [
+              "Dynamic",
+              "ObjC",
+              "Preconcurrency",
+              "Custom",
+              "AccessControl"
+            ],
+            "isFromExtension": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "paymentAuthorizationControllerDidFinish",
+            "printedName": "paymentAuthorizationControllerDidFinish(_:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "PKPaymentAuthorizationController",
+                "printedName": "PassKit.PKPaymentAuthorizationController",
+                "usr": "c:objc(cs)PKPaymentAuthorizationController"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "c:@CM@Monri@objc(cs)ApplePayHandler(im)paymentAuthorizationControllerDidFinish:",
+            "mangledName": "$s5Monri15ApplePayHandlerC39paymentAuthorizationControllerDidFinishyySo09PKPaymentfG0CF",
+            "moduleName": "Monri",
+            "objc_name": "paymentAuthorizationControllerDidFinish:",
+            "declAttributes": [
+              "Dynamic",
+              "ObjC",
+              "Preconcurrency",
+              "Custom",
+              "AccessControl"
+            ],
+            "isFromExtension": true,
+            "funcSelfKind": "NonMutating"
+          }
+        ],
+        "declKind": "Class",
+        "usr": "c:@M@Monri@objc(cs)ApplePayHandler",
+        "mangledName": "$s5Monri15ApplePayHandlerC",
+        "moduleName": "Monri",
+        "declAttributes": [
+          "AccessControl",
+          "ObjC"
+        ],
+        "superclassUsr": "c:objc(cs)NSObject",
+        "superclassNames": [
+          "ObjectiveC.NSObject"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Equatable",
+            "printedName": "Equatable",
+            "usr": "s:SQ",
+            "mangledName": "$sSQ"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Hashable",
+            "printedName": "Hashable",
+            "usr": "s:SH",
+            "mangledName": "$sSH"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CVarArg",
+            "printedName": "CVarArg",
+            "usr": "s:s7CVarArgP",
+            "mangledName": "$ss7CVarArgP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "_KeyValueCodingAndObservingPublishing",
+            "printedName": "_KeyValueCodingAndObservingPublishing",
+            "usr": "s:10Foundation37_KeyValueCodingAndObservingPublishingP",
+            "mangledName": "$s10Foundation37_KeyValueCodingAndObservingPublishingP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "_KeyValueCodingAndObserving",
+            "printedName": "_KeyValueCodingAndObserving",
+            "usr": "s:10Foundation27_KeyValueCodingAndObservingP",
+            "mangledName": "$s10Foundation27_KeyValueCodingAndObservingP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CustomStringConvertible",
+            "printedName": "CustomStringConvertible",
+            "usr": "s:s23CustomStringConvertibleP",
+            "mangledName": "$ss23CustomStringConvertibleP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CustomDebugStringConvertible",
+            "printedName": "CustomDebugStringConvertible",
+            "usr": "s:s28CustomDebugStringConvertibleP",
+            "mangledName": "$ss28CustomDebugStringConvertibleP"
+          }
+        ]
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "ApplePaymentMethodResponseResult",
+        "printedName": "ApplePaymentMethodResponseResult",
+        "children": [
+          {
+            "kind": "Var",
+            "name": "result",
+            "printedName": "result",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(Monri.ApplePaymentMethodResponseResult.Type) -> (Monri.ApplePaymentInfo) -> Monri.ApplePaymentMethodResponseResult",
+                "children": [
+                  {
+                    "kind": "TypeFunc",
+                    "name": "Function",
+                    "printedName": "(Monri.ApplePaymentInfo) -> Monri.ApplePaymentMethodResponseResult",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "ApplePaymentMethodResponseResult",
+                        "printedName": "Monri.ApplePaymentMethodResponseResult",
+                        "usr": "s:5Monri32ApplePaymentMethodResponseResultO"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "ApplePaymentInfo",
+                        "printedName": "Monri.ApplePaymentInfo",
+                        "usr": "s:5Monri16ApplePaymentInfoV"
+                      }
+                    ]
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "Monri.ApplePaymentMethodResponseResult.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "ApplePaymentMethodResponseResult",
+                        "printedName": "Monri.ApplePaymentMethodResponseResult",
+                        "usr": "s:5Monri32ApplePaymentMethodResponseResultO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:5Monri32ApplePaymentMethodResponseResultO6resultyAcA0bC4InfoVcACmF",
+            "mangledName": "$s5Monri32ApplePaymentMethodResponseResultO6resultyAcA0bC4InfoVcACmF",
+            "moduleName": "Monri"
+          },
+          {
+            "kind": "Var",
+            "name": "error",
+            "printedName": "error",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(Monri.ApplePaymentMethodResponseResult.Type) -> (Monri.ApplePaymentApiError) -> Monri.ApplePaymentMethodResponseResult",
+                "children": [
+                  {
+                    "kind": "TypeFunc",
+                    "name": "Function",
+                    "printedName": "(Monri.ApplePaymentApiError) -> Monri.ApplePaymentMethodResponseResult",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "ApplePaymentMethodResponseResult",
+                        "printedName": "Monri.ApplePaymentMethodResponseResult",
+                        "usr": "s:5Monri32ApplePaymentMethodResponseResultO"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "ApplePaymentApiError",
+                        "printedName": "Monri.ApplePaymentApiError",
+                        "usr": "s:5Monri20ApplePaymentApiErrorO"
+                      }
+                    ]
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "Monri.ApplePaymentMethodResponseResult.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "ApplePaymentMethodResponseResult",
+                        "printedName": "Monri.ApplePaymentMethodResponseResult",
+                        "usr": "s:5Monri32ApplePaymentMethodResponseResultO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:5Monri32ApplePaymentMethodResponseResultO5erroryAcA0bC8ApiErrorOcACmF",
+            "mangledName": "$s5Monri32ApplePaymentMethodResponseResultO5erroryAcA0bC8ApiErrorOcACmF",
+            "moduleName": "Monri"
+          }
+        ],
+        "declKind": "Enum",
+        "usr": "s:5Monri32ApplePaymentMethodResponseResultO",
+        "mangledName": "$s5Monri32ApplePaymentMethodResponseResultO",
+        "moduleName": "Monri",
+        "declAttributes": [
+          "AccessControl"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          }
+        ]
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "ApplePaymentInfo",
+        "printedName": "ApplePaymentInfo",
+        "children": [
+          {
+            "kind": "Var",
+            "name": "countryCode",
+            "printedName": "countryCode",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:5Monri16ApplePaymentInfoV11countryCodeSSvp",
+            "mangledName": "$s5Monri16ApplePaymentInfoV11countryCodeSSvp",
+            "moduleName": "Monri",
+            "declAttributes": [
+              "HasStorage",
+              "AccessControl"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:5Monri16ApplePaymentInfoV11countryCodeSSvg",
+                "mangledName": "$s5Monri16ApplePaymentInfoV11countryCodeSSvg",
+                "moduleName": "Monri",
+                "implicit": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "currencyCode",
+            "printedName": "currencyCode",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:5Monri16ApplePaymentInfoV12currencyCodeSSvp",
+            "mangledName": "$s5Monri16ApplePaymentInfoV12currencyCodeSSvp",
+            "moduleName": "Monri",
+            "declAttributes": [
+              "HasStorage",
+              "AccessControl"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:5Monri16ApplePaymentInfoV12currencyCodeSSvg",
+                "mangledName": "$s5Monri16ApplePaymentInfoV12currencyCodeSSvg",
+                "moduleName": "Monri",
+                "implicit": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "supportedNetworks",
+            "printedName": "supportedNetworks",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Array",
+                "printedName": "[Swift.String]",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "usr": "s:Sa"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:5Monri16ApplePaymentInfoV17supportedNetworksSaySSGvp",
+            "mangledName": "$s5Monri16ApplePaymentInfoV17supportedNetworksSaySSGvp",
+            "moduleName": "Monri",
+            "declAttributes": [
+              "HasStorage",
+              "AccessControl"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Array",
+                    "printedName": "[Swift.String]",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "String",
+                        "printedName": "Swift.String",
+                        "usr": "s:SS"
+                      }
+                    ],
+                    "usr": "s:Sa"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:5Monri16ApplePaymentInfoV17supportedNetworksSaySSGvg",
+                "mangledName": "$s5Monri16ApplePaymentInfoV17supportedNetworksSaySSGvg",
+                "moduleName": "Monri",
+                "implicit": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "merchantCapabilities",
+            "printedName": "merchantCapabilities",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Array",
+                "printedName": "[Swift.String]",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "usr": "s:Sa"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:5Monri16ApplePaymentInfoV20merchantCapabilitiesSaySSGvp",
+            "mangledName": "$s5Monri16ApplePaymentInfoV20merchantCapabilitiesSaySSGvp",
+            "moduleName": "Monri",
+            "declAttributes": [
+              "HasStorage",
+              "AccessControl"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Array",
+                    "printedName": "[Swift.String]",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "String",
+                        "printedName": "Swift.String",
+                        "usr": "s:SS"
+                      }
+                    ],
+                    "usr": "s:Sa"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:5Monri16ApplePaymentInfoV20merchantCapabilitiesSaySSGvg",
+                "mangledName": "$s5Monri16ApplePaymentInfoV20merchantCapabilitiesSaySSGvg",
+                "moduleName": "Monri",
+                "implicit": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "total",
+            "printedName": "total",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Total",
+                "printedName": "Monri.Total",
+                "usr": "s:5Monri5TotalV"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:5Monri16ApplePaymentInfoV5totalAA5TotalVvp",
+            "mangledName": "$s5Monri16ApplePaymentInfoV5totalAA5TotalVvp",
+            "moduleName": "Monri",
+            "declAttributes": [
+              "HasStorage",
+              "AccessControl"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Total",
+                    "printedName": "Monri.Total",
+                    "usr": "s:5Monri5TotalV"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:5Monri16ApplePaymentInfoV5totalAA5TotalVvg",
+                "mangledName": "$s5Monri16ApplePaymentInfoV5totalAA5TotalVvg",
+                "moduleName": "Monri",
+                "implicit": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(from:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "ApplePaymentInfo",
+                "printedName": "Monri.ApplePaymentInfo",
+                "usr": "s:5Monri16ApplePaymentInfoV"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Decoder",
+                "printedName": "any Swift.Decoder",
+                "usr": "s:s7DecoderP"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:5Monri16ApplePaymentInfoV4fromACs7Decoder_p_tKcfc",
+            "mangledName": "$s5Monri16ApplePaymentInfoV4fromACs7Decoder_p_tKcfc",
+            "moduleName": "Monri",
+            "implicit": true,
+            "throwing": true,
+            "init_kind": "Designated"
+          },
+          {
+            "kind": "Function",
+            "name": "encode",
+            "printedName": "encode(to:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Encoder",
+                "printedName": "any Swift.Encoder",
+                "usr": "s:s7EncoderP"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:5Monri16ApplePaymentInfoV6encode2toys7Encoder_p_tKF",
+            "mangledName": "$s5Monri16ApplePaymentInfoV6encode2toys7Encoder_p_tKF",
+            "moduleName": "Monri",
+            "implicit": true,
+            "throwing": true,
+            "funcSelfKind": "NonMutating"
+          }
+        ],
+        "declKind": "Struct",
+        "usr": "s:5Monri16ApplePaymentInfoV",
+        "mangledName": "$s5Monri16ApplePaymentInfoV",
+        "moduleName": "Monri",
+        "declAttributes": [
+          "AccessControl"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Decodable",
+            "printedName": "Decodable",
+            "usr": "s:Se",
+            "mangledName": "$sSe"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Encodable",
+            "printedName": "Encodable",
+            "usr": "s:SE",
+            "mangledName": "$sSE"
+          }
+        ]
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "Total",
+        "printedName": "Total",
+        "children": [
+          {
+            "kind": "Var",
+            "name": "label",
+            "printedName": "label",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:5Monri5TotalV5labelSSvp",
+            "mangledName": "$s5Monri5TotalV5labelSSvp",
+            "moduleName": "Monri",
+            "declAttributes": [
+              "HasStorage",
+              "AccessControl"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:5Monri5TotalV5labelSSvg",
+                "mangledName": "$s5Monri5TotalV5labelSSvg",
+                "moduleName": "Monri",
+                "implicit": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "amount",
+            "printedName": "amount",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:5Monri5TotalV6amountSSvp",
+            "mangledName": "$s5Monri5TotalV6amountSSvp",
+            "moduleName": "Monri",
+            "declAttributes": [
+              "HasStorage",
+              "AccessControl"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:5Monri5TotalV6amountSSvg",
+                "mangledName": "$s5Monri5TotalV6amountSSvg",
+                "moduleName": "Monri",
+                "implicit": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(from:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Total",
+                "printedName": "Monri.Total",
+                "usr": "s:5Monri5TotalV"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Decoder",
+                "printedName": "any Swift.Decoder",
+                "usr": "s:s7DecoderP"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:5Monri5TotalV4fromACs7Decoder_p_tKcfc",
+            "mangledName": "$s5Monri5TotalV4fromACs7Decoder_p_tKcfc",
+            "moduleName": "Monri",
+            "implicit": true,
+            "throwing": true,
+            "init_kind": "Designated"
+          },
+          {
+            "kind": "Function",
+            "name": "encode",
+            "printedName": "encode(to:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Encoder",
+                "printedName": "any Swift.Encoder",
+                "usr": "s:s7EncoderP"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:5Monri5TotalV6encode2toys7Encoder_p_tKF",
+            "mangledName": "$s5Monri5TotalV6encode2toys7Encoder_p_tKF",
+            "moduleName": "Monri",
+            "implicit": true,
+            "throwing": true,
+            "funcSelfKind": "NonMutating"
+          }
+        ],
+        "declKind": "Struct",
+        "usr": "s:5Monri5TotalV",
+        "mangledName": "$s5Monri5TotalV",
+        "moduleName": "Monri",
+        "declAttributes": [
+          "AccessControl",
+          "RawDocComment"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Decodable",
+            "printedName": "Decodable",
+            "usr": "s:Se",
+            "mangledName": "$sSe"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Encodable",
+            "printedName": "Encodable",
+            "usr": "s:SE",
+            "mangledName": "$sSE"
+          }
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "Monri",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "ApplePayPayment",
+        "printedName": "ApplePayPayment",
+        "children": [
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(paymentProvider:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "ApplePayPayment",
+                "printedName": "Monri.ApplePayPayment",
+                "usr": "s:5Monri15ApplePayPaymentC"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Provider",
+                "printedName": "Monri.ApplePayPayment.Provider",
+                "usr": "s:5Monri15ApplePayPaymentC8ProviderO"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:5Monri15ApplePayPaymentC15paymentProviderA2C0F0O_tcfc",
+            "mangledName": "$s5Monri15ApplePayPaymentC15paymentProviderA2C0F0O_tcfc",
+            "moduleName": "Monri",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "init_kind": "Designated"
+          },
+          {
+            "kind": "Function",
+            "name": "paymentMethodType",
+            "printedName": "paymentMethodType()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "PaymentMethodType",
+                "printedName": "Monri.PaymentMethodType",
+                "usr": "s:5Monri17PaymentMethodTypeO"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:5Monri15ApplePayPaymentC17paymentMethodTypeAA0dfG0OyF",
+            "mangledName": "$s5Monri15ApplePayPaymentC17paymentMethodTypeAA0dfG0OyF",
+            "moduleName": "Monri",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "isFromExtension": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "data",
+            "printedName": "data()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Dictionary",
+                "printedName": "[Swift.String : Any]",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "ProtocolComposition",
+                    "printedName": "Any"
+                  }
+                ],
+                "usr": "s:SD"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:5Monri15ApplePayPaymentC4dataSDySSypGyF",
+            "mangledName": "$s5Monri15ApplePayPaymentC4dataSDySSypGyF",
+            "moduleName": "Monri",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "isFromExtension": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "toPaymentMethodParams",
+            "printedName": "toPaymentMethodParams()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "PaymentMethodParams",
+                "printedName": "Monri.PaymentMethodParams",
+                "usr": "s:5Monri19PaymentMethodParamsC"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:5Monri15ApplePayPaymentC02toD12MethodParamsAA0dfG0CyF",
+            "mangledName": "$s5Monri15ApplePayPaymentC02toD12MethodParamsAA0dfG0CyF",
+            "moduleName": "Monri",
+            "declAttributes": [
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "isFromExtension": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "TypeDecl",
+            "name": "Provider",
+            "printedName": "Provider",
+            "children": [
+              {
+                "kind": "Var",
+                "name": "APPLE_PAY",
+                "printedName": "APPLE_PAY",
+                "children": [
+                  {
+                    "kind": "TypeFunc",
+                    "name": "Function",
+                    "printedName": "(Monri.ApplePayPayment.Provider.Type) -> Monri.ApplePayPayment.Provider",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Provider",
+                        "printedName": "Monri.ApplePayPayment.Provider",
+                        "usr": "s:5Monri15ApplePayPaymentC8ProviderO"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Metatype",
+                        "printedName": "Monri.ApplePayPayment.Provider.Type",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Provider",
+                            "printedName": "Monri.ApplePayPayment.Provider",
+                            "usr": "s:5Monri15ApplePayPaymentC8ProviderO"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ],
+                "declKind": "EnumElement",
+                "usr": "s:5Monri15ApplePayPaymentC8ProviderO9APPLE_PAYyA2EmF",
+                "mangledName": "$s5Monri15ApplePayPaymentC8ProviderO9APPLE_PAYyA2EmF",
+                "moduleName": "Monri"
+              },
+              {
+                "kind": "Var",
+                "name": "paymentMethod",
+                "printedName": "paymentMethod",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "declKind": "Var",
+                "usr": "s:5Monri15ApplePayPaymentC8ProviderO13paymentMethodSSvp",
+                "mangledName": "$s5Monri15ApplePayPaymentC8ProviderO13paymentMethodSSvp",
+                "moduleName": "Monri",
+                "declAttributes": [
+                  "AccessControl"
+                ],
+                "accessors": [
+                  {
+                    "kind": "Accessor",
+                    "name": "Get",
+                    "printedName": "Get()",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "String",
+                        "printedName": "Swift.String",
+                        "usr": "s:SS"
+                      }
+                    ],
+                    "declKind": "Accessor",
+                    "usr": "s:5Monri15ApplePayPaymentC8ProviderO13paymentMethodSSvg",
+                    "mangledName": "$s5Monri15ApplePayPaymentC8ProviderO13paymentMethodSSvg",
+                    "moduleName": "Monri",
+                    "accessorKind": "get"
+                  }
+                ]
+              },
+              {
+                "kind": "Function",
+                "name": "==",
+                "printedName": "==(_:_:)",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Bool",
+                    "printedName": "Swift.Bool",
+                    "usr": "s:Sb"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Provider",
+                    "printedName": "Monri.ApplePayPayment.Provider",
+                    "usr": "s:5Monri15ApplePayPaymentC8ProviderO"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Provider",
+                    "printedName": "Monri.ApplePayPayment.Provider",
+                    "usr": "s:5Monri15ApplePayPaymentC8ProviderO"
+                  }
+                ],
+                "declKind": "Func",
+                "usr": "s:5Monri15ApplePayPaymentC8ProviderO2eeoiySbAE_AEtFZ",
+                "mangledName": "$s5Monri15ApplePayPaymentC8ProviderO2eeoiySbAE_AEtFZ",
+                "moduleName": "Monri",
+                "static": true,
+                "implicit": true,
+                "funcSelfKind": "NonMutating"
+              },
+              {
+                "kind": "Var",
+                "name": "hashValue",
+                "printedName": "hashValue",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int",
+                    "printedName": "Swift.Int",
+                    "usr": "s:Si"
+                  }
+                ],
+                "declKind": "Var",
+                "usr": "s:5Monri15ApplePayPaymentC8ProviderO9hashValueSivp",
+                "mangledName": "$s5Monri15ApplePayPaymentC8ProviderO9hashValueSivp",
+                "moduleName": "Monri",
+                "implicit": true,
+                "accessors": [
+                  {
+                    "kind": "Accessor",
+                    "name": "Get",
+                    "printedName": "Get()",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Int",
+                        "printedName": "Swift.Int",
+                        "usr": "s:Si"
+                      }
+                    ],
+                    "declKind": "Accessor",
+                    "usr": "s:5Monri15ApplePayPaymentC8ProviderO9hashValueSivg",
+                    "mangledName": "$s5Monri15ApplePayPaymentC8ProviderO9hashValueSivg",
+                    "moduleName": "Monri",
+                    "implicit": true,
+                    "accessorKind": "get"
+                  }
+                ]
+              },
+              {
+                "kind": "Function",
+                "name": "hash",
+                "printedName": "hash(into:)",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Hasher",
+                    "printedName": "Swift.Hasher",
+                    "paramValueOwnership": "InOut",
+                    "usr": "s:s6HasherV"
+                  }
+                ],
+                "declKind": "Func",
+                "usr": "s:5Monri15ApplePayPaymentC8ProviderO4hash4intoys6HasherVz_tF",
+                "mangledName": "$s5Monri15ApplePayPaymentC8ProviderO4hash4intoys6HasherVz_tF",
+                "moduleName": "Monri",
+                "implicit": true,
+                "funcSelfKind": "NonMutating"
+              }
+            ],
+            "declKind": "Enum",
+            "usr": "s:5Monri15ApplePayPaymentC8ProviderO",
+            "mangledName": "$s5Monri15ApplePayPaymentC8ProviderO",
+            "moduleName": "Monri",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "isFromExtension": true,
+            "conformances": [
+              {
+                "kind": "Conformance",
+                "name": "Copyable",
+                "printedName": "Copyable",
+                "usr": "s:s8CopyableP",
+                "mangledName": "$ss8CopyableP"
+              },
+              {
+                "kind": "Conformance",
+                "name": "Escapable",
+                "printedName": "Escapable",
+                "usr": "s:s9EscapableP",
+                "mangledName": "$ss9EscapableP"
+              },
+              {
+                "kind": "Conformance",
+                "name": "Equatable",
+                "printedName": "Equatable",
+                "usr": "s:SQ",
+                "mangledName": "$sSQ"
+              },
+              {
+                "kind": "Conformance",
+                "name": "Hashable",
+                "printedName": "Hashable",
+                "usr": "s:SH",
+                "mangledName": "$sSH"
+              }
+            ]
+          }
+        ],
+        "declKind": "Class",
+        "usr": "s:5Monri15ApplePayPaymentC",
+        "mangledName": "$s5Monri15ApplePayPaymentC",
+        "moduleName": "Monri",
+        "declAttributes": [
+          "AccessControl"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "PaymentMethod",
+            "printedName": "PaymentMethod",
+            "usr": "s:5Monri13PaymentMethodP",
+            "mangledName": "$s5Monri13PaymentMethodP"
+          }
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "Monri",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "Monri",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "ApplePaymentApiError",
+        "printedName": "ApplePaymentApiError",
+        "children": [
+          {
+            "kind": "Var",
+            "name": "requestFailed",
+            "printedName": "requestFailed",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(Monri.ApplePaymentApiError.Type) -> (Swift.String) -> Monri.ApplePaymentApiError",
+                "children": [
+                  {
+                    "kind": "TypeFunc",
+                    "name": "Function",
+                    "printedName": "(Swift.String) -> Monri.ApplePaymentApiError",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "ApplePaymentApiError",
+                        "printedName": "Monri.ApplePaymentApiError",
+                        "usr": "s:5Monri20ApplePaymentApiErrorO"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "String",
+                        "printedName": "Swift.String",
+                        "usr": "s:SS"
+                      }
+                    ]
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "Monri.ApplePaymentApiError.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "ApplePaymentApiError",
+                        "printedName": "Monri.ApplePaymentApiError",
+                        "usr": "s:5Monri20ApplePaymentApiErrorO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:5Monri20ApplePaymentApiErrorO13requestFailedyACSScACmF",
+            "mangledName": "$s5Monri20ApplePaymentApiErrorO13requestFailedyACSScACmF",
+            "moduleName": "Monri"
+          },
+          {
+            "kind": "Var",
+            "name": "jsonParsingError",
+            "printedName": "jsonParsingError",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(Monri.ApplePaymentApiError.Type) -> (Swift.String) -> Monri.ApplePaymentApiError",
+                "children": [
+                  {
+                    "kind": "TypeFunc",
+                    "name": "Function",
+                    "printedName": "(Swift.String) -> Monri.ApplePaymentApiError",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "ApplePaymentApiError",
+                        "printedName": "Monri.ApplePaymentApiError",
+                        "usr": "s:5Monri20ApplePaymentApiErrorO"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "String",
+                        "printedName": "Swift.String",
+                        "usr": "s:SS"
+                      }
+                    ]
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "Monri.ApplePaymentApiError.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "ApplePaymentApiError",
+                        "printedName": "Monri.ApplePaymentApiError",
+                        "usr": "s:5Monri20ApplePaymentApiErrorO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:5Monri20ApplePaymentApiErrorO011jsonParsingE0yACSScACmF",
+            "mangledName": "$s5Monri20ApplePaymentApiErrorO011jsonParsingE0yACSScACmF",
+            "moduleName": "Monri"
+          },
+          {
+            "kind": "Var",
+            "name": "unknownError",
+            "printedName": "unknownError",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(Monri.ApplePaymentApiError.Type) -> (any Swift.Error) -> Monri.ApplePaymentApiError",
+                "children": [
+                  {
+                    "kind": "TypeFunc",
+                    "name": "Function",
+                    "printedName": "(any Swift.Error) -> Monri.ApplePaymentApiError",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "ApplePaymentApiError",
+                        "printedName": "Monri.ApplePaymentApiError",
+                        "usr": "s:5Monri20ApplePaymentApiErrorO"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Error",
+                        "printedName": "any Swift.Error",
+                        "usr": "s:s5ErrorP"
+                      }
+                    ]
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "Monri.ApplePaymentApiError.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "ApplePaymentApiError",
+                        "printedName": "Monri.ApplePaymentApiError",
+                        "usr": "s:5Monri20ApplePaymentApiErrorO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:5Monri20ApplePaymentApiErrorO07unknownE0yACs0E0_pcACmF",
+            "mangledName": "$s5Monri20ApplePaymentApiErrorO07unknownE0yACs0E0_pcACmF",
+            "moduleName": "Monri"
+          }
+        ],
+        "declKind": "Enum",
+        "usr": "s:5Monri20ApplePaymentApiErrorO",
+        "mangledName": "$s5Monri20ApplePaymentApiErrorO",
+        "moduleName": "Monri",
+        "declAttributes": [
+          "AccessControl"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Error",
+            "printedName": "Error",
+            "usr": "s:s5ErrorP",
+            "mangledName": "$ss5ErrorP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Sendable",
+            "printedName": "Sendable",
+            "usr": "s:s8SendableP",
+            "mangledName": "$ss8SendableP"
+          }
         ]
       },
       {
@@ -18139,6 +21447,22 @@
         "moduleName": "Monri",
         "declAttributes": [
           "AccessControl"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          }
         ]
       },
       {
@@ -18262,13 +21586,6 @@
       "value": "\"ConfirmPaymentResponse\""
     },
     {
-      "filePath": "\/Users\/kskunca\/Developer\/monri-ios\/Monri\/Classes\/DirectPaymentWebViewNavigationDelegate.swift",
-      "kind": "StringLiteral",
-      "offset": 213,
-      "length": 38,
-      "value": "\"Monri.DirectPaymentWebViewNavigationDelegate\""
-    },
-    {
       "filePath": "\/Users\/kskunca\/Developer\/monri-ios\/Monri\/Classes\/MetaUtility.swift",
       "kind": "StringLiteral",
       "offset": 196,
@@ -18320,14 +21637,14 @@
     {
       "filePath": "\/Users\/kskunca\/Developer\/monri-ios\/Monri\/Classes\/MonriPaymentController.swift",
       "kind": "StringLiteral",
-      "offset": 284,
+      "offset": 311,
       "length": 7,
       "value": "\"Monri\""
     },
     {
       "filePath": "\/Users\/kskunca\/Developer\/monri-ios\/Monri\/Classes\/MonriPaymentController.swift",
       "kind": "StringLiteral",
-      "offset": 303,
+      "offset": 330,
       "length": 24,
       "value": "\"MonriPaymentController\""
     },
@@ -18362,23 +21679,9 @@
     {
       "filePath": "\/Users\/kskunca\/Developer\/monri-ios\/Monri\/Classes\/PaymentMethod.swift",
       "kind": "StringLiteral",
-      "offset": 166,
-      "length": 6,
-      "value": "\"card\""
-    },
-    {
-      "filePath": "\/Users\/kskunca\/Developer\/monri-ios\/Monri\/Classes\/PaymentMethod.swift",
-      "kind": "StringLiteral",
-      "offset": 194,
-      "length": 12,
-      "value": "\"saved_card\""
-    },
-    {
-      "filePath": "\/Users\/kskunca\/Developer\/monri-ios\/Monri\/Classes\/PaymentMethod.swift",
-      "kind": "StringLiteral",
-      "offset": 227,
-      "length": 12,
-      "value": "\"pay_cek_hr\""
+      "offset": 260,
+      "length": 11,
+      "value": "\"apple-pay\""
     },
     {
       "filePath": "\/Users\/kskunca\/Developer\/monri-ios\/Monri\/Classes\/PaymentResult.swift",
@@ -18487,150 +21790,38 @@
     },
     {
       "filePath": "\/Users\/kskunca\/Developer\/monri-ios\/Monri\/Classes\/SwiftLuhn.swift",
-      "kind": "IntegerLiteral",
-      "offset": 922,
-      "length": 1,
-      "value": "0"
-    },
-    {
-      "filePath": "\/Users\/kskunca\/Developer\/monri-ios\/Monri\/Classes\/SwiftLuhn.swift",
-      "kind": "IntegerLiteral",
-      "offset": 933,
-      "length": 4,
-      "value": "1"
-    },
-    {
-      "filePath": "\/Users\/kskunca\/Developer\/monri-ios\/Monri\/Classes\/SwiftLuhn.swift",
-      "kind": "IntegerLiteral",
-      "offset": 947,
-      "length": 10,
-      "value": "2"
-    },
-    {
-      "filePath": "\/Users\/kskunca\/Developer\/monri-ios\/Monri\/Classes\/SwiftLuhn.swift",
-      "kind": "IntegerLiteral",
-      "offset": 967,
-      "length": 8,
-      "value": "3"
-    },
-    {
-      "filePath": "\/Users\/kskunca\/Developer\/monri-ios\/Monri\/Classes\/SwiftLuhn.swift",
-      "kind": "IntegerLiteral",
-      "offset": 985,
-      "length": 10,
-      "value": "4"
-    },
-    {
-      "filePath": "\/Users\/kskunca\/Developer\/monri-ios\/Monri\/Classes\/SwiftLuhn.swift",
-      "kind": "IntegerLiteral",
-      "offset": 1005,
-      "length": 3,
-      "value": "5"
-    },
-    {
-      "filePath": "\/Users\/kskunca\/Developer\/monri-ios\/Monri\/Classes\/SwiftLuhn.swift",
-      "kind": "IntegerLiteral",
-      "offset": 1018,
-      "length": 7,
-      "value": "6"
-    },
-    {
-      "filePath": "\/Users\/kskunca\/Developer\/monri-ios\/Monri\/Classes\/SwiftLuhn.swift",
-      "kind": "IntegerLiteral",
-      "offset": 1035,
-      "length": 5,
-      "value": "7"
-    },
-    {
-      "filePath": "\/Users\/kskunca\/Developer\/monri-ios\/Monri\/Classes\/SwiftLuhn.swift",
-      "kind": "IntegerLiteral",
-      "offset": 1050,
-      "length": 3,
-      "value": "8"
-    },
-    {
-      "filePath": "\/Users\/kskunca\/Developer\/monri-ios\/Monri\/Classes\/SwiftLuhn.swift",
-      "kind": "IntegerLiteral",
-      "offset": 1063,
-      "length": 8,
-      "value": "9"
-    },
-    {
-      "filePath": "\/Users\/kskunca\/Developer\/monri-ios\/Monri\/Classes\/SwiftLuhn.swift",
-      "kind": "IntegerLiteral",
-      "offset": 922,
-      "length": 1,
-      "value": "0"
-    },
-    {
-      "filePath": "\/Users\/kskunca\/Developer\/monri-ios\/Monri\/Classes\/SwiftLuhn.swift",
-      "kind": "IntegerLiteral",
-      "offset": 933,
-      "length": 4,
-      "value": "1"
-    },
-    {
-      "filePath": "\/Users\/kskunca\/Developer\/monri-ios\/Monri\/Classes\/SwiftLuhn.swift",
-      "kind": "IntegerLiteral",
-      "offset": 947,
-      "length": 10,
-      "value": "2"
-    },
-    {
-      "filePath": "\/Users\/kskunca\/Developer\/monri-ios\/Monri\/Classes\/SwiftLuhn.swift",
-      "kind": "IntegerLiteral",
-      "offset": 967,
-      "length": 8,
-      "value": "3"
-    },
-    {
-      "filePath": "\/Users\/kskunca\/Developer\/monri-ios\/Monri\/Classes\/SwiftLuhn.swift",
-      "kind": "IntegerLiteral",
-      "offset": 985,
-      "length": 10,
-      "value": "4"
-    },
-    {
-      "filePath": "\/Users\/kskunca\/Developer\/monri-ios\/Monri\/Classes\/SwiftLuhn.swift",
-      "kind": "IntegerLiteral",
-      "offset": 1005,
-      "length": 3,
-      "value": "5"
-    },
-    {
-      "filePath": "\/Users\/kskunca\/Developer\/monri-ios\/Monri\/Classes\/SwiftLuhn.swift",
-      "kind": "IntegerLiteral",
-      "offset": 1018,
-      "length": 7,
-      "value": "6"
-    },
-    {
-      "filePath": "\/Users\/kskunca\/Developer\/monri-ios\/Monri\/Classes\/SwiftLuhn.swift",
-      "kind": "IntegerLiteral",
-      "offset": 1035,
-      "length": 5,
-      "value": "7"
-    },
-    {
-      "filePath": "\/Users\/kskunca\/Developer\/monri-ios\/Monri\/Classes\/SwiftLuhn.swift",
-      "kind": "IntegerLiteral",
-      "offset": 1050,
-      "length": 3,
-      "value": "8"
-    },
-    {
-      "filePath": "\/Users\/kskunca\/Developer\/monri-ios\/Monri\/Classes\/SwiftLuhn.swift",
-      "kind": "IntegerLiteral",
-      "offset": 1063,
-      "length": 8,
-      "value": "9"
-    },
-    {
-      "filePath": "\/Users\/kskunca\/Developer\/monri-ios\/Monri\/Classes\/SwiftLuhn.swift",
       "kind": "BooleanLiteral",
       "offset": 4867,
       "length": 5,
       "value": "false"
+    },
+    {
+      "filePath": "\/Users\/kskunca\/Developer\/monri-ios\/Monri\/Classes\/ApplePaymentMethodResponseResult.swift",
+      "kind": "StringLiteral",
+      "offset": 586,
+      "length": 14,
+      "value": "\"country_code\""
+    },
+    {
+      "filePath": "\/Users\/kskunca\/Developer\/monri-ios\/Monri\/Classes\/ApplePaymentMethodResponseResult.swift",
+      "kind": "StringLiteral",
+      "offset": 629,
+      "length": 15,
+      "value": "\"currency_code\""
+    },
+    {
+      "filePath": "\/Users\/kskunca\/Developer\/monri-ios\/Monri\/Classes\/ApplePaymentMethodResponseResult.swift",
+      "kind": "StringLiteral",
+      "offset": 678,
+      "length": 20,
+      "value": "\"supported_networks\""
+    },
+    {
+      "filePath": "\/Users\/kskunca\/Developer\/monri-ios\/Monri\/Classes\/ApplePaymentMethodResponseResult.swift",
+      "kind": "StringLiteral",
+      "offset": 735,
+      "length": 23,
+      "value": "\"merchant_capabilities\""
     },
     {
       "filePath": "\/Users\/kskunca\/Developer\/monri-ios\/Monri\/Classes\/ValidationResult.swift",

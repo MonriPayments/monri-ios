@@ -8,6 +8,7 @@
 
 import Foundation
 import Alamofire
+import PassKit
 
 public final class MonriApi {
 
@@ -67,8 +68,8 @@ public final class MonriApi {
                 }
     }
 
-    public func confirmPayment(_ confirmPaymentParams: ConfirmPaymentParams, _ callback: @escaping ConfirmPaymentResultCallback) {
-        paymentController?.confirmPayment(params: confirmPaymentParams, callback)
+    public func confirmPayment(_ confirmPaymentParams: ConfirmPaymentParams, applePayCustomisation: (PKPaymentButtonType, PKPaymentButtonStyle)? = nil,_ callback: @escaping ConfirmPaymentResultCallback) {
+        paymentController?.confirmPayment(params: confirmPaymentParams, applePayCustomisation: applePayCustomisation, callback)
     }
 
     public func paymentStatus(_ params: PaymentStatusParams) {
