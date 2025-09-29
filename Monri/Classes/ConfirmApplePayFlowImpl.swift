@@ -19,8 +19,6 @@ public final class ConfirmApplePayFlowImpl {
     
     private let paymentErrorFlow: PaymentErrorFlow
     
-    let atomicInteger = AtomicInteger()
-    
     public init(uiDelegate: UiDelegate,
          monriApi: MonriApi,
          confirmPaymentParams: ConfirmPaymentParams) {

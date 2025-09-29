@@ -190,7 +190,7 @@ extension ApplePayHandler: PKPaymentAuthorizationControllerDelegate {
         
     }
     
-    func buildApplePayTokenJSON(from payment: PKPaymentToken) throws -> [String: Any] {
+    private func buildApplePayTokenJSON(from payment: PKPaymentToken) throws -> [String: Any] {
         
         // 1. Decode paymentData JSON from PKPaymentToken
         let paymentDataObject = try JSONSerialization.jsonObject(with: payment.paymentData, options: []) as? [String: Any]

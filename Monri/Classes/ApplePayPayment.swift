@@ -25,7 +25,6 @@ extension ApplePayPayment: PaymentMethod {
         return [:]
     }
     
-    //maybe here add guidence with predefined apple pay params
     public func toPaymentMethodParams() -> PaymentMethodParams {
         return PaymentMethodParams(type: paymentProvider.paymentMethod, data: data())
     }
