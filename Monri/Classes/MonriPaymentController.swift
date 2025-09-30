@@ -4,21 +4,23 @@
 
 import Foundation
 import os.log
+import PassKit
 
 class MonriPaymentController: PaymentController {
-
+    
     weak var viewController: UIViewController?
-
+    
     let options: MonriApiOptions
-
+    
     let logger: MonriLogger = MonriLoggerImpl(log: OSLog(subsystem: "Monri", category: "MonriPaymentController"))
-
+    
     init(viewController: UIViewController, options: MonriApiOptions) {
         self.viewController = viewController
         self.options = options
     }
-
+    
     func confirmPayment(params: ConfirmPaymentParams,
+                        applePayCustomisation: (PKPaymentButtonType, PKPaymentButtonStyle)?,
                         _ callback: @escaping ConfirmPaymentResultCallback) {
         
         guard let vc = viewController else {
@@ -29,20 +31,22 @@ class MonriPaymentController: PaymentController {
         let version: String = Bundle(identifier: "org.cocoapods.Monri")?.infoDictionary?["CFBundleShortVersionString"] as? String ?? "unknown"
         
         params.transaction
-                .set("meta.\(MetaUtility.INTEGRATION_TYPE_KEY)", "ios-sdk")
-                .set("meta.\(MetaUtility.LIBRARY_KEY)", MonriUtil.library())
-                .set("meta.\(MetaUtility.LIBRARY_VERSION_KEY)", version)
-
+            .set("meta.\(MetaUtility.INTEGRATION_TYPE_KEY)", "ios-sdk")
+            .set("meta.\(MetaUtility.LIBRARY_KEY)", MonriUtil.library())
+            .set("meta.\(MetaUtility.LIBRARY_VERSION_KEY)", version)
+        
         let next = ConfirmPaymentControllerViewController.create(confirmPaymentParams: params,
-                monriApiOptions: options,
-                callback: callback
+                                                                 monriApiOptions: options,
+                                                                 applePayCustomisation: applePayCustomisation,
+                                                                 callback: callback
+                                                                 
         )
-
+        
         if let vc = vc as? UINavigationController {
             vc.pushViewController(next, animated: true)
         } else {
             vc.present(next, animated: true)
         }
-
+        
     }
 }

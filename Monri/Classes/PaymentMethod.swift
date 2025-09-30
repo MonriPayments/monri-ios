@@ -11,6 +11,7 @@ public enum PaymentMethodType: String {
     case newCard = "card"
     case savedCard = "saved_card"
     case payCekHr = "pay_cek_hr"
+    case applePay = "apple-pay"
     
     public static let directPayments: [PaymentMethodType] = [PaymentMethodType.payCekHr]
     

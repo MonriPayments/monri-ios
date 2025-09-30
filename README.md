@@ -66,6 +66,16 @@ In [Tokens API Integration](https://github.com/MonriPayments/monri-ios/wiki/Toke
 - create token
 - how to use created token for transaction authorization on your backend
 
+# Apple Pay Integration
+
+There are two ways to use Apple Pay with Monri:
+- Customised button which you can integrate in your view, data processing is done by the SDK
+- Predefined view and data that is handled by the SDK
+
+In [Apple Pay Integration](https://github.com/MonriPayments/monri-ios/wiki/Tokens-API-Integration) it's explained how to:
+- setup Merchant ID to enable Apple Pay in your app
+- handle views and payment
+
 # Questions
 
 If you have any questions about documentation/APIs/flow do not hesitate to contact us at support@monri.com

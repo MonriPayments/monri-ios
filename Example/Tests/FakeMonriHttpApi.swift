@@ -75,6 +75,9 @@ final class FakeMonriHttpApi: MonriHttpApi {
         
     }
     
+    func startApplePay(_ params: Monri.ApplePayParams, _ callback: @escaping (Monri.ApplePaymentMethodResponseResult?) -> Void) {
+        
+    }
     
 }
 

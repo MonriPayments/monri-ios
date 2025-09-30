@@ -243,4 +243,28 @@ class MonriHttpApiImpl: MonriHttpApi {
             }
         }
     }
+    
+    func startApplePay(_ params: ApplePayParams, _ callback: @escaping (ApplePaymentMethodResponseResult?) -> Void) {
+        
+        httpClient.jsonPost(url: "\(apiUrl)/v2/apple-pay/\(params.clientSecret)/start-payment",
+                            body: [:],
+                headers: ["Authorization": authorizationHeader]) {
+            switch ($0) {
+            case .failure(let body, let statusCode, _):
+                self.logger.warn("StartApplePayment failed with body [\(body)] and status code [\(statusCode)]")
+                callback(.error(ApplePaymentApiError.requestFailed("Got status code \(statusCode)")))
+            case .success(let body, _, _):
+                guard let response = ApplePaymentInfo.fromJson(body) else {
+                    callback(.error(ApplePaymentApiError.jsonParsingError("Converting response to ApplePaymentInfo from \(body) failed!")))
+                    return
+                }
+                callback(.result(response))
+            case .error(let error):
+                callback(.error(ApplePaymentApiError.unknownError(error)))
+            }
+        }
+
+    }
+    
+    //decrypt payload
 }
