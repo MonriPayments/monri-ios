@@ -18,7 +18,7 @@ class ViewController: UIViewController {
     //TODO: replace with your merchant's merchant key
     let merchantKey = "key-e428ba618ebc232a595d0851398b8a5d"
     //TODO: replace with your mechantID created in Apple Developer
-    let applePayMerchantID = "merchant.id.example"
+    let applePayMerchantID = "merchant.monri.skunca.karolina"
     var applePayHandler: ApplePayHandler? //Has to be strong refrence!
     
     func createAccessToken(_ callback: @escaping (String) -> Void) {
