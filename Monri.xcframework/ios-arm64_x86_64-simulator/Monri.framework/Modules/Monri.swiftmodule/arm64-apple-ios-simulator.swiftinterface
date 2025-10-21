@@ -14,6 +14,67 @@ import _StringProcessing
 import _SwiftConcurrencyShims
 import os.log
 import os
+public protocol ApplePayDelegate : AnyObject {
+  func onApplePaymentFinished(pkPaymentAuthorizationResult: PassKit.PKPaymentAuthorizationResult, confirmPaymentResultResponse: Monri.ConfirmPaymentResponse?)
+}
+@objc public class ApplePayHandler : ObjectiveC.NSObject {
+  public var paymentSummaryItems: [PassKit.PKPaymentSummaryItem]
+  public init(monriApi: any Monri.MonriHttpApi, applePayDelegate: (any Monri.ApplePayDelegate)?, merchantID: Swift.String)
+  public func createButton(paymentButtonType: PassKit.PKPaymentButtonType, paymentButtonStyle: PassKit.PKPaymentButtonStyle, confirmPaymentParams: Monri.ConfirmPaymentParams) -> UIKit.UIButton?
+  public func applePayStatus() -> (canMakePayments: Swift.Bool, canSetupCards: Swift.Bool)
+  @objc public func startPayment()
+  @objc deinit
+}
+extension Monri.ApplePayHandler : PassKit.PKPaymentAuthorizationControllerDelegate {
+  @_Concurrency.MainActor @preconcurrency @objc dynamic public func paymentAuthorizationController(_ controller: PassKit.PKPaymentAuthorizationController, didAuthorizePayment payment: PassKit.PKPayment, handler completion: @escaping (PassKit.PKPaymentAuthorizationResult) -> Swift.Void)
+  @_Concurrency.MainActor @preconcurrency @objc dynamic public func paymentAuthorizationControllerDidFinish(_ controller: PassKit.PKPaymentAuthorizationController)
+}
+public enum ApplePaymentApiError : Swift.Error {
+  case requestFailed(Swift.String)
+  case jsonParsingError(Swift.String)
+  case unknownError(any Swift.Error)
+}
+public typealias ApplePaymentMethodResponseCallback = (Monri.CustomerPaymentMethodResponseResult) -> Swift.Void
+public enum ApplePaymentMethodResponseResult {
+  case result(Monri.ApplePaymentInfo)
+  case error(Monri.ApplePaymentApiError)
+}
+public struct ApplePaymentInfo : Swift.Codable {
+  public let countryCode: Swift.String, currencyCode: Swift.String
+  public let supportedNetworks: [Swift.String], merchantCapabilities: [Swift.String]
+  public let total: Monri.Total
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+}
+public struct Total : Swift.Codable {
+  public let label: Swift.String, amount: Swift.String
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+}
+public class ApplePayParams {
+  public init(clientSecret: Swift.String)
+  @objc deinit
+}
+public class ApplePayPayment {
+  public init(paymentProvider: Monri.ApplePayPayment.Provider)
+  @objc deinit
+}
+extension Monri.ApplePayPayment : Monri.PaymentMethod {
+  public func paymentMethodType() -> Monri.PaymentMethodType
+  public func data() -> [Swift.String : Any]
+  public func toPaymentMethodParams() -> Monri.PaymentMethodParams
+  public enum Provider {
+    case APPLE_PAY
+    public var paymentMethod: Swift.String {
+      get
+    }
+    public static func == (a: Monri.ApplePayPayment.Provider, b: Monri.ApplePayPayment.Provider) -> Swift.Bool
+    public func hash(into hasher: inout Swift.Hasher)
+    public var hashValue: Swift.Int {
+      get
+    }
+  }
+}
 final public class AtomicInteger {
   public init(value initialValue: Swift.Int = 0)
   final public var value: Swift.Int {
@@ -47,6 +108,14 @@ extension Monri.Card : Monri.PaymentMethod {
   public func paymentMethodType() -> Monri.PaymentMethodType
   public func data() -> [Swift.String : Any]
   public func toPaymentMethodParams() -> Monri.PaymentMethodParams
+}
+final public class ConfirmApplePayFlowImpl {
+  public init(uiDelegate: any Monri.UiDelegate, monriApi: Monri.MonriApi, confirmPaymentParams: Monri.ConfirmPaymentParams)
+  final public func execute()
+  @objc deinit
+}
+extension Monri.ConfirmApplePayFlowImpl : Monri.ApplePayDelegate {
+  final public func onApplePaymentFinished(pkPaymentAuthorizationResult: PassKit.PKPaymentAuthorizationResult, confirmPaymentResultResponse: Monri.ConfirmPaymentResponse?)
 }
 final public class ConfirmDirectPaymentFlowImpl {
   public init(uiDelegate: any Monri.UiDelegate, apiOptions: Monri.MonriApiOptions, monriApi: Monri.MonriApi, confirmPaymentParams: Monri.ConfirmPaymentParams)
@@ -536,75 +605,6 @@ public protocol UiDelegate {
   func pending()
   func setFlowDelegate(delegate: any Monri.TransactionAuthorizationFlowDelegate)
 }
-public class ApplePayParams {
-  public init(clientSecret: Swift.String)
-  @objc deinit
-}
-final public class ConfirmApplePayFlowImpl {
-  public init(uiDelegate: any Monri.UiDelegate, monriApi: Monri.MonriApi, confirmPaymentParams: Monri.ConfirmPaymentParams)
-  final public func execute()
-  @objc deinit
-}
-extension Monri.ConfirmApplePayFlowImpl : Monri.ApplePayDelegate {
-  final public func onApplePaymentFinished(pkPaymentAuthorizationResult: PassKit.PKPaymentAuthorizationResult, confirmPaymentResultResponse: Monri.ConfirmPaymentResponse?)
-}
-public protocol ApplePayDelegate : AnyObject {
-  func onApplePaymentFinished(pkPaymentAuthorizationResult: PassKit.PKPaymentAuthorizationResult, confirmPaymentResultResponse: Monri.ConfirmPaymentResponse?)
-}
-@objc public class ApplePayHandler : ObjectiveC.NSObject {
-  public var paymentSummaryItems: [PassKit.PKPaymentSummaryItem]
-  public init(monriApi: any Monri.MonriHttpApi, applePayDelegate: (any Monri.ApplePayDelegate)?, merchantID: Swift.String)
-  public func createButton(paymentButtonType: PassKit.PKPaymentButtonType, paymentButtonStyle: PassKit.PKPaymentButtonStyle, confirmPaymentParams: Monri.ConfirmPaymentParams) -> UIKit.UIButton?
-  public func applePayStatus() -> (canMakePayments: Swift.Bool, canSetupCards: Swift.Bool)
-  @objc public func startPayment()
-  @objc deinit
-}
-extension Monri.ApplePayHandler : PassKit.PKPaymentAuthorizationControllerDelegate {
-  @_Concurrency.MainActor @preconcurrency @objc dynamic public func paymentAuthorizationController(_ controller: PassKit.PKPaymentAuthorizationController, didAuthorizePayment payment: PassKit.PKPayment, handler completion: @escaping (PassKit.PKPaymentAuthorizationResult) -> Swift.Void)
-  @_Concurrency.MainActor @preconcurrency @objc dynamic public func paymentAuthorizationControllerDidFinish(_ controller: PassKit.PKPaymentAuthorizationController)
-}
-public typealias ApplePaymentMethodResponseCallback = (Monri.CustomerPaymentMethodResponseResult) -> Swift.Void
-public enum ApplePaymentMethodResponseResult {
-  case result(Monri.ApplePaymentInfo)
-  case error(Monri.ApplePaymentApiError)
-}
-public struct ApplePaymentInfo : Swift.Codable {
-  public let countryCode: Swift.String, currencyCode: Swift.String
-  public let supportedNetworks: [Swift.String], merchantCapabilities: [Swift.String]
-  public let total: Monri.Total
-  public func encode(to encoder: any Swift.Encoder) throws
-  public init(from decoder: any Swift.Decoder) throws
-}
-public struct Total : Swift.Codable {
-  public let label: Swift.String, amount: Swift.String
-  public func encode(to encoder: any Swift.Encoder) throws
-  public init(from decoder: any Swift.Decoder) throws
-}
-public class ApplePayPayment {
-  public init(paymentProvider: Monri.ApplePayPayment.Provider)
-  @objc deinit
-}
-extension Monri.ApplePayPayment : Monri.PaymentMethod {
-  public func paymentMethodType() -> Monri.PaymentMethodType
-  public func data() -> [Swift.String : Any]
-  public func toPaymentMethodParams() -> Monri.PaymentMethodParams
-  public enum Provider {
-    case APPLE_PAY
-    public var paymentMethod: Swift.String {
-      get
-    }
-    public static func == (a: Monri.ApplePayPayment.Provider, b: Monri.ApplePayPayment.Provider) -> Swift.Bool
-    public func hash(into hasher: inout Swift.Hasher)
-    public var hashValue: Swift.Int {
-      get
-    }
-  }
-}
-public enum ApplePaymentApiError : Swift.Error {
-  case requestFailed(Swift.String)
-  case jsonParsingError(Swift.String)
-  case unknownError(any Swift.Error)
-}
 public class UpdateCustomerParams {
   final public let customerData: Monri.CustomerData
   final public let customerUuid: Swift.String
@@ -614,6 +614,8 @@ public class UpdateCustomerParams {
 }
 public func removeNonDigits(_ val: Swift.String) -> Swift.String
 public func isValidCardNumber(_ cardNumber: Swift.String) -> Swift.Bool
+extension Monri.ApplePayPayment.Provider : Swift.Equatable {}
+extension Monri.ApplePayPayment.Provider : Swift.Hashable {}
 extension Monri.DirectPayment.Provider : Swift.Equatable {}
 extension Monri.DirectPayment.Provider : Swift.Hashable {}
 extension Monri.PaymentMethodType : Swift.Equatable {}
@@ -627,5 +629,3 @@ extension Monri.CardType : Swift.Hashable {}
 extension Monri.CardType : Swift.RawRepresentable {}
 extension Monri.CardError : Swift.Equatable {}
 extension Monri.CardError : Swift.Hashable {}
-extension Monri.ApplePayPayment.Provider : Swift.Equatable {}
-extension Monri.ApplePayPayment.Provider : Swift.Hashable {}
