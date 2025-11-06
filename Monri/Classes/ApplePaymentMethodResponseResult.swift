@@ -4,7 +4,7 @@
 //
 //  Created by Karolina Škunca on 17.06.2025..
 //
-
+import Foundation
 
 public typealias ApplePaymentMethodResponseCallback = (CustomerPaymentMethodResponseResult) -> Void
 

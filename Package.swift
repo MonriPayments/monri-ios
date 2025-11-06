@@ -14,20 +14,22 @@ let package = Package(
     products: [
         .library(
             name: "Monri",
-            targets: ["MonriSDK", "AlamofireSDK"]
+            targets: ["Monri"]
         )
     ],
+    dependencies: [
+        .package(url: "https://github.com/Alamofire/Alamofire.git", from: "5.9.0")
+    ],
     targets: [
-        .binaryTarget(
-            name: "MonriSDK",
-            path: "Monri.xcframework"
-        ),
-        .binaryTarget(
-            name: "AlamofireSDK",
-            path: "Alamofire.xcframework"
+        .target(
+            name: "Monri",
+            dependencies: [
+                .product(name: "Alamofire", package: "Alamofire")
+            ],
+            path: "Monri/Classes",
+            resources: [
+                .process("../Assets"),
+            ]
         )
     ]
 )
-
-
-
