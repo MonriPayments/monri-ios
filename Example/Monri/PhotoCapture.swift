@@ -170,7 +170,7 @@ final class PhotoCaptureViewController: UIViewController {
                UIApplication.shared.canOpenURL(settingsUrl) {
                 UIApplication.shared.open(settingsUrl)
             }
-
+            
         })
         
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel) { [weak self] _ in
@@ -180,7 +180,9 @@ final class PhotoCaptureViewController: UIViewController {
         present(alert, animated: true)
     }
     private func showPhotoPreview(with image: UIImage) {
-        capturedImage = image
+        let resized = image.resizedMaintainingAspectRatio(maxDimension: 1024)
+        
+        capturedImage = resized
         photoPreviewView.configure(with: image)
         
         UIView.transition(with: view, duration: 0.3, options: .transitionCrossDissolve) {
@@ -198,6 +200,24 @@ final class PhotoCaptureViewController: UIViewController {
         }
         
         capturedImage = nil
+    }
+}
+
+extension UIImage {
+    func resizedMaintainingAspectRatio(maxDimension: CGFloat) -> UIImage {
+        let aspectRatio = size.width / size.height
+
+        let targetSize: CGSize
+        if aspectRatio > 1 {
+            targetSize = CGSize(width: maxDimension, height: maxDimension / aspectRatio)
+        } else {
+            targetSize = CGSize(width: maxDimension * aspectRatio, height: maxDimension)
+        }
+
+        let renderer = UIGraphicsImageRenderer(size: targetSize)
+        return renderer.image { _ in
+            draw(in: CGRect(origin: .zero, size: targetSize))
+        }
     }
 }
 
@@ -232,31 +252,31 @@ extension PhotoCaptureViewController: PhotoPreviewViewDelegate {
     func didTapSendForValidation() {
         guard let image = capturedImage else { return }
         
-        let scanDocApiOptions = ScanDocApiOptions(scanDocApiUrl: "", scanDocUserKey: "", scanDocSubKey: "")
+        let scanDocApiOptions = ScanDocApiOptions(scanDocUserKey: "XCbnR54PAHma8hyBiP7J93xgzAHzAI", scanDocSubKey: "ios_sdk_monri")
         
         let scanDocApi = ScanDocApi(options: scanDocApiOptions)
         
-        scanDocApi.validateScannedCard(scannedCardImage: image) { result in
-            switch result {
-            case .success(let isValidated):
-                
-                if isValidated {
-                    scanDocApi.extractScannedCard(scannedCardImage: image) { resultOfExtraction in
-                        switch resultOfExtraction {
-                        case .success(let card):
-                            print(card)
-                            
-                        case .failure(let failure):
-                            print(failure)
-                        }
-                    }
-                }
-                
+//        scanDocApi.validateScannedCard(scannedCardImage: image) { validationResult in
+//            
+//            switch validationResult {
+//            case .success(let success):
+//                debugPrint("Success " + success.description)
+//            case .failure(let failure):
+//                debugPrint("Failure \(failure)")
+//            }
+//            
+//        }
+        
+        scanDocApi.extractScannedCard(scannedCardImage: image) { resultOfExtraction in
+            switch resultOfExtraction {
+            case .success(let card):
+                print(card)
+                self.delegate?.didValidatePhoto(image)
             case .failure(let failure):
                 print(failure)
             }
         }
-        self.delegate?.didValidatePhoto(image)
+        
         
     }
 }
@@ -396,15 +416,38 @@ final class CameraManager: NSObject {
     private var photoOutput = AVCapturePhotoOutput()
     private var previewLayer: AVCaptureVideoPreviewLayer?
     
+    func enableTorch(on device: AVCaptureDevice) {
+        guard device.hasTorch else { return }
+
+        do {
+            try device.lockForConfiguration()
+            try device.setTorchModeOn(level: 0.3) // avoid glare
+            device.unlockForConfiguration()
+        } catch {
+            print("Torch failed:", error)
+        }
+    }
+    
     // MARK: - Public Methods
     func setupCamera(in view: UIView) {
-        guard let camera = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: .back) else {
+        guard let camera = AVCaptureDevice.default(.builtInUltraWideCamera, for: .video, position: .back) else {
             delegate?.didFailToCapture(with: CameraError.noCameraAvailable)
             return
         }
         
+        
+        
         do {
             let input = try AVCaptureDeviceInput(device: camera)
+            
+            try camera.lockForConfiguration()
+            
+            // Enable continuous autofocus
+            if camera.isFocusModeSupported(.continuousAutoFocus) {
+                camera.focusMode = .continuousAutoFocus
+            }
+            
+            camera.unlockForConfiguration()
             
             session.beginConfiguration()
             
@@ -424,8 +467,12 @@ final class CameraManager: NSObject {
                 session.commitConfiguration()
                 setupPreviewLayer(in: view)
                 
-                DispatchQueue.global(qos: .background).async {
+                DispatchQueue.global(qos: .userInitiated).async {
                     self.session.startRunning()
+
+//                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+//                        self.enableTorch(on: camera)
+//                    }
                 }
             } else {
                 session.commitConfiguration()

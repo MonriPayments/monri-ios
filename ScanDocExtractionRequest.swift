@@ -34,10 +34,12 @@ struct ScanDocExtractionRequest: Codable {
 
 // MARK: - DataFields
 struct ExtractionDataFields: Codable {
+    let image: String
     let imageType: String
     let imageCropped: Bool
 
     enum CodingKeys: String, CodingKey {
+        case image = "Image"
         case imageType = "ImageType"
         case imageCropped = "ImageCropped"
     }

@@ -40,11 +40,11 @@ public class ScanDocApi {
             case .success(let accessToken):
                 self.httpClient.validate(accessToken: accessToken, ScanDocValidationRequest(acceptTermsAndConditions: true,
                                                                                                      dataFields: ValidationDataFields(images: [scannedCardBase64Img], blurValues: []),
-                                                                                                     settings: ValidationSettings(skipImageSizeCheck: true))) { result in
+                                                                                                     settings: ValidationSettings(skipImageSizeCheck: false))) { result in
                     switch result {
                         
                     case .success(let response):
-                        callback(.success(response.validated))
+                        callback(.success(response.validated ?? false))
                     case .failure(let error):
                         callback(.failure(error))
                     }
@@ -70,21 +70,22 @@ public class ScanDocApi {
                 
             case .success(let accessToken):
                 self.httpClient.extraction(accessToken: accessToken,
-                                      ScanDocExtractionRequest(dataFields: ExtractionDataFields(imageType: scannedCardBase64Img,
+                                           ScanDocExtractionRequest(dataFields: ExtractionDataFields(image: scannedCardBase64Img,
+                                                                                                     imageType: "base64",
                                                                                                 imageCropped: false),
-                                                               settings: ExtractionSettings(shouldReturnDocumentImage: false,
-                                                                                            skipDocumentSizeCheck: true,
-                                                                                            skipImageSizeCheck: true,
+                                                               settings: ExtractionSettings(shouldReturnDocumentImage: true,
+                                                                                            skipDocumentSizeCheck: false,
+                                                                                            skipImageSizeCheck: false,
                                                                                             canStoreImages: false,
-                                                                                            dontUseValidation: false),
+                                                                                            dontUseValidation: true),
                                                                acceptTermsAndConditions: true)) { result in
                     
                     switch result {
                         
                     case .success(let response):
                         
-                        guard let number = response.data.cardNumber?.value,
-                              let expiry = response.data.expiryDate?.value else {
+                        guard let number = response.data?.cardNumber?.value,
+                              let expiry = response.data?.expiryDate?.value else {
                             
                             callback(.failure(NSError(domain: "Data couldn't be read", code: -1000)))
                             return
@@ -109,17 +110,18 @@ public class ScanDocApi {
             }
             
         }
+        
+        
     }
     
     private func getBase64Img(from image: UIImage) -> String? {
+//        
+//        if let imageData = image.pngData() { // or .jpegData(compressionQuality: 1.0)
+//            let base64String = imageData.base64EncodedString()
+//            return base64String
+//        }
         
-        if let imageData = image.pngData() { // or .jpegData(compressionQuality: 1.0)
-            let base64String = imageData.base64EncodedString()
-            print(base64String)
-            return base64String
-        }
-        
-        if let imageData = image.jpegData(compressionQuality: 1.0) {
+        if let imageData = image.jpegData(compressionQuality: 0.7) {
             let base64String = imageData.base64EncodedString()
             return base64String
         }
@@ -132,6 +134,7 @@ public class ScanDocApi {
         
         let now = Date()
         
+        //TODO: Improve this
         if let accessToken = self.accessToken,
            let expiration = self.accessTokenExpiration,
            expiration > now {

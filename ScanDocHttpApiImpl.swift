@@ -11,7 +11,6 @@ import os.log
 class ScanDocHttpApiImpl: ScanDocHttpApi {
     
     let options: ScanDocApiOptions
-    let apiUrl: String
     let scanDocUserKey: String
     private let httpClient: MonriHttpClient
     
@@ -22,7 +21,6 @@ class ScanDocHttpApiImpl: ScanDocHttpApi {
     init(options: ScanDocApiOptions, httpClient: MonriHttpClient) {
         self.options = options
         self.scanDocUserKey = options.scanDocUserKey
-        self.apiUrl = options.scanDocApiUrl
         self.httpClient = httpClient
     }
     
@@ -31,7 +29,7 @@ class ScanDocHttpApiImpl: ScanDocHttpApi {
         let authParams = ScanDocAuthenticateRequest(userKey: scanDocUserKey,
                                                     subClient: subClient)
         
-        httpClient.jsonPost(url: "\(apiUrl)/authenticate/",
+        httpClient.jsonPost(url: "https://api.scandoc.ai/ks/authenticate/",
                             body: authParams.toJson(),
                             headers: [
                                 "accept": "application/json",
@@ -59,7 +57,7 @@ class ScanDocHttpApiImpl: ScanDocHttpApi {
     
     func refreshToken(_ refreshToken: ScanDocRefreshTokenRequest, _ callback: @escaping (Result<ScanDocRefreshTokenResponse, any Error>) -> Void) {
         
-        httpClient.jsonPost(url: "\(apiUrl)/authenticate/refresh",
+        httpClient.jsonPost(url: "https://api.scandoc.ai/ks/authenticate/refresh",
                             body: refreshToken.toJson(),
                             headers: [
                                 "accept": "application/json",
@@ -88,7 +86,7 @@ class ScanDocHttpApiImpl: ScanDocHttpApi {
     
     func validate(accessToken: String, _ validationParams: ScanDocValidationRequest, _ callback: @escaping (Result<ScanDocValidationResponse, any Error>) -> Void) {
         
-        httpClient.jsonPost(url: "\(apiUrl)/validation/",
+        httpClient.jsonPost(url: "https://monri-scandoc.asseco-see.hr/validation/",
                             body: validationParams.toJson(),
                             headers: [
                                 "accept": "application/json",
@@ -118,7 +116,7 @@ class ScanDocHttpApiImpl: ScanDocHttpApi {
     
     func extraction(accessToken: String, _ extractionParams: ScanDocExtractionRequest, _ callback: @escaping (Result<ScanDocExtractionResponse, any Error>) -> Void) {
         
-        httpClient.jsonPost(url: "\(apiUrl)/extraction/",
+        httpClient.jsonPost(url: "https://monri-scandoc.asseco-see.hr/extraction/",
                             body: extractionParams.toJson(),
                             headers: [
                                 "accept": "application/json",
