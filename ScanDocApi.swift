@@ -27,11 +27,17 @@ public class ScanDocApi {
         self.httpClient = ScanDocHttpApiImpl(options: options, httpClient: MonriFactory().createHttpClient())
     }
     
-    public func validateScannedCard(scannedCardImage: UIImage, _ callback: @escaping (Result<Bool, Error>) -> Void) {
+    public func validateScannedCard(scannedCardImages: [UIImage], _ callback: @escaping (Result<Bool, Error>) -> Void) {
         
-        guard let scannedCardBase64Img = getBase64Img(from: scannedCardImage) else {
-            callback(.failure(ScanDocErrors.invalidImageFormat.asNSError))
-            return
+        var base64Images: [String] = []
+        
+        for image in scannedCardImages {
+            guard let scannedCardBase64Img = getBase64Img(from: image) else {
+                callback(.failure(ScanDocErrors.invalidImageFormat.asNSError))
+                return
+            }
+            
+            base64Images.append(scannedCardBase64Img)
         }
         
         getAccessToken(subKey: options.scanDocSubKey) { accessTokenResult in
@@ -40,7 +46,7 @@ public class ScanDocApi {
                 
             case .success(let accessToken):
                 self.httpClient.validate(accessToken: accessToken, ScanDocValidationRequest(acceptTermsAndConditions: true,
-                                                                                                     dataFields: ValidationDataFields(images: [scannedCardBase64Img], blurValues: []),
+                                                                                                     dataFields: ValidationDataFields(images: base64Images, blurValues: []),
                                                                                                      settings: ValidationSettings(skipImageSizeCheck: false))) { result in
                     switch result {
                         
