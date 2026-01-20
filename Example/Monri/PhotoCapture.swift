@@ -18,6 +18,8 @@ final class PhotoCaptureViewController: UIViewController {
     private let cameraManager = CameraManager()
     private let photoValidator = PhotoValidator()
     
+    let scanDocApi = ScanDocApi(options: ScanDocApiOptions(scanDocUserKey: "REPLACE", scanDocSubKey: "REPLACE"))
+    
     private var capturedImage: UIImage?
     
     // MARK: - UI Components
@@ -45,17 +47,6 @@ final class PhotoCaptureViewController: UIViewController {
         view.isHidden = true
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
-    }()
-    
-    private lazy var closeButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.setImage(UIImage(systemName: "xmark"), for: .normal)
-        button.tintColor = .white
-        button.backgroundColor = UIColor.black.withAlphaComponent(0.5)
-        button.layer.cornerRadius = 20
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.addTarget(self, action: #selector(closeButtonTapped), for: .touchUpInside)
-        return button
     }()
     
     // MARK: - Lifecycle
@@ -89,7 +80,6 @@ final class PhotoCaptureViewController: UIViewController {
         view.addSubview(cameraPreviewView)
         view.addSubview(captureButton)
         view.addSubview(photoPreviewView)
-        view.addSubview(closeButton)
         
         setupConstraints()
     }
@@ -112,13 +102,7 @@ final class PhotoCaptureViewController: UIViewController {
             photoPreviewView.topAnchor.constraint(equalTo: view.topAnchor),
             photoPreviewView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             photoPreviewView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            photoPreviewView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            
-            // Close Button
-            closeButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
-            closeButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
-            closeButton.widthAnchor.constraint(equalToConstant: 40),
-            closeButton.heightAnchor.constraint(equalToConstant: 40)
+            photoPreviewView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
     }
     
@@ -130,10 +114,6 @@ final class PhotoCaptureViewController: UIViewController {
     // MARK: - Actions
     @objc private func captureButtonTapped() {
         cameraManager.capturePhoto()
-    }
-    
-    @objc private func closeButtonTapped() {
-        delegate?.didCancelPhotoCapture()
     }
     
     // MARK: - Private Methods
@@ -252,32 +232,52 @@ extension PhotoCaptureViewController: PhotoPreviewViewDelegate {
     func didTapSendForValidation() {
         guard let image = capturedImage else { return }
         
-        let scanDocApiOptions = ScanDocApiOptions(scanDocUserKey: "XCbnR54PAHma8hyBiP7J93xgzAHzAI", scanDocSubKey: "ios_sdk_monri")
-        
-        let scanDocApi = ScanDocApi(options: scanDocApiOptions)
-        
-//        scanDocApi.validateScannedCard(scannedCardImage: image) { validationResult in
-//            
-//            switch validationResult {
-//            case .success(let success):
-//                debugPrint("Success " + success.description)
-//            case .failure(let failure):
-//                debugPrint("Failure \(failure)")
-//            }
-//            
-//        }
-        
         scanDocApi.extractScannedCard(scannedCardImage: image) { resultOfExtraction in
             switch resultOfExtraction {
-            case .success(let card):
-                print(card)
-                self.delegate?.didValidatePhoto(image)
+            case .success(let cardData):
+                
+                guard let number = cardData.data?.cardNumber?.value,
+                      let expiry = cardData.data?.expiryDate?.value else {
+                    self.alert("Extraction failed", didFail: true)
+                    return
+                }
+                
+                let expMonth = expiry.split(separator: "/").first ?? ""
+                let expYear = expiry.split(separator: "/").last ?? ""
+                
+                let card = Card(number: number,
+                                cvc: "",
+                                expMonth: Int(expMonth) ?? 0,
+                                expYear: Int(expYear) ?? 0)
+                
+                self.alert("Extracted data: \(card)", didFail: false)
             case .failure(let failure):
-                print(failure)
+                self.alert("Extraction failed: \(failure)", didFail: true)
             }
         }
         
         
+    }
+    
+    func alert(_ message: String, didFail: Bool) {
+        let alert = UIAlertController(
+            title: "Info",
+            message: message,
+            preferredStyle: .alert
+        )
+
+        let okAction = UIAlertAction(title: "OK", style: .default) { [weak self] _ in
+            guard let self = self else { return }
+
+            if didFail {
+                self.dismiss(animated: true)
+            } else {
+                self.navigationController?.popViewController(animated: true)
+            }
+        }
+
+        alert.addAction(okAction)
+        present(alert, animated: true)
     }
 }
 
@@ -469,10 +469,6 @@ final class CameraManager: NSObject {
                 
                 DispatchQueue.global(qos: .userInitiated).async {
                     self.session.startRunning()
-
-//                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
-//                        self.enableTorch(on: camera)
-//                    }
                 }
             } else {
                 session.commitConfiguration()

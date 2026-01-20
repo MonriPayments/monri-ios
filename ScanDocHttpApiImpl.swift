@@ -8,7 +8,22 @@
 import Foundation
 import os.log
 
+internal struct ScanDocApiConstants {
+    static let SCAN_DOC_BASE_URL: String = "https://api.scandoc.ai/ks/"
+    static let MONRI_BASE_URL: String = "https://monri-scandoc.asseco-see.hr/"
+    static let AUTHENTICATE_ENDPOINT: String = "authenticate/"
+    static let AUTHENTICATE_REFRESH_ENDPOINT: String = "authenticate/refresh"
+    static let VALIDATION_ENDPOINT: String = "validation/"
+    static let EXTRACTION_ENDPOINT: String = "extraction/"
+    static let CONTENT_TYPE_HEADER_KEY: String = "content-type"
+    static let ACCEPT_HEADER_KEY: String = "accept"
+    static let JSON_HEADER_VALUE: String = "application/json"
+    static let AUTHORIZATION_HEADER_KEY: String = "Authorization"
+}
+
 class ScanDocHttpApiImpl: ScanDocHttpApi {
+    
+    let MONRI_LOG_CONSTANT: String = "Monri ScanDoc"
     
     let options: ScanDocApiOptions
     let scanDocUserKey: String
@@ -29,20 +44,20 @@ class ScanDocHttpApiImpl: ScanDocHttpApi {
         let authParams = ScanDocAuthenticateRequest(userKey: scanDocUserKey,
                                                     subClient: subClient)
         
-        httpClient.jsonPost(url: "https://api.scandoc.ai/ks/authenticate/",
+        httpClient.jsonPost(url: ScanDocApiConstants.SCAN_DOC_BASE_URL + ScanDocApiConstants.AUTHENTICATE_ENDPOINT,
                             body: authParams.toJson(),
                             headers: [
-                                "accept": "application/json",
-                                "content-type": "application/json"
+                                ScanDocApiConstants.ACCEPT_HEADER_KEY: ScanDocApiConstants.JSON_HEADER_VALUE,
+                                ScanDocApiConstants.CONTENT_TYPE_HEADER_KEY: ScanDocApiConstants.JSON_HEADER_VALUE
                             ]) {
             switch ($0) {
             case .failure(let body, let statusCode, _):
-                callback(.failure(NSError(domain: "Monri ScanDoc", code: statusCode, userInfo: body)))
+                callback(.failure(NSError(domain: self.MONRI_LOG_CONSTANT, code: statusCode, userInfo: body)))
                 return
             case .success(let body, _, _):
                 
                 guard let authenticateResponse = ScanDocAuthenticateResponse.fromJson(body: body) else {
-                    callback(.failure(NSError(domain: "Monri ScanDoc: Unable to map response", code: -10002)))
+                    callback(.failure(ScanDocErrors.unableToMapResponse.asNSError))
                     return
                 }
                 
@@ -57,21 +72,20 @@ class ScanDocHttpApiImpl: ScanDocHttpApi {
     
     func refreshToken(_ refreshToken: ScanDocRefreshTokenRequest, _ callback: @escaping (Result<ScanDocRefreshTokenResponse, any Error>) -> Void) {
         
-        httpClient.jsonPost(url: "https://api.scandoc.ai/ks/authenticate/refresh",
+        httpClient.jsonPost(url: ScanDocApiConstants.SCAN_DOC_BASE_URL + ScanDocApiConstants.AUTHENTICATE_REFRESH_ENDPOINT,
                             body: refreshToken.toJson(),
                             headers: [
-                                "accept": "application/json",
-                                "content-type": "application/json"
+                                ScanDocApiConstants.ACCEPT_HEADER_KEY: ScanDocApiConstants.JSON_HEADER_VALUE,
+                                ScanDocApiConstants.CONTENT_TYPE_HEADER_KEY: ScanDocApiConstants.JSON_HEADER_VALUE
                             ]) {
             switch ($0) {
             case .failure(let body, let statusCode, _):
-                callback(.failure(NSError(domain: "Monri ScanDoc", code: statusCode, userInfo: body)))
+                callback(.failure(NSError(domain: self.MONRI_LOG_CONSTANT, code: statusCode, userInfo: body)))
                 return
             case .success(let body, _, _):
                 
                 guard let refreshResponse = ScanDocRefreshTokenResponse.fromJson(body: body) else {
-                    //TODO change errors
-                    callback(.failure(NSError(domain: "Monri ScanDoc: Unable to map response", code: -10002)))
+                    callback(.failure(ScanDocErrors.unableToMapResponse.asNSError))
                     return
                 }
                 
@@ -86,22 +100,21 @@ class ScanDocHttpApiImpl: ScanDocHttpApi {
     
     func validate(accessToken: String, _ validationParams: ScanDocValidationRequest, _ callback: @escaping (Result<ScanDocValidationResponse, any Error>) -> Void) {
         
-        httpClient.jsonPost(url: "https://monri-scandoc.asseco-see.hr/validation/",
+        httpClient.jsonPost(url: ScanDocApiConstants.MONRI_BASE_URL + ScanDocApiConstants.VALIDATION_ENDPOINT,
                             body: validationParams.toJson(),
                             headers: [
-                                "accept": "application/json",
-                                "content-type": "application/json",
-                                "Authorization": accessToken
+                                ScanDocApiConstants.ACCEPT_HEADER_KEY: ScanDocApiConstants.JSON_HEADER_VALUE,
+                                ScanDocApiConstants.CONTENT_TYPE_HEADER_KEY: ScanDocApiConstants.JSON_HEADER_VALUE,
+                                ScanDocApiConstants.AUTHORIZATION_HEADER_KEY: accessToken
                             ]) {
                                 switch ($0) {
                                 case .failure(let body, let statusCode, _):
-                                    callback(.failure(NSError(domain: "Monri ScanDoc", code: statusCode, userInfo: body)))
+                                    callback(.failure(NSError(domain: self.MONRI_LOG_CONSTANT, code: statusCode, userInfo: body)))
                                     return
                                 case .success(let body, _, _):
                                     
                                     guard let response = ScanDocValidationResponse.fromJson(body: body) else {
-                                        //TODO change errors
-                                        callback(.failure(NSError(domain: "Monri ScanDoc: Unable to map response", code: -10002)))
+                                        callback(.failure(ScanDocErrors.unableToMapResponse.asNSError))
                                         return
                                     }
                                     
@@ -116,22 +129,21 @@ class ScanDocHttpApiImpl: ScanDocHttpApi {
     
     func extraction(accessToken: String, _ extractionParams: ScanDocExtractionRequest, _ callback: @escaping (Result<ScanDocExtractionResponse, any Error>) -> Void) {
         
-        httpClient.jsonPost(url: "https://monri-scandoc.asseco-see.hr/extraction/",
+        httpClient.jsonPost(url: ScanDocApiConstants.MONRI_BASE_URL + ScanDocApiConstants.EXTRACTION_ENDPOINT,
                             body: extractionParams.toJson(),
                             headers: [
-                                "accept": "application/json",
-                                "content-type": "application/json",
-                                "Authorization": accessToken
+                                ScanDocApiConstants.ACCEPT_HEADER_KEY: ScanDocApiConstants.JSON_HEADER_VALUE,
+                                ScanDocApiConstants.CONTENT_TYPE_HEADER_KEY: ScanDocApiConstants.JSON_HEADER_VALUE,
+                                ScanDocApiConstants.AUTHORIZATION_HEADER_KEY: accessToken
                             ]) {
                                 switch ($0) {
                                 case .failure(let body, let statusCode, _):
-                                    callback(.failure(NSError(domain: "Monri ScanDoc", code: statusCode, userInfo: body)))
+                                    callback(.failure(NSError(domain: self.MONRI_LOG_CONSTANT, code: statusCode, userInfo: body)))
                                     return
                                 case .success(let body, _, _):
                                     
                                     guard let response = ScanDocExtractionResponse.fromJson(body: body) else {
-                                        //TODO change errors
-                                        callback(.failure(NSError(domain: "Monri ScanDoc: Unable to map response", code: -10002)))
+                                        callback(.failure(ScanDocErrors.unableToMapResponse.asNSError))
                                         return
                                     }
                                     

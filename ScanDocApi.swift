@@ -16,6 +16,7 @@ public class ScanDocApi {
     private var refreshToken: String?
     private var accessTokenExpiration: Date?
     private var refreshTokenExpiration: Date?
+    private let IMAGE_TYPE: String = "base64"
     
     var logger: MonriLogger {
         MonriLoggerImpl(log: OSLog(subsystem: "Monri", category: "ScanDocApi"))
@@ -29,7 +30,7 @@ public class ScanDocApi {
     public func validateScannedCard(scannedCardImage: UIImage, _ callback: @escaping (Result<Bool, Error>) -> Void) {
         
         guard let scannedCardBase64Img = getBase64Img(from: scannedCardImage) else {
-            callback(.failure(NSError(domain: "Image must be .png or .jpeg format", code: -1001)))
+            callback(.failure(ScanDocErrors.invalidImageFormat.asNSError))
             return
         }
         
@@ -57,10 +58,10 @@ public class ScanDocApi {
         
     }
     
-    public func extractScannedCard(scannedCardImage: UIImage, _ callback: @escaping (Result<Card, Error>) -> Void) {
+    public func extractScannedCard(scannedCardImage: UIImage, _ callback: @escaping (Result<ScanDocExtractionResponse, Error>) -> Void) {
         
         guard let scannedCardBase64Img = getBase64Img(from: scannedCardImage) else {
-            callback(.failure(NSError(domain: "Image must be .png or .jpeg format", code: -1001)))
+            callback(.failure(ScanDocErrors.invalidImageFormat.asNSError))
             return
         }
         
@@ -71,7 +72,7 @@ public class ScanDocApi {
             case .success(let accessToken):
                 self.httpClient.extraction(accessToken: accessToken,
                                            ScanDocExtractionRequest(dataFields: ExtractionDataFields(image: scannedCardBase64Img,
-                                                                                                     imageType: "base64",
+                                                                                                     imageType: self.IMAGE_TYPE,
                                                                                                 imageCropped: false),
                                                                settings: ExtractionSettings(shouldReturnDocumentImage: true,
                                                                                             skipDocumentSizeCheck: false,
@@ -84,22 +85,14 @@ public class ScanDocApi {
                         
                     case .success(let response):
                         
-                        guard let number = response.data?.cardNumber?.value,
-                              let expiry = response.data?.expiryDate?.value else {
+                        guard response.data?.cardNumber?.value != nil,
+                              response.data?.expiryDate?.value != nil else {
                             
-                            callback(.failure(NSError(domain: "Data couldn't be read", code: -1000)))
+                            callback(.failure(ScanDocErrors.unableToReadExtractedData.asNSError))
                             return
                         }
                         
-                        let expMonth = expiry.split(separator: "/").first ?? ""
-                        let expYear = expiry.split(separator: "/").last ?? ""
-                        
-                        let card = Card(number: number,
-                                        cvc: "",
-                                        expMonth: Int(expMonth) ?? 0,
-                                        expYear: Int(expYear) ?? 0)
-                        
-                        callback(.success(card))
+                        callback(.success(response))
                     case .failure(let error):
                         callback(.failure(error))
                     }
@@ -115,13 +108,8 @@ public class ScanDocApi {
     }
     
     private func getBase64Img(from image: UIImage) -> String? {
-//        
-//        if let imageData = image.pngData() { // or .jpegData(compressionQuality: 1.0)
-//            let base64String = imageData.base64EncodedString()
-//            return base64String
-//        }
         
-        if let imageData = image.jpegData(compressionQuality: 0.7) {
+        if let imageData = image.jpegData(compressionQuality: 0.5) {
             let base64String = imageData.base64EncodedString()
             return base64String
         }
@@ -134,7 +122,6 @@ public class ScanDocApi {
         
         let now = Date()
         
-        //TODO: Improve this
         if let accessToken = self.accessToken,
            let expiration = self.accessTokenExpiration,
            expiration > now {

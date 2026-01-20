@@ -9,15 +9,15 @@
 import Foundation
 
 // MARK: - ScanDocExtractionResponse
-struct ScanDocExtractionResponse: Codable {
-    let transactionID, uploadedAt, productName: String?
-    let errors, warnings: [String]?
-    let status: Int?
-    let method, infoCode: String?
-    let analysisTime: Double?
-    let os, browser, device: String?
-    let data: DataClass?
-    let imageData: ImageData?
+public struct ScanDocExtractionResponse: Codable {
+    public let transactionID, uploadedAt, productName: String?
+    public let errors, warnings: [String]?
+    public let status: Int?
+    public let method, infoCode: String?
+    public let analysisTime: Double?
+    public let os, browser, device: String?
+    public let data: DataClass?
+    public let imageData: ImageData?
     
     enum CodingKeys: String, CodingKey {
         case transactionID = "TransactionID"
@@ -77,9 +77,9 @@ struct ScanDocExtractionResponse: Codable {
 }
 
 // MARK: - DataClass
-struct DataClass: Codable {
-    let holdersName, luhnCheck, cardNumber, expiryDate: CardNumber?
-    let extractedTexts, iban, issuedDate: CardNumber?
+public struct DataClass: Codable {
+    public let holdersName, luhnCheck, cardNumber, expiryDate: CardNumber?
+    public let extractedTexts, iban, issuedDate: CardNumber?
     
     enum CodingKeys: String, CodingKey {
         case holdersName = "HoldersName"
@@ -110,9 +110,9 @@ struct DataClass: Codable {
 
 
 // MARK: - CardNumber
-struct CardNumber: Codable {
-    let read: Bool
-    let value: String
+public struct CardNumber: Codable {
+    public let read: Bool
+    public let value: String
     
     enum CodingKeys: String, CodingKey {
         case read = "Read"
@@ -131,8 +131,8 @@ struct CardNumber: Codable {
 }
 
 // MARK: - ImageData
-struct ImageData: Codable {
-    let creditCardImage: String
+public struct ImageData: Codable {
+    public let creditCardImage: String
     
     enum CodingKeys: String, CodingKey {
         case creditCardImage = "CreditCardImage"
