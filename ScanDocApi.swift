@@ -28,7 +28,7 @@ public class ScanDocApi {
         self.httpClient = ScanDocHttpApiImpl(options: options, httpClient: MonriFactory().createHttpClient())
     }
     
-    public func validateScannedCard(scannedCardImages: [UIImage], validationSettings: ScanDocValidationConfiguration? = nil, _ callback: @escaping (Result<Bool, Error>) -> Void) {
+    public func validateScannedCard(scannedCardImages: [UIImage], validationSettings: ScanDocValidationConfiguration? = nil, _ callback: @escaping (Result<ScanDocValidationResponse, Error>) -> Void) {
         
         guard let base64Images = getBase64Images(images: scannedCardImages) else {
             callback(.failure(ScanDocErrors.invalidImageFormat.asNSError))
@@ -46,7 +46,7 @@ public class ScanDocApi {
                     switch result {
                         
                     case .success(let response):
-                        callback(.success(response.validated ?? false))
+                        callback(.success(response))
                     case .failure(let error):
                         callback(.failure(error))
                     }
