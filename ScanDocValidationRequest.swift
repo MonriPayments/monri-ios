@@ -5,8 +5,9 @@
 //  Created by Karolina Škunca on 27.08.2025..
 //
 
-
 import Foundation
+
+
 
 // MARK: - ScanDocValidationRequest
 struct ScanDocValidationRequest: Codable {
@@ -35,7 +36,8 @@ struct ScanDocValidationRequest: Codable {
 
 // MARK: - DataFields
 struct ValidationDataFields: Codable {
-    let images, blurValues: [String]
+    let images: [String]
+    let blurValues: [Double]
 
     enum CodingKeys: String, CodingKey {
         case images = "Images"

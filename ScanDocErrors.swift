@@ -16,7 +16,7 @@ extension ScanDocErrors {
         get {
             switch self {
             case .unableToMapResponse:
-                return NSError(domain: "Monri ScanDoc: Unable to map response", code: -10002)
+                return NSError(domain: "Monri ScanDoc: Unable to map response", code: -1002)
             case .invalidImageFormat:
                 return NSError(domain: "Image must be .png or .jpeg format", code: -1001)
             case .unableToReadExtractedData:

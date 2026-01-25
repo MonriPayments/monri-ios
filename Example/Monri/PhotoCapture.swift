@@ -18,7 +18,7 @@ final class PhotoCaptureViewController: UIViewController {
     private let cameraManager = CameraManager()
     private let photoValidator = PhotoValidator()
     
-    let scanDocApi = ScanDocApi(options: ScanDocApiOptions(scanDocUserKey: "REPLACE", scanDocSubKey: "REPLACE"))
+    let scanDocApi = ScanDocApi(options: ScanDocApiOptions(scanDocApiBaseUrl: "REPLACE", userKey: "REPLACE", subClient: "REPLACE"))
     
     private var capturedImage: UIImage?
     

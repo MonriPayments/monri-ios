@@ -10,7 +10,6 @@ import os.log
 
 internal struct ScanDocApiConstants {
     static let SCAN_DOC_BASE_URL: String = "https://api.scandoc.ai/ks/"
-    static let MONRI_BASE_URL: String = "https://monri-scandoc.asseco-see.hr/"
     static let AUTHENTICATE_ENDPOINT: String = "authenticate/"
     static let AUTHENTICATE_REFRESH_ENDPOINT: String = "authenticate/refresh"
     static let VALIDATION_ENDPOINT: String = "validation/"
@@ -26,7 +25,6 @@ class ScanDocHttpApiImpl: ScanDocHttpApi {
     let MONRI_LOG_CONSTANT: String = "Monri ScanDoc"
     
     let options: ScanDocApiOptions
-    let scanDocUserKey: String
     private let httpClient: MonriHttpClient
     
     var logger: MonriLogger {
@@ -35,14 +33,13 @@ class ScanDocHttpApiImpl: ScanDocHttpApi {
     
     init(options: ScanDocApiOptions, httpClient: MonriHttpClient) {
         self.options = options
-        self.scanDocUserKey = options.scanDocUserKey
         self.httpClient = httpClient
     }
     
-    func authenticate(_ subClient: String, _ callback: @escaping (Result<ScanDocAuthenticateResponse, any Error>) -> Void) {
+    func authenticate(_ callback: @escaping (Result<ScanDocAuthenticateResponse, any Error>) -> Void) {
         
-        let authParams = ScanDocAuthenticateRequest(userKey: scanDocUserKey,
-                                                    subClient: subClient)
+        let authParams = ScanDocAuthenticateRequest(userKey: options.scanDocUserKey,
+                                                    subClient: options.scanDocSubKey)
         
         httpClient.jsonPost(url: ScanDocApiConstants.SCAN_DOC_BASE_URL + ScanDocApiConstants.AUTHENTICATE_ENDPOINT,
                             body: authParams.toJson(),
@@ -50,24 +47,24 @@ class ScanDocHttpApiImpl: ScanDocHttpApi {
                                 ScanDocApiConstants.ACCEPT_HEADER_KEY: ScanDocApiConstants.JSON_HEADER_VALUE,
                                 ScanDocApiConstants.CONTENT_TYPE_HEADER_KEY: ScanDocApiConstants.JSON_HEADER_VALUE
                             ]) {
-            switch ($0) {
-            case .failure(let body, let statusCode, _):
-                callback(.failure(NSError(domain: self.MONRI_LOG_CONSTANT, code: statusCode, userInfo: body)))
-                return
-            case .success(let body, _, _):
-                
-                guard let authenticateResponse = ScanDocAuthenticateResponse.fromJson(body: body) else {
-                    callback(.failure(ScanDocErrors.unableToMapResponse.asNSError))
-                    return
-                }
-                
-                callback(.success(authenticateResponse))
-                return
-            case .error(let error):
-                callback(.failure(error))
-                return
-            }
-        }
+                                switch ($0) {
+                                case .failure(let body, let statusCode, _):
+                                    callback(.failure(NSError(domain: self.MONRI_LOG_CONSTANT, code: statusCode, userInfo: body)))
+                                    return
+                                case .success(let body, _, _):
+                                    
+                                    guard let authenticateResponse = ScanDocAuthenticateResponse.fromJson(body: body) else {
+                                        callback(.failure(ScanDocErrors.unableToMapResponse.asNSError))
+                                        return
+                                    }
+                                    
+                                    callback(.success(authenticateResponse))
+                                    return
+                                case .error(let error):
+                                    callback(.failure(error))
+                                    return
+                                }
+                            }
     }
     
     func refreshToken(_ refreshToken: ScanDocRefreshTokenRequest, _ callback: @escaping (Result<ScanDocRefreshTokenResponse, any Error>) -> Void) {
@@ -78,29 +75,29 @@ class ScanDocHttpApiImpl: ScanDocHttpApi {
                                 ScanDocApiConstants.ACCEPT_HEADER_KEY: ScanDocApiConstants.JSON_HEADER_VALUE,
                                 ScanDocApiConstants.CONTENT_TYPE_HEADER_KEY: ScanDocApiConstants.JSON_HEADER_VALUE
                             ]) {
-            switch ($0) {
-            case .failure(let body, let statusCode, _):
-                callback(.failure(NSError(domain: self.MONRI_LOG_CONSTANT, code: statusCode, userInfo: body)))
-                return
-            case .success(let body, _, _):
-                
-                guard let refreshResponse = ScanDocRefreshTokenResponse.fromJson(body: body) else {
-                    callback(.failure(ScanDocErrors.unableToMapResponse.asNSError))
-                    return
-                }
-                
-                callback(.success(refreshResponse))
-                return
-            case .error(let error):
-                callback(.failure(error))
-                return
-            }
-        }
+                                switch ($0) {
+                                case .failure(let body, let statusCode, _):
+                                    callback(.failure(NSError(domain: self.MONRI_LOG_CONSTANT, code: statusCode, userInfo: body)))
+                                    return
+                                case .success(let body, _, _):
+                                    
+                                    guard let refreshResponse = ScanDocRefreshTokenResponse.fromJson(body: body) else {
+                                        callback(.failure(ScanDocErrors.unableToMapResponse.asNSError))
+                                        return
+                                    }
+                                    
+                                    callback(.success(refreshResponse))
+                                    return
+                                case .error(let error):
+                                    callback(.failure(error))
+                                    return
+                                }
+                            }
     }
     
     func validate(accessToken: String, _ validationParams: ScanDocValidationRequest, _ callback: @escaping (Result<ScanDocValidationResponse, any Error>) -> Void) {
         
-        httpClient.jsonPost(url: ScanDocApiConstants.MONRI_BASE_URL + ScanDocApiConstants.VALIDATION_ENDPOINT,
+        httpClient.jsonPost(url: options.scanDocApiBaseUrl + ScanDocApiConstants.VALIDATION_ENDPOINT,
                             body: validationParams.toJson(),
                             headers: [
                                 ScanDocApiConstants.ACCEPT_HEADER_KEY: ScanDocApiConstants.JSON_HEADER_VALUE,
@@ -129,7 +126,7 @@ class ScanDocHttpApiImpl: ScanDocHttpApi {
     
     func extraction(accessToken: String, _ extractionParams: ScanDocExtractionRequest, _ callback: @escaping (Result<ScanDocExtractionResponse, any Error>) -> Void) {
         
-        httpClient.jsonPost(url: ScanDocApiConstants.MONRI_BASE_URL + ScanDocApiConstants.EXTRACTION_ENDPOINT,
+        httpClient.jsonPost(url: options.scanDocApiBaseUrl + ScanDocApiConstants.EXTRACTION_ENDPOINT,
                             body: extractionParams.toJson(),
                             headers: [
                                 ScanDocApiConstants.ACCEPT_HEADER_KEY: ScanDocApiConstants.JSON_HEADER_VALUE,

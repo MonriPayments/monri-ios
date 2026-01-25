@@ -8,11 +8,13 @@
 import Foundation
 
 public class ScanDocApiOptions {
-    public let scanDocUserKey: String
-    public let scanDocSubKey: String
+    let scanDocApiBaseUrl: String
+    let scanDocUserKey: String
+    let scanDocSubKey: String
     
-    public init(scanDocUserKey: String, scanDocSubKey: String) {
-        self.scanDocUserKey = scanDocUserKey
-        self.scanDocSubKey = scanDocSubKey
+    public init(scanDocApiBaseUrl: String, userKey: String, subClient: String) {
+        self.scanDocApiBaseUrl = scanDocApiBaseUrl
+        self.scanDocUserKey = userKey
+        self.scanDocSubKey = subClient
     }
 }
