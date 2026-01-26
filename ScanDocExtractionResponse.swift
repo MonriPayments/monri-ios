@@ -1,5 +1,5 @@
 //
-//  ScanDocExtractionResponse.swift
+//  ExtractionResponse.swift
 //  Pods
 //
 //  Created by Karolina Škunca on 27.08.2025..
@@ -9,7 +9,7 @@
 import Foundation
 
 // MARK: - ScanDocExtractionResponse
-public struct ScanDocExtractionResponse: Codable {
+public struct ExtractionResponse: Codable {
     public let transactionID, uploadedAt, productName: String?
     public let errors, warnings: [String]?
     public let status: Int?
@@ -36,7 +36,7 @@ public struct ScanDocExtractionResponse: Codable {
         case imageData = "ImageData"
     }
     
-    static func fromJson(body: [String: Any]) -> ScanDocExtractionResponse? {
+    static func fromJson(body: [String: Any]) -> ExtractionResponse? {
         guard
             let transactionID = body["TransactionID"] as? String,
             let uploadedAt = body["UploadedAt"] as? String,
@@ -59,7 +59,7 @@ public struct ScanDocExtractionResponse: Codable {
         let browser = body["Browser"] as? String
         let device = body["Device"] as? String
         
-        return ScanDocExtractionResponse(transactionID: transactionID,
+        return ExtractionResponse(transactionID: transactionID,
                                          uploadedAt: uploadedAt,
                                          productName: productName,
                                          errors: errors,

@@ -1,5 +1,5 @@
 //
-//  ScanDocExtractionConfiguration.swift
+//  ExtractionConfiguration.swift
 //  Monri
 //
 //  Created by Karolina Škunca on 25.01.2026..
@@ -30,14 +30,14 @@ public struct ExtractionConfigurationSettings {
     }
 }
 
-public struct ScanDocExtractionConfiguration {
+public struct ExtractionConfiguration {
     let imageConfiguration: ImageConfiguration
     let extractionConfigurationSettings: ExtractionConfigurationSettings
-    let acceptTermsAndConditions: Bool
+    //let acceptTermsAndConditions: Bool
     
     public init(imageConfiguration: ImageConfiguration, extractionSettings: ExtractionConfigurationSettings, acceptTermsAndConditions: Bool) {
         self.imageConfiguration = imageConfiguration
         self.extractionConfigurationSettings = extractionSettings
-        self.acceptTermsAndConditions = acceptTermsAndConditions
+        //self.acceptTermsAndConditions = acceptTermsAndConditions
     }
 }

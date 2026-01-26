@@ -1,20 +1,20 @@
 //
-//  ScanDocValidationConfiguration.swift
+//  ValidationConfiguration.swift
 //  Pods
 //
 //  Created by Karolina Škunca on 25.01.2026..
 //
 
 
-public struct ScanDocValidationConfiguration {
-    let acceptTermsAndConditions: Bool
+public struct ValidationConfiguration {
+    //let acceptTermsAndConditions: Bool
     var blurValues: [Double]
     let validationSettings: ValidationConfigurationSettings
     
     public init(blurValues: [Double], validationSettings: ValidationConfigurationSettings, acceptTermsAndConditions: Bool) {
         self.blurValues = blurValues
         self.validationSettings = validationSettings
-        self.acceptTermsAndConditions = acceptTermsAndConditions
+        //self.acceptTermsAndConditions = acceptTermsAndConditions
     }
     
     public mutating func setBlurValues(_ blurValues: [Double]) {

@@ -45,20 +45,19 @@ final class ScanDocConfigurationTests: XCTestCase {
             dontUseValidation: false
         )
 
-        let config = ScanDocExtractionConfiguration(
+        let config = ExtractionConfiguration(
             imageConfiguration: imageConfig,
             extractionSettings: extractionSettings,
             acceptTermsAndConditions: true
         )
 
-        XCTAssertTrue(config.acceptTermsAndConditions)
         XCTAssertEqual(config.imageConfiguration.imageCropped, false)
         XCTAssertTrue(config.extractionConfigurationSettings.canStoreImages)
     }
 
     func testScanDocValidationConfigurationSetBlurValues() {
         let validationSettings = ValidationConfigurationSettings(skipImageSizeCheck: false)
-        var config = ScanDocValidationConfiguration(
+        var config = ValidationConfiguration(
             blurValues: [0.1, 0.2],
             validationSettings: validationSettings,
             acceptTermsAndConditions: true
@@ -67,7 +66,6 @@ final class ScanDocConfigurationTests: XCTestCase {
         config.setBlurValues([0.5, 0.7])
 
         XCTAssertEqual(config.blurValues, [0.5, 0.7])
-        XCTAssertTrue(config.acceptTermsAndConditions)
         XCTAssertFalse(config.validationSettings.skipImageSizeCheck)
     }
 }

@@ -36,7 +36,7 @@ class ScanDocHttpApiImpl: ScanDocHttpApi {
         self.httpClient = httpClient
     }
     
-    func authenticate(_ callback: @escaping (Result<ScanDocAuthenticateResponse, any Error>) -> Void) {
+    func authenticate(_ callback: @escaping (Result<AuthenticateResponse, any Error>) -> Void) {
         
         let authParams = ScanDocAuthenticateRequest(userKey: options.scanDocUserKey,
                                                     subClient: options.scanDocSubKey)
@@ -53,7 +53,7 @@ class ScanDocHttpApiImpl: ScanDocHttpApi {
                                     return
                                 case .success(let body, _, _):
                                     
-                                    guard let authenticateResponse = ScanDocAuthenticateResponse.fromJson(body: body) else {
+                                    guard let authenticateResponse = AuthenticateResponse.fromJson(body: body) else {
                                         callback(.failure(ScanDocErrors.unableToMapResponse.asNSError))
                                         return
                                     }
@@ -124,7 +124,7 @@ class ScanDocHttpApiImpl: ScanDocHttpApi {
                             }
     }
     
-    func extraction(accessToken: String, _ extractionParams: ScanDocExtractionRequest, _ callback: @escaping (Result<ScanDocExtractionResponse, any Error>) -> Void) {
+    func extraction(accessToken: String, _ extractionParams: ScanDocExtractionRequest, _ callback: @escaping (Result<ExtractionResponse, any Error>) -> Void) {
         
         httpClient.jsonPost(url: options.scanDocApiBaseUrl + ScanDocApiConstants.EXTRACTION_ENDPOINT,
                             body: extractionParams.toJson(),
@@ -139,7 +139,7 @@ class ScanDocHttpApiImpl: ScanDocHttpApi {
                                     return
                                 case .success(let body, _, _):
                                     
-                                    guard let response = ScanDocExtractionResponse.fromJson(body: body) else {
+                                    guard let response = ExtractionResponse.fromJson(body: body) else {
                                         callback(.failure(ScanDocErrors.unableToMapResponse.asNSError))
                                         return
                                     }

@@ -28,14 +28,14 @@ public class ScanDocApi {
         self.httpClient = ScanDocHttpApiImpl(options: options, httpClient: MonriFactory().createHttpClient())
     }
     
-    public func validateScannedCard(scannedCardImages: [UIImage], validationSettings: ScanDocValidationConfiguration? = nil, _ callback: @escaping (Result<ScanDocValidationResponse, Error>) -> Void) {
+    public func validateScannedCard(scannedCardImages: [UIImage], validationConfiguration: ValidationConfiguration? = nil, _ callback: @escaping (Result<ScanDocValidationResponse, Error>) -> Void) {
         
         guard let base64Images = getBase64Images(images: scannedCardImages) else {
             callback(.failure(ScanDocErrors.invalidImageFormat.asNSError))
             return
         }
         
-        let validationRequest = getValidationConfiguration(base64Images: base64Images, validationSettings: validationSettings)
+        let validationRequest = getValidationConfiguration(base64Images: base64Images, validationSettings: validationConfiguration)
         
         getAccessToken() { accessTokenResult in
             
@@ -59,7 +59,7 @@ public class ScanDocApi {
         
     }
     
-    public func extractScannedCard(scannedCardImage: UIImage, extractionConfiguration: ScanDocExtractionConfiguration? = nil, _ callback: @escaping (Result<ScanDocExtractionResponse, Error>) -> Void) {
+    public func extractDataFromScannedCard(scannedCardImage: UIImage, extractionConfiguration: ExtractionConfiguration? = nil, _ callback: @escaping (Result<ExtractionResponse, Error>) -> Void) {
         
         guard let scannedCardBase64Img = getBase64Img(from: scannedCardImage) else {
             callback(.failure(ScanDocErrors.invalidImageFormat.asNSError))
@@ -156,7 +156,7 @@ public class ScanDocApi {
         }
     }
     
-    private func getExtractionConfiguration(base64Img: String, extractionConfiguration: ScanDocExtractionConfiguration?) -> ScanDocExtractionRequest {
+    private func getExtractionConfiguration(base64Img: String, extractionConfiguration: ExtractionConfiguration?) -> ScanDocExtractionRequest {
         let scanDocExtractionRequest: ScanDocExtractionRequest
         
         if let extractionConfiguration = extractionConfiguration {
@@ -168,7 +168,7 @@ public class ScanDocApi {
                                                                                              skipImageSizeCheck: extractionConfiguration.extractionConfigurationSettings.skipImageSizeCheck,
                                                                                              canStoreImages: extractionConfiguration.extractionConfigurationSettings.canStoreImages,
                                                                                              dontUseValidation: extractionConfiguration.extractionConfigurationSettings.dontUseValidation),
-                                                                acceptTermsAndConditions: extractionConfiguration.acceptTermsAndConditions)
+                                                                acceptTermsAndConditions: self.httpClient.options.acceptTermsAndConditions)
         } else {
             scanDocExtractionRequest = ScanDocExtractionRequest(dataFields: ExtractionDataFields(image: base64Img,
                                                                                                  imageType: ImageTypes.BASE_64,
@@ -178,7 +178,7 @@ public class ScanDocApi {
                                                                                         skipImageSizeCheck: false,
                                                                                         canStoreImages: false,
                                                                                         dontUseValidation: true),
-                                                           acceptTermsAndConditions: true)
+                                                           acceptTermsAndConditions: self.httpClient.options.acceptTermsAndConditions)
         }
         
         return scanDocExtractionRequest
@@ -198,17 +198,17 @@ public class ScanDocApi {
         return base64Images
     }
     
-    private func getValidationConfiguration(base64Images: [String], validationSettings: ScanDocValidationConfiguration?) -> ScanDocValidationRequest {
+    private func getValidationConfiguration(base64Images: [String], validationSettings: ValidationConfiguration?) -> ScanDocValidationRequest {
         
         let validationRequest: ScanDocValidationRequest
         
         if let validationSettings = validationSettings {
-            validationRequest = ScanDocValidationRequest(acceptTermsAndConditions: validationSettings.acceptTermsAndConditions,
+            validationRequest = ScanDocValidationRequest(acceptTermsAndConditions: self.httpClient.options.acceptTermsAndConditions,
                                                          dataFields: ValidationDataFields(images: base64Images,
                                                                                           blurValues: validationSettings.blurValues),
                                                          settings: ValidationSettings(skipImageSizeCheck: validationSettings.validationSettings.skipImageSizeCheck))
         } else {
-            validationRequest = ScanDocValidationRequest(acceptTermsAndConditions: true,
+            validationRequest = ScanDocValidationRequest(acceptTermsAndConditions: self.httpClient.options.acceptTermsAndConditions,
                                      dataFields: ValidationDataFields(images: base64Images,
                                                                       blurValues: []),
                                      settings: ValidationSettings(skipImageSizeCheck: false))

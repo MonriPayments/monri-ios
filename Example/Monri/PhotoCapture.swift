@@ -18,7 +18,7 @@ final class PhotoCaptureViewController: UIViewController {
     private let cameraManager = CameraManager()
     private let photoValidator = PhotoValidator()
     
-    let scanDocApi = ScanDocApi(options: ScanDocApiOptions(scanDocApiBaseUrl: "REPLACE", userKey: "REPLACE", subClient: "REPLACE"))
+    let scanDocApi = ScanDocApi(options: ScanDocApiOptions(scanDocApiBaseUrl: "REPLACE", userKey: "REPLACE", subClient: "REPLACE", acceptTermsAndConditions: true))
     
     private var capturedImage: UIImage?
     
@@ -232,7 +232,7 @@ extension PhotoCaptureViewController: PhotoPreviewViewDelegate {
     func didTapSendForValidation() {
         guard let image = capturedImage else { return }
         
-        scanDocApi.extractScannedCard(scannedCardImage: image) { resultOfExtraction in
+        scanDocApi.extractDataFromScannedCard(scannedCardImage: image) { resultOfExtraction in
             switch resultOfExtraction {
             case .success(let cardData):
                 
