@@ -33,11 +33,9 @@ public struct ExtractionConfigurationSettings {
 public struct ExtractionConfiguration {
     let imageConfiguration: ImageConfiguration
     let extractionConfigurationSettings: ExtractionConfigurationSettings
-    //let acceptTermsAndConditions: Bool
     
     public init(imageConfiguration: ImageConfiguration, extractionSettings: ExtractionConfigurationSettings, acceptTermsAndConditions: Bool) {
         self.imageConfiguration = imageConfiguration
         self.extractionConfigurationSettings = extractionSettings
-        //self.acceptTermsAndConditions = acceptTermsAndConditions
     }
 }
