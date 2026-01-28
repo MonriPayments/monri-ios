@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="JtB-8T-DtR">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="24412" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="JtB-8T-DtR">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24405"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -13,7 +13,7 @@
             <objects>
                 <navigationController id="JtB-8T-DtR" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="uJD-5B-KNv">
-                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
+                        <rect key="frame" x="0.0" y="118" width="393" height="54"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -46,7 +46,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="H9b-W4-JfM">
-                                <rect key="frame" x="62.666666666666657" y="217" width="51" height="31"/>
+                                <rect key="frame" x="50.666666666666657" y="218.66666666666666" width="63" height="28"/>
                             </switch>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QS0-Rw-rie">
                                 <rect key="frame" x="105" y="316" width="165" height="35"/>
@@ -97,7 +97,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dRh-Qa-UQx">
-                                <rect key="frame" x="41" y="570" width="299" height="35"/>
+                                <rect key="frame" x="41.666666666666657" y="570" width="298" height="35"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Retrieve saved cards from customer"/>
                                 <connections>
@@ -112,28 +112,29 @@
                                     <action selector="payWithSaved3DSCard:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="qMh-ri-olQ"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a7u-QW-KKI">
-                                <rect key="frame" x="38" y="613" width="305" height="35"/>
+                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a7u-QW-KKI">
+                                <rect key="frame" x="-55" y="613" width="503" height="35"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Direct pay (PAY_CEK_HR)"/>
                                 <connections>
                                     <action selector="directPayment:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="5O7-h2-sP9"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dLX-Fe-uff">
-                                <rect key="frame" x="53" y="656" width="287" height="35"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Apple Pay"/>
-                                <connections>
-                                    <action selector="applePayConfirmPayment:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="0Zs-BL-LxM"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CEr-Kt-Gfn">
-                                <rect key="frame" x="64" y="699" width="266" height="35"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CEr-Kt-Gfn">
+                                <rect key="frame" x="63" y="699" width="266" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Scan Card"/>
                                 <connections>
                                     <action selector="scanCard:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="wGv-es-KNY"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dLX-Fe-uff">
+                                <rect key="frame" x="146" y="656" width="100" height="35"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Apple Pay"/>
+                                <connections>
+                                    <action selector="applePayConfirmPayment:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="0Zs-BL-LxM"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -142,7 +143,7 @@
                         <constraints>
                             <constraint firstItem="ucJ-b7-Azd" firstAttribute="centerX" secondItem="NcC-rv-W6e" secondAttribute="centerX" id="0Th-qo-mWA"/>
                             <constraint firstItem="gKa-y5-0Ka" firstAttribute="top" secondItem="ssn-8O-nZq" secondAttribute="bottom" constant="8" id="6v0-lh-UF0"/>
-                            <constraint firstItem="aUf-Ou-tAk" firstAttribute="trailing" secondItem="dRh-Qa-UQx" secondAttribute="trailing" constant="53" id="7ue-Yb-f5k"/>
+                            <constraint firstItem="aUf-Ou-tAk" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="dRh-Qa-UQx" secondAttribute="trailing" id="7ue-Yb-f5k"/>
                             <constraint firstItem="pZf-AK-fc3" firstAttribute="centerY" secondItem="H9b-W4-JfM" secondAttribute="centerY" id="82B-ns-wub"/>
                             <constraint firstItem="a7u-QW-KKI" firstAttribute="top" secondItem="dRh-Qa-UQx" secondAttribute="bottom" constant="8" symbolic="YES" id="Bvz-Jd-Cxm"/>
                             <constraint firstItem="a7u-QW-KKI" firstAttribute="leading" secondItem="aUf-Ou-tAk" secondAttribute="leading" constant="38" id="C5m-hl-sym"/>
@@ -155,13 +156,13 @@
                             <constraint firstItem="dLX-Fe-uff" firstAttribute="top" secondItem="a7u-QW-KKI" secondAttribute="bottom" constant="8" symbolic="YES" id="O7K-vQ-5p1"/>
                             <constraint firstItem="dLX-Fe-uff" firstAttribute="centerX" secondItem="a7u-QW-KKI" secondAttribute="centerX" id="OPp-ry-bO6"/>
                             <constraint firstItem="pZf-AK-fc3" firstAttribute="leading" secondItem="H9b-W4-JfM" secondAttribute="trailing" constant="6" id="OaY-Nm-vX3"/>
-                            <constraint firstItem="dLX-Fe-uff" firstAttribute="trailing" secondItem="dRh-Qa-UQx" secondAttribute="trailing" id="OhD-Ay-tPn"/>
+                            <constraint firstItem="dLX-Fe-uff" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="dRh-Qa-UQx" secondAttribute="trailing" constant="-93.666666666666629" id="OhD-Ay-tPn"/>
                             <constraint firstItem="ZeR-5E-1oF" firstAttribute="leading" secondItem="aUf-Ou-tAk" secondAttribute="leading" constant="112" id="Q8J-7N-PE6"/>
                             <constraint firstItem="NcC-rv-W6e" firstAttribute="leading" secondItem="aUf-Ou-tAk" secondAttribute="leading" constant="106" id="VSq-70-wwi"/>
                             <constraint firstItem="34p-Zb-f0w" firstAttribute="centerX" secondItem="QS0-Rw-rie" secondAttribute="centerX" id="X2Q-wS-pbp"/>
                             <constraint firstItem="C0M-Pp-UGP" firstAttribute="top" secondItem="pZf-AK-fc3" secondAttribute="bottom" constant="30" id="Y9U-ve-oWy"/>
                             <constraint firstItem="ssn-8O-nZq" firstAttribute="centerX" secondItem="gKa-y5-0Ka" secondAttribute="centerX" id="Zvb-jt-57o"/>
-                            <constraint firstItem="dLX-Fe-uff" firstAttribute="leading" secondItem="dRh-Qa-UQx" secondAttribute="leading" id="acd-fz-icD"/>
+                            <constraint firstItem="dLX-Fe-uff" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="dRh-Qa-UQx" secondAttribute="leading" id="acd-fz-icD"/>
                             <constraint firstItem="ssn-8O-nZq" firstAttribute="leading" secondItem="aUf-Ou-tAk" secondAttribute="leading" constant="46" id="dz2-Tm-e2f"/>
                             <constraint firstItem="NcC-rv-W6e" firstAttribute="top" secondItem="ucJ-b7-Azd" secondAttribute="bottom" constant="8" id="ePE-pf-PV4"/>
                             <constraint firstItem="34p-Zb-f0w" firstAttribute="leading" secondItem="aUf-Ou-tAk" secondAttribute="leading" constant="172" id="hcm-uz-Nbb"/>
