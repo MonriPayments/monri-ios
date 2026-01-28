@@ -112,18 +112,24 @@
                                     <action selector="payWithSaved3DSCard:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="qMh-ri-olQ"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a7u-QW-KKI">
-                                <rect key="frame" x="38" y="613" width="299" height="35"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a7u-QW-KKI">
+                                <rect key="frame" x="38" y="613" width="305" height="35"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Direct pay (PAY_CEK_HR)"/>
                                 <connections>
                                     <action selector="directPayment:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="5O7-h2-sP9"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CEr-Kt-Gfn">
-                                <rect key="frame" x="63" y="656" width="266" height="35"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dLX-Fe-uff">
+                                <rect key="frame" x="53" y="656" width="287" height="35"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Apple Pay"/>
+                                <connections>
+                                    <action selector="applePayConfirmPayment:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="0Zs-BL-LxM"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CEr-Kt-Gfn">
+                                <rect key="frame" x="64" y="699" width="266" height="35"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Scan Card"/>
                                 <connections>
@@ -138,18 +144,24 @@
                             <constraint firstItem="gKa-y5-0Ka" firstAttribute="top" secondItem="ssn-8O-nZq" secondAttribute="bottom" constant="8" id="6v0-lh-UF0"/>
                             <constraint firstItem="aUf-Ou-tAk" firstAttribute="trailing" secondItem="dRh-Qa-UQx" secondAttribute="trailing" constant="53" id="7ue-Yb-f5k"/>
                             <constraint firstItem="pZf-AK-fc3" firstAttribute="centerY" secondItem="H9b-W4-JfM" secondAttribute="centerY" id="82B-ns-wub"/>
+                            <constraint firstItem="a7u-QW-KKI" firstAttribute="top" secondItem="dRh-Qa-UQx" secondAttribute="bottom" constant="8" symbolic="YES" id="Bvz-Jd-Cxm"/>
+                            <constraint firstItem="a7u-QW-KKI" firstAttribute="leading" secondItem="aUf-Ou-tAk" secondAttribute="leading" constant="38" id="C5m-hl-sym"/>
                             <constraint firstItem="gKa-y5-0Ka" firstAttribute="leading" secondItem="aUf-Ou-tAk" secondAttribute="leading" constant="109" id="DlR-NF-Fwk"/>
                             <constraint firstItem="ucJ-b7-Azd" firstAttribute="top" secondItem="ZeR-5E-1oF" secondAttribute="bottom" constant="4" id="EAC-6b-Fyn"/>
                             <constraint firstItem="NcC-rv-W6e" firstAttribute="centerX" secondItem="ssn-8O-nZq" secondAttribute="centerX" id="GJK-Tb-gTV"/>
                             <constraint firstItem="QS0-Rw-rie" firstAttribute="leading" secondItem="aUf-Ou-tAk" secondAttribute="leading" constant="105" id="Ic8-Ff-mkv"/>
                             <constraint firstItem="pZf-AK-fc3" firstAttribute="top" secondItem="34p-Zb-f0w" secondAttribute="bottom" constant="40" id="KOR-VB-QPt"/>
                             <constraint firstItem="aUf-Ou-tAk" firstAttribute="trailing" secondItem="pZf-AK-fc3" secondAttribute="trailing" constant="46" id="L6s-Xw-CgQ"/>
+                            <constraint firstItem="dLX-Fe-uff" firstAttribute="top" secondItem="a7u-QW-KKI" secondAttribute="bottom" constant="8" symbolic="YES" id="O7K-vQ-5p1"/>
+                            <constraint firstItem="dLX-Fe-uff" firstAttribute="centerX" secondItem="a7u-QW-KKI" secondAttribute="centerX" id="OPp-ry-bO6"/>
                             <constraint firstItem="pZf-AK-fc3" firstAttribute="leading" secondItem="H9b-W4-JfM" secondAttribute="trailing" constant="6" id="OaY-Nm-vX3"/>
+                            <constraint firstItem="dLX-Fe-uff" firstAttribute="trailing" secondItem="dRh-Qa-UQx" secondAttribute="trailing" id="OhD-Ay-tPn"/>
                             <constraint firstItem="ZeR-5E-1oF" firstAttribute="leading" secondItem="aUf-Ou-tAk" secondAttribute="leading" constant="112" id="Q8J-7N-PE6"/>
                             <constraint firstItem="NcC-rv-W6e" firstAttribute="leading" secondItem="aUf-Ou-tAk" secondAttribute="leading" constant="106" id="VSq-70-wwi"/>
                             <constraint firstItem="34p-Zb-f0w" firstAttribute="centerX" secondItem="QS0-Rw-rie" secondAttribute="centerX" id="X2Q-wS-pbp"/>
                             <constraint firstItem="C0M-Pp-UGP" firstAttribute="top" secondItem="pZf-AK-fc3" secondAttribute="bottom" constant="30" id="Y9U-ve-oWy"/>
                             <constraint firstItem="ssn-8O-nZq" firstAttribute="centerX" secondItem="gKa-y5-0Ka" secondAttribute="centerX" id="Zvb-jt-57o"/>
+                            <constraint firstItem="dLX-Fe-uff" firstAttribute="leading" secondItem="dRh-Qa-UQx" secondAttribute="leading" id="acd-fz-icD"/>
                             <constraint firstItem="ssn-8O-nZq" firstAttribute="leading" secondItem="aUf-Ou-tAk" secondAttribute="leading" constant="46" id="dz2-Tm-e2f"/>
                             <constraint firstItem="NcC-rv-W6e" firstAttribute="top" secondItem="ucJ-b7-Azd" secondAttribute="bottom" constant="8" id="ePE-pf-PV4"/>
                             <constraint firstItem="34p-Zb-f0w" firstAttribute="leading" secondItem="aUf-Ou-tAk" secondAttribute="leading" constant="172" id="hcm-uz-Nbb"/>

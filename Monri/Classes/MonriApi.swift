@@ -8,6 +8,7 @@
 
 import Foundation
 import Alamofire
+import PassKit
 
 public final class MonriApi {
     
@@ -19,16 +20,11 @@ public final class MonriApi {
     private let customerApi: CustomerApi
     
     private weak var viewController: UIViewController?
-    
-    private var paymentController: PaymentController? {
-        guard let nc = viewController else {
-            return nil
-        }
-        return MonriPaymentController(viewController: nc, options: options)
-    }
-    
-    public convenience init(_ vc: UIViewController, authenticityToken: String) {
-        self.init(vc, options: MonriApiOptions(authenticityToken: authenticityToken, developmentMode: true))
+
+    private var paymentController: PaymentController?
+
+    public convenience init(_ vc: UIViewController, authenticityToken: String, merchantID: String? = nil) {
+        self.init(vc, options: MonriApiOptions(authenticityToken: authenticityToken, developmentMode: true, merchantID: merchantID))
     }
     
     public init(_ vc: UIViewController, options: MonriApiOptions) {
@@ -39,6 +35,8 @@ public final class MonriApi {
         self.options = options
         self.httpApi = MonriFactory().createHttpApi(options: options)
         self.customerApi = CustomerApi(self.httpApi)
+        
+        paymentController = MonriPaymentController(viewController: vc, options: options)
     }
     
     public func createToken(_ request: TokenRequest, paymentMethod: PaymentMethod, _ callback: @escaping TokenResultCallback) {
@@ -69,9 +67,9 @@ public final class MonriApi {
                 }
             }
     }
-    
-    public func confirmPayment(_ confirmPaymentParams: ConfirmPaymentParams, _ callback: @escaping ConfirmPaymentResultCallback) {
-        paymentController?.confirmPayment(params: confirmPaymentParams, callback)
+
+    public func confirmPayment(_ confirmPaymentParams: ConfirmPaymentParams, applePayCustomisation: (PKPaymentButtonType, PKPaymentButtonStyle)? = nil,_ callback: @escaping ConfirmPaymentResultCallback) {
+        paymentController?.confirmPayment(params: confirmPaymentParams, applePayCustomisation: applePayCustomisation, callback)
     }
     
     public func paymentStatus(_ params: PaymentStatusParams) {

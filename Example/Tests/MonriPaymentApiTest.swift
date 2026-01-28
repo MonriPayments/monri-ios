@@ -8,13 +8,14 @@ import Nimble
 import Monri
 import Monri_Example
 import Alamofire
+import CryptoKit
 
 class MonriPaymentApiTest: XCTestCase {
 
     // TODO: replace with your merchant's authenticity monriToken
-    let authenticityToken = "6a13d79bde8da9320e88923cb3472fb638619ccb"
+    let authenticityToken = "c6301017117302601b823874972a97acce96f2df"
     //TODO: replace with your merchant's merchant key
-    let merchantKey = "TestKeyXULLyvgWyPJSwOHe"
+    let merchantKey = "key-e428ba618ebc232a595d0851398b8a5d"
 
     static let non3DSCard = Card(number: "4111 1111 1111 1111", cvc: "123", expMonth: 10, expYear: 2031).toPaymentMethodParams()
     static let threeDSCard = Card(number: "4341 7920 0000 0044", cvc: "123", expMonth: 10, expYear: 2031).toPaymentMethodParams()
@@ -43,28 +44,62 @@ class MonriPaymentApiTest: XCTestCase {
     }
 
     func createPayment(_ callback: @escaping (String?, String?) -> Void) {
-        AF.request(
-            "https://dashboard.monri.com/api/examples/ruby/examples/create-payment-session",
-            method: .post,
-            parameters: [:],
-            encoding: JSONEncoding.default
-        )
-                .responseJSON { dataResponse in
-                    guard let data = dataResponse.data else {
-                        callback(nil, nil)
-                        return
-                    }
-                    do {
-                        guard let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] else {
-                            callback(nil, nil)
-                            return
-                        }
+        
+        let timestamp = Int(Date().timeIntervalSince1970)
+        let orderNumber = "random\(timestamp)"
+        
+        let parameters: [String: Any] = [
+            "amount": 100,
+            "order_number": orderNumber,
+            "currency": "EUR",
+            "transaction_type": "purchase",
+            "order_info": "Create payment session order info",
+            "scenario": "charge"
+        ]
+        
+        guard let bodyData = try? JSONSerialization.data(withJSONObject: parameters, options: []),
+              let bodyString = String(data: bodyData, encoding: .utf8) else {
+            callback(nil, nil)
+            return
+        }
+        
+        // Build digest
+        let rawDigest = "\(merchantKey)\(timestamp)\(authenticityToken)\(bodyString)"
+        
+        let digest = SHA512.hash(data: Data(rawDigest.utf8))
+        
+        let digestHex = digest.map { String(format: "%02x", $0) }.joined()
 
-                        callback(json["client_secret"] as? String, json["status"] as? String)
-                    } catch {
-                        callback(nil, nil)
-                    }
+        let authorizationHeader = "WP3-v2 \(authenticityToken) \(timestamp) \(digestHex)"
+
+        let headers: HTTPHeaders = [
+            "Content-Type": "application/json",
+            "Authorization": authorizationHeader
+        ]
+
+        let url = "https://ipgtest.monri.com/v2/payment/new"
+
+        AF.request(url,
+                   method: .post,
+                   parameters: parameters,
+                   encoding: JSONEncoding.default,
+                   headers: headers)
+        .responseJSON { dataResponse in
+            guard let data = dataResponse.data else {
+                callback(nil, nil)
+                return
+            }
+            do {
+                guard let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] else {
+                    callback(nil, nil)
+                    return
                 }
+
+                callback(json["client_secret"] as? String, json["status"] as? String)
+            } catch {
+                callback(nil, nil)
+            }
+        }
     }
 
     func confirmPayment(card: PaymentMethodParams = MonriPaymentApiTest.non3DSCard,
