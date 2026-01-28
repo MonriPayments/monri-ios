@@ -426,6 +426,10 @@ class ViewController: UIViewController {
         }
     }
     
+    @IBAction func scanCard(_ sender: Any) {
+        self.navigationController?.pushViewController(PhotoCaptureViewController(), animated: true)
+    }
+  
     @IBAction func applePayConfirmPayment(_ sender: Any) {
         createApplePayConfirmPayment()
     }
@@ -531,6 +535,7 @@ extension ViewController: ApplePayDelegate {
     func onApplePaymentFinished(pkPaymentAuthorizationResult: PKPaymentAuthorizationResult, confirmPaymentResultResponse: Monri.ConfirmPaymentResponse?) {
         
         self.alert("Apple pay result: \(pkPaymentAuthorizationResult.status) \n ConfirmPaymentResult: \(String(describing: confirmPaymentResultResponse?.status))")
+
     }
 }
 

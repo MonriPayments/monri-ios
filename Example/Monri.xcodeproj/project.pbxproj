@@ -18,6 +18,8 @@
 		BE15D9722BC90D3B00C82C59 /* ConfirmDirectPaymentFlowTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE15D9712BC90D3B00C82C59 /* ConfirmDirectPaymentFlowTest.swift */; };
 		BE15D9762BC90DB900C82C59 /* FakeMonriHttpApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE15D9742BC90DB000C82C59 /* FakeMonriHttpApi.swift */; };
 		BE15D97A2BC90E3300C82C59 /* FakeUiDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE15D9792BC90E3300C82C59 /* FakeUiDelegate.swift */; };
+		BE920D0B2F26428500942C1F /* ScanDocConfigurationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE920D0A2F26428500942C1F /* ScanDocConfigurationTests.swift */; };
+		BE973E402E66E80A00A5511E /* PhotoCapture.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE973E3F2E66E80A00A5511E /* PhotoCapture.swift */; };
 		BE4325302E0AEBFA00E2B81D /* ConfirmApplePayFlowTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE43252F2E0AEBF000E2B81D /* ConfirmApplePayFlowTest.swift */; };
 		D915BC9D4233636CF97F4990 /* Pods_Monri_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6EE1DD1CEAE4DB4849B9A4F /* Pods_Monri_Tests.framework */; };
 		E61D61AFDD83F96A19D377F0 /* Pods_Monri_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31250EB541150AA6F9D89D4D /* Pods_Monri_Example.framework */; };
@@ -59,6 +61,8 @@
 		BE15D9712BC90D3B00C82C59 /* ConfirmDirectPaymentFlowTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmDirectPaymentFlowTest.swift; sourceTree = "<group>"; };
 		BE15D9742BC90DB000C82C59 /* FakeMonriHttpApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeMonriHttpApi.swift; sourceTree = "<group>"; };
 		BE15D9792BC90E3300C82C59 /* FakeUiDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeUiDelegate.swift; sourceTree = "<group>"; };
+		BE920D0A2F26428500942C1F /* ScanDocConfigurationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanDocConfigurationTests.swift; sourceTree = "<group>"; };
+		BE973E3F2E66E80A00A5511E /* PhotoCapture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCapture.swift; sourceTree = "<group>"; };
 		BE43252F2E0AEBF000E2B81D /* ConfirmApplePayFlowTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmApplePayFlowTest.swift; sourceTree = "<group>"; };
 		BE9EFD7B2DEDB66900B659B5 /* Monri_Example.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Monri_Example.entitlements; sourceTree = "<group>"; };
 		C6EE1DD1CEAE4DB4849B9A4F /* Pods_Monri_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Monri_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -125,6 +129,7 @@
 		607FACD21AFB9204008FA782 /* Example for Monri */ = {
 			isa = PBXGroup;
 			children = (
+				BE973E3F2E66E80A00A5511E /* PhotoCapture.swift */,
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
 				607FACD71AFB9204008FA782 /* ViewController.swift */,
 				607FACD91AFB9204008FA782 /* Main.storyboard */,
@@ -150,6 +155,7 @@
 		607FACE81AFB9204008FA782 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				BE920D0A2F26428500942C1F /* ScanDocConfigurationTests.swift */,
 				BE43252F2E0AEBF000E2B81D /* ConfirmApplePayFlowTest.swift */,
 				BE15D9732BC90D5500C82C59 /* DirectPaymentFake */,
 				BE15D9712BC90D3B00C82C59 /* ConfirmDirectPaymentFlowTest.swift */,
@@ -398,6 +404,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BE973E402E66E80A00A5511E /* PhotoCapture.swift in Sources */,
 				F22C6768236C335400231B9E /* HMac.swift in Sources */,
 				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
@@ -410,6 +417,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BE920D0B2F26428500942C1F /* ScanDocConfigurationTests.swift in Sources */,
 				F24C8F0A25010FD100E20DB6 /* ValidatorsTest.swift in Sources */,
 				F2A24D382501990D007A2C35 /* HMac.swift in Sources */,
 				BE4325302E0AEBFA00E2B81D /* ConfirmApplePayFlowTest.swift in Sources */,

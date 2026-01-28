@@ -121,11 +121,19 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dLX-Fe-uff">
-                                <rect key="frame" x="41" y="656" width="299" height="35"/>
+                                <rect key="frame" x="53" y="656" width="287" height="35"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Apple Pay"/>
                                 <connections>
                                     <action selector="applePayConfirmPayment:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="0Zs-BL-LxM"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CEr-Kt-Gfn">
+                                <rect key="frame" x="64" y="699" width="266" height="35"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Scan Card"/>
+                                <connections>
+                                    <action selector="scanCard:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="wGv-es-KNY"/>
                                 </connections>
                             </button>
                         </subviews>
