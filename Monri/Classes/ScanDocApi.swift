@@ -79,8 +79,8 @@ public class ScanDocApi {
                         
                     case .success(let response):
                         
-                        guard response.data?.cardNumber?.value != nil,
-                              response.data?.expiryDate?.value != nil else {
+                        guard response.data?.cardNumber != nil,
+                              response.data?.expiryDate != nil else {
                             
                             callback(.failure(ScanDocErrors.unableToReadExtractedData.asNSError))
                             return
@@ -103,9 +103,8 @@ public class ScanDocApi {
     
     private func getBase64Img(from image: UIImage) -> String? {
         
-        if let imageData = image.jpegData(compressionQuality: 0.5) {
-            let base64String = imageData.base64EncodedString()
-            return base64String
+        if let base64 = ImageProcessingUtil.imageToCompressedBase64(image) {
+            return base64
         }
         
         return nil

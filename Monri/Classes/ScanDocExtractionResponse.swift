@@ -16,10 +16,10 @@ public struct ExtractionResponse: Codable {
     public let method, infoCode: String?
     public let analysisTime: Double?
     public let os, browser, device: String?
-    public let data: DataClass?
+    public let data: ScanDocCardData?
     public let imageData: ImageData?
     
-    enum CodingKeys: String, CodingKey {
+    public enum CodingKeys: String, CodingKey {
         case transactionID = "TransactionID"
         case uploadedAt = "UploadedAt"
         case productName = "ProductName"
@@ -36,7 +36,7 @@ public struct ExtractionResponse: Codable {
         case imageData = "ImageData"
     }
     
-    static func fromJson(body: [String: Any]) -> ExtractionResponse? {
+    public static func fromJson(body: [String: Any]) -> ExtractionResponse? {
         guard
             let transactionID = body["TransactionID"] as? String,
             let uploadedAt = body["UploadedAt"] as? String,
@@ -49,7 +49,7 @@ public struct ExtractionResponse: Codable {
             let dataDict = body["Data"] as? [String: Any],
             let imageDataDict = body["ImageData"] as? [String: Any],
             let analysisTime = body["AnalysisTime"] as? Double,
-            let data = DataClass.fromJson(body: dataDict),
+            let data = ScanDocCardData.fromJson(body: dataDict),
             let imageData = ImageData.fromJson(body: imageDataDict)
         else {
             return nil
@@ -76,12 +76,12 @@ public struct ExtractionResponse: Codable {
     }
 }
 
-// MARK: - DataClass
-public struct DataClass: Codable {
-    public let holdersName, luhnCheck, cardNumber, expiryDate: CardNumber?
-    public let extractedTexts, iban, issuedDate: CardNumber?
+// MARK: - ScanDocCardData
+public struct ScanDocCardData: Codable {
+    public let holdersName, luhnCheck, cardNumber, expiryDate: String?
+    public let extractedTexts, iban, issuedDate: String?
     
-    enum CodingKeys: String, CodingKey {
+    public enum CodingKeys: String, CodingKey {
         case holdersName = "HoldersName"
         case luhnCheck = "LuhnCheck"
         case cardNumber = "CardNumber"
@@ -91,13 +91,13 @@ public struct DataClass: Codable {
         case issuedDate = "IssuedDate"
     }
     
-    static func fromJson(body: [String: Any]) -> DataClass? {
-        func parseDataValue(_ key: String) -> CardNumber? {
-            guard let dict = body[key] as? [String: Any] else { return nil }
-            return CardNumber.fromJson(body: dict)
+    public static func fromJson(body: [String: Any]) -> ScanDocCardData? {
+        func parseDataValue(_ key: String) -> String? {
+            guard let dict = body[key] as? [String: Any], let readValues = CardNumber.fromJson(body: dict) else { return nil }
+            return readValues.value
         }
         
-        return DataClass(holdersName: parseDataValue("HoldersName"),
+        return ScanDocCardData(holdersName: parseDataValue("HoldersName"),
                          luhnCheck: parseDataValue("LuhnCheck"),
                          cardNumber: parseDataValue("CardNumber"),
                          expiryDate: parseDataValue("ExpiryDate"),
@@ -114,12 +114,12 @@ public struct CardNumber: Codable {
     public let read: Bool
     public let value: String
     
-    enum CodingKeys: String, CodingKey {
+    public enum CodingKeys: String, CodingKey {
         case read = "Read"
         case value = "Value"
     }
     
-    static func fromJson(body: [String: Any]) -> CardNumber? {
+    public static func fromJson(body: [String: Any]) -> CardNumber? {
         guard
             let read = body["Read"] as? Bool,
             let value = body["Value"] as? String
@@ -134,11 +134,11 @@ public struct CardNumber: Codable {
 public struct ImageData: Codable {
     public let creditCardImage: String
     
-    enum CodingKeys: String, CodingKey {
+    public enum CodingKeys: String, CodingKey {
         case creditCardImage = "CreditCardImage"
     }
     
-    static func fromJson(body: [String: Any]) -> ImageData? {
+    public static func fromJson(body: [String: Any]) -> ImageData? {
         guard let creditCardImage = body["CreditCardImage"] as? String else {
             return nil
         }

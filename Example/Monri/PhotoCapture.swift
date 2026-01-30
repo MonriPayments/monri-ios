@@ -18,7 +18,7 @@ final class PhotoCaptureViewController: UIViewController {
     private let cameraManager = CameraManager()
     private let photoValidator = PhotoValidator()
     
-    let scanDocApi = ScanDocApi(options: ScanDocApiOptions(scanDocApiBaseUrl: "REPLACE", userKey: "REPLACE", subClient: "REPLACE", acceptTermsAndConditions: true))
+    let scanDocApi = ScanDocApi(options: ScanDocApiOptions(scanDocApiBaseUrl: "https://monri-scandoc.asseco-see.hr/", userKey: "XCbnR54PAHma8hyBiP7J93xgzAHzAI", subClient: "ios_sdk_monri", acceptTermsAndConditions: true))
     
     private var capturedImage: UIImage?
     
@@ -71,6 +71,7 @@ final class PhotoCaptureViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         cameraManager.stopSession()
+        hidePhotoPreview()
     }
     
     // MARK: - Setup Methods
@@ -236,26 +237,15 @@ extension PhotoCaptureViewController: PhotoPreviewViewDelegate {
             switch resultOfExtraction {
             case .success(let cardData):
                 
-                guard let number = cardData.data?.cardNumber?.value,
-                      let expiry = cardData.data?.expiryDate?.value else {
-                    self.alert("Extraction failed", didFail: true)
-                    return
+                let vc = ExtractedDataViewController(data: cardData)
+                
+                DispatchQueue.main.async {
+                    self.navigationController?.pushViewController(vc, animated: true)
                 }
-                
-                let expMonth = expiry.split(separator: "/").first ?? ""
-                let expYear = expiry.split(separator: "/").last ?? ""
-                
-                let card = Card(number: number,
-                                cvc: "",
-                                expMonth: Int(expMonth) ?? 0,
-                                expYear: Int(expYear) ?? 0)
-                
-                self.alert("Extracted data: \(card)", didFail: false)
             case .failure(let failure):
                 self.alert("Extraction failed: \(failure)", didFail: true)
             }
         }
-        
         
     }
     
