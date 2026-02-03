@@ -61,6 +61,16 @@ final class PhotoCaptureViewController: UIViewController {
         if AVCaptureDevice.authorizationStatus(for: .video) == .authorized {
             cameraManager.startSession()
         }
+
+        let appearance = UINavigationBarAppearance()
+        appearance.configureWithOpaqueBackground()
+        appearance.backgroundColor = .black
+        appearance.titleTextAttributes = [.foregroundColor: UIColor.white]
+        appearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
+
+        navigationController?.navigationBar.standardAppearance = appearance
+        navigationController?.navigationBar.scrollEdgeAppearance = appearance
+        navigationController?.navigationBar.compactAppearance = appearance
     }
     
     override func viewDidLayoutSubviews() {
@@ -71,6 +81,7 @@ final class PhotoCaptureViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         cameraManager.stopSession()
+        hidePhotoPreview()
     }
     
     // MARK: - Setup Methods
@@ -235,28 +246,15 @@ extension PhotoCaptureViewController: PhotoPreviewViewDelegate {
         scanDocApi.extractDataFromScannedCard(scannedCardImage: image) { resultOfExtraction in
             switch resultOfExtraction {
             case .success(let cardData):
+                let vc = ExtractedDataViewController(data: cardData)
                 
-                guard let number = cardData.data?.cardNumber?.value,
-                      let expiry = cardData.data?.expiryDate?.value else {
-                    self.alert("Extraction failed", didFail: true)
-                    return
+                DispatchQueue.main.async {
+                    self.navigationController?.pushViewController(vc, animated: true)
                 }
-                
-                let expMonth = expiry.split(separator: "/").first ?? ""
-                let expYear = expiry.split(separator: "/").last ?? ""
-                
-                let card = Card(number: number,
-                                cvc: "",
-                                expMonth: Int(expMonth) ?? 0,
-                                expYear: Int(expYear) ?? 0)
-                
-                self.alert("Extracted data: \(card)", didFail: false)
             case .failure(let failure):
                 self.alert("Extraction failed: \(failure)", didFail: true)
             }
         }
-        
-        
     }
     
     func alert(_ message: String, didFail: Bool) {
