@@ -18,11 +18,15 @@
 		BE15D9722BC90D3B00C82C59 /* ConfirmDirectPaymentFlowTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE15D9712BC90D3B00C82C59 /* ConfirmDirectPaymentFlowTest.swift */; };
 		BE15D9762BC90DB900C82C59 /* FakeMonriHttpApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE15D9742BC90DB000C82C59 /* FakeMonriHttpApi.swift */; };
 		BE15D97A2BC90E3300C82C59 /* FakeUiDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE15D9792BC90E3300C82C59 /* FakeUiDelegate.swift */; };
-		BE920D0B2F26428500942C1F /* ScanDocConfigurationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE920D0A2F26428500942C1F /* ScanDocConfigurationTests.swift */; };
-		BE973E402E66E80A00A5511E /* PhotoCapture.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE973E3F2E66E80A00A5511E /* PhotoCapture.swift */; };
 		BE4325302E0AEBFA00E2B81D /* ConfirmApplePayFlowTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE43252F2E0AEBF000E2B81D /* ConfirmApplePayFlowTest.swift */; };
 		BE920D0B2F26428500942C1F /* ScanDocConfigurationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE920D0A2F26428500942C1F /* ScanDocConfigurationTests.swift */; };
-		BE973E402E66E80A00A5511E /* PhotoCapture.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE973E3F2E66E80A00A5511E /* PhotoCapture.swift */; };
+		BE93A8212F323A5500A6470D /* ExtractedDataCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE93A8202F323A5500A6470D /* ExtractedDataCell.swift */; };
+		BE93A8232F323A6900A6470D /* ExtractedDataViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE93A8222F323A6900A6470D /* ExtractedDataViewModel.swift */; };
+		BE93A8252F323A7D00A6470D /* CardImageFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE93A8242F323A7D00A6470D /* CardImageFooterView.swift */; };
+		BE93A8272F323AAF00A6470D /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE93A8262F323AAF00A6470D /* UIViewControllerExtension.swift */; };
+		BE93A82D2F323C5100A6470D /* PhotoPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE93A82C2F323C5100A6470D /* PhotoPreviewView.swift */; };
+		BE93A82F2F323C7C00A6470D /* CameraManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE93A82E2F323C7C00A6470D /* CameraManager.swift */; };
+		BE973E402E66E80A00A5511E /* PhotoCaptureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE973E3F2E66E80A00A5511E /* PhotoCaptureViewController.swift */; };
 		BE9B1CDD2F2CD9BB00A66C7B /* ExtractedDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE9B1CDC2F2CD9BB00A66C7B /* ExtractedDataViewController.swift */; };
 		D915BC9D4233636CF97F4990 /* Pods_Monri_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6EE1DD1CEAE4DB4849B9A4F /* Pods_Monri_Tests.framework */; };
 		E61D61AFDD83F96A19D377F0 /* Pods_Monri_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31250EB541150AA6F9D89D4D /* Pods_Monri_Example.framework */; };
@@ -64,11 +68,15 @@
 		BE15D9712BC90D3B00C82C59 /* ConfirmDirectPaymentFlowTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmDirectPaymentFlowTest.swift; sourceTree = "<group>"; };
 		BE15D9742BC90DB000C82C59 /* FakeMonriHttpApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeMonriHttpApi.swift; sourceTree = "<group>"; };
 		BE15D9792BC90E3300C82C59 /* FakeUiDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeUiDelegate.swift; sourceTree = "<group>"; };
-		BE920D0A2F26428500942C1F /* ScanDocConfigurationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanDocConfigurationTests.swift; sourceTree = "<group>"; };
-		BE973E3F2E66E80A00A5511E /* PhotoCapture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCapture.swift; sourceTree = "<group>"; };
 		BE43252F2E0AEBF000E2B81D /* ConfirmApplePayFlowTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmApplePayFlowTest.swift; sourceTree = "<group>"; };
 		BE920D0A2F26428500942C1F /* ScanDocConfigurationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanDocConfigurationTests.swift; sourceTree = "<group>"; };
-		BE973E3F2E66E80A00A5511E /* PhotoCapture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCapture.swift; sourceTree = "<group>"; };
+		BE93A8202F323A5500A6470D /* ExtractedDataCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtractedDataCell.swift; sourceTree = "<group>"; };
+		BE93A8222F323A6900A6470D /* ExtractedDataViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtractedDataViewModel.swift; sourceTree = "<group>"; };
+		BE93A8242F323A7D00A6470D /* CardImageFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardImageFooterView.swift; sourceTree = "<group>"; };
+		BE93A8262F323AAF00A6470D /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
+		BE93A82C2F323C5100A6470D /* PhotoPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPreviewView.swift; sourceTree = "<group>"; };
+		BE93A82E2F323C7C00A6470D /* CameraManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraManager.swift; sourceTree = "<group>"; };
+		BE973E3F2E66E80A00A5511E /* PhotoCaptureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCaptureViewController.swift; sourceTree = "<group>"; };
 		BE9B1CDC2F2CD9BB00A66C7B /* ExtractedDataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtractedDataViewController.swift; sourceTree = "<group>"; };
 		BE9EFD7B2DEDB66900B659B5 /* Monri_Example.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Monri_Example.entitlements; sourceTree = "<group>"; };
 		C6EE1DD1CEAE4DB4849B9A4F /* Pods_Monri_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Monri_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -135,8 +143,9 @@
 		607FACD21AFB9204008FA782 /* Example for Monri */ = {
 			isa = PBXGroup;
 			children = (
-				BE9B1CDC2F2CD9BB00A66C7B /* ExtractedDataViewController.swift */,
-				BE973E3F2E66E80A00A5511E /* PhotoCapture.swift */,
+				BE93A8292F323B8E00A6470D /* PhotoCapture */,
+				BE93A8282F323B6C00A6470D /* ExtractData */,
+				BE93A81D2F3239B600A6470D /* Utils */,
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
 				607FACD71AFB9204008FA782 /* ViewController.swift */,
 				607FACD91AFB9204008FA782 /* Main.storyboard */,
@@ -199,6 +208,35 @@
 				BE15D9792BC90E3300C82C59 /* FakeUiDelegate.swift */,
 			);
 			name = DirectPaymentFake;
+			sourceTree = "<group>";
+		};
+		BE93A81D2F3239B600A6470D /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				BE93A8262F323AAF00A6470D /* UIViewControllerExtension.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		BE93A8282F323B6C00A6470D /* ExtractData */ = {
+			isa = PBXGroup;
+			children = (
+				BE93A8242F323A7D00A6470D /* CardImageFooterView.swift */,
+				BE93A8202F323A5500A6470D /* ExtractedDataCell.swift */,
+				BE9B1CDC2F2CD9BB00A66C7B /* ExtractedDataViewController.swift */,
+				BE93A8222F323A6900A6470D /* ExtractedDataViewModel.swift */,
+			);
+			path = ExtractData;
+			sourceTree = "<group>";
+		};
+		BE93A8292F323B8E00A6470D /* PhotoCapture */ = {
+			isa = PBXGroup;
+			children = (
+				BE93A82E2F323C7C00A6470D /* CameraManager.swift */,
+				BE93A82C2F323C5100A6470D /* PhotoPreviewView.swift */,
+				BE973E3F2E66E80A00A5511E /* PhotoCaptureViewController.swift */,
+			);
+			path = PhotoCapture;
 			sourceTree = "<group>";
 		};
 		F2C15EB46CE6CA809B559ACD /* Frameworks */ = {
@@ -411,12 +449,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BE973E402E66E80A00A5511E /* PhotoCapture.swift in Sources */,
+				BE93A8212F323A5500A6470D /* ExtractedDataCell.swift in Sources */,
+				BE93A82F2F323C7C00A6470D /* CameraManager.swift in Sources */,
+				BE973E402E66E80A00A5511E /* PhotoCaptureViewController.swift in Sources */,
 				F22C6768236C335400231B9E /* HMac.swift in Sources */,
 				BE9B1CDD2F2CD9BB00A66C7B /* ExtractedDataViewController.swift in Sources */,
+				BE93A82D2F323C5100A6470D /* PhotoPreviewView.swift in Sources */,
 				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
+				BE93A8252F323A7D00A6470D /* CardImageFooterView.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
+				BE93A8232F323A6900A6470D /* ExtractedDataViewModel.swift in Sources */,
 				9980E9BF4CD955015AB15F5C /* OrdersRepository.swift in Sources */,
+				BE93A8272F323AAF00A6470D /* UIViewControllerExtension.swift in Sources */,
 				9980E9B2054E476D335A7E09 /* NewPaymentResponse.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
