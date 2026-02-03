@@ -6,6 +6,23 @@
 	objectVersion = 46;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		BE93A8542F325DA900A6470D /* Monri_IPA */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = BE93A8552F325DA900A6470D /* Build configuration list for PBXAggregateTarget "Monri_IPA" */;
+			buildPhases = (
+				BE93A8582F325DAE00A6470D /* ShellScript */,
+			);
+			dependencies = (
+				BE93A85A2F325DBB00A6470D /* PBXTargetDependency */,
+			);
+			name = Monri_IPA;
+			packageProductDependencies = (
+			);
+			productName = Monri_IPA;
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		1BC6B3D72965935D00C7E2CA /* MonriPaymentsCustomerApiTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BC6B3D62965935D00C7E2CA /* MonriPaymentsCustomerApiTest.swift */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
@@ -43,6 +60,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 607FACCF1AFB9204008FA782;
 			remoteInfo = Monri;
+		};
+		BE93A8592F325DBB00A6470D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 607FACC81AFB9204008FA782 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 607FACCF1AFB9204008FA782;
+			remoteInfo = Monri_Example;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -313,6 +337,11 @@
 						ProvisioningStyle = Manual;
 						TestTargetID = 607FACCF1AFB9204008FA782;
 					};
+					BE93A8542F325DA900A6470D = {
+						CreatedOnToolsVersion = 26.1.1;
+						DevelopmentTeam = Q9WZ632RYQ;
+						ProvisioningStyle = Automatic;
+					};
 				};
 			};
 			buildConfigurationList = 607FACCB1AFB9204008FA782 /* Build configuration list for PBXProject "Monri" */;
@@ -331,6 +360,7 @@
 			targets = (
 				607FACCF1AFB9204008FA782 /* Monri_Example */,
 				607FACE41AFB9204008FA782 /* Monri_Tests */,
+				BE93A8542F325DA900A6470D /* Monri_IPA */,
 			);
 		};
 /* End PBXProject section */
@@ -397,6 +427,23 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Monri_Tests/Pods-Monri_Tests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		BE93A8582F325DAE00A6470D /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nappNAME=\"Monri_Example.app\"\nICON=\"Monri_Example/Assets.xcassets/AppIcon.appiconset/60pt2x.png\"\n\n# define build filename variables\nCUSTOMER=\"ASSECOSEE\"\nNAME=\"Monri_Example\"\nBUILD_ENVIRONMENT=\"Monri_Example\"\n\nBUNDLE_VERSION=$(defaults read \"$CONFIGURATION_BUILD_DIR/${appNAME}/Info.plist\" CFBundleVersion)\nCURRENT_DATE=$(date +\"%Y.%m.%d-%H.%M.%S\")\nSHORT_BUNDLE_VERSION=$(defaults read \"$CONFIGURATION_BUILD_DIR/${appNAME}/Info.plist\" CFBundleShortVersionString)\n\n[ -d $CONFIGURATION_BUILD_DIR/Payload ] && echo \"FILE EXISTS\" ||   echo \"No such file: $PAYLOADDIR\"\n[ -d $CONFIGURATION_BUILD_DIR/Payload ] && rm -r $CONFIGURATION_BUILD_DIR/Payload  ||   echo \"No such file: $PAYLOADDIR\"\n/bin/mkdir $CONFIGURATION_BUILD_DIR/Payload\n/bin/cp -R $CONFIGURATION_BUILD_DIR/$appNAME $CONFIGURATION_BUILD_DIR/Payload\n\n# uncomment below to add iTunes artwork\n/bin/cp $ICON $CONFIGURATION_BUILD_DIR/iTunesArtwork\n\ncd $CONFIGURATION_BUILD_DIR\n\n#zip the content of the current folder\necho \"Creating ipa file...\"\n/usr/bin/zip -r \"${CUSTOMER}-${NAME}-${BUILD_ENVIRONMENT}-v${SHORT_BUNDLE_VERSION}-b${BUNDLE_VERSION}-d${CURRENT_DATE}.ipa\" Payload iTunesArtwork\n";
 		};
 		D4ED129641DBF64F29508C40 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -488,6 +535,11 @@
 			isa = PBXTargetDependency;
 			target = 607FACCF1AFB9204008FA782 /* Monri_Example */;
 			targetProxy = 607FACE61AFB9204008FA782 /* PBXContainerItemProxy */;
+		};
+		BE93A85A2F325DBB00A6470D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 607FACCF1AFB9204008FA782 /* Monri_Example */;
+			targetProxy = BE93A8592F325DBB00A6470D /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -640,17 +692,18 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Monri_Example.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = "";
-				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = V84HBA3M4U;
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = Q9WZ632RYQ;
 				INFOPLIST_FILE = Monri/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
-				PRODUCT_BUNDLE_IDENTIFIER = org.cocoapods.demo.MonriExample;
+				PRODUCT_BUNDLE_IDENTIFIER = org.cocoapods.demo.MonriExample.distribution;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "Monri SDK Demo Development";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "EnterpriseDistributionAllSec&Cmpl";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
 			};
@@ -704,6 +757,24 @@
 			};
 			name = Release;
 		};
+		BE93A8562F325DA900A6470D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = Q9WZ632RYQ;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		BE93A8572F325DA900A6470D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = Q9WZ632RYQ;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -730,6 +801,15 @@
 			buildConfigurations = (
 				607FACF31AFB9204008FA782 /* Debug */,
 				607FACF41AFB9204008FA782 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BE93A8552F325DA900A6470D /* Build configuration list for PBXAggregateTarget "Monri_IPA" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BE93A8562F325DA900A6470D /* Debug */,
+				BE93A8572F325DA900A6470D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
