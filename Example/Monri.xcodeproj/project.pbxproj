@@ -6,6 +6,23 @@
 	objectVersion = 46;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		BE93A8542F325DA900A6470D /* Monri_IPA */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = BE93A8552F325DA900A6470D /* Build configuration list for PBXAggregateTarget "Monri_IPA" */;
+			buildPhases = (
+				BE93A8582F325DAE00A6470D /* ShellScript */,
+			);
+			dependencies = (
+				BE93A85A2F325DBB00A6470D /* PBXTargetDependency */,
+			);
+			name = Monri_IPA;
+			packageProductDependencies = (
+			);
+			productName = Monri_IPA;
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		1BC6B3D72965935D00C7E2CA /* MonriPaymentsCustomerApiTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BC6B3D62965935D00C7E2CA /* MonriPaymentsCustomerApiTest.swift */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
@@ -18,9 +35,16 @@
 		BE15D9722BC90D3B00C82C59 /* ConfirmDirectPaymentFlowTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE15D9712BC90D3B00C82C59 /* ConfirmDirectPaymentFlowTest.swift */; };
 		BE15D9762BC90DB900C82C59 /* FakeMonriHttpApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE15D9742BC90DB000C82C59 /* FakeMonriHttpApi.swift */; };
 		BE15D97A2BC90E3300C82C59 /* FakeUiDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE15D9792BC90E3300C82C59 /* FakeUiDelegate.swift */; };
-		BE920D0B2F26428500942C1F /* ScanDocConfigurationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE920D0A2F26428500942C1F /* ScanDocConfigurationTests.swift */; };
-		BE973E402E66E80A00A5511E /* PhotoCapture.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE973E3F2E66E80A00A5511E /* PhotoCapture.swift */; };
 		BE4325302E0AEBFA00E2B81D /* ConfirmApplePayFlowTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE43252F2E0AEBF000E2B81D /* ConfirmApplePayFlowTest.swift */; };
+		BE920D0B2F26428500942C1F /* ScanDocConfigurationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE920D0A2F26428500942C1F /* ScanDocConfigurationTests.swift */; };
+		BE93A8212F323A5500A6470D /* ExtractedDataCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE93A8202F323A5500A6470D /* ExtractedDataCell.swift */; };
+		BE93A8232F323A6900A6470D /* ExtractedDataViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE93A8222F323A6900A6470D /* ExtractedDataViewModel.swift */; };
+		BE93A8252F323A7D00A6470D /* CardImageFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE93A8242F323A7D00A6470D /* CardImageFooterView.swift */; };
+		BE93A8272F323AAF00A6470D /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE93A8262F323AAF00A6470D /* UIViewControllerExtension.swift */; };
+		BE93A82D2F323C5100A6470D /* PhotoPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE93A82C2F323C5100A6470D /* PhotoPreviewView.swift */; };
+		BE93A82F2F323C7C00A6470D /* CameraManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE93A82E2F323C7C00A6470D /* CameraManager.swift */; };
+		BE973E402E66E80A00A5511E /* PhotoCaptureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE973E3F2E66E80A00A5511E /* PhotoCaptureViewController.swift */; };
+		BE9B1CDD2F2CD9BB00A66C7B /* ExtractedDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE9B1CDC2F2CD9BB00A66C7B /* ExtractedDataViewController.swift */; };
 		D915BC9D4233636CF97F4990 /* Pods_Monri_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6EE1DD1CEAE4DB4849B9A4F /* Pods_Monri_Tests.framework */; };
 		E61D61AFDD83F96A19D377F0 /* Pods_Monri_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31250EB541150AA6F9D89D4D /* Pods_Monri_Example.framework */; };
 		F22C6768236C335400231B9E /* HMac.swift in Sources */ = {isa = PBXBuildFile; fileRef = F22C6767236C335400231B9E /* HMac.swift */; };
@@ -36,6 +60,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 607FACCF1AFB9204008FA782;
 			remoteInfo = Monri;
+		};
+		BE93A8592F325DBB00A6470D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 607FACC81AFB9204008FA782 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 607FACCF1AFB9204008FA782;
+			remoteInfo = Monri_Example;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -61,9 +92,16 @@
 		BE15D9712BC90D3B00C82C59 /* ConfirmDirectPaymentFlowTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmDirectPaymentFlowTest.swift; sourceTree = "<group>"; };
 		BE15D9742BC90DB000C82C59 /* FakeMonriHttpApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeMonriHttpApi.swift; sourceTree = "<group>"; };
 		BE15D9792BC90E3300C82C59 /* FakeUiDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeUiDelegate.swift; sourceTree = "<group>"; };
-		BE920D0A2F26428500942C1F /* ScanDocConfigurationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanDocConfigurationTests.swift; sourceTree = "<group>"; };
-		BE973E3F2E66E80A00A5511E /* PhotoCapture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCapture.swift; sourceTree = "<group>"; };
 		BE43252F2E0AEBF000E2B81D /* ConfirmApplePayFlowTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmApplePayFlowTest.swift; sourceTree = "<group>"; };
+		BE920D0A2F26428500942C1F /* ScanDocConfigurationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanDocConfigurationTests.swift; sourceTree = "<group>"; };
+		BE93A8202F323A5500A6470D /* ExtractedDataCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtractedDataCell.swift; sourceTree = "<group>"; };
+		BE93A8222F323A6900A6470D /* ExtractedDataViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtractedDataViewModel.swift; sourceTree = "<group>"; };
+		BE93A8242F323A7D00A6470D /* CardImageFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardImageFooterView.swift; sourceTree = "<group>"; };
+		BE93A8262F323AAF00A6470D /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
+		BE93A82C2F323C5100A6470D /* PhotoPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPreviewView.swift; sourceTree = "<group>"; };
+		BE93A82E2F323C7C00A6470D /* CameraManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraManager.swift; sourceTree = "<group>"; };
+		BE973E3F2E66E80A00A5511E /* PhotoCaptureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCaptureViewController.swift; sourceTree = "<group>"; };
+		BE9B1CDC2F2CD9BB00A66C7B /* ExtractedDataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtractedDataViewController.swift; sourceTree = "<group>"; };
 		BE9EFD7B2DEDB66900B659B5 /* Monri_Example.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Monri_Example.entitlements; sourceTree = "<group>"; };
 		C6EE1DD1CEAE4DB4849B9A4F /* Pods_Monri_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Monri_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CADEDD46D49D8F7C837263C3 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
@@ -129,7 +167,9 @@
 		607FACD21AFB9204008FA782 /* Example for Monri */ = {
 			isa = PBXGroup;
 			children = (
-				BE973E3F2E66E80A00A5511E /* PhotoCapture.swift */,
+				BE93A8292F323B8E00A6470D /* PhotoCapture */,
+				BE93A8282F323B6C00A6470D /* ExtractData */,
+				BE93A81D2F3239B600A6470D /* Utils */,
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
 				607FACD71AFB9204008FA782 /* ViewController.swift */,
 				607FACD91AFB9204008FA782 /* Main.storyboard */,
@@ -192,6 +232,35 @@
 				BE15D9792BC90E3300C82C59 /* FakeUiDelegate.swift */,
 			);
 			name = DirectPaymentFake;
+			sourceTree = "<group>";
+		};
+		BE93A81D2F3239B600A6470D /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				BE93A8262F323AAF00A6470D /* UIViewControllerExtension.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		BE93A8282F323B6C00A6470D /* ExtractData */ = {
+			isa = PBXGroup;
+			children = (
+				BE93A8242F323A7D00A6470D /* CardImageFooterView.swift */,
+				BE93A8202F323A5500A6470D /* ExtractedDataCell.swift */,
+				BE9B1CDC2F2CD9BB00A66C7B /* ExtractedDataViewController.swift */,
+				BE93A8222F323A6900A6470D /* ExtractedDataViewModel.swift */,
+			);
+			path = ExtractData;
+			sourceTree = "<group>";
+		};
+		BE93A8292F323B8E00A6470D /* PhotoCapture */ = {
+			isa = PBXGroup;
+			children = (
+				BE93A82E2F323C7C00A6470D /* CameraManager.swift */,
+				BE93A82C2F323C5100A6470D /* PhotoPreviewView.swift */,
+				BE973E3F2E66E80A00A5511E /* PhotoCaptureViewController.swift */,
+			);
+			path = PhotoCapture;
 			sourceTree = "<group>";
 		};
 		F2C15EB46CE6CA809B559ACD /* Frameworks */ = {
@@ -268,6 +337,11 @@
 						ProvisioningStyle = Manual;
 						TestTargetID = 607FACCF1AFB9204008FA782;
 					};
+					BE93A8542F325DA900A6470D = {
+						CreatedOnToolsVersion = 26.1.1;
+						DevelopmentTeam = Q9WZ632RYQ;
+						ProvisioningStyle = Automatic;
+					};
 				};
 			};
 			buildConfigurationList = 607FACCB1AFB9204008FA782 /* Build configuration list for PBXProject "Monri" */;
@@ -286,6 +360,7 @@
 			targets = (
 				607FACCF1AFB9204008FA782 /* Monri_Example */,
 				607FACE41AFB9204008FA782 /* Monri_Tests */,
+				BE93A8542F325DA900A6470D /* Monri_IPA */,
 			);
 		};
 /* End PBXProject section */
@@ -353,6 +428,23 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Monri_Tests/Pods-Monri_Tests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		BE93A8582F325DAE00A6470D /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nappNAME=\"Monri_Example.app\"\nICON=\"Monri_Example/Assets.xcassets/AppIcon.appiconset/60pt2x.png\"\n\n# define build filename variables\nCUSTOMER=\"ASSECOSEE\"\nNAME=\"Monri_Example\"\nBUILD_ENVIRONMENT=\"Monri_Example\"\n\nBUNDLE_VERSION=$(defaults read \"$CONFIGURATION_BUILD_DIR/${appNAME}/Info.plist\" CFBundleVersion)\nCURRENT_DATE=$(date +\"%Y.%m.%d-%H.%M.%S\")\nSHORT_BUNDLE_VERSION=$(defaults read \"$CONFIGURATION_BUILD_DIR/${appNAME}/Info.plist\" CFBundleShortVersionString)\n\n[ -d $CONFIGURATION_BUILD_DIR/Payload ] && echo \"FILE EXISTS\" ||   echo \"No such file: $PAYLOADDIR\"\n[ -d $CONFIGURATION_BUILD_DIR/Payload ] && rm -r $CONFIGURATION_BUILD_DIR/Payload  ||   echo \"No such file: $PAYLOADDIR\"\n/bin/mkdir $CONFIGURATION_BUILD_DIR/Payload\n/bin/cp -R $CONFIGURATION_BUILD_DIR/$appNAME $CONFIGURATION_BUILD_DIR/Payload\n\n# uncomment below to add iTunes artwork\n/bin/cp $ICON $CONFIGURATION_BUILD_DIR/iTunesArtwork\n\ncd $CONFIGURATION_BUILD_DIR\n\n#zip the content of the current folder\necho \"Creating ipa file...\"\n/usr/bin/zip -r \"${CUSTOMER}-${NAME}-${BUILD_ENVIRONMENT}-v${SHORT_BUNDLE_VERSION}-b${BUNDLE_VERSION}-d${CURRENT_DATE}.ipa\" Payload iTunesArtwork\n";
+		};
 		D4ED129641DBF64F29508C40 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -404,11 +496,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BE973E402E66E80A00A5511E /* PhotoCapture.swift in Sources */,
+				BE93A8212F323A5500A6470D /* ExtractedDataCell.swift in Sources */,
+				BE93A82F2F323C7C00A6470D /* CameraManager.swift in Sources */,
+				BE973E402E66E80A00A5511E /* PhotoCaptureViewController.swift in Sources */,
 				F22C6768236C335400231B9E /* HMac.swift in Sources */,
+				BE9B1CDD2F2CD9BB00A66C7B /* ExtractedDataViewController.swift in Sources */,
+				BE93A82D2F323C5100A6470D /* PhotoPreviewView.swift in Sources */,
 				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
+				BE93A8252F323A7D00A6470D /* CardImageFooterView.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
+				BE93A8232F323A6900A6470D /* ExtractedDataViewModel.swift in Sources */,
 				9980E9BF4CD955015AB15F5C /* OrdersRepository.swift in Sources */,
+				BE93A8272F323AAF00A6470D /* UIViewControllerExtension.swift in Sources */,
 				9980E9B2054E476D335A7E09 /* NewPaymentResponse.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -436,6 +535,11 @@
 			isa = PBXTargetDependency;
 			target = 607FACCF1AFB9204008FA782 /* Monri_Example */;
 			targetProxy = 607FACE61AFB9204008FA782 /* PBXContainerItemProxy */;
+		};
+		BE93A85A2F325DBB00A6470D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 607FACCF1AFB9204008FA782 /* Monri_Example */;
+			targetProxy = BE93A8592F325DBB00A6470D /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -588,17 +692,18 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Monri_Example.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = "";
-				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = V84HBA3M4U;
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = Q9WZ632RYQ;
 				INFOPLIST_FILE = Monri/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
-				PRODUCT_BUNDLE_IDENTIFIER = org.cocoapods.demo.MonriExample;
+				PRODUCT_BUNDLE_IDENTIFIER = org.cocoapods.demo.MonriExample.distribution;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "Monri SDK Demo Development";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "EnterpriseDistributionAllSec&Cmpl";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
 			};
@@ -652,6 +757,24 @@
 			};
 			name = Release;
 		};
+		BE93A8562F325DA900A6470D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = Q9WZ632RYQ;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		BE93A8572F325DA900A6470D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = Q9WZ632RYQ;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -678,6 +801,15 @@
 			buildConfigurations = (
 				607FACF31AFB9204008FA782 /* Debug */,
 				607FACF41AFB9204008FA782 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BE93A8552F325DA900A6470D /* Build configuration list for PBXAggregateTarget "Monri_IPA" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BE93A8562F325DA900A6470D /* Debug */,
+				BE93A8572F325DA900A6470D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -14,12 +14,18 @@ import PassKit
 class ViewController: UIViewController {
     
     // TODO: replace with your merchant's authenticity monriToken
-    let authenticityToken = "c6301017117302601b823874972a97acce96f2df"
+    let authenticityToken = "REPLACE"
     //TODO: replace with your merchant's merchant key
-    let merchantKey = "key-e428ba618ebc232a595d0851398b8a5d"
+    let merchantKey = "REPLACE"
     //TODO: replace with your mechantID created in Apple Developer
-    let applePayMerchantID = "merchant.monri.skunca.karolina"
+    let applePayMerchantID = "REPLACE"
     var applePayHandler: ApplePayHandler? //Has to be strong refrence!
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        whiteNavigationBarAppearance()
+    }
     
     func createAccessToken(_ callback: @escaping (String) -> Void) {
         

@@ -30,7 +30,7 @@ public class ScanDocApi {
     
     public func validateScannedCard(scannedCardImages: [UIImage], validationConfiguration: ValidationConfiguration? = nil, _ callback: @escaping (Result<ScanDocValidationResponse, Error>) -> Void) {
         
-        guard let base64Images = getBase64Images(images: scannedCardImages) else {
+        guard let base64Images = ImageProcessingUtil.imagesToCompressedBase64(scannedCardImages) else {
             callback(.failure(ScanDocErrors.invalidImageFormat.asNSError))
             return
         }
@@ -61,7 +61,7 @@ public class ScanDocApi {
     
     public func extractDataFromScannedCard(scannedCardImage: UIImage, extractionConfiguration: ExtractionConfiguration? = nil, _ callback: @escaping (Result<ExtractionResponse, Error>) -> Void) {
         
-        guard let scannedCardBase64Img = getBase64Img(from: scannedCardImage) else {
+        guard let scannedCardBase64Img = ImageProcessingUtil.imageToCompressedBase64(scannedCardImage) else {
             callback(.failure(ScanDocErrors.invalidImageFormat.asNSError))
             return
         }
@@ -79,9 +79,8 @@ public class ScanDocApi {
                         
                     case .success(let response):
                         
-                        guard response.data?.cardNumber?.value != nil,
-                              response.data?.expiryDate?.value != nil else {
-                            
+                        guard response.data?.cardNumber != nil,
+                              response.data?.expiryDate != nil else {
                             callback(.failure(ScanDocErrors.unableToReadExtractedData.asNSError))
                             return
                         }
@@ -100,17 +99,6 @@ public class ScanDocApi {
         
         
     }
-    
-    private func getBase64Img(from image: UIImage) -> String? {
-        
-        if let imageData = image.jpegData(compressionQuality: 0.5) {
-            let base64String = imageData.base64EncodedString()
-            return base64String
-        }
-        
-        return nil
-    }
-    
     
     private func getAccessToken(_ callback: @escaping (Result<String, Error>) -> Void) {
         
@@ -182,20 +170,6 @@ public class ScanDocApi {
         }
         
         return scanDocExtractionRequest
-    }
-    
-    private func getBase64Images(images: [UIImage]) -> [String]? {
-        var base64Images: [String] = []
-        
-        for image in images {
-            guard let scannedCardBase64Img = getBase64Img(from: image) else {
-                return nil
-            }
-            
-            base64Images.append(scannedCardBase64Img)
-        }
-        
-        return base64Images
     }
     
     private func getValidationConfiguration(base64Images: [String], validationSettings: ValidationConfiguration?) -> ScanDocValidationRequest {

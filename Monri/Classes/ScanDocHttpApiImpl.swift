@@ -97,7 +97,7 @@ class ScanDocHttpApiImpl: ScanDocHttpApi {
     
     func validate(accessToken: String, _ validationParams: ScanDocValidationRequest, _ callback: @escaping (Result<ScanDocValidationResponse, any Error>) -> Void) {
         
-        httpClient.jsonPost(url: options.scanDocApiBaseUrl + ScanDocApiConstants.VALIDATION_ENDPOINT,
+        httpClient.jsonPost(url: validateURL(options.scanDocApiBaseUrl) + ScanDocApiConstants.VALIDATION_ENDPOINT,
                             body: validationParams.toJson(),
                             headers: [
                                 ScanDocApiConstants.ACCEPT_HEADER_KEY: ScanDocApiConstants.JSON_HEADER_VALUE,
@@ -126,7 +126,7 @@ class ScanDocHttpApiImpl: ScanDocHttpApi {
     
     func extraction(accessToken: String, _ extractionParams: ScanDocExtractionRequest, _ callback: @escaping (Result<ExtractionResponse, any Error>) -> Void) {
         
-        httpClient.jsonPost(url: options.scanDocApiBaseUrl + ScanDocApiConstants.EXTRACTION_ENDPOINT,
+        httpClient.jsonPost(url: validateURL(options.scanDocApiBaseUrl) + ScanDocApiConstants.EXTRACTION_ENDPOINT,
                             body: extractionParams.toJson(),
                             headers: [
                                 ScanDocApiConstants.ACCEPT_HEADER_KEY: ScanDocApiConstants.JSON_HEADER_VALUE,
@@ -151,6 +151,15 @@ class ScanDocHttpApiImpl: ScanDocHttpApi {
                                     return
                                 }
                             }
+    }
+    
+    internal func validateURL(_ url: String) -> String {
+        
+        if url.last != "/" {
+            return url + "/"
+        }
+        
+        return url
     }
     
     
