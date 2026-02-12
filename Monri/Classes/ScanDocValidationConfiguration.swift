@@ -7,14 +7,12 @@
 
 
 public struct ValidationConfiguration {
-    //let acceptTermsAndConditions: Bool
     var blurValues: [Double]
     let validationSettings: ValidationConfigurationSettings
     
-    public init(blurValues: [Double], validationSettings: ValidationConfigurationSettings, acceptTermsAndConditions: Bool) {
+    public init(blurValues: [Double], validationSettings: ValidationConfigurationSettings) {
         self.blurValues = blurValues
         self.validationSettings = validationSettings
-        //self.acceptTermsAndConditions = acceptTermsAndConditions
     }
     
     public mutating func setBlurValues(_ blurValues: [Double]) {

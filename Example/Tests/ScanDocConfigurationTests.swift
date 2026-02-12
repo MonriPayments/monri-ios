@@ -59,8 +59,7 @@ final class ScanDocConfigurationTests: XCTestCase {
         let validationSettings = ValidationConfigurationSettings(skipImageSizeCheck: false)
         var config = ValidationConfiguration(
             blurValues: [0.1, 0.2],
-            validationSettings: validationSettings,
-            acceptTermsAndConditions: true
+            validationSettings: validationSettings
         )
 
         config.setBlurValues([0.5, 0.7])
