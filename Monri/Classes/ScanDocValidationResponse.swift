@@ -19,6 +19,7 @@ public struct ScanDocValidationResponse: Codable {
     public let validated: Bool?
     public let index: Int?
     public let info: String?
+    public let detectedBlurValue: Double?
     
     enum CodingKeys: String, CodingKey {
         case transactionID = "TransactionID"
@@ -34,6 +35,7 @@ public struct ScanDocValidationResponse: Codable {
         case validated = "Validated"
         case index = "Index"
         case info = "Info"
+        case detectedBlurValue = "DetectedBlurValue"
     }
     
     
@@ -51,7 +53,8 @@ public struct ScanDocValidationResponse: Codable {
             let validated = body["Validated"] as? Bool,
             let index = body["Index"] as? Int,
             let analysisTime = body["AnalysisTime"] as? Double,
-            let info = body["Info"] as? String
+            let info = body["Info"] as? String,
+            let detectedBlurValue = body["DetectedBlurValue"] as? Double
         else {
             return nil
         }
@@ -70,6 +73,7 @@ public struct ScanDocValidationResponse: Codable {
             validated: validated,
             index: index,
             info: info,
+            detectedBlurValue: detectedBlurValue,
         )
     }
 }

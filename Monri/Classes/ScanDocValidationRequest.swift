@@ -7,8 +7,6 @@
 
 import Foundation
 
-
-
 // MARK: - ScanDocValidationRequest
 struct ScanDocValidationRequest: Codable {
     let acceptTermsAndConditions: Bool
