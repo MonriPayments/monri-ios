@@ -15,7 +15,7 @@ internal final class ImageProcessingUtil {
         internal let jpegQuality: CGFloat
         
         internal init(
-            maxDimension: CGFloat = 1024,
+            maxDimension: CGFloat = 2024,
             jpegQuality: CGFloat = 0.70
         ) {
             self.maxDimension = maxDimension
