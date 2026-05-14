@@ -27,19 +27,44 @@ func isInFuture(_ date: Date) -> Bool {
     return date > Date()
 }
 
+private let expirationGregorianCalendar: Calendar = {
+    var calendar = Calendar(identifier: .gregorian)
+    calendar.timeZone = TimeZone(identifier: "UTC") ?? .current
+    return calendar
+}()
+
+private let maxExpirationYearsInFuture = 20
+
 func currentYear() -> Int {
-    let calendar = Calendar.current
-    return calendar.component(.year, from: Date())
+    return expirationGregorianCalendar.component(.year, from: Date())
 }
 
 func validateExpirationDate(month: Int, year: Int) -> TokenError? {
 
-    if !(month > 0 && month <= 12) {
+    guard month >= 1 && month <= 12 else {
         return TokenError.invalidExpirationMonth
     }
 
-    if year < currentYear() {
+    guard year >= 1000 && year <= 9999 else {
         return TokenError.invalidExpirationYear
+    }
+
+    let nowComponents = expirationGregorianCalendar.dateComponents([.year, .month], from: Date())
+    guard let currentYearValue = nowComponents.year,
+          let currentMonthValue = nowComponents.month else {
+        return TokenError.invalidExpirationDate
+    }
+
+    if year < currentYearValue {
+        return TokenError.invalidExpirationYear
+    }
+
+    if year > currentYearValue + maxExpirationYearsInFuture {
+        return TokenError.invalidExpirationYear
+    }
+
+    if year == currentYearValue && month < currentMonthValue {
+        return TokenError.invalidExpirationDate
     }
 
     return nil
