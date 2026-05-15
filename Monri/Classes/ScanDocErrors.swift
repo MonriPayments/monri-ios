@@ -5,6 +5,8 @@
 //  Created by Karolina Škunca on 20.01.2026..
 //
 
+import Foundation
+
 enum ScanDocErrors: Error {
     case unableToReadExtractedData
     case invalidImageFormat

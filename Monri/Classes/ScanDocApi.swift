@@ -5,7 +5,7 @@
 //  Created by Karolina Škunca on 28.08.2025..
 //
 
-import Foundation
+import UIKit
 import os.log
 
 internal struct ImageTypes {
