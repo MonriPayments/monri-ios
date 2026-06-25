@@ -5,7 +5,7 @@ PODS:
   - FBSnapshotTestCase/Core (2.1.4)
   - FBSnapshotTestCase/SwiftSupport (2.1.4):
     - FBSnapshotTestCase/Core
-  - Monri (2.3.3):
+  - Monri (2.3.4):
     - Alamofire (~> 5.10.2)
   - Nimble (9.0.1)
   - Quick (1.2.0)
@@ -30,7 +30,7 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   Alamofire: 7193b3b92c74a07f85569e1a6c4f4237291e7496
   FBSnapshotTestCase: 094f9f314decbabe373b87cc339bea235a63e07a
-  Monri: 585f4b30ef76c21707d6d93c1b817e3204efdea5
+  Monri: 1ba144954962eff24507be3bdf36482d2473e872
   Nimble: 7bed62ffabd6dbfe05f5925cbc43722533248990
   Quick: 58d203b1c5e27fff7229c4c1ae445ad7069a7a08
 
