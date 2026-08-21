@@ -94,7 +94,7 @@ final class MonriPaymentsCustomerApiTest: XCTestCase {
                    parameters: parameters,
                    encoding: JSONEncoding.default,
                    headers: headers)
-        .responseJSON { dataResponse in
+        .responseData { dataResponse in
             guard let data = dataResponse.data else {
                 callback(nil, nil)
                 return
@@ -136,7 +136,7 @@ final class MonriPaymentsCustomerApiTest: XCTestCase {
                    parameters: parameters,
                    encoding: JSONEncoding.default,
                    headers: headers)
-        .responseJSON { dataResponse in
+        .responseData { dataResponse in
             guard let data = dataResponse.data else {
                 callback("")
                 return

@@ -64,7 +64,7 @@ public class OrdersRepository {
                    parameters: parameters,
                    encoding: JSONEncoding.default,
                    headers: headers)
-        .responseJSON { dataResponse in
+        .responseData { dataResponse in
             guard let data = dataResponse.data else {
                 callback(nil)
                 return

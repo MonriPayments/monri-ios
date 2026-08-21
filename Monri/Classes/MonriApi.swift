@@ -46,7 +46,7 @@ public final class MonriApi {
         }
         
         AF.request(tokenizeUrl, method: .post, parameters: createTokenRequest.toJson(), encoding: JSONEncoding.default)
-            .responseJSON { dataResponse in
+            .responseData { dataResponse in
                 guard let data = dataResponse.data else {
                     callback(.error(TokenError.tokenizationFailed))
                     return

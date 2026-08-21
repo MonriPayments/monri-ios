@@ -15,7 +15,7 @@ class AlamofireMonriHttpClient: MonriHttpClient {
                         encoding: JSONEncoding.default,
                         headers: alamofireHeaders
                 )
-                .responseJSON { dataResponse in
+                .responseData { dataResponse in
                     self.handleResponse(dataResponse, callback)
                 }
     }
@@ -27,7 +27,7 @@ class AlamofireMonriHttpClient: MonriHttpClient {
                         encoding: JSONEncoding.default,
                         headers: alamofireHeaders
                 )
-                .responseJSON { dataResponse in
+                .responseData { dataResponse in
                     self.handleResponse(dataResponse, callback)
                 }
     }
@@ -39,12 +39,12 @@ class AlamofireMonriHttpClient: MonriHttpClient {
                         encoding: JSONEncoding.default,
                         headers: alamofireHeaders
                 )
-                .responseJSON { dataResponse in
+                .responseData { dataResponse in
                     self.handleResponse(dataResponse, callback)
                 }
     }
 
-    func handleResponse(_ dataResponse: DataResponse<Any, AFError>, _ callback: @escaping (MonriHttpClientResponse) -> Void) {
+    func handleResponse(_ dataResponse: DataResponse<Data, AFError>, _ callback: @escaping (MonriHttpClientResponse) -> Void) {
         do {
             
             guard let data = dataResponse.data else {
