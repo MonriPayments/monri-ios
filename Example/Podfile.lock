@@ -1,12 +1,12 @@
 PODS:
-  - Alamofire (5.10.2)
+  - Alamofire (5.12.0)
   - FBSnapshotTestCase (2.1.4):
     - FBSnapshotTestCase/SwiftSupport (= 2.1.4)
   - FBSnapshotTestCase/Core (2.1.4)
   - FBSnapshotTestCase/SwiftSupport (2.1.4):
     - FBSnapshotTestCase/Core
-  - Monri (2.3.4):
-    - Alamofire (~> 5.10.2)
+  - Monri (2.3.5):
+    - Alamofire (< 6.0, >= 5.9)
   - Nimble (9.0.1)
   - Quick (1.2.0)
 
@@ -28,9 +28,9 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  Alamofire: 7193b3b92c74a07f85569e1a6c4f4237291e7496
+  Alamofire: ddb8d5201667b256dbc225f3fc6e835a0753186f
   FBSnapshotTestCase: 094f9f314decbabe373b87cc339bea235a63e07a
-  Monri: 1ba144954962eff24507be3bdf36482d2473e872
+  Monri: a8d6b024f7a3d7298bf074f9f75823fc10e4cabc
   Nimble: 7bed62ffabd6dbfe05f5925cbc43722533248990
   Quick: 58d203b1c5e27fff7229c4c1ae445ad7069a7a08
 
