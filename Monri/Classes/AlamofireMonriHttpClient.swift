@@ -48,13 +48,26 @@ class AlamofireMonriHttpClient: MonriHttpClient {
         do {
             
             guard let data = dataResponse.data else {
-                callback(.error(.responseDataMissing))
+                if let error = dataResponse.error {
+                    callback(.error(.responseParsingError(error)))
+                } else {
+                    callback(.error(.responseDataMissing))
+                }
                 return
             }
-            
-            let statusCode = dataResponse.response!.statusCode
 
-            let headers = dataResponse.response!.allHeaderFields
+            guard let response = dataResponse.response else {
+                if let error = dataResponse.error {
+                    callback(.error(.responseParsingError(error)))
+                } else {
+                    callback(.error(.responseDataMissing))
+                }
+                return
+            }
+
+            let statusCode = response.statusCode
+
+            let headers = response.allHeaderFields
 
             if (statusCode >= 200 && statusCode < 300) {
 
@@ -63,7 +76,7 @@ class AlamofireMonriHttpClient: MonriHttpClient {
                     return
                 }
 
-                callback(.success(body: json, statusCode: statusCode, headers: dataResponse.response!.allHeaderFields))
+                callback(.success(body: json, statusCode: statusCode, headers: headers))
             } else {
                 guard let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] else {
                     callback(.error(.jsonParsingError("Converting response = \(data) to JSON failed!")))
