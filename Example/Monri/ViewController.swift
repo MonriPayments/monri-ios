@@ -34,7 +34,7 @@ class ViewController: UIViewController {
             method: .get,
             encoding: JSONEncoding.default
         )
-        .responseJSON { dataResponse in
+        .responseData { dataResponse in
             guard let data = dataResponse.data else {
                 callback("")
                 return

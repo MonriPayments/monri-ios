@@ -38,6 +38,10 @@ dependencies: [
 ]
 ```
 
+## Version 2.3.5
+
+In version 2.3.5 we relaxed the Alamofire dependency constraint to `>= 5.9, < 6.0`. The SDK no longer pins a specific Alamofire patch version, so it stays compatible with host apps that already use any Alamofire 5.x and no longer forces a downgrade. If you encounter any issues with the dependency upgrade let us know through GitHub issues or by sending an email to helpdesk@monri.com
+
 ## Version 1.5.0
 
 In version 1.5.0 we have upgraded Alamofire dependency from `~4.0` to `~> 5.2.1`. If you encounter any issues with dependency upgrade let us know through GitHub issues or by sending an email to helpdesk@monri.com`

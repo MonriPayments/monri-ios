@@ -89,12 +89,20 @@ final class MonriPaymentsCustomerApiTest: XCTestCase {
 
         let url = "https://ipgtest.monri.com/v2/payment/new"
 
-        AF.request(url,
-                   method: .post,
-                   parameters: parameters,
-                   encoding: JSONEncoding.default,
-                   headers: headers)
-        .responseJSON { dataResponse in
+        guard let requestUrl = URL(string: url) else {
+            callback(nil, nil)
+            return
+        }
+
+        var request = URLRequest(url: requestUrl)
+        request.httpMethod = HTTPMethod.post.rawValue
+        request.httpBody = bodyData
+        for (name, value) in headers.dictionary {
+            request.setValue(value, forHTTPHeaderField: name)
+        }
+
+        AF.request(request)
+        .responseData { dataResponse in
             guard let data = dataResponse.data else {
                 callback(nil, nil)
                 return
@@ -136,7 +144,7 @@ final class MonriPaymentsCustomerApiTest: XCTestCase {
                    parameters: parameters,
                    encoding: JSONEncoding.default,
                    headers: headers)
-        .responseJSON { dataResponse in
+        .responseData { dataResponse in
             guard let data = dataResponse.data else {
                 callback("")
                 return

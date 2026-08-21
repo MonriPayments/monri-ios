@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'Monri'
-  s.version          = '2.3.4'
+  s.version          = '2.3.5'
   s.summary          = 'Monri iOS SDK'
 
   s.description      = 'Monri iOS SDK - simplified card collection & payment'
@@ -19,7 +19,7 @@ Pod::Spec.new do |s|
   s.source           = { :git => 'https://github.com/MonriPayments/monri-ios.git', :tag => s.version.to_s }
 
   s.ios.deployment_target = '12.0'
-  s.swift_version = '4.2'
+  s.swift_version = '5.0'
   
   s.resource_bundles = {
       'Monri' => ['Monri/Classes/**/*.{storyboard,xib,xcassets,json,imageset,png}']
@@ -27,5 +27,5 @@ Pod::Spec.new do |s|
 
   s.source_files = 'Monri/Classes/**/*'
   
-  s.dependency 'Alamofire', '~> 5.10.2'
+  s.dependency 'Alamofire', '>= 5.9', '< 6.0'
 end
